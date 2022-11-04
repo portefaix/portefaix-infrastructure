@@ -19,12 +19,12 @@ name: Alicloud / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/alicloud/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/alicloud/**"
 

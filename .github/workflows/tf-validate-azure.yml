@@ -17,12 +17,12 @@ name: Azure / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/azure/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 

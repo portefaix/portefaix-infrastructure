@@ -19,12 +19,12 @@ name: Exoscale / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/exoscale/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/exoscale/**"
 

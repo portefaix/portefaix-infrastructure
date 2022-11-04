@@ -17,12 +17,12 @@ name: AWS / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/aws/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 

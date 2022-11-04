@@ -17,12 +17,12 @@ name: Alicloud / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/alicloud/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 

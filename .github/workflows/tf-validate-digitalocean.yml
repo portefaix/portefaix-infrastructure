@@ -17,12 +17,12 @@ name: DigitalOcean / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/digitalocean/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 
