@@ -17,12 +17,12 @@ name: Scaleway / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/scaleway/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 

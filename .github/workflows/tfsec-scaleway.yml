@@ -19,12 +19,12 @@ name: Scaleway / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/scaleway/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/scaleway/**"
 

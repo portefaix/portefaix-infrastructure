@@ -19,12 +19,12 @@ name: IBMCloud / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/ibmcloud/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/ibmcloud/**"
 

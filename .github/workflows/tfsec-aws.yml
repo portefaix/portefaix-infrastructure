@@ -19,12 +19,12 @@ name: AWS / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/aws/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/aws/**"
 

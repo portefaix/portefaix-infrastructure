@@ -19,12 +19,12 @@ name: DigitalOcean / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/digitalocean/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/digitalocean/**"
 

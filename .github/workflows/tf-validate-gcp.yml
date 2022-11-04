@@ -17,12 +17,12 @@ name: GCP / Validate
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'terraform/gcp/**'
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - 'terraform/**'
 

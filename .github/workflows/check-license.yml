@@ -17,10 +17,10 @@ name: Project / Check License Header
 on:
   push:
     branches:
-      - master
+      - main
   # pull_request:
   #   branches:
-  #     - master
+  #     - main
 
 jobs:
   check-license:

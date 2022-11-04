@@ -19,12 +19,12 @@ name: GCP / Security
 on:
   # push:
   #   branches:
-  #     - master
+  #     - main
   #   paths:
   #     - "terraform/gcp/**"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "terraform/gcp/**"
 
