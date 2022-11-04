@@ -47,19 +47,21 @@ module "aks" {
   # rbac_aad_admin_group_object_ids  = var.admin_group_object_ids
 
   # enable_log_analytics_workspace  = false
-  enable_auto_scaling             = var.enable_auto_scaling
+  enable_auto_scaling = var.enable_auto_scaling
 
-  azure_policy_enabled             = var.azure_policy_enabled
+  azure_policy_enabled = var.azure_policy_enabled
 
   http_application_routing_enabled = var.http_application_routing_enabled
 
-  ingress_application_gateway_enabled    = var.ingress_application_gateway_enabled
+  ingress_application_gateway_enabled   = var.ingress_application_gateway_enabled
   ingress_application_gateway_subnet_id = data.azurerm_subnet.appgw.id
 
   open_service_mesh_enabled = var.open_service_mesh_enabled
 
   key_vault_secrets_provider_enabled = var.key_vault_secrets_provider_enabled
-  secret_rotation_enabled = var.secret_rotation_enabled
+  secret_rotation_enabled            = var.secret_rotation_enabled
+
+  input_workload_identity_enabled = var.input_workload_identity_enabled
 
   os_disk_size_gb           = var.os_disk_size_gb
   agents_min_count          = var.agents_min_count
@@ -73,12 +75,7 @@ module "aks" {
   agents_labels             = var.agents_labels
   agents_tags               = var.agents_tags
 
-  # TODO: AKS maintenance windows
-  # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
-  # https://github.com/Azure/terraform-azurerm-aks/pull/133
-  # enable_maintenance_window = true
-  # maintenance_allowed       = var.maintenance_allowed
-  # maintenance_not_allowed   = var.maintenance_not_allowed
+  maintenance_window = var.maintenance_window
 
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
