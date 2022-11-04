@@ -1,0 +1,31 @@
+# Terraform
+**/.terraform
+**/.terraform.lock.hcl
+.tfstate.*
+
+# Python
+.venv
+__pycache__
+
+# Ruby
+vendor
+.bundle
+inspec.lock
+
+# Sops
+.gnupg
+
+# Ansible
+./roles
+terraform/k3s/roles/rancher
+
+# For peter-evans/create-pull-request
+bin/LICENSE
+bin/README.md
+bin/conftest
+bin/jb
+bin/kubeconform
+bin/kubeval
+bin/kustomize
+bin/opa
+bin/yq
