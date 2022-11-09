@@ -45,6 +45,11 @@ license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
 	@docker run -it --rm -v $(shell pwd):/github/workspace ghcr.io/apache/skywalking-eyes/license-eye --config /github/workspace/.licenserc.yaml header $(ACTION)
 
 
+foo: guard-CLOUD guard-ENV guard-SERVICE
+	echo $(ANSIBLE_VENV)
+
+
+
 # ====================================
 # T E R R A F O R M
 # ====================================
@@ -170,38 +175,39 @@ ansible-init: ## Install requirements
 # 	&& pip3 install ansible==$(ANSIBLE_VERSION) molecule docker
 
 .PHONY: ansible-deps
-ansible-deps: guard-SERVICE ## Install dependencies (SERVICE=xxx)
+ansible-deps: guard-CLOUD guard-ENV guard-SERVICE ## Install dependencies (SERVICE=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Install dependencies$(NO_COLOR)"
+	echo $(ANSIBLE_VENV)
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-galaxy collection install -r $(SERVICE)/roles/requirements.yml -p $(ANSIBLE_ROLES) --force \
 		&& ansible-galaxy install -r $(SERVICE)/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
-ansible-ping: guard-SERVICE guard-ENV ## Check Ansible installation (SERVICE=xxx ENV=xxx)
+ansible-ping: guard-CLOUD guard-ENV guard-SERVICE guard-ENV ## Check Ansible installation (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible -c local -m ping all -i $(SERVICE)/inventories/$(ENV).ini
 
 .PHONY: ansible-debug
-ansible-debug: guard-SERVICE guard-ENV ## Retrieve informations from hosts (SERVICE=xxx ENV=xxx)
+ansible-debug: guard-CLOUD guard-ENV guard-SERVICE guard-ENV ## Retrieve informations from hosts (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible -m setup all -i $(SERVICE)/inventories/$(ENV).ini
 
 .PHONY: ansible-run
-ansible-run: guard-SERVICE guard-ENV ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
+ansible-run: guard-CLOUD guard-ENV guard-SERVICE guard-ENV ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -i $(SERVICE)/inventories/$(ENV).ini $(SERVICE)/main.yml
 
 .PHONY: ansible-run-playbook
-ansible-run-playbook: guard-SERVICE guard-ENV guard-PLAYBOOK ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
+ansible-run-playbook: guard-CLOUD guard-ENV guard-SERVICE guard-ENV guard-PLAYBOOK ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -i $(SERVICE)/inventories/$(ENV).ini $(SERVICE)/$(PLAYBOOK)
 
 .PHONY: ansible-dryrun
-ansible-dryrun: guard-SERVICE guard-ENV ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
+ansible-dryrun: guard-CLOUD guard-ENVguard-SERVICE guard-ENV ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -i $(SERVICE)/inventories/$(ENV).ini $(SERVICE)/main.yml --check

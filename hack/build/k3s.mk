@@ -14,17 +14,9 @@
 
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MKFILE_DIR := $(dir $(MKFILE_PATH))
-DIR = $(shell pwd)
 
 include $(MKFILE_DIR)/commons.mk
 include $(MKFILE_DIR)/k3s.*.mk
-
-PYTHON = python3
-
-# ANSIBLE_VERSION = 4.5.0
-# MOLECULE_VERSION = 3.3.0
-ANSIBLE_VENV = $(DIR)/.venv
-ANSIBLE_ROLES = $(DIR)/roles
 
 MNT_DEVICE = $(MNT_DEVICE_$(ENV))
 MNT_DEVICE_BOOT = $(MNT_DEVICE_BOOT_$(ENV))

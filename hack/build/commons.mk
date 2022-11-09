@@ -35,7 +35,14 @@ SHELL = /bin/bash -o pipefail
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MKFILE_DIR := $(dir $(MKFILE_PATH))
 
-PYTHON_VENV = $(MKFILE_DIR)/../.venv
+DIR = $(shell pwd)
+
+PYTHON = python3
+
+# ANSIBLE_VERSION = 4.5.0
+# MOLECULE_VERSION = 3.3.0
+ANSIBLE_VENV = $(DIR)/.venv
+ANSIBLE_ROLES = $(DIR)/roles
 
 NO_COLOR=\033[0m
 OK_COLOR=\033[32;01m
