@@ -14,7 +14,7 @@
 
 module "irsa_efs_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.5.5"
+  version = "5.5.7"
 
   role_name             = var.efs_csi_controller_role_name
   attach_efs_csi_policy = true
