@@ -439,6 +439,28 @@ variable "filestore_csi_driver" {
   default     = false
 }
 
+variable "logging_enabled_components" {
+  type        = list(string)
+  description = "List of services to monitor: SYSTEM_COMPONENTS, WORKLOADS."
+  default = [
+    "SYSTEM_COMPONENTS",
+    "WORKLOADS"
+  ]
+}
+
+variable "monitoring_enabled_components" {
+  type        = list(string)
+  description = "List of services to monitor: SYSTEM_COMPONENTS, WORKLOADS (provider version >= 3.89.0)"
+  default = [
+    "SYSTEM_COMPONENTS",
+    "APISERVER",
+    "CONTROLLER_MANAGER",
+    "SCHEDULER",
+    # WORKLOADS is deprecated and removed in GKE 1.24
+    # "WORKLOADS"
+  ]
+}
+
 variable "monitoring_enable_managed_prometheus" {
   type        = bool
   description = "Configuration for Managed Service for Prometheus. Whether or not the managed collection is enabled."
