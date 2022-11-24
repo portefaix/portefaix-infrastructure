@@ -211,3 +211,17 @@ ansible-dryrun: guard-CLOUD guard-ENVguard-SERVICE guard-ENV ## Execute Ansible 
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -i $(SERVICE)/inventories/$(ENV).ini $(SERVICE)/main.yml --check
+
+
+# ====================================
+# P A C K E R
+# ====================================
+
+##@ Packer
+
+.PHONY: packer-build
+packer-build: guard-CLOUD guard-ENV guard-SERVICE guard-ENV ## Execute Ansible playbook (SERVICE=xxx ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Build Packer image$(NO_COLOR)"
+	cd packer/$(CLOUD)/$(SERVICE) \
+		&& packer init -upgrade . \
+		&& packer build .
