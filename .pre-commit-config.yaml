@@ -57,6 +57,7 @@ repos:
   hooks:
   # - id: packer_validate
   - id: packer_fmt
+    args: ["-write=true"]
 - repo: https://github.com/Lucas-C/pre-commit-hooks
   rev: v1.3.1
   hooks:
