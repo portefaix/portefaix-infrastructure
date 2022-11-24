@@ -49,8 +49,15 @@ repos:
       - '--args=--enable-rule=terraform_unused_required_providers'
       - '--args=--enable-rule=terraform_standard_module_structure'
     - id: terraform_tfsec
+      files: \.tf$
       args:
        - '--args=--config-file __GIT_WORKING_DIR__/.tfsec.yml'
+# - repo: https://github.com/cisagov/pre-commit-packer
+#   rev: v0.0.2
+#   hooks:
+#   - id: packer_validate
+#   - id: packer_fmt
+#     args: ["-write=true"]
 - repo: https://github.com/Lucas-C/pre-commit-hooks
   rev: v1.3.1
   hooks:
