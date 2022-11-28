@@ -353,9 +353,9 @@ variable "karpenter_namespace" {
   default     = "kube-system"
 }
 
-variable "karpenter_node_group_name" {
+variable "karpenter_queue_name" {
   type        = string
-  description = "Node Group name for Karpenter"
+  description = "Name of the SQS queue"
 }
 
 #############################################################################

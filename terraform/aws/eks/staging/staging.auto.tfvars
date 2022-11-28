@@ -291,3 +291,5 @@ karpenter_tags = {
   "Role"  = "karpenter"
   "Addon" = "karpenter"
 }
+
+queue_name = "portefaix-staging-eks-karpenter"

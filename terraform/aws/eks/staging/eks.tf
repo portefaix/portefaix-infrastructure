@@ -66,11 +66,11 @@ module "eks" {
   node_termination_handler_sa_name   = var.node_termination_handler_sa_name
   node_termination_handler_namespace = var.node_termination_handler_namespace
 
-  karpenter_role_name       = var.karpenter_role_name
-  karpenter_tags            = var.karpenter_tags
-  karpenter_sa_name         = var.karpenter_sa_name
-  karpenter_namespace       = var.karpenter_namespace
-  karpenter_node_group_name = var.karpenter_node_group_name
+  karpenter_role_name  = var.karpenter_role_name
+  karpenter_tags       = var.karpenter_tags
+  karpenter_sa_name    = var.karpenter_sa_name
+  karpenter_namespace  = var.karpenter_namespace
+  karpenter_queue_name = var.karpenter_queue_name
 
   eso_role_name    = var.eso_role_name
   eso_tags         = var.eso_tags
