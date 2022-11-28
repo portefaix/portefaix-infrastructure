@@ -71,6 +71,7 @@ module "eks" {
   karpenter_sa_name         = var.karpenter_sa_name
   karpenter_namespace       = var.karpenter_namespace
   karpenter_node_group_name = var.karpenter_node_group_name
+  karpenter_queue_name      = var.karpenter_queue_name
 
   eso_role_name    = var.eso_role_name
   eso_tags         = var.eso_tags

@@ -12,29 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module "karpenter_controller_irsa_role" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.8.0"
+module "karpenter" {
+  source  = "terraform-aws-modules/eks/aws//modules/karpenter"
+  version = "18.31.2"
 
-  role_name                          = var.karpenter_role_name
-  attach_karpenter_controller_policy = true
+  cluster_name = module.eks.cluster_name
 
-  karpenter_tag_key = "karpenter.sh/discovery/${var.cluster_name}"
+  # irsa_name                       = var.karpenter_role_name
+  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
+  irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
 
-  karpenter_controller_cluster_id = module.eks.cluster_id
-  karpenter_controller_ssm_parameter_arns = [
-    "arn:aws:ssm:*:*:parameter/aws/service/*"
-  ]
-  karpenter_controller_node_iam_role_arns = [
-    module.eks.eks_managed_node_groups[var.karpenter_node_group_name].iam_role_arn
-  ]
+  # Since Karpenter is running on an EKS Managed Node group,
+  # we can re-use the role that was created for the node group
+  create_iam_role = false
+  iam_role_arn    = module.eks.eks_managed_node_groups["initial"].iam_role_arn
+  # iam_role_name   = var.karpenter_role_nam
 
-  oidc_providers = {
-    main = {
-      provider_arn               = module.eks.oidc_provider_arn
-      namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
-    }
-  }
+  queue_name                = var.karpenter_queue_name
+  queue_managed_sse_enabled = false
 
   tags = merge(
     { "Name" = var.karpenter_role_name },
@@ -42,9 +37,4 @@ module "karpenter_controller_irsa_role" {
     var.karpenter_tags,
     var.tags
   )
-}
-
-resource "aws_iam_instance_profile" "karpenter" {
-  name = "KarpenterNodeInstanceProfile-${var.cluster_name}"
-  role = module.eks.eks_managed_node_groups[var.karpenter_node_group_name].iam_role_name
 }

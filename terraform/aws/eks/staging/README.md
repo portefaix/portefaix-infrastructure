@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.34.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.41.0 |
 
 ## Providers
 
@@ -60,7 +60,7 @@ No resources.
 | <a name="input_fsx_csi_controller_sa_name"></a> [fsx\_csi\_controller\_sa\_name](#input\_fsx\_csi\_controller\_sa\_name) | Controller name | `string` | `"fsx-csi-controller"` | no |
 | <a name="input_fsx_csi_driver_tags"></a> [fsx\_csi\_driver\_tags](#input\_fsx\_csi\_driver\_tags) | A map of tags to add to all resources | `map(string)` | n/a | yes |
 | <a name="input_karpenter_namespace"></a> [karpenter\_namespace](#input\_karpenter\_namespace) | The K8s namespace for resources | `string` | `"kube-system"` | no |
-| <a name="input_karpenter_node_group_name"></a> [karpenter\_node\_group\_name](#input\_karpenter\_node\_group\_name) | Node Group name for Karpenter | `string` | n/a | yes |
+| <a name="input_karpenter_queue_name"></a> [karpenter\_queue\_name](#input\_karpenter\_queue\_name) | Name of the SQS queue | `string` | n/a | yes |
 | <a name="input_karpenter_role_name"></a> [karpenter\_role\_name](#input\_karpenter\_role\_name) | The name of the AppMesh Controller IAM role | `string` | `"karpenter"` | no |
 | <a name="input_karpenter_sa_name"></a> [karpenter\_sa\_name](#input\_karpenter\_sa\_name) | Controller name | `string` | `"karpenter"` | no |
 | <a name="input_karpenter_tags"></a> [karpenter\_tags](#input\_karpenter\_tags) | A map of tags to add to all resources | `map(string)` | n/a | yes |
