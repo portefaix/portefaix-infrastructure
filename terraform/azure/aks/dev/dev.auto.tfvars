@@ -149,6 +149,7 @@ node_pools = [
     min_count           = 0
     max_count           = 4
     max_pods            = 110
+    workload_runtime    = "OCIContainer"
     labels = {
       "project"  = "portefaix"
       "env"      = "dev"
@@ -164,6 +165,36 @@ node_pools = [
       "project"  = "portefaix"
       "service"  = "kubernetes"
       "nodepool" = "ops"
+      "made-by"  = "terraform"
+    }
+  },
+  {
+    name                = "wasi"
+    vm_size             = "Standard_D2s_v3"
+    os_disk_size_gb     = 50
+    os_disk_type        = "Managed"
+    priority            = "Spot"
+    enable_auto_scaling = true
+    count               = 0
+    min_count           = 0
+    max_count           = 4
+    max_pods            = 110
+    workload_runtime    = "WasmWasi"
+    labels = {
+      "project"  = "portefaix"
+      "env"      = "dev"
+      "service"  = "kubernetes"
+      "nodepool" = "wasi"
+      "made-by"  = "terraform"
+    },
+    taints = [
+      "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+    ],
+    tags = {
+      "env"      = "dev"
+      "project"  = "portefaix"
+      "service"  = "kubernetes"
+      "nodepool" = "wasi"
       "made-by"  = "terraform"
     }
   }
