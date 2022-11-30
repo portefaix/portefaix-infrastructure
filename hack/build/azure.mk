@@ -83,11 +83,18 @@ azure-sp: guard-ENV ## Create Azure Service Principal
 		--role="Contributor" --scopes="/subscriptions/${AZURE_SUBSCRIPTION_ID}"
 
 .PHONY: azure-permissions
-azure-permissions: guard-ENV guard-ARM_CLIENT_ID
+azure-permissions: guard-ENV guard-ARM_CLIENT_ID ## Setup Azure permissions
 	@az ad app permission add --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --api-permissions $(AZURE_AD_PERMISSIONS_ID)=Role
 	@az ad app permission grant --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID)
 	@az ad app permission admin-consent --id $(ARM_CLIENT_ID)
 # @az ad app permission add --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --api-permissions "("{0}=Scope" -f $(AZURE_AD_PERMISSIONS_ID))"
+
+.PHONY: azure-wasi
+azure-wasi: guard-ENV guard-ARM_CLIENT_ID ## Enable Azure preview
+	@az feature register --namespace "Microsoft.ContainerService" --name "WasmNodePoolPreview"
+	@az provider register --namespace Microsoft.ContainerService
+	@az extension add --name aks-preview
+	@az extension update --name aks-preview
 
 .PHONY: azure-keyvault-create
 azure-keyvault-create: guard-ENV ## Create a vault
