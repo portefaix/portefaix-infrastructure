@@ -14,7 +14,7 @@
 
 module "sns_topic" {
   source  = "terraform-aws-modules/sns/aws"
-  version = "4.0.0"
+  version = "4.1.0"
 
   providers = {
     aws = aws.audit
