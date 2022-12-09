@@ -19,7 +19,7 @@
 #tfsec:ignore:aws-ec2-no-public-egress-sgr
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.31.2"
+  version = "19.0.4"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
