@@ -25,21 +25,21 @@ locals {
   # ]
   # bucket_self_link_prefix = "https://www.googleapis.com/storage/v1/b/"
 
-#   optional_groups_to_create = {
-#     for key, value in var.groups.optional_groups : key => value
-#     if value != "" && var.groups.create_groups == true
-#   }
-#   required_groups_to_create = {
-#     for key, value in var.groups.required_groups : key => value
-#     if var.groups.create_groups == true
-#   }
+  #   optional_groups_to_create = {
+  #     for key, value in var.groups.optional_groups : key => value
+  #     if value != "" && var.groups.create_groups == true
+  #   }
+  #   required_groups_to_create = {
+  #     for key, value in var.groups.required_groups : key => value
+  #     if var.groups.create_groups == true
+  #   }
 
   categories_map = {
-    "BILLING"         = setunion([
+    "BILLING" = setunion([
       var.group_org_admins,
       var.group_billing_admins,
     ])
-    "LEGAL"           = setunion([
+    "LEGAL" = setunion([
       var.group_org_admins,
       var.group_audit_admins,
     ])
@@ -47,12 +47,12 @@ locals {
       var.group_org_admins,
       var.group_billing_admins,
     ])
-    "SECURITY"        = setunion([
+    "SECURITY" = setunion([
       var.group_org_admins,
       var.group_security_admins
     ])
-    "SUSPENSION"      = [var.group_org_admins]
-    "TECHNICAL"       = setunion([
+    "SUSPENSION" = [var.group_org_admins]
+    "TECHNICAL" = setunion([
       var.group_org_admins
     ])
   }

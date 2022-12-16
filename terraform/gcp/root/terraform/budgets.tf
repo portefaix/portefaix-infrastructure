@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# tfsec:ignore:google-iam-no-project-level-service-account-impersonation
 module "pubsub_budget" {
   source  = "terraform-google-modules/pubsub/google"
   version = "4.0.1"
@@ -19,8 +20,8 @@ module "pubsub_budget" {
   project_id = module.shared.project_id
   topic      = format("%s-%s", var.organization_name, var.budget_topic_name)
   topic_labels = merge({
-    service = "budget"
-    role    = "pubsub"
+    service     = "budget"
+    role        = "pubsub"
     environment = "shared"
   }, var.labels)
 }

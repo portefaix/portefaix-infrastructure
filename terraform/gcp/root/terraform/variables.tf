@@ -35,13 +35,13 @@ variable "organization_name" {
 
 variable "core_environments" {
   description = "List of Core environments"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "default_region" {
   type        = string
   description = "The location linked to the project"
-  default = "europe-west1"
+  default     = "europe-west1"
 }
 
 variable "billing_account" {
@@ -158,7 +158,7 @@ variable "tf_service_account_name" {
 
 variable "core_network_name" {
   description = "Name for the Core Shared VPC"
-  type = string
+  type        = string
 }
 
 variable "subnets" {
@@ -237,7 +237,7 @@ variable "logging_budget_alert_pubsub_topic" {
 
 variable "policy_domains_to_allow" {
   description = "Organization policy for allowed domain"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "vms_to_allow" {
@@ -257,7 +257,7 @@ variable "budget_topic_name" {
 variable "labels" {
   description = "Labels to apply to the project."
   type        = map(string)
-  default     = {
-    project     = "portefaix"
+  default = {
+    project = "portefaix"
   }
 }

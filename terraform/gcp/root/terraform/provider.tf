@@ -17,8 +17,8 @@
 # }
 
 provider "google-beta" {
-  region  = var.region
+  region = var.region
   # Required if using User ADCs (Application Default Credentials) for Cloud Identity API.
-  billing_project = var.billing_account
+  billing_project       = var.billing_account
   user_project_override = true
 }

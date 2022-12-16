@@ -14,7 +14,7 @@
 
 # module "required_group" {
 #   for_each = local.required_groups_to_create
-  
+
 #   source  = "terraform-google-modules/group/google"
 #   version = "v0.4.0"
 

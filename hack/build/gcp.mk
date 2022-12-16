@@ -18,7 +18,7 @@ MKFILE_DIR := $(dir $(MKFILE_PATH))
 include $(MKFILE_DIR)/commons.mk
 include $(MKFILE_DIR)/gcp.*.mk
 
-GCP_INIT_PROJECT = init
+GCP_INIT_PROJECT = bootstrap #setup # init
 
 GCP_PROJECT = $(GCP_PROJECT_$(ENV))
 GCP_CURRENT_PROJECT = $(shell gcloud info --format='value(config.project)')
@@ -66,16 +66,16 @@ gcp-project-switch: guard-ENV ## Switch GCP project
 .PHONY: gcp-organization-bootstrap
 gcp-organization-bootstrap: guard-GCP_ORG_ID guard-GCP_USER ## Bootstrap the organization for Google Cloud Platform
 	@echo -e "$(OK_COLOR)[$(APP)] Bootstrap GCP Organization$(NO_COLOR)"
-	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role roles/billing.admin
-	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role roles/logging.admin
-	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role roles/iam.organizationRoleAdmin
-	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role roles/resourcemanager.projectCreator
-	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role roles/storage.admin
+	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/billing.admin"
+	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/logging.admin"
+	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/iam.organizationRoleAdmin"
+	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/resourcemanager.projectCreator"
+	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/storage.admin"
 
 .PHONY: gcp-organization-project
 gcp-organization-project: guard-GCP_ORG_NAME guard-GCP_ORG_ID guard-GCP_BILLING
 	gcloud projects create $(GCP_ORG_NAME)-$(GCP_INIT_PROJECT) --organization=$(GCP_ORG_ID)
-	gcloud beta billing accounts projects link $(GCP_ORG_NAME)-$(GCP_INIT_PROJECT) --billing-account=$(GCP_BILLING)
+	gcloud alpha billing accounts projects link $(GCP_ORG_NAME)-$(GCP_INIT_PROJECT) --billing-account=$(GCP_BILLING)
 
 # .PHONY: gcp-enable-apis
 # gcp-enable-apis: guard-ENV ## Enable APIs on project
