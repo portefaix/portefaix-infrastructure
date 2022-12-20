@@ -19,7 +19,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     aws = {
       source  = "hashicorp/aws"
-      version = "4.47.0"
+      version = "4.48.0"
       configuration_aliases = [
         aws,
         aws.audit,
