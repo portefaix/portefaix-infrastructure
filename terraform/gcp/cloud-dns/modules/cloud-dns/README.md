@@ -12,13 +12,13 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.6.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | < 5.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_dns"></a> [dns](#module\_dns) | terraform-google-modules/cloud-dns/google | 4.1.0 |
+| <a name="module_dns"></a> [dns](#module\_dns) | terraform-google-modules/cloud-dns/google | 4.2.0 |
 
 ## Resources
 

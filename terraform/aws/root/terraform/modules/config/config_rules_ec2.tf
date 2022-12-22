@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 resource "aws_config_config_rule" "ec2_instances_vpc" {
   name        = format("%s-ec2-instances-in-vpc", var.org_name)

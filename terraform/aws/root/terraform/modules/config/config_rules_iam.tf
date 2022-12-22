@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 resource "aws_config_config_rule" "iam_root_account_mfa_enabled" {
   name        = format("%s-iam-root-account-mfa-enabled", var.org_name)

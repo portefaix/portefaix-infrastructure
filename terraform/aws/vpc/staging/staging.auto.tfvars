@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 #############################################################################
 # Provider
@@ -54,10 +56,10 @@ private_subnet_tags = {
 }
 
 igw_tags = {
-  "Name" = "portefaix-staging"
-  "Env"  = "Staging"
+  "Name"    = "portefaix-staging"
+  "Env"     = "Staging"
   "Service" = "Elastic IP"
-  "Role" = "Internet Gateway"
+  "Role"    = "Internet Gateway"
 }
 
 eks_cluster_name = "portefaix-staging-eks"

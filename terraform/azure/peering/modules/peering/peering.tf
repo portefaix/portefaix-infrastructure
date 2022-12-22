@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_virtual_network_peering" "go" {
   name                         = format("peer-%s-to-%s", data.azurerm_virtual_network.core.name, data.azurerm_resource_group.hub.name)

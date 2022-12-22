@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.41.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
 
 ## Providers
 
@@ -18,26 +18,26 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_appmesh_irsa"></a> [appmesh\_irsa](#module\_appmesh\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | 18.31.2 |
-| <a name="module_irs_node_termination_handler"></a> [irs\_node\_termination\_handler](#module\_irs\_node\_termination\_handler) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_cluster_autoscaler"></a> [irsa\_cluster\_autoscaler](#module\_irsa\_cluster\_autoscaler) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_ebs_csi_driver"></a> [irsa\_ebs\_csi\_driver](#module\_irsa\_ebs\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_efs_csi_driver"></a> [irsa\_efs\_csi\_driver](#module\_irsa\_efs\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_eso"></a> [irsa\_eso](#module\_irsa\_eso) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_fsx_csi_driver"></a> [irsa\_fsx\_csi\_driver](#module\_irsa\_fsx\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_irsa_karpenter"></a> [irsa\_karpenter](#module\_irsa\_karpenter) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.8.0 |
-| <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | terraform-aws-modules/eks/aws//modules/karpenter | 18.31.2 |
-| <a name="module_secret_store_controller_role"></a> [secret\_store\_controller\_role](#module\_secret\_store\_controller\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 5.8.0 |
+| <a name="module_appmesh_irsa"></a> [appmesh\_irsa](#module\_appmesh\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | 19.0.4 |
+| <a name="module_irs_node_termination_handler"></a> [irs\_node\_termination\_handler](#module\_irs\_node\_termination\_handler) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_cluster_autoscaler"></a> [irsa\_cluster\_autoscaler](#module\_irsa\_cluster\_autoscaler) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_ebs_csi_driver"></a> [irsa\_ebs\_csi\_driver](#module\_irsa\_ebs\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_efs_csi_driver"></a> [irsa\_efs\_csi\_driver](#module\_irsa\_efs\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_eso"></a> [irsa\_eso](#module\_irsa\_eso) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_fsx_csi_driver"></a> [irsa\_fsx\_csi\_driver](#module\_irsa\_fsx\_csi\_driver) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_irsa_karpenter"></a> [irsa\_karpenter](#module\_irsa\_karpenter) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.9.2 |
+| <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | terraform-aws-modules/eks/aws//modules/karpenter | 19.0.4 |
+| <a name="module_secret_store_controller_role"></a> [secret\_store\_controller\_role](#module\_secret\_store\_controller\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 5.9.2 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_policy.secret_store_csi_driver_controller](https://registry.terraform.io/providers/hashicorp/aws/4.41.0/docs/resources/iam_policy) | resource |
-| [aws_security_group.additional](https://registry.terraform.io/providers/hashicorp/aws/4.41.0/docs/resources/security_group) | resource |
-| [aws_subnets.private](https://registry.terraform.io/providers/hashicorp/aws/4.41.0/docs/data-sources/subnets) | data source |
-| [aws_vpc.main](https://registry.terraform.io/providers/hashicorp/aws/4.41.0/docs/data-sources/vpc) | data source |
+| [aws_iam_policy.secret_store_csi_driver_controller](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_policy) | resource |
+| [aws_security_group.additional](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/security_group) | resource |
+| [aws_subnets.private](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/subnets) | data source |
+| [aws_vpc.main](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/vpc) | data source |
 
 ## Inputs
 

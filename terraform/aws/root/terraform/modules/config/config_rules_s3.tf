@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 resource "aws_config_config_rule" "s3_bucket_versioning" {
   name        = format("%s-s3-bucket-versioning", var.org_name)
