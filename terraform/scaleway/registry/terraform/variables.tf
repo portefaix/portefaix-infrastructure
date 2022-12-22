@@ -29,9 +29,8 @@ variable "zone" {
 # Registries
 
 variable "repositories" {
-  description = "The AWS ECR repositories"
+  description = "The Scaleway Container Registry"
   type = map(object({
-    immutable    = bool
-    scan_on_push = bool
+    is_public = bool
   }))
 }

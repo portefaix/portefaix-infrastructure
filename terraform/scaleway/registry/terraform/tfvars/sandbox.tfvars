@@ -26,7 +26,7 @@ repositories = {
   "containers" = {
     is_public = false
   },
-  "charts" = {
+  "helmcharts" = {
     is_public = false
   }
 }
