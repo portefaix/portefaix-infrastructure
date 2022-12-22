@@ -16,7 +16,7 @@
 
 module "k8s" {
   source  = "nlamirault/doks/digitalocean"
-  version = "0.4.0"
+  version = "1.0.0"
 
   cluster_name       = var.cluster_name
   auto_upgrade       = var.auto_upgrade
