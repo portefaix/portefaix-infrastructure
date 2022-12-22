@@ -11,10 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 data "azurerm_client_config" "current" {}
 
 data "azurerm_kubernetes_cluster" "this" {
- name                = var.cluster_name
- resource_group_name = var.aks_resource_group_name
+  name                = var.cluster_name
+  resource_group_name = var.aks_resource_group_name
 }

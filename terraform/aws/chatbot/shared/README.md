@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.17.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
 
 ## Providers
 
@@ -14,9 +14,7 @@ No providers.
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_chatbot"></a> [chatbot](#module\_chatbot) | ../modules/chatbot | n/a |
+No modules.
 
 ## Resources
 

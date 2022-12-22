@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 # https://github.com/Azure/terraform-azurerm-aks/pull/212
 resource "azurerm_kubernetes_cluster_node_pool" "aks" {

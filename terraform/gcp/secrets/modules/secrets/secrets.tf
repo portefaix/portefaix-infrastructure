@@ -11,12 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 module "terraform-google-secret-manager" {
   source = "github.com/mineiros-io/terraform-google-secret-manager.git?ref=v0.2.0"
 
   secret_id = var.secret_id
-  replicas = var.replicas
+  replicas  = var.replicas
 
   labels = var.labels
 }

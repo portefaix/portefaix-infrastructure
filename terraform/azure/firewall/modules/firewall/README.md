@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.5.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.36.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.5.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.27.0 |
 
 ## Modules
 
@@ -22,16 +22,16 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_firewall.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall) | resource |
-| [azurerm_firewall_application_rule_collection.aksbasics](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall_application_rule_collection) | resource |
-| [azurerm_firewall_application_rule_collection.publicimages](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall_application_rule_collection) | resource |
-| [azurerm_firewall_network_rule_collection.dns](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall_network_rule_collection) | resource |
-| [azurerm_firewall_network_rule_collection.servicetags](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall_network_rule_collection) | resource |
-| [azurerm_firewall_network_rule_collection.time](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/firewall_network_rule_collection) | resource |
-| [azurerm_public_ip.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/public_ip) | resource |
-| [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/subnet) | resource |
-| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/data-sources/resource_group) | data source |
-| [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/data-sources/virtual_network) | data source |
+| [azurerm_firewall.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall) | resource |
+| [azurerm_firewall_application_rule_collection.aksbasics](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall_application_rule_collection) | resource |
+| [azurerm_firewall_application_rule_collection.publicimages](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall_application_rule_collection) | resource |
+| [azurerm_firewall_network_rule_collection.dns](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall_network_rule_collection) | resource |
+| [azurerm_firewall_network_rule_collection.servicetags](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall_network_rule_collection) | resource |
+| [azurerm_firewall_network_rule_collection.time](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/firewall_network_rule_collection) | resource |
+| [azurerm_public_ip.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/public_ip) | resource |
+| [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/subnet) | resource |
+| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/resource_group) | data source |
+| [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/virtual_network) | data source |
 
 ## Inputs
 

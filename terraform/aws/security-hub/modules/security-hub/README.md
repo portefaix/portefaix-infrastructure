@@ -6,34 +6,34 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.17.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.17.0 |
-| <a name="provider_aws.audit"></a> [aws.audit](#provider\_aws.audit) | 4.17.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
+| <a name="provider_aws.audit"></a> [aws.audit](#provider\_aws.audit) | 4.34.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.14.2 |
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 3.3.0 |
+| <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.17.0 |
+| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 4.1.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_securityhub_account.this](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_account) | resource |
-| [aws_securityhub_member.accounts](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_member) | resource |
-| [aws_securityhub_organization_admin_account.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_organization_admin_account) | resource |
-| [aws_securityhub_organization_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_organization_configuration) | resource |
-| [aws_securityhub_standards_subscription.aws_foundational](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_standards_subscription) | resource |
-| [aws_securityhub_standards_subscription.cis](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_standards_subscription) | resource |
-| [aws_securityhub_standards_subscription.pci_dss](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/resources/securityhub_standards_subscription) | resource |
-| [aws_region.this](https://registry.terraform.io/providers/hashicorp/aws/4.17.0/docs/data-sources/region) | data source |
+| [aws_securityhub_account.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_account) | resource |
+| [aws_securityhub_member.accounts](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_member) | resource |
+| [aws_securityhub_organization_admin_account.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_organization_admin_account) | resource |
+| [aws_securityhub_organization_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_organization_configuration) | resource |
+| [aws_securityhub_standards_subscription.aws_foundational](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_securityhub_standards_subscription.cis](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_securityhub_standards_subscription.pci_dss](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_region.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/region) | data source |
 
 ## Inputs
 

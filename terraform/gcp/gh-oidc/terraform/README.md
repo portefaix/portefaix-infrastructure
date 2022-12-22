@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.5.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 4.46.0 |
 
 ## Providers
 
@@ -16,7 +16,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_gh_oidc"></a> [gh\_oidc](#module\_gh\_oidc) | /home/nicolas/Projects/Forks/terraform-google-github-actions-runners/modules/gh-oidc | n/a |
+| <a name="module_gh_oidc"></a> [gh\_oidc](#module\_gh\_oidc) | terraform-google-modules/github-actions-runners/google//modules/gh-oidc | 3.1.0 |
 
 ## Resources
 

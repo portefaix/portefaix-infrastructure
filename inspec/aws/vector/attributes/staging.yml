@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 key_id: arn:aws:kms:eu-west-1:447241706233:key/b793bd48-7cb2-431e-ae5d-a65700201f84
 bucket_name: portefaix-staging-eks-vector

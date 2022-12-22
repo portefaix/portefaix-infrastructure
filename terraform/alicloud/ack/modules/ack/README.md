@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | 1.148.0 |
+| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | 1.194.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_alicloud"></a> [alicloud](#provider\_alicloud) | 1.148.0 |
+| <a name="provider_alicloud"></a> [alicloud](#provider\_alicloud) | 1.194.0 |
 
 ## Modules
 
@@ -24,9 +24,9 @@
 
 | Name | Type |
 |------|------|
-| [alicloud_vpcs.this](https://registry.terraform.io/providers/aliyun/alicloud/1.148.0/docs/data-sources/vpcs) | data source |
-| [alicloud_vswitches.pods](https://registry.terraform.io/providers/aliyun/alicloud/1.148.0/docs/data-sources/vswitches) | data source |
-| [alicloud_vswitches.this](https://registry.terraform.io/providers/aliyun/alicloud/1.148.0/docs/data-sources/vswitches) | data source |
+| [alicloud_vpcs.this](https://registry.terraform.io/providers/aliyun/alicloud/1.194.0/docs/data-sources/vpcs) | data source |
+| [alicloud_vswitches.pods](https://registry.terraform.io/providers/aliyun/alicloud/1.194.0/docs/data-sources/vswitches) | data source |
+| [alicloud_vswitches.this](https://registry.terraform.io/providers/aliyun/alicloud/1.194.0/docs/data-sources/vswitches) | data source |
 
 ## Inputs
 

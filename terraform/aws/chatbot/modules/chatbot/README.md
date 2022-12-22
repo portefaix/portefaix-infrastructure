@@ -6,34 +6,34 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 3.75.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.75.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_chatbot"></a> [chatbot](#module\_chatbot) | waveaccounting/chatbot-slack-configuration/aws | 1.1.0 |
-| <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.14.0 |
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 3.3.0 |
+| <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.17.0 |
+| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 4.1.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy.notifications](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.read_only_access](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.support_access](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.notifications](https://registry.terraform.io/providers/hashicorp/aws/3.75.1/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy_attachment.read_only_access](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.support_access](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -49,7 +49,7 @@
 | <a name="input_slack_channel_id"></a> [slack\_channel\_id](#input\_slack\_channel\_id) | ID of the Slack channel configure with AWS Chatbot | `string` | n/a | yes |
 | <a name="input_slack_workspace_id"></a> [slack\_workspace\_id](#input\_slack\_workspace\_id) | ID of the Slack workspace containing the channel to use with AWS Chatbot | `string` | n/a | yes |
 | <a name="input_sns_create_topic"></a> [sns\_create\_topic](#input\_sns\_create\_topic) | Whether to create the SNS topic | `bool` | `true` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags for AWS resources | `map(string)` | <pre>{<br>  "Made-By": "terraform"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags for AWS resources | `map(string)` | <pre>{<br>  "Service": "AWS ChatBot"<br>}</pre> | no |
 
 ## Outputs
 

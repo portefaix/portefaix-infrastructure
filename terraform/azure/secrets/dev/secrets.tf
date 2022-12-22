@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 module "secrets" {
   source = "../modules/secrets"
@@ -19,7 +21,7 @@ module "secrets" {
   resource_group_location = var.resource_group_location
 
   aks_resource_group_name = var.aks_resource_group_name
-  cluster_name = var.cluster_name
+  cluster_name            = var.cluster_name
 
   portefaix_version_secret = var.portefaix_version
 

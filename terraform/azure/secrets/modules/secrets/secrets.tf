@@ -11,14 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_key_vault" "this" {
-  name                        = local.service_name
-  location                    = azurerm_resource_group.this.location
-  resource_group_name         = azurerm_resource_group.this.name
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days  = 7
-  
+  name                       = local.service_name
+  location                   = azurerm_resource_group.this.location
+  resource_group_name        = azurerm_resource_group.this.name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  soft_delete_retention_days = 7
+
   sku_name = "standard"
 
   tags = var.tags

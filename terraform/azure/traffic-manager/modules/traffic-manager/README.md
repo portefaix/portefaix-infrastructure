@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.5.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.36.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.5.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.30.0 |
 
 ## Modules
 
@@ -22,11 +22,11 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/resource_group) | resource |
-| [azurerm_traffic_manager_azure_endpoint.example](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/traffic_manager_azure_endpoint) | resource |
-| [azurerm_traffic_manager_profile.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/resources/traffic_manager_profile) | resource |
-| [azurerm_public_ip.appgw_westeurope](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/data-sources/public_ip) | data source |
-| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.5.0/docs/data-sources/resource_group) | data source |
+| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/resource_group) | resource |
+| [azurerm_traffic_manager_azure_endpoint.example](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/traffic_manager_azure_endpoint) | resource |
+| [azurerm_traffic_manager_profile.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/traffic_manager_profile) | resource |
+| [azurerm_public_ip.appgw_westeurope](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/public_ip) | data source |
+| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 

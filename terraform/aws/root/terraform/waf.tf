@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 module "bucket_waf_core" {
   for_each = toset([local.core_dev_account, local.core_staging_account, local.core_prod_account])
