@@ -44,7 +44,7 @@ kubeadmConfigPatches:
 
 networking:
   # Cilim
-  disableDefaultCNI: true   # do not install kindnet
+  disableDefaultCNI: true
   # End Cilium
   podSubnet: "10.2.0.0/16"
   serviceSubnet: "10.3.0.0/16"

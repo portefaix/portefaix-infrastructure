@@ -27,7 +27,7 @@ zone = "fr-par-1"
 name        = "portefaix-staging-kapsule"
 description = "Portefaix on Kapsule"
 
-k8s_version = "1.18"
+k8s_version = "1.23"
 
 cni = "cilium"
 
