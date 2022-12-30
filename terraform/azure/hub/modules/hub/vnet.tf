@@ -16,7 +16,7 @@
 
 module "vnet" {
   source  = "Azure/vnet/azurerm"
-  version = "3.2.0"
+  version = "4.0.0"
 
   vnet_name           = var.vnet_name
   vnet_location       = var.resource_group_location
