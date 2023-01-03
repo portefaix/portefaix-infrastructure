@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "terraform-google-secret-manager" {
-  source = "github.com/mineiros-io/terraform-google-secret-manager.git?ref=v0.2.0"
+  source = "github.com/mineiros-io/terraform-google-secret-manager.git?ref=v0.3.0"
 
   secret_id = var.secret_id
   replicas  = var.replicas
