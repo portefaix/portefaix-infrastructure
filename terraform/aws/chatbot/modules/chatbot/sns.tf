@@ -16,11 +16,11 @@
 
 module "sns_topic" {
   source  = "terraform-aws-modules/sns/aws"
-  version = "4.1.0"
+  version = "5.0.0"
 
-  create_sns_topic = var.sns_create_topic
-  name             = local.sns_topic_name
-  display_name     = var.display_name
+  create       = var.sns_create_topic
+  name         = local.sns_topic_name
+  display_name = var.display_name
 
   tags = merge({
     Name = local.sns_topic_name

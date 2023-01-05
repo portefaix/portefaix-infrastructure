@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.48.0 |
 
 ## Providers
 
@@ -20,20 +20,20 @@
 |------|--------|---------|
 | <a name="module_chatbot"></a> [chatbot](#module\_chatbot) | waveaccounting/chatbot-slack-configuration/aws | 1.1.0 |
 | <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.17.0 |
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 4.1.0 |
+| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 5.0.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.read_only_access](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.support_access](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy_attachment.read_only_access](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.support_access](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.lambda_invoke](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.notifications](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 

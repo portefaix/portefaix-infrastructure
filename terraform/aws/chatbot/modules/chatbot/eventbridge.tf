@@ -32,7 +32,7 @@ module "eventbridge" {
     orders = [
       {
         name = "send-orders-to-sns"
-        arn  = module.sns_topic.sns_topic_arn
+        arn  = module.sns_topic.topic_arn
         # dead_letter_arn = aws_sqs_queue.dlq.arn
       },
     ]

@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.48.0 |
 
 ## Providers
 
@@ -20,19 +20,19 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | 1.17.0 |
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 4.1.0 |
+| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | terraform-aws-modules/sns/aws | 5.0.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_guardduty_detector.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/guardduty_detector) | resource |
-| [aws_guardduty_organization_admin_account.this](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/guardduty_organization_admin_account) | resource |
-| [aws_iam_policy.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_policy) | resource |
-| [aws_iam_role.assume_root](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/caller_identity) | data source |
-| [aws_iam_policy_document.audit_account_policy](https://registry.terraform.io/providers/hashicorp/aws/4.47.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_guardduty_detector.this](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/guardduty_detector) | resource |
+| [aws_guardduty_organization_admin_account.this](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/guardduty_organization_admin_account) | resource |
+| [aws_iam_policy.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_policy) | resource |
+| [aws_iam_role.assume_root](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.audit_account](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.audit_account_policy](https://registry.terraform.io/providers/hashicorp/aws/4.48.0/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
