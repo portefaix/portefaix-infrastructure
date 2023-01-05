@@ -36,7 +36,7 @@ module "eventbridge" {
     orders = [
       {
         name = "send-orders-to-sns"
-        arn  = module.sns_topic.sns_topic_arn
+        arn  = module.sns_topic.topic_arn
       },
       # {
       #   name            = "send-orders-to-sqs"
