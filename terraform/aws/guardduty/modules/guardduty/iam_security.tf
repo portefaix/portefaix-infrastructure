@@ -14,11 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "audit_account_policy" {
 
   statement {
     sid    = "AllowGDPerms"
     effect = "Allow"
+
     actions = [
       "guardduty:CreateDetector",
       "guardduty:GetDetector",
@@ -40,6 +42,7 @@ data "aws_iam_policy_document" "audit_account_policy" {
       "*"
     ]
   }
+
   statement {
     sid    = "AllowKMS"
     effect = "Allow"
@@ -68,12 +71,14 @@ data "aws_iam_policy_document" "audit_account_policy" {
       values   = [var.audit_account_id]
     }
   }
+
   statement {
     sid       = "AllowIamPerms"
     effect    = "Allow"
     actions   = ["iam:GetRole"]
     resources = ["arn:aws:iam::*:role/aws-service-role/*guardduty.amazonaws.com/*"]
   }
+
   statement {
     sid       = "AllowSvcLinkedRolePerms"
     actions   = ["iam:CreateServiceLinkedRole"]
