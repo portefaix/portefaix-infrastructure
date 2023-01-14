@@ -106,6 +106,21 @@ variable "admin_role_name" {
 #############################################################################
 # Budgets
 
+variable "budget_limit_amounts" {
+  description = "The unit of measurement used for the budget forecast, actual spend, or budget threshold."
+  type        = list(string)
+  default = [
+    5,
+    25,
+    50,
+    100,
+    200,
+    300,
+    400,
+    500
+  ]
+}
+
 variable "budget_limit_unit" {
   description = "The unit of measurement used for the budget forecast, actual spend, or budget threshold."
   type        = string
@@ -117,6 +132,8 @@ variable "budget_time_unit" {
   type        = string
   default     = "MONTHLY"
 }
+
+
 
 # variable "budget_services" {
 #   description = "AWS services and their limit of budget."
