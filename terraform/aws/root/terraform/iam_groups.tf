@@ -70,7 +70,7 @@ resource "aws_iam_group" "billing" {
   path = "/"
 }
 
-module "billing" {
+module "iam_billing" {
   source = "./modules/iam_billing"
 
   org_name = var.org_name
@@ -379,7 +379,7 @@ resource "aws_iam_group_policy" "billing_group" {
         "sts:AssumeRole"
       ],
       "Resource": [
-        "${module.billing.iam_role_arn}"
+        "${module.iam_billing.iam_role_arn}"
       ],
       "Effect": "Allow",
       "Sid": "AllowAll"
