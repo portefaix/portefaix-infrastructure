@@ -19,7 +19,7 @@
 #tfsec:ignore:aws-s3-enable-bucket-encryption
 module "vector" {
   source  = "nlamirault/vector/aws"
-  version = "2.0.0"
+  version = "2.1.0"
 
   cluster_name    = var.cluster_name
   namespace       = var.namespace
