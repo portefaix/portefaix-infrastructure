@@ -17,7 +17,7 @@
 #tfsec:ignore:AZU001
 module "ssh" {
   source  = "Azure/network-security-group/azurerm"
-  version = "4.0.0"
+  version = "4.0.1"
 
   resource_group_name = azurerm_resource_group.vnet.name
   location            = azurerm_resource_group.vnet.location
