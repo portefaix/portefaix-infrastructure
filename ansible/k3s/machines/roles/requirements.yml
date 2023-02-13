@@ -23,4 +23,4 @@ roles:
 - name: artis3n.tailscale
   version: v4.0.0
 - name: nleiva.grafana_agent
-  version: 0.5.0
+  version: 0.5.1
