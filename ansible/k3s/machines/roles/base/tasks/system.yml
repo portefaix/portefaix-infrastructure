@@ -24,7 +24,7 @@
     name: "*"
     state: latest
 
-- name: System | Upgrade the OS (apt-get dist-upgrade)
+- name: System | Upgrade the OS
   ansible.builtin.apt:
     upgrade: dist
 
@@ -32,6 +32,15 @@
   ansible.builtin.apt:
     name: "{{ base_tools }}"
     state: present
+
+- name: System | Install container tools
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - containerd
+      - conmon
 
 - name: System | Inotify limit
   ansible.posix.sysctl:

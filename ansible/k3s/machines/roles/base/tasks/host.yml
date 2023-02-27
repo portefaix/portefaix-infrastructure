@@ -38,6 +38,7 @@
     - swap
 
 - name: Host | Activating cgroup support
+  when: ansible_distribution == 'Debian'
   ansible.builtin.lineinfile:
     path: /boot/cmdline.txt
     regexp: '^((?!.*\bcgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory\b).*)$'
