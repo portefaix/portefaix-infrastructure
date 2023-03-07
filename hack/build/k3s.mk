@@ -91,19 +91,20 @@ cloudflare-bucket-clean: guard-ENV guard-BUCKET ## Delete all objects into a R2 
 ##@ K3s
 
 .PHONY: k3s-create
-k3s-create: guard-SERVER_IP guard-USER guard-ENV ## Setup a k3s cluster
+k3s-create: guard-SERVER_IP guard-EXTERNAL_IP guard-USER guard-ENV ## Setup a k3s cluster
 	@echo -e "$(OK_COLOR)[$(APP)] Install K3S$(NO_COLOR)"
 	@k3sup install --ip $(SERVER_IP) --user $(K3S_USER) \
 		--k3s-version $(K3S_VERSION) --merge \
-		--k3s-extra-args "$(K3S_ARGS)" \
+		--k3s-extra-args "$(K3S_ARGS) --node-ip=$(SERVER_IP) --node-external-ip=$(EXTERNAL_IP)" \
 		--ssh-key $(K3S_SSH_KEY) \
   		--local-path $${HOME}/.kube/config \
   		--context k3s-portefaix-$(ENV)
 
 .PHONY: k3s-join
-k3s-join: guard-SERVER_IP guard-USER guard-AGENT_IP guard-ENV ## Add a node to the k3s cluster
+k3s-join: guard-SERVER_IP guard-AGENT_IP guard-EXTERNAL_IP guard-USER guard-ENV ## Add a node to the k3s cluster
 	@echo -e "$(OK_COLOR)[$(APP)] Add a K3S node$(NO_COLOR)"
 	@k3sup join --ip $(AGENT_IP) --server-ip $(SERVER_IP) --user $(K3S_USER) \
+		--k3s-extra-args "--node-ip=$(AGENT_IP) --node-external-ip=$(EXTERNAL_IP)" \
 		--ssh-key $(K3S_SSH_KEY) --k3s-version $(K3S_VERSION)
 
 .PHONY: k3s-config
@@ -117,7 +118,6 @@ k3s-config: guard-SERVER_IP guard-USER guard-ENV ## Merge Kubernetes configurati
 .PHONY: k3s-kube-credentials
 k3s-kube-credentials: guard-ENV ## Credentials for k3s (ENV=xxx)
 	@kubectl config use-context $(KUBE_CONTEXT)
-
 
 # ====================================
 # A K E Y L E S S
