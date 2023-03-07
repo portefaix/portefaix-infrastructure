@@ -26,9 +26,9 @@
     - role: base
       tags:
         - base
-    # - role: artis3n.tailscale
-    #   tags:
-    #     - tailscale
+    - role: artis3n.tailscale
+      tags:
+        - tailscale
     # - role: nleiva.grafana_agent
     #   tags:
     #     - grafana_cloud

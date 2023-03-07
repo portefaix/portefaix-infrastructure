@@ -35,6 +35,8 @@ K3S_ARGS := --disable metrics-server --disable traefik
 K3S_ARGS += --kube-controller-manager-arg 'bind-address=0.0.0.0' --kube-controller-manager-arg 'bind-address=0.0.0.0'
 K3S_ARGS += --kube-proxy-arg 'bind-address=0.0.0.0'
 K3S_ARGS += --kube-scheduler-arg 'bind-address=0.0.0.0' --kube-scheduler-arg 'bind-address=0.0.0.0'
+# K3S_ARGS += --resolv-conf=/run/systemd/resolve/resolv.conf
+K3S_ARGS += --flannel-backend=none --disable-network-policy
 
 AKEYLESS_PROFILE = $(AKEYLESS_PROFILE_$(ENV))
 
@@ -70,11 +72,17 @@ sdcard-unmount: guard-ENV ## Unmount the current SD device
 # ====================================
 
 .PHONY: cloudflare-bucket-create
-cloudflare-bucket-create: guard-ENV ## Create bucket for Terraform states
+cloudflare-bucket-create: guard-ENV ## Create R2 bucket for Terraform states
 	@echo -e "$(OK_COLOR)[$(APP)] Create bucket for Terraform states$(NO_COLOR)"
 	@aws s3api create-bucket --bucket $(CLOUDFLARE_BUCKET) \
 		--endpoint-url https://$(CLOUDFLARE_ACCOUNT).r2.cloudflarestorage.com \
     	--region auto
+
+.PHONY: cloudflare-bucket-clean
+cloudflare-bucket-clean: guard-ENV guard-BUCKET ## Delete all objects into a R2 bucket
+	@echo -e "$(OK_COLOR)[$(APP)] Clean bucket $(BUCKET) $(NO_COLOR)"
+	aws s3 rm s3://$(BUCKET) --recursive --endpoint-url https://$(CLOUDFLARE_ACCOUNT).r2.cloudflarestorage.com
+
 
 # ====================================
 # K 3 S
@@ -90,7 +98,7 @@ k3s-create: guard-SERVER_IP guard-USER guard-ENV ## Setup a k3s cluster
 		--k3s-extra-args "$(K3S_ARGS)" \
 		--ssh-key $(K3S_SSH_KEY) \
   		--local-path $${HOME}/.kube/config \
-  		--context k3s-portefaix-homelab
+  		--context k3s-portefaix-$(ENV)
 
 .PHONY: k3s-join
 k3s-join: guard-SERVER_IP guard-USER guard-AGENT_IP guard-ENV ## Add a node to the k3s cluster
