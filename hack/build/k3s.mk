@@ -35,7 +35,7 @@ K3S_ARGS := --disable metrics-server --disable traefik
 K3S_ARGS += --kube-controller-manager-arg 'bind-address=0.0.0.0' --kube-controller-manager-arg 'bind-address=0.0.0.0'
 K3S_ARGS += --kube-proxy-arg 'bind-address=0.0.0.0'
 K3S_ARGS += --kube-scheduler-arg 'bind-address=0.0.0.0' --kube-scheduler-arg 'bind-address=0.0.0.0'
-# K3S_ARGS += --resolv-conf=/run/systemd/resolve/resolv.conf
+K3S_ARGS += --resolv-conf=/run/systemd/resolve/resolv.conf
 K3S_ARGS += --flannel-backend=none --disable-network-policy
 
 AKEYLESS_PROFILE = $(AKEYLESS_PROFILE_$(ENV))
