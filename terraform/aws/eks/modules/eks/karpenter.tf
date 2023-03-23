@@ -16,7 +16,7 @@
 
 module "karpenter" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version = "19.10.2"
+  version = "19.10.3"
 
   cluster_name = module.eks.cluster_name
 
