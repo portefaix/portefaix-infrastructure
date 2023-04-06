@@ -21,6 +21,6 @@ collections:
 
 roles:
 - name: artis3n.tailscale
-  version: v4.0.0
+  version: v4.1.0
 - name: nleiva.grafana_agent
   version: 0.5.2
