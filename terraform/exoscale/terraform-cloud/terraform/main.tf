@@ -14,7 +14,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://sos-ch-dk-2.exo.io"
-region   = "ch-dk-2"
-bucket   = "portefaix-dev-tfstates"
-key      = "sks/terraform.tfstate"
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    exoscale = {
+      source  = "exoscale/exoscale"
+      version = "0.46.0"
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.43.0"
+    }
+  }
+}

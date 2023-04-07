@@ -17,4 +17,4 @@
 endpoint = "https://sos-ch-dk-2.exo.io"
 region   = "ch-dk-2"
 bucket   = "portefaix-dev-tfstates"
-key      = "sks/terraform.tfstate"
+key      = "terraform-cloud/terraform.tfstate"
