@@ -14,14 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
-
-
-##############################################################################
-# DNS
-
-zone_name = "portefaix.xyz"
-
-name       = "*.homelab"
-ip_address = "100.126.241.86"
+resource "tfe_project" "this" {
+  name = "AWS"
+}
