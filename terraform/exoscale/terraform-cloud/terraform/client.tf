@@ -14,7 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://sos-ch-dk-2.exo.io"
-region   = "ch-dk-2"
-bucket   = "portefaix-dev-tfstates"
-key      = "sks/terraform.tfstate"
+resource "tfe_oauth_client" "github" {
+  organization     = data.tfe_organization.portefaix.name
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.github_oauth_token
+  service_provider = "github"
+}
