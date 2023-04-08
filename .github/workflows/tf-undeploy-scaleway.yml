@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Deploy Kepsule / ${{ github.event.inputs.env }}"
+        echo "Delete Kepsule / ${{ github.event.inputs.env }}"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Deploy Registry / ${{ github.event.inputs.env }}"
+        echo "Delete Registry / ${{ github.event.inputs.env }}"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Deploy Public IP(s) / ${{ github.event.inputs.env }}"
+        echo "Delete Public IP(s) / ${{ github.event.inputs.env }}"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -104,7 +104,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Deploy VPC / ${{ github.event.inputs.env }}"
+        echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
       uses: actions/checkout@v3
