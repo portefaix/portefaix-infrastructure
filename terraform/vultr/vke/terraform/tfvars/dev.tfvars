@@ -14,6 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+#############################################################################
+# Provider
+
+
 ###########################################################################
 # Kubernetes cluster
 
@@ -21,7 +25,7 @@ region = "cdg"
 
 cluster_name = "portefaix-dev-vke"
 
-kubernetes_version = "v1.22.8+3"
+kubernetes_version = "v1.26.2+2"
 
 # network_name = "portefaix-dev"
 
@@ -30,18 +34,18 @@ node_plan     = "vc2-1c-2gb"
 node_label    = "portefaix-dev-vke"
 
 node_pools = [
-  # {
-  #   label          = "core"
-  #   quantity = 1
-  #   plan = "vc2-1c-2gb"
-  #   region = "cdg"
-  #   tag =  "core"
-  # },
-  # {
-  #   label          = "addons"
-  #   quantity = 1
-  #   plan = "vc2-1c-2gb"
-  #   region = "cdg"
-  #   tag =  "core"
-  # }
+  {
+    label    = "core"
+    quantity = 1
+    plan     = "vc2-1c-2gb"
+    region   = "cdg"
+    tag      = "core"
+  },
+  {
+    label    = "addons"
+    quantity = 1
+    plan     = "vc2-1c-2gb"
+    region   = "cdg"
+    tag      = "core"
+  }
 ]
