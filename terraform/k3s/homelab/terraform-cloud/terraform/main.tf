@@ -14,19 +14,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#######################################################################
-# Provider
+terraform {
+  required_version = ">= 1.0.0"
 
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-
-#######################################################################
-# Observability
-
-variable "buckets" {
-  description = "List of buckets names"
-  type        = list(string)
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.63.0"
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.43.0"
+    }
+  }
 }

@@ -14,19 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#######################################################################
-# Provider
-
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-
-#######################################################################
-# Observability
-
-variable "buckets" {
-  description = "List of buckets names"
-  type        = list(string)
+resource "tfe_oauth_client" "github" {
+  organization     = data.tfe_organization.portefaix.name
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.github_oauth_token
+  service_provider = "github"
 }
