@@ -13,3 +13,6 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+
+bucket = "portefaix-civo-tfstates"
+key    = "kubernetes/terraform.tfstate"

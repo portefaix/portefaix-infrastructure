@@ -17,9 +17,14 @@
 #######################################################################
 # Provider
 
+variable "cloudflare_account_id" {
+  description = "The Cloudflare account ID"
+  type        = string
+}
+
 variable "region" {
   type        = string
-  description = "The region in which the network should be created."
+  description = "The CIVO region in which the network should be created."
 }
 
 #######################################################################
