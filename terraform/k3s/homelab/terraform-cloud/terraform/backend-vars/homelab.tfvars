@@ -14,19 +14,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#######################################################################
-# Provider
-
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-
-#######################################################################
-# Observability
-
-variable "buckets" {
-  description = "List of buckets names"
-  type        = list(string)
-}
+bucket = "portefaix-homelab-tfstates"
+key    = "terraform-cloud/terraform.tfstate"

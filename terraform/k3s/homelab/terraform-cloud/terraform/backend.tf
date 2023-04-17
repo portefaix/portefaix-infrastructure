@@ -14,19 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#######################################################################
-# Provider
-
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-
-#######################################################################
-# Observability
-
-variable "buckets" {
-  description = "List of buckets names"
-  type        = list(string)
+terraform {
+  backend "s3" {
+    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
+    region = "auto"
+    # skip checks that don't work in CloudFlare R2
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_metadata_api_check     = true
+  }
 }
