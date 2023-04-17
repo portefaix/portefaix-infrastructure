@@ -35,10 +35,10 @@ variable "org_email_domain" {
 #############################################################################
 # Security Hub
 
-variable "audit_account_id" {
-  type        = string
-  description = "ID of the Audit AWS Account"
-}
+# variable "audit_account_id" {
+#   type        = string
+#   description = "ID of the Audit AWS Account"
+# }
 
 variable "service_name" {
   description = "Name of the service"

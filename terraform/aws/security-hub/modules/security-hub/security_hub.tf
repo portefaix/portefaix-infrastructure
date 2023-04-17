@@ -16,17 +16,17 @@
 
 resource "aws_securityhub_account" "this" {}
 
-resource "aws_securityhub_organization_admin_account" "audit_account" {
-  admin_account_id = var.audit_account_id
-}
+# resource "aws_securityhub_organization_admin_account" "audit_account" {
+#   admin_account_id = var.audit_account_id
+# }
 
 resource "aws_securityhub_organization_configuration" "this" {
   provider    = aws.audit
   auto_enable = true
 
-  depends_on = [
-    aws_securityhub_organization_admin_account.audit_account
-  ]
+  # depends_on = [
+  #   aws_securityhub_organization_admin_account.audit_account
+  # ]
 }
 
 resource "aws_securityhub_member" "accounts" {
