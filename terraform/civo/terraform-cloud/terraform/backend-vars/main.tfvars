@@ -14,20 +14,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "kubernetes" {
-  source  = "nlamirault/kubernetes/civo"
-  version = "0.2.0"
-
-  cluster_name        = var.cluster_name
-  region              = var.region
-  node_count          = var.node_count
-  node_instance_size  = var.node_instance_size
-  cni                 = var.cni
-  k3s_version         = var.k3s_version
-  authorized_networks = var.authorized_networks
-  network_name        = var.network_name
-
-  node_pools = var.node_pools
-
-  tags = var.tags
-}
+bucket = "portefaix-civo-tfstates"
+key    = "terraform-cloud/terraform.tfstate"

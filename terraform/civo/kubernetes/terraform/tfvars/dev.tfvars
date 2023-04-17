@@ -28,7 +28,7 @@ network_name = "portefaix-dev"
 
 node_count         = 1
 node_instance_size = "g3.k3s.small"
-k3s_version        = "1.22.2-k3s1"
+k3s_version        = "1.23.6-k3s1"
 
 cni = "cilium"
 

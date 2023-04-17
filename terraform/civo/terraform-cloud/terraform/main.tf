@@ -14,20 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "kubernetes" {
-  source  = "nlamirault/kubernetes/civo"
-  version = "0.2.0"
+terraform {
+  required_version = ">= 1.0.0"
 
-  cluster_name        = var.cluster_name
-  region              = var.region
-  node_count          = var.node_count
-  node_instance_size  = var.node_instance_size
-  cni                 = var.cni
-  k3s_version         = var.k3s_version
-  authorized_networks = var.authorized_networks
-  network_name        = var.network_name
-
-  node_pools = var.node_pools
-
-  tags = var.tags
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.62.0"
+    }
+    civo = {
+      source  = "civo/civo"
+      version = "1.0.31"
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.43.0"
+    }
+  }
 }
