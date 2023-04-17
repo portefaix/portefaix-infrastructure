@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "vultr_private_network" "my_network" {
+resource "vultr_vpc" "this" {
   description    = var.name
   region         = var.region
   v4_subnet      = var.subnet

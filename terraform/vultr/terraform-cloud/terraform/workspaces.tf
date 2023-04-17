@@ -41,25 +41,3 @@ resource "tfe_workspace" "this" {
 
   tag_names = each.value.tags
 }
-
-resource "tfe_variable" "aws_acces_key" {
-  for_each = tfe_workspace.this
-
-  key          = "AWS_ACCESS_KEY_ID"
-  value        = var.access_key
-  category     = "env"
-  sensitive    = "true"
-  workspace_id = each.value.id
-  description  = "The AWS access key"
-}
-
-resource "tfe_variable" "aws_secret_key" {
-  for_each = tfe_workspace.this
-
-  key          = "AWS_SECRET_ACCESS_KEY"
-  value        = var.secret_key
-  category     = "env"
-  sensitive    = "true"
-  workspace_id = each.value.id
-  description  = "The AWS secret key"
-}

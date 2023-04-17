@@ -14,7 +14,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://s3.fr-par.scw.cloud"
-region   = "fr-par"
-bucket   = "portefaix-sandbox-tfstates"
-key      = "terraform-cloud/terraform.tfstate"
+bucket = "portefaix-vultr-tfstates"
+key    = "terraform-cloud/terraform.tfstate"

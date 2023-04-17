@@ -15,13 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  # backend "s3" {
-  #   # Deactivate the AWS specific behaviours
-  #   # https://www.terraform.io/docs/backends/types/s3.html#skip_credentials_validation
-  #   skip_credentials_validation = true
-  #   skip_get_ec2_platforms      = true
-  #   skip_requesting_account_id  = true
-  #   skip_metadata_api_check     = true
-  #   skip_region_validation      = true
-  # }
+  backend "s3" {
+    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
+    region = "auto"
+    # skip checks that don't work in CloudFlare R2
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_metadata_api_check     = true
+  }
 }
