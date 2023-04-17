@@ -14,7 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://s3.fr-par.scw.cloud"
-region   = "fr-par"
-bucket   = "portefaix-sandbox-tfstates"
-key      = "kapsule/terraform.tfstate"
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    # tflint-ignore: terraform_unused_required_providers
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.16.2"
+    }
+  }
+}
