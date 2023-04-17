@@ -14,7 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://s3.fr-par.scw.cloud"
-region   = "fr-par"
-bucket   = "portefaix-sandbox-tfstates"
-key      = "observability/terraform.tfstate"
+terraform {
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "portefaix"
+
+    workspaces {
+      name = "portefaix-scaleway-sandbox-observability"
+    }
+  }
+}

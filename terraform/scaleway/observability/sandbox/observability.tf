@@ -14,14 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+module "observability" {
+  source = "../modules/observability"
 
-region = "fr-par"
-
-zone = "fr-par-1"
-
-##############################################################################
-# Kubernetes cluster
-
-cluster_name = "portefaix-staging-kapsule"
+  cluster_name    = var.cluster_name
+  prometheus_tags = var.prometheus_tags
+  mimir_tags      = var.mimir_tags
+  loki_tags       = var.loki_tags
+  tempo_tags      = var.tempo_tags
+}
