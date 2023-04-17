@@ -14,7 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://s3.fr-par.scw.cloud"
-region   = "fr-par"
-bucket   = "portefaix-sandbox-tfstates"
-key      = "public-ips/vpc-gateway/terraform.tfstate"
+#######################################################################
+# Public IPs / VPC Gateway
+
+variable "tags" {
+  type        = list(string)
+  default     = ["terraform"]
+  description = "The tags associated with the VPC Gateway publis IPs."
+}

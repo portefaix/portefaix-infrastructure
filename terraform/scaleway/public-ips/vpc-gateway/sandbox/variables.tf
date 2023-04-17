@@ -28,10 +28,10 @@ variable "zone" {
 }
 
 #######################################################################
-# Kubernetes cluster
+# Public IPs / VPC Gateway
 
 variable "tags" {
   type        = list(string)
   default     = ["terraform"]
-  description = "The tags associated with the Kubernetes cluster."
+  description = "The tags associated with the VPC Gateway publis IPs."
 }

@@ -14,14 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+terraform {
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "portefaix"
 
-region = "fr-par"
-
-zone = "fr-par-1"
-
-##############################################################################
-# Public IP / VPC Gateway
-
-tags = ["terraform", "public-ip", "vpc-gateway"]
+    workspaces {
+      name = "portefaix-scaleway-sandbox-ips-vpc-gw"
+    }
+  }
+}
