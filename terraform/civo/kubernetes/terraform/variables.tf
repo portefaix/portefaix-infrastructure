@@ -17,6 +17,11 @@
 #######################################################################
 # Provider
 
+variable "cloudflare_account_id" {
+  description = "The Cloudflare account ID"
+  type        = string
+}
+
 variable "region" {
   type        = string
   description = "The region in which the cluster should be created."

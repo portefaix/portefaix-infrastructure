@@ -16,17 +16,17 @@
 
 resource "aws_securityhub_account" "this" {}
 
-resource "aws_securityhub_organization_admin_account" "audit_account" {
-  admin_account_id = var.audit_account_id
-}
+# resource "aws_securityhub_organization_admin_account" "audit_account" {
+#   admin_account_id = var.audit_account_id
+# }
 
 resource "aws_securityhub_organization_configuration" "this" {
   provider    = aws.audit
   auto_enable = true
 
-  depends_on = [
-    aws_securityhub_organization_admin_account.audit_account
-  ]
+  # depends_on = [
+  #   aws_securityhub_organization_admin_account.audit_account
+  # ]
 }
 
 resource "aws_securityhub_member" "accounts" {
@@ -55,7 +55,7 @@ resource "aws_securityhub_standards_subscription" "aws_foundational" {
 resource "aws_securityhub_standards_subscription" "cis" {
   provider      = aws.audit
   count         = var.enable_cis ? 1 : 0
-  standards_arn = "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+  standards_arn = "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.4.0"
 
   depends_on = [
     aws_securityhub_account.this,

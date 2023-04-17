@@ -18,9 +18,13 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.62.0"
+    }
     vultr = {
       source  = "vultr/vultr"
-      version = "2.13.0"
+      version = "2.14.0"
     }
   }
 }

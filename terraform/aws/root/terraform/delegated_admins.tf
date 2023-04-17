@@ -40,3 +40,13 @@ resource "aws_organizations_delegated_administrator" "access_analyzer" {
   account_id        = aws_organizations_account.audit.id
   service_principal = "access-analyzer.amazonaws.com"
 }
+
+resource "aws_organizations_delegated_administrator" "securityhub" {
+  account_id        = aws_organizations_account.audit.id
+  service_principal = "securityhub.amazonaws.com"
+}
+
+resource "aws_organizations_delegated_administrator" "detective" {
+  account_id        = aws_organizations_account.audit.id
+  service_principal = "detective.amazonaws.com"
+}

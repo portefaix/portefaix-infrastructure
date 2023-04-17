@@ -17,14 +17,6 @@
 #######################################################################
 # Provider
 
-# variable "cloudflare_r2_access_key_id" {
-#   type = string
-# }
-# variable "cloudflare_r2_secret_access_key" {
-#   type = string
-#   sensitive = true
-# }
-
 variable "cloudflare_account_id" {
   description = "The Cloudflare account ID"
   type        = string

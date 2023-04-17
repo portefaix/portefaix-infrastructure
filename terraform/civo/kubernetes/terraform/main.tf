@@ -18,6 +18,10 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.62.0"
+    }
     civo = {
       source  = "civo/civo"
       version = "1.0.31"
