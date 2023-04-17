@@ -14,13 +14,27 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
+#######################################################################
+# Private Network
 
-    workspaces {
-      name = "portefaix-scaleway-sandbox-kapsule"
-    }
-  }
+variable "name" {
+  description = "The name of the cluster"
+  type        = string
+}
+
+variable "type" {
+  type        = string
+  description = "The gateway type"
+  default     = "VPC-GW-S"
+}
+
+variable "public_ip_id" {
+  type        = string
+  description = "ID of the existing flexible IP"
+}
+
+variable "tags" {
+  type        = list(string)
+  description = "The tags associated with the Kubernetes cluster."
+  default     = ["terraform"]
 }

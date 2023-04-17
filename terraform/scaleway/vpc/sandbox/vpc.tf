@@ -14,9 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "s3" {
-    skip_credentials_validation = true
-    skip_region_validation      = true
-  }
+module "vpc" {
+  source = "../modules/vpc"
+
+  name         = var.name
+  type         = var.type
+  public_ip_id = var.public_ip_id
+
+  tags = var.tags
 }
