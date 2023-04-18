@@ -160,6 +160,7 @@ variable "node_pools" {
     autoscaling         = bool
     autohealing         = bool
     wait_for_pool_ready = bool
+    container_runtime   = string
     tags                = list(string)
   }))
   default = {}
