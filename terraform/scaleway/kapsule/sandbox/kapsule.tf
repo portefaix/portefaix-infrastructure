@@ -18,6 +18,7 @@ module "kapsule" {
   source = "../modules/kapsule"
 
   name              = var.name
+  region            = var.region
   description       = var.description
   k8s_version       = var.k8s_version
   cni               = var.cni
