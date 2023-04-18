@@ -19,6 +19,5 @@ module "vpc" {
 
   name         = var.name
   type         = var.type
-  public_ip_id = var.public_ip_id
   tags         = var.tags
 }
