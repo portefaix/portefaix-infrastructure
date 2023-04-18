@@ -57,3 +57,8 @@ variable "github_oauth_token" {
   type        = string
   description = "Github token for Terraform Cloud"
 }
+
+variable "env_civo_token" {
+  type        = string
+  description = "Civo API token"
+}
