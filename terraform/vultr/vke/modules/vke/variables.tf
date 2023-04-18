@@ -15,32 +15,48 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #######################################################################
-# Provider
-
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-#######################################################################
-# Network
+# Kubernetes
 
 variable "region" {
   type        = string
-  description = "The region in which the network should be created."
+  description = "The region your VKE cluster will be deployed in. Currently, supported values are ewr and lax"
+  default     = "lax"
 }
 
-variable "name" {
+variable "cluster_name" {
   type        = string
-  description = "The description"
+  description = "The cluster name"
 }
 
-variable "subnet" {
+variable "kubernetes_version" {
   type        = string
-  description = "The IPv4 subnet to be used when attaching instances to this network"
+  description = "Kubernetes version"
 }
 
-variable "cidr" {
+variable "node_quantity" {
+  type        = number
+  description = "The number of nodes in this node pool."
+  default     = 3
+}
+
+variable "node_plan" {
   type        = string
-  description = "The number of bits for the netmask in CIDR notation"
+  description = "The plan to be used in this node pool"
+  default     = "vc2-1c-2gb"
+}
+
+variable "node_label" {
+  type        = string
+  description = "The node label"
+}
+
+variable "node_pools" {
+  description = "Addons node pools"
+  type = list(object({
+    quantity = number
+    plan     = string
+    label    = string
+    tag      = string
+  }))
+  default = []
 }
