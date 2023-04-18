@@ -26,7 +26,7 @@ name = "portefaix-dev-cluster-sks"
 
 zone = "ch-dk-2"
 
-kubernetes_version = "1.20.9"
+kubernetes_version = "1.26.3"
 
 service_level = "starter"
 
