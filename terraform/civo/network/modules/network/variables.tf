@@ -14,17 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
+#######################################################################
+# Network
 
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.62.0"
-    }
-    civo = {
-      source  = "civo/civo"
-      version = "1.0.31"
-    }
-  }
+variable "name" {
+  description = "The name of the network."
+  type        = string
 }

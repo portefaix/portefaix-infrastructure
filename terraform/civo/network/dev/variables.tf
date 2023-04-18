@@ -14,5 +14,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-bucket = "portefaix-civo-tfstates"
-key    = "network/terraform.tfstate"
+#######################################################################
+# Provider
+
+variable "region" {
+  type        = string
+  description = "The CIVO region in which the network should be created."
+}
+
+#######################################################################
+# Network
+
+variable "name" {
+  description = "The name of the network."
+  type        = string
+}

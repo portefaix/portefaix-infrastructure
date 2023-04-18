@@ -27,8 +27,8 @@ workspaces = {
 
   # Organization (multiple accounts)
 
-  portefaix-civo-network = {
-    directory      = "terraform/civo/network"
+  portefaix-civo-dev-network = {
+    directory      = "terraform/civo/network/dev"
     tags           = ["civo", "core", "network"]
     gitops         = false
     branch         = "master"
@@ -39,8 +39,8 @@ workspaces = {
       "*.tfvars",
     ]
   },
-  portefaix-civo-kubernetes = {
-    directory      = "terraform/civo/kubernetes"
+  portefaix-civo-dev-kubernetes = {
+    directory      = "terraform/civo/kubernetes/dev"
     tags           = ["civo", "core", "kubernetes"]
     gitops         = false
     branch         = "master"

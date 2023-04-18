@@ -41,3 +41,14 @@ resource "tfe_workspace" "this" {
 
   tag_names = each.value.tags
 }
+
+resource "tfe_variable" "env_civo_token" {
+  for_each = tfe_workspace.this
+
+  key          = "CIVO_TOKEN"
+  value        = var.env_civo_token
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Civo API token"
+}
