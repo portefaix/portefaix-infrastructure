@@ -17,6 +17,6 @@
 module "network" {
   source = "../modules/network"
 
-  label  = var.name
+  name   = var.name
   region = var.region
 }

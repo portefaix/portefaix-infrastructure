@@ -21,3 +21,8 @@ variable "name" {
   description = "The name of the network."
   type        = string
 }
+
+variable "region" {
+  description = "The region of the network."
+  type        = string
+}

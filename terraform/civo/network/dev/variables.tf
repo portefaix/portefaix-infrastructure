@@ -17,10 +17,7 @@
 #######################################################################
 # Provider
 
-variable "region" {
-  type        = string
-  description = "The CIVO region in which the network should be created."
-}
+
 
 #######################################################################
 # Network
@@ -28,4 +25,9 @@ variable "region" {
 variable "name" {
   description = "The name of the network."
   type        = string
+}
+
+variable "region" {
+  type        = string
+  description = "The CIVO region in which the network should be created."
 }
