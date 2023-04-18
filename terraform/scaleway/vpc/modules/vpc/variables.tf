@@ -28,13 +28,8 @@ variable "type" {
   default     = "VPC-GW-S"
 }
 
-variable "public_ip_id" {
-  type        = string
-  description = "ID of the existing flexible IP"
-}
-
 variable "tags" {
   type        = list(string)
-  description = "The tags associated with the Kubernetes cluster."
+  description = "The tags associated with the VPC."
   default     = ["terraform"]
 }

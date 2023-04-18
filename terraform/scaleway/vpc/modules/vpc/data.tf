@@ -15,5 +15,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 data "scaleway_vpc_public_gateway_ip" "this" {
-  ip_id = var.public_ip_id
+  ip_id = scaleway_vpc_public_gateway_ip.this.id
 }

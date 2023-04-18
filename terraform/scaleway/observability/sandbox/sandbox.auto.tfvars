@@ -14,13 +14,38 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
+#####################################################################""
+# Provider
 
-    workspaces {
-      name = "portefaix-scaleway-sandbox-ips-vpc-gw"
-    }
-  }
+region = "fr-par"
+
+zone = "fr-par-1"
+
+##############################################################################
+# Kubernetes cluster
+
+cluster_name = "portefaix-sandbox-kapsule"
+
+loki_tags = {
+  "Env"     = "Sandbox"
+  "Service" = "Observability"
+  "Role"    = "Loki"
+}
+
+tempo_tags = {
+  "Env"     = "Sandbox"
+  "Service" = "Observability"
+  "Role"    = "Tempo"
+}
+
+mimir_tags = {
+  "Env"     = "Sandbox"
+  "Service" = "Observability"
+  "Role"    = "Mimir"
+}
+
+grafana_tags = {
+  "Env"     = "Sandbox"
+  "Service" = "Observability"
+  "Role"    = "Grafana"
 }

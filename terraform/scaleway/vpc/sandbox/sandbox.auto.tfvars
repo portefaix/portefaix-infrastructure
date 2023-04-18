@@ -14,8 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "vpc_gateway" {
-  source = "../modules/vpc-gateway"
+#####################################################################""
+# Provider
 
-  tags = var.tags
-}
+region = "fr-par"
+
+zone = "fr-par-1"
+
+##############################################################################
+# Private Network
+
+name = "portefaix-staging"
+type = "VPC-GW-S"
+tags = ["terraform", "private-network"]

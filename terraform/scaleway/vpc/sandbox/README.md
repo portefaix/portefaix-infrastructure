@@ -27,7 +27,6 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | The name of the cluster | `string` | n/a | yes |
-| <a name="input_public_ip_id"></a> [public\_ip\_id](#input\_public\_ip\_id) | ID of the existing flexible IP | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The region that will be used as default value for all resources. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags associated with the Kubernetes cluster. | `list(string)` | <pre>[<br>  "terraform"<br>]</pre> | no |
 | <a name="input_type"></a> [type](#input\_type) | The gateway type | `string` | `"VPC-GW-S"` | no |
