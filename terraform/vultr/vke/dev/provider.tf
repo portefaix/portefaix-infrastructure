@@ -14,17 +14,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.62.0"
-    }
-    vultr = {
-      source  = "vultr/vultr"
-      version = "2.14.0"
-    }
-  }
+provider "vultr" {
 }

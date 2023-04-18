@@ -15,12 +15,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  backend "s3" {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
-    region = "auto"
-    # skip checks that don't work in CloudFlare R2
-    skip_credentials_validation = true
-    skip_region_validation      = true
-    skip_metadata_api_check     = true
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    # tflint-ignore: terraform_unused_required_providers
+    vultr = {
+      source  = "vultr/vultr"
+      version = "2.14.0"
+    }
   }
 }

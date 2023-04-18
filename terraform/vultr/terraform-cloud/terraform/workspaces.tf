@@ -41,3 +41,14 @@ resource "tfe_workspace" "this" {
 
   tag_names = each.value.tags
 }
+
+resource "tfe_variable" "env_vultr_api_key" {
+  for_each = tfe_workspace.this
+
+  key          = "VULTR_API_KEY"
+  value        = var.env_vultr_api_key
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Vultr API KEY"
+}

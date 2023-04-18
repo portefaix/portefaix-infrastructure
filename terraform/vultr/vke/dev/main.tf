@@ -14,5 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-bucket = "portefaix-vultr-tfstates"
-key    = "vke/terraform.tfstate"
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    vultr = {
+      source  = "vultr/vultr"
+      version = "2.14.0"
+    }
+  }
+}
