@@ -14,14 +14,19 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "s3" {
-    # Deactivate the AWS specific behaviours
-    # https://www.terraform.io/docs/backends/types/s3.html#skip_credentials_validation
-    skip_credentials_validation = true
-    skip_get_ec2_platforms      = true
-    skip_requesting_account_id  = true
-    skip_metadata_api_check     = true
-    skip_region_validation      = true
-  }
+module "sks" {
+  source = "../modules/sks"
+
+  name = var.name
+  zone = var.zone
+
+  kubernetes_version = var.kubernetes_version
+  service_level      = var.service_level
+
+  cni            = var.cni
+  exoscale_ccm   = var.exoscale_ccm
+  metrics_server = var.metrics_server
+  auto_upgrade   = var.auto_upgrade
+
+  node_pools = var.node_pools
 }
