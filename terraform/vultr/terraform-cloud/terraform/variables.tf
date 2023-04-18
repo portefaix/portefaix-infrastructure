@@ -57,3 +57,8 @@ variable "github_oauth_token" {
   type        = string
   description = "Github token for Terraform Cloud"
 }
+
+variable "env_vultr_api_key" {
+  type        = string
+  description = "The Vultr API KEY"
+}
