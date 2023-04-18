@@ -53,7 +53,6 @@ maintenance_window_day        = "monday"
 node_pools = {
   "core" = {
     "node_type"           = "DEV1_M"
-    "container_runtime"   = "containerd"
     "size"                = 1
     "min_size"            = 1
     "max_size"            = 1
@@ -64,7 +63,6 @@ node_pools = {
   },
   "ops" = {
     "node_type"           = "DEV1_M"
-    "container_runtime"   = "containerd"
     "size"                = 1
     "min_size"            = 1
     "max_size"            = 1
