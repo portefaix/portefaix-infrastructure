@@ -31,7 +31,7 @@ workspaces = {
   # Organization (multiple accounts)
 
   portefaix-scaleway-sandbox-vpc = {
-    directory      = "terraform/scaleway/vpc"
+    directory      = "terraform/scaleway/vpc/sandbox"
     tags           = ["scaleway", "core", "vpc"]
     gitops         = false
     branch         = "master"
@@ -43,7 +43,7 @@ workspaces = {
     ]
   },
   portefaix-scaleway-sandbox-registry = {
-    directory      = "terraform/scaleway/registry"
+    directory      = "terraform/scaleway/registry/sandbox"
     tags           = ["scaleway", "core", "kapsule"]
     gitops         = false
     branch         = "master"
@@ -55,7 +55,7 @@ workspaces = {
     ]
   },
   portefaix-scaleway-sandbox-kapsule = {
-    directory      = "terraform/scaleway/kapsule"
+    directory      = "terraform/scaleway/kapsule/sandbox"
     tags           = ["scaleway", "core", "kapsule"]
     gitops         = false
     branch         = "master"
@@ -67,7 +67,7 @@ workspaces = {
     ]
   },
   portefaix-scaleway-sandbox-observability = {
-    directory      = "terraform/scaleway/observability"
+    directory      = "terraform/scaleway/observability/sandbox"
     tags           = ["scaleway", "core", "stack"]
     gitops         = false
     branch         = "master"
