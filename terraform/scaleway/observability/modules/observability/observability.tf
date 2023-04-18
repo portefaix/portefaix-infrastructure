@@ -14,15 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "prometheus" {
-  source  = "nlamirault/observability/scaleway//modules/prometheus"
-  version = "0.2.0"
-
-  cluster_name = var.cluster_name
-  region       = var.region
-  tags         = var.prometheus_tags
-}
-
 module "mimir" {
   source  = "nlamirault/observability/scaleway//modules/mimir"
   version = "0.2.0"

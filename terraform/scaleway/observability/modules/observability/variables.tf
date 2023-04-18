@@ -22,14 +22,6 @@ variable "cluster_name" {
   description = "Name of the Kapsule cluster"
 }
 
-variable "prometheus_tags" {
-  type        = map(string)
-  description = "Tags for Prometheus"
-  default = {
-    "Made-By" = "terraform"
-  }
-}
-
 variable "mimir_tags" {
   type        = map(string)
   description = "Tags for Mimir"
