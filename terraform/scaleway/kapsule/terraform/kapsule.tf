@@ -16,7 +16,7 @@
 
 module "kapsule" {
   source  = "nlamirault/kapsule/scaleway"
-  version = "2.0.0"
+  version = "3.0.1"
 
   name              = var.name
   region            = var.region
