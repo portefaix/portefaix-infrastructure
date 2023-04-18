@@ -14,23 +14,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#######################################################################
-# Provider
+module "kubernetes" {
+  source  = "nlamirault/kubernetes/civo"
+  version = "0.2.0"
 
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
+  cluster_name        = var.cluster_name
+  region              = var.region
+  node_count          = var.node_count
+  node_instance_size  = var.node_instance_size
+  cni                 = var.cni
+  k3s_version         = var.k3s_version
+  authorized_networks = var.authorized_networks
+  network_name        = var.network_name
 
-variable "region" {
-  type        = string
-  description = "The CIVO region in which the network should be created."
-}
+  node_pools = var.node_pools
 
-#######################################################################
-# Network
-
-variable "name" {
-  description = "The name of the network."
-  type        = string
+  tags = var.tags
 }
