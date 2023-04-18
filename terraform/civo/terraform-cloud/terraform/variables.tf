@@ -62,3 +62,8 @@ variable "env_civo_token" {
   type        = string
   description = "Civo API token"
 }
+
+variable "env_authorized_networks" {
+  type        = string
+  description = "Authorized networks for Kubernetes"
+}

@@ -52,3 +52,13 @@ resource "tfe_variable" "env_civo_token" {
   workspace_id = each.value.id
   description  = "The Civo API token"
 }
+
+
+resource "tfe_variable" "env_authorized_networks" {
+  key          = "TF_VAR_authorized_networks"
+  value        = var.env_authorized_networks
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = tfe_workspace.this["portefaix-civo-dev-kubernetes"].id
+  description  = "The authorized networks for Kubernetes"
+}
