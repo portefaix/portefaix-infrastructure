@@ -58,12 +58,32 @@ variable "github_oauth_token" {
   description = "Github token for Terraform Cloud"
 }
 
-variable "access_key" {
+variable "env_exo_api_key" {
+  type        = string
+  description = "Exoscale API key"
+}
+
+variable "env_exo_api_secret" {
+  type        = string
+  description = "Exoscale API secret"
+}
+
+variable "env_aws_access_key" {
   type        = string
   description = "AWS access key"
 }
 
-variable "secret_key" {
+variable "env_aws_secret_key" {
   type        = string
   description = "AWS secret key"
+}
+
+variable "env_aws_default_region" {
+  type        = string
+  description = "The AWS default region"
+}
+
+variable "env_aws_region" {
+  type        = string
+  description = "The AWS Region"
 }

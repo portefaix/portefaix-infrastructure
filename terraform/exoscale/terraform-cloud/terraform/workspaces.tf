@@ -42,11 +42,33 @@ resource "tfe_workspace" "this" {
   tag_names = each.value.tags
 }
 
-resource "tfe_variable" "aws_acces_key" {
+resource "tfe_variable" "env_exo_api_key" {
+  for_each = tfe_workspace.this
+
+  key          = "EXOSCALE_API_KEY"
+  value        = var.env_exo_api_key
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Exoscale API key"
+}
+
+resource "tfe_variable" "env_exo_api_secret" {
+  for_each = tfe_workspace.this
+
+  key          = "EXOSCALE_API_SECRET"
+  value        = var.env_exo_api_secret
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Exoscale API secret"
+}
+
+resource "tfe_variable" "aws_access_key" {
   for_each = tfe_workspace.this
 
   key          = "AWS_ACCESS_KEY_ID"
-  value        = var.access_key
+  value        = var.env_aws_access_key
   category     = "env"
   sensitive    = "true"
   workspace_id = each.value.id
@@ -57,9 +79,31 @@ resource "tfe_variable" "aws_secret_key" {
   for_each = tfe_workspace.this
 
   key          = "AWS_SECRET_ACCESS_KEY"
-  value        = var.secret_key
+  value        = var.env_aws_secret_key
   category     = "env"
   sensitive    = "true"
   workspace_id = each.value.id
   description  = "The AWS secret key"
+}
+
+resource "tfe_variable" "aws_default_region" {
+  for_each = tfe_workspace.this
+
+  key          = "AWS_DEFAULT_REGION"
+  value        = var.env_aws_default_region
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The AWS default region"
+}
+
+resource "tfe_variable" "aws_region" {
+  for_each = tfe_workspace.this
+
+  key          = "AWS_REGION"
+  value        = var.env_aws_region
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The AWS region"
 }

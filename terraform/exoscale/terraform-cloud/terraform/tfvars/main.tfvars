@@ -30,8 +30,8 @@ workspaces = {
 
   # Organization (multiple accounts)
 
-  portefaix-exoscale-sks = {
-    directory      = "terraform/exoscale/sks"
+  portefaix-exoscale-dev-sks = {
+    directory      = "terraform/exoscale/sks/dev"
     tags           = ["scaleway", "core", "sks"]
     gitops         = false
     branch         = "master"
