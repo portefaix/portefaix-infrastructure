@@ -18,6 +18,7 @@ module "observability" {
   source = "../modules/observability"
 
   cluster_name = var.cluster_name
+  region = var.region
   mimir_tags   = var.mimir_tags
   loki_tags    = var.loki_tags
   tempo_tags   = var.tempo_tags

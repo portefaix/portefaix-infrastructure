@@ -22,6 +22,11 @@ variable "cluster_name" {
   description = "Name of the Kapsule cluster"
 }
 
+variable "region" {
+  type        = string
+  description = "The region in which the buckets should be created"
+}
+
 variable "mimir_tags" {
   type        = map(string)
   description = "Tags for Mimir"
