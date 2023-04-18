@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "prometheus" {
-  source  = "nlamirault/observability/scaleway/modules/prometheus"
+  source  = "nlamirault/observability/scaleway//modules/prometheus"
   version = "0.2.0"
 
   cluster_name = var.cluster_name
@@ -24,7 +24,7 @@ module "prometheus" {
 }
 
 module "mimir" {
-  source  = "nlamirault/observability/scaleway/modules/mimir"
+  source  = "nlamirault/observability/scaleway//modules/mimir"
   version = "0.2.0"
 
   cluster_name = var.cluster_name
@@ -33,7 +33,7 @@ module "mimir" {
 }
 
 module "loki" {
-  source  = "nlamirault/observability/scaleway/modules/loki"
+  source  = "nlamirault/observability/scaleway//modules/loki"
   version = "0.2.0"
 
   cluster_name = var.cluster_name
@@ -42,7 +42,7 @@ module "loki" {
 }
 
 module "tempo" {
-  source  = "nlamirault/observability/scaleway/modules/tempo"
+  source  = "nlamirault/observability/scaleway//modules/tempo"
   version = "0.2.0"
 
   cluster_name = var.cluster_name
@@ -51,7 +51,7 @@ module "tempo" {
 }
 
 module "cockpit" {
-  source  = "nlamirault/observability/scaleway/modules/cockpit"
+  source  = "nlamirault/observability/scaleway//modules/cockpit"
   version = "0.2.0"
 
   cluster_name = var.cluster_name
