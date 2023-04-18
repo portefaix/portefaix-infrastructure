@@ -63,12 +63,42 @@ variable "github_oauth_token" {
   description = "Github token for Terraform Cloud"
 }
 
-variable "access_key" {
+variable "env_scw_access_key" {
+  type        = string
+  description = "Scaleway access key"
+}
+
+variable "env_scw_secret_key" {
+  type        = string
+  description = "Scaleway secret key"
+}
+
+variable "env_scw_project_id" {
+  type        = string
+  description = "Scaleway Project ID"
+}
+
+variable "env_scw_organization_id" {
+  type        = string
+  description = "Scaleway Organization ID"
+}
+
+variable "env_aws_access_key" {
   type        = string
   description = "AWS access key"
 }
 
-variable "secret_key" {
+variable "env_aws_secret_key" {
   type        = string
   description = "AWS secret key"
+}
+
+variable "env_aws_default_region" {
+  type        = string
+  description = "The AWS default region"
+}
+
+variable "env_aws_region" {
+  type        = string
+  description = "The AWS Region"
 }

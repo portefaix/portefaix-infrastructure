@@ -42,11 +42,55 @@ resource "tfe_workspace" "this" {
   tag_names = each.value.tags
 }
 
-resource "tfe_variable" "aws_acces_key" {
+resource "tfe_variable" "scw_access_key" {
+  for_each = tfe_workspace.this
+
+  key          = "SCW_ACCESS_KEY"
+  value        = var.env_scw_access_key
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Scaleway access key"
+}
+
+resource "tfe_variable" "scw_secret_key" {
+  for_each = tfe_workspace.this
+
+  key          = "SCW_SECRET_KEY"
+  value        = var.env_scw_secret_key
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Scaleway secret key"
+}
+
+resource "tfe_variable" "scw_organization_id" {
+  for_each = tfe_workspace.this
+
+  key          = "SCW_DEFAULT_ORGANIZATION_ID"
+  value        = var.env_scw_organization_id
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Scaleway default organization ID"
+}
+
+resource "tfe_variable" "scw_project_id" {
+  for_each = tfe_workspace.this
+
+  key          = "SCW_DEFAULT_PROJECT_ID"
+  value        = var.env_scw_project_id
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The Scaleway default project ID"
+}
+
+resource "tfe_variable" "aws_access_key" {
   for_each = tfe_workspace.this
 
   key          = "AWS_ACCESS_KEY_ID"
-  value        = var.access_key
+  value        = var.env_aws_access_key
   category     = "env"
   sensitive    = "true"
   workspace_id = each.value.id
@@ -57,9 +101,31 @@ resource "tfe_variable" "aws_secret_key" {
   for_each = tfe_workspace.this
 
   key          = "AWS_SECRET_ACCESS_KEY"
-  value        = var.secret_key
+  value        = var.env_aws_secret_key
   category     = "env"
   sensitive    = "true"
   workspace_id = each.value.id
   description  = "The AWS secret key"
+}
+
+resource "tfe_variable" "aws_default_region" {
+  for_each = tfe_workspace.this
+
+  key          = "AWS_DEFAULT_REGION"
+  value        = var.env_aws_default_region
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The AWS default region"
+}
+
+resource "tfe_variable" "aws_region" {
+  for_each = tfe_workspace.this
+
+  key          = "AWS_REGION"
+  value        = var.env_aws_region
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The AWS region"
 }
