@@ -41,3 +41,14 @@ resource "tfe_workspace" "this" {
 
   tag_names = each.value.tags
 }
+
+resource "tfe_variable" "env_do_token" {
+  for_each = tfe_workspace.this
+
+  key          = "DIGITALOCEAN_TOKEN"
+  value        = var.env_do_token
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The DigitalOcean API token"
+}

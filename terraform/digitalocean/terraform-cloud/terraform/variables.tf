@@ -67,3 +67,8 @@ variable "github_oauth_token" {
   type        = string
   description = "Github token for Terraform Cloud"
 }
+
+variable "env_do_token" {
+  type = string
+  description = "The DigitalOcean API token"
+}
