@@ -26,8 +26,6 @@ module "security_hub" {
   org_email        = var.org_email
   org_email_domain = var.org_email_domain
 
-  audit_account_id = var.audit_account_id
-
   members = var.members
 
   service_name = var.service_name
