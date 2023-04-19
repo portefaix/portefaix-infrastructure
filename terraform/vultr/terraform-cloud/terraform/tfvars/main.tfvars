@@ -27,8 +27,8 @@ workspaces = {
 
   # Organization (multiple accounts)
 
-  portefaix-vultr-vpc = {
-    directory      = "terraform/vultr/vpc"
+  portefaix-vultr-dev-vpc = {
+    directory      = "terraform/vultr/vpc/dev"
     tags           = ["vultr", "core", "vpc"]
     gitops         = false
     branch         = "master"
@@ -39,8 +39,8 @@ workspaces = {
       "*.tfvars",
     ]
   },
-  portefaix-vultr-vke = {
-    directory      = "terraform/vultr/vke"
+  portefaix-vultr-dev-vke = {
+    directory      = "terraform/vultr/vke/dev"
     tags           = ["vultr", "core", "vke"]
     gitops         = false
     branch         = "master"
