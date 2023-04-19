@@ -28,7 +28,7 @@ workspaces = {
   # Organization (multiple accounts)
 
   portefaix-digitalocean-dev-vpc = {
-    directory      = "terraform/digitalocean/vpc"
+    directory      = "terraform/digitalocean/vpc/dev"
     tags           = ["digitalocean", "core", "vpc"]
     gitops         = false
     branch         = "master"
@@ -40,7 +40,7 @@ workspaces = {
     ]
   },
   portefaix-digitalocean-dev-doks = {
-    directory      = "terraform/digitalocean/doks"
+    directory      = "terraform/digitalocean/doks/dev"
     tags           = ["digitalocean", "core", "doks"]
     gitops         = false
     branch         = "master"
@@ -52,7 +52,7 @@ workspaces = {
     ]
   },
   portefaix-digitalocean-dev-registry = {
-    directory      = "terraform/digitalocean/containerregistry"
+    directory      = "terraform/digitalocean/containerregistry/dev"
     tags           = ["digitalocean", "core", "doks"]
     gitops         = false
     branch         = "master"
