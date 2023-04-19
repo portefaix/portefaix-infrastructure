@@ -6,14 +6,14 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | 1.194.0 |
-| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | 0.40.0 |
+| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | 1.203.0 |
+| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | 0.43.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.40.0 |
+| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.43.0 |
 
 ## Modules
 
@@ -23,12 +23,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [tfe_oauth_client.github](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/resources/oauth_client) | resource |
-| [tfe_variable.alicloud_acces_key](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/resources/variable) | resource |
-| [tfe_variable.alicloud_region](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/resources/variable) | resource |
-| [tfe_variable.alicloud_secret_key](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/resources/variable) | resource |
-| [tfe_workspace.alicloud](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/resources/workspace) | resource |
-| [tfe_organization.portefaix](https://registry.terraform.io/providers/hashicorp/tfe/0.40.0/docs/data-sources/organization) | data source |
+| [tfe_oauth_client.github](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/resources/oauth_client) | resource |
+| [tfe_variable.alicloud_acces_key](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/resources/variable) | resource |
+| [tfe_variable.alicloud_region](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/resources/variable) | resource |
+| [tfe_variable.alicloud_secret_key](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/resources/variable) | resource |
+| [tfe_workspace.alicloud](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/resources/workspace) | resource |
+| [tfe_organization.portefaix](https://registry.terraform.io/providers/hashicorp/tfe/0.43.0/docs/data-sources/organization) | data source |
 
 ## Inputs
 
