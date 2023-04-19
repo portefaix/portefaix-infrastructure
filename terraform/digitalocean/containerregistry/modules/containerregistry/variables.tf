@@ -14,7 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "sfo3.digitaloceanspaces.com"
-bucket   = "portefaix-sandbox-tfstates" # The name of your Spaces
-key      = "kubernetes/terraform.tfstate"
-region   = "us-west-1"
+############################################################################
+# VPC
+
+variable "name" {
+  type        = string
+  description = "A name for the VPC"
+}
+
+variable "region" {
+  type        = string
+  description = "The DigitalOcean region slug for the VPC's location"
+}
+
+variable "subscription_tier_slug" {
+  type        = string
+  description = "The slug identifier for the subscription tier to use"
+  default     = "basic"
+}

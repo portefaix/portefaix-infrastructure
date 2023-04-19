@@ -14,11 +14,27 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "s3" {
-    skip_requesting_account_id  = true
-    skip_credentials_validation = true
-    skip_get_ec2_platforms      = true
-    skip_metadata_api_check     = true
-  }
+module "doks" {
+  source = "../modules/doks"
+
+  cluster_name       = var.cluster_name
+  vpc_name           = var.vpc_name
+  auto_upgrade       = var.auto_upgrade
+  region             = var.region
+  kubernetes_version = var.kubernetes_version
+
+  maintenance_policy_day        = var.maintenance_policy_day
+  maintenance_policy_start_time = var.maintenance_policy_start_time
+
+  size        = var.size
+  auto_scale  = var.auto_scale
+  min_nodes   = var.min_nodes
+  max_nodes   = var.max_nodes
+  node_count  = var.node_count
+  node_tags   = var.node_tags
+  node_labels = var.node_labels
+
+  node_pools = var.node_pools
+
+  tags = var.tags
 }

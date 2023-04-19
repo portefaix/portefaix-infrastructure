@@ -14,7 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "sfo3.digitaloceanspaces.com"
-bucket   = "portefaix-sandbox-tfstates" # The name of your Spaces
-key      = "containerregistry/terraform.tfstate"
-region   = "us-west-1"
+data "tfe_organization" "portefaix" {
+  name = var.organization
+}
