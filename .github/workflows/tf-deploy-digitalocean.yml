@@ -22,7 +22,7 @@ on:
       env:
         description: 'Environment'
         required: true
-        default: 'sandbox'
+        default: 'dev'
       tf_version:
         description: "Terraform version"
         required: true
