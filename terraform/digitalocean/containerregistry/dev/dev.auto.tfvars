@@ -21,6 +21,6 @@
 ##############################################################################
 # Kubernetes
 
-name                   = "portefaix-sandbox"
+name                   = "portefaix-dev"
 subscription_tier_slug = "basic"
 region                 = "fra1"

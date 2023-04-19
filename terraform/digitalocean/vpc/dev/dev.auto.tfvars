@@ -21,6 +21,6 @@
 ##############################################################################
 # Kubernetes
 
-name     = "portefaix-sandbox"
+name     = "portefaix-dev"
 region   = "fra1"
 ip_range = "10.0.0.0/16"
