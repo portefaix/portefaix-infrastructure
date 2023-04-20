@@ -61,34 +61,34 @@ foo: guard-CLOUD guard-ENV guard-SERVICE
 .PHONY: terraform-init
 terraform-init: guard-SERVICE guard-ENV ## Plan infrastructure (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Init infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& terraform init -upgrade -reconfigure -backend-config=backend-vars/$(ENV).tfvars
 
 .PHONY: terraform-plan
 terraform-plan: guard-SERVICE guard-ENV ## Plan infrastructure (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Plan infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& terraform init -upgrade -reconfigure -backend-config=backend-vars/$(ENV).tfvars \
 		&& terraform plan -var-file=tfvars/$(ENV).tfvars
 
 .PHONY: terraform-apply
 terraform-apply: guard-SERVICE guard-ENV ## Builds or changes infrastructure (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Apply infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& terraform init -upgrade -reconfigure -backend-config=backend-vars/$(ENV).tfvars \
 		&& terraform apply -var-file=tfvars/$(ENV).tfvars
 
 .PHONY: terraform-destroy
 terraform-destroy: guard-SERVICE guard-ENV ## Builds or changes infrastructure (SERVICE=xxx ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Apply infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& terraform init -upgrade -reconfigure -backend-config=backend-vars/$(ENV).tfvars \
 		&& terraform destroy -lock-timeout=60s -var-file=tfvars/$(ENV).tfvars
 
 .PHONY: terraform-tflint
 terraform-tflint: guard-SERVICE ## Lint Terraform files
 	@echo -e "$(OK_COLOR)[$(APP)] Lint Terraform code$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& tflint \
 		--enable-rule=terraform_deprecated_interpolation \
 		--enable-rule=terraform_deprecated_index \
@@ -106,7 +106,7 @@ terraform-tflint: guard-SERVICE ## Lint Terraform files
 .PHONY: terraform-tfsec
 terraform-tfsec: guard-SERVICE ## Scan Terraform files
 	@echo -e "$(OK_COLOR)[$(APP)] Lint Terraform code$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& tfsec \
 
 .PHONY: tfcloud-validate

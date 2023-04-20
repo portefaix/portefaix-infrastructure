@@ -69,6 +69,6 @@ variable "github_oauth_token" {
 }
 
 variable "env_do_token" {
-  type = string
+  type        = string
   description = "The DigitalOcean API token"
 }

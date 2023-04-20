@@ -15,8 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "kubernetes" {
-  source  = "nlamirault/kubernetes/civo"
-  version = "0.2.0"
+  source = "../modules/kubernetes"
 
   cluster_name        = var.cluster_name
   region              = var.region
