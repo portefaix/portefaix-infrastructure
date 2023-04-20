@@ -22,6 +22,11 @@ variable "cluster_name" {
   description = "name of the kubernetes cluster"
 }
 
+variable "region" {
+  type        = string
+  description = "The region in which the cluster should be created."
+}
+
 variable "node_count" {
   type        = number
   description = "Number of nodes into the cluster"
