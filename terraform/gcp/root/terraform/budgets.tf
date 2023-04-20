@@ -28,7 +28,7 @@ module "pubsub_budget" {
 
 module "network_budget" {
   source  = "terraform-google-modules/project-factory/google//modules/budget"
-  version = "13.1.0"
+  version = "14.2.0"
 
   billing_account = var.billing_account
   projects        = [module.network.project_id]
