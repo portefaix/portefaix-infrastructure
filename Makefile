@@ -106,7 +106,7 @@ terraform-tflint: guard-SERVICE ## Lint Terraform files
 .PHONY: terraform-tfsec
 terraform-tfsec: guard-SERVICE ## Scan Terraform files
 	@echo -e "$(OK_COLOR)[$(APP)] Lint Terraform code$(NO_COLOR)" >&2
-	@cd $(SERVICE)/terraform \
+	@cd $(SERVICE) \
 		&& tfsec \
 
 .PHONY: tfcloud-validate
