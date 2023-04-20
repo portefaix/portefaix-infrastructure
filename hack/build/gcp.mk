@@ -43,27 +43,23 @@ INSPEC_PORTEFAIX_GCP_VERSION = tags/v0.2.0
 INSPEC_PORTEFAIX_GCP = https://github.com/portefaix/portefaix-inspec-gcp/archive/refs/$(INSPEC_PORTEFAIX_GCP_VERSION).zip
 
 
-##@ Development
-
-.PHONY: check
-check: guard-ENV ## Check requirements
-	@if [[ "${GCP_PROJECT}" != "${GCP_CURRENT_PROJECT}" ]] ; then \
-		echo -e "$(ERROR_COLOR)$(KO)$(NO_COLOR) ${GCP_CURRENT_PROJECT}"; \
-	else \
-		echo -e "$(OK_COLOR)$(OK)$(NO_COLOR) ${GCP_CURRENT_PROJECT}"; \
-	fi
-
-
 # ====================================
 # G C L O U D
 # ====================================
 
 ##@ GCloud
 
+.PHONY: check-gcp-project
+check-gcp-project: guard-ENV ## Check requirements
+	@if [[ "${GCP_PROJECT}" != "${GCP_CURRENT_PROJECT}" ]] ; then \
+		echo -e "$(ERROR_COLOR)$(KO)$(NO_COLOR) ${GCP_CURRENT_PROJECT}"; \
+	else \
+		echo -e "$(OK_COLOR)$(OK)$(NO_COLOR) ${GCP_CURRENT_PROJECT}"; \
+	fi
+
 .PHONY: gcp-project-switch
 gcp-project-switch: guard-ENV ## Switch GCP project
 	gcloud config set project ${GCP_PROJECT}
-
 
 .PHONY: gcp-organization-bootstrap
 gcp-organization-bootstrap: guard-GCP_ORG_ID guard-GCP_USER ## Bootstrap the organization for Google Cloud Platform
