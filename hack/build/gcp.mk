@@ -58,8 +58,8 @@ check-gcp-project: guard-ENV ## Check requirements
 	fi
 
 .PHONY: gcp-project-switch
-gcp-project-switch: guard-ENV ## Switch GCP project
-	gcloud config set project ${GCP_PROJECT}
+gcp-project-switch: ## Switch GCP project
+	gcloud config set project ${GCP_INIT_PROJECT}
 
 .PHONY: gcp-organization-bootstrap
 gcp-organization-bootstrap: guard-GCP_ORG_ID guard-GCP_USER ## Bootstrap the organization for Google Cloud Platform
@@ -166,7 +166,8 @@ gcp-organization-project: guard-GCP_ORG_NAME guard-GCP_ORG_ID guard-GCP_BILLING
 .PHONY: gcp-bucket
 gcp-bucket: guard-GCP_ORG_NAME ## Setup the bucket for Terraform states
 	@echo -e "$(INFO_COLOR)Create the bucket for initialize projects$(NO_COLOR)"
-	gsutil mb -p $(GCP_ORG_NAME)-$(GCP_INIT_PROJECT) -c "STANDARD" -l "europe-west1" -b on gs://$(GCP_ORG_NAME)-organization-tfstates
+	echo gsutil mb -p $(GCP_ORG_NAME)-$(GCP_INIT_PROJECT) -c "STANDARD" -l "$(GCP_REGION)" -b on gs://$(GCP_ORG_NAME)-test-tfstates
+	echo gsutil versioning set on gs://$(GCP_ORG_NAME)-test-tfstates
 
 .PHONY: gcp-kube-credentials
 gcp-kube-credentials: guard-ENV ## Generate credentials

@@ -43,6 +43,14 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1.1.0
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: 'projects/portefaix/locations/global/workloadIdentityPools/portefaix/providers/portefaix-github'
+        service_account: 'terraform@portefaix-${{ github.event.inputs.env }}.iam.gserviceaccount.com'
+
     - name: Terraform validate
       run: |
         ./hack/scripts/terraform-validate.sh gcp true
