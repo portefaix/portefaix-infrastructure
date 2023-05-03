@@ -75,8 +75,14 @@ repos:
   hooks:
   - id: shellcheck
     exclude: hack/hooks/pre-commit.git-crypt.sh
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.30.0
+  hooks:
+  - id: yamllint
+    # exclude:
+    #   ^gitops/(?:templates|files)/.*\.yaml
 - repo: https://github.com/compilerla/conventional-pre-commit
   rev: v2.1.1
   hooks:
-    - id: conventional-pre-commit
-      stages: [commit-msg]
+  - id: conventional-pre-commit
+    stages: [commit-msg]
