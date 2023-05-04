@@ -21,7 +21,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     vultr = {
       source  = "vultr/vultr"
-      version = "2.14.1"
+      version = "2.15.0"
     }
   }
 }
