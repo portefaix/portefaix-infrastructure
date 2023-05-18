@@ -20,7 +20,7 @@
 #tfsec:ignore:GEN001
 module "aks" {
   source  = "Azure/aks/azurerm"
-  version = "6.8.0"
+  version = "7.0.0"
   # source = "git://github.com/Azure/terraform-azurerm-aks.git?ref=master"
 
   resource_group_name  = azurerm_resource_group.aks.name
@@ -38,9 +38,8 @@ module "aks" {
   network_policy = var.network_policy
 
   # net_profile_pod_cidr           = var.net_profile_pod_cidr
-  net_profile_service_cidr       = var.net_profile_service_cidr
-  net_profile_dns_service_ip     = var.net_profile_dns_service_ip
-  net_profile_docker_bridge_cidr = var.net_profile_docker_bridge_cidr
+  net_profile_service_cidr   = var.net_profile_service_cidr
+  net_profile_dns_service_ip = var.net_profile_dns_service_ip
 
   public_ssh_key = var.public_ssh_key
 

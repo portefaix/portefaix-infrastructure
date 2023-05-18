@@ -37,9 +37,8 @@ module "aks" {
   network_policy = var.network_policy
 
   # net_profile_pod_cidr           = var.net_profile_pod_cidr
-  net_profile_service_cidr       = var.net_profile_service_cidr
-  net_profile_dns_service_ip     = var.net_profile_dns_service_ip
-  net_profile_docker_bridge_cidr = var.net_profile_docker_bridge_cidr
+  net_profile_service_cidr   = var.net_profile_service_cidr
+  net_profile_dns_service_ip = var.net_profile_dns_service_ip
 
   public_ssh_key = var.public_ssh_key
 
