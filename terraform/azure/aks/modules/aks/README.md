@@ -12,13 +12,13 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.27.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | < 4.0.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aks"></a> [aks](#module\_aks) | Azure/aks/azurerm | 6.2.0 |
+| <a name="module_aks"></a> [aks](#module\_aks) | Azure/aks/azurerm | 7.0.0 |
 
 ## Resources
 
@@ -56,7 +56,6 @@
 | <a name="input_key_vault_secrets_provider_enabled"></a> [key\_vault\_secrets\_provider\_enabled](#input\_key\_vault\_secrets\_provider\_enabled) | Whether to use the Azure Key Vault Provider for Secrets Store CSI Driver in an AKS cluster | `bool` | `false` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The AKS Kubernetes version | `string` | n/a | yes |
 | <a name="input_net_profile_dns_service_ip"></a> [net\_profile\_dns\_service\_ip](#input\_net\_profile\_dns\_service\_ip) | (Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created. | `string` | `null` | no |
-| <a name="input_net_profile_docker_bridge_cidr"></a> [net\_profile\_docker\_bridge\_cidr](#input\_net\_profile\_docker\_bridge\_cidr) | (Optional) IP address (in CIDR notation) used as the Docker bridge IP address on nodes. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_net_profile_service_cidr"></a> [net\_profile\_service\_cidr](#input\_net\_profile\_service\_cidr) | (Optional) The Network Range used by the Kubernetes service. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_network_plugin"></a> [network\_plugin](#input\_network\_plugin) | The CNI network plugin to use (only azure, or kubenet) | `string` | `"kubenet"` | no |
 | <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | The network polcy for the CNI. Only used when network\_plugin is set to azure. Supported values: calico, azure | `string` | n/a | yes |
