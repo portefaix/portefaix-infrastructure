@@ -20,8 +20,8 @@ _extends: .github:.github/settings.yml
 # repo-specific settings
 
 repository:
-  name: "portefaix-infrastructure"
-  description: "Portefaix Infrastructure"
+  name: "portefaix-hub"
+  description: "Portefaix Hub"
 
 labels:
 - name: "cloud/gcp"
