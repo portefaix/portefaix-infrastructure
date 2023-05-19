@@ -66,7 +66,6 @@ variable "aks_resource_group_location" {
   description = "The Azure Region where the Resource Group for AKS should exist."
 }
 
-
 variable "cluster_name" {
   type        = string
   description = "Name of the AKS cluster"
