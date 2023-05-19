@@ -185,6 +185,18 @@ variable "secret_rotation_enabled" {
   default     = false
 }
 
+variable "workload_identity_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable or Disable Workload Identity. Defaults to false."
+}
+
+variable "oidc_issuer_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable or Disable the OIDC issuer URL. Defaults to false."
+}
+
 #############################################################################
 # Default node pool
 

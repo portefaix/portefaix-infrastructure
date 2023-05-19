@@ -51,15 +51,18 @@
 | <a name="input_azure_policy_enabled"></a> [azure\_policy\_enabled](#input\_azure\_policy\_enabled) | Is the Azure Policy for Kubernetes Add On enabled | `bool` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the AKS cluster | `string` | n/a | yes |
 | <a name="input_enable_auto_scaling"></a> [enable\_auto\_scaling](#input\_enable\_auto\_scaling) | Enable node pool autoscaling | `bool` | n/a | yes |
+| <a name="input_enable_maintenance_window"></a> [enable\_maintenance\_window](#input\_enable\_maintenance\_window) | Enable maintenance for AKS cluster | `bool` | `true` | no |
 | <a name="input_http_application_routing_enabled"></a> [http\_application\_routing\_enabled](#input\_http\_application\_routing\_enabled) | Is HTTP Application Routing Enabled | `bool` | n/a | yes |
 | <a name="input_ingress_application_gateway_enabled"></a> [ingress\_application\_gateway\_enabled](#input\_ingress\_application\_gateway\_enabled) | If true will enable Application Gateway ingress controller to this Kubernetes Cluster | `bool` | `false` | no |
 | <a name="input_key_vault_secrets_provider_enabled"></a> [key\_vault\_secrets\_provider\_enabled](#input\_key\_vault\_secrets\_provider\_enabled) | Whether to use the Azure Key Vault Provider for Secrets Store CSI Driver in an AKS cluster | `bool` | `false` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The AKS Kubernetes version | `string` | n/a | yes |
+| <a name="input_maintenance_allowed"></a> [maintenance\_allowed](#input\_maintenance\_allowed) | Days and hours when maintenance is allowed | <pre>list(object({<br>    day   = string<br>    hours = list(string)<br>  }))</pre> | <pre>[<br>  {<br>    "day": "Saturday",<br>    "hours": [<br>      21,<br>      22,<br>      22<br>    ]<br>  },<br>  {<br>    "day": "Sunday",<br>    "hours": [<br>      1,<br>      2,<br>      3,<br>      4,<br>      5,<br>      6,<br>      7,<br>      8<br>    ]<br>  }<br>]</pre> | no |
 | <a name="input_net_profile_dns_service_ip"></a> [net\_profile\_dns\_service\_ip](#input\_net\_profile\_dns\_service\_ip) | (Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_net_profile_service_cidr"></a> [net\_profile\_service\_cidr](#input\_net\_profile\_service\_cidr) | (Optional) The Network Range used by the Kubernetes service. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_network_plugin"></a> [network\_plugin](#input\_network\_plugin) | The CNI network plugin to use (only azure, or kubenet) | `string` | `"kubenet"` | no |
 | <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | The network polcy for the CNI. Only used when network\_plugin is set to azure. Supported values: calico, azure | `string` | n/a | yes |
 | <a name="input_node_pools"></a> [node\_pools](#input\_node\_pools) | Addons node pools | <pre>list(object({<br>    name                = string<br>    vm_size             = string<br>    os_disk_size_gb     = number<br>    os_disk_type        = string<br>    priority            = string<br>    enable_auto_scaling = bool<br>    count               = number<br>    min_count           = number<br>    max_count           = number<br>    max_pods            = number<br>    taints              = list(string)<br>    labels              = map(string)<br>    tags                = map(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_oidc_issuer_enabled"></a> [oidc\_issuer\_enabled](#input\_oidc\_issuer\_enabled) | Enable or Disable the OIDC issuer URL. Defaults to false. | `bool` | `false` | no |
 | <a name="input_open_service_mesh_enabled"></a> [open\_service\_mesh\_enabled](#input\_open\_service\_mesh\_enabled) | Is Open Service Mesh enabled. | `bool` | `null` | no |
 | <a name="input_os_disk_size_gb"></a> [os\_disk\_size\_gb](#input\_os\_disk\_size\_gb) | Disk size of nodes in GBs. | `number` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | (Required) The prefix for the resources created in the specified Azure Resource Group | `string` | n/a | yes |
@@ -69,6 +72,7 @@
 | <a name="input_tags"></a> [tags](#input\_tags) | Any tags that should be present on the Virtual Network resources | `map(string)` | `{}` | no |
 | <a name="input_virtual_network_name"></a> [virtual\_network\_name](#input\_virtual\_network\_name) | Name of the Virtual Network this Subnet is located within | `string` | n/a | yes |
 | <a name="input_vnet_resource_group_name"></a> [vnet\_resource\_group\_name](#input\_vnet\_resource\_group\_name) | The Name which should be used for the networking Resource Group | `string` | n/a | yes |
+| <a name="input_workload_identity_enabled"></a> [workload\_identity\_enabled](#input\_workload\_identity\_enabled) | Enable or Disable Workload Identity. Defaults to false. | `bool` | `false` | no |
 
 ## Outputs
 
