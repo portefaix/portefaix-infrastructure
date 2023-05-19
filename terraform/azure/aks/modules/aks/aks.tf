@@ -80,9 +80,7 @@ module "aks" {
   agents_labels             = var.agents_labels
   agents_tags               = var.agents_tags
 
-  enable_maintenance_window = var.enable_maintenance_window
-  maintenance_allowed       = var.maintenance_allowed
-  # maintenance_not_allowed   = var.maintenance_not_allowed
+  maintenance_window = var.maintenance_window
 
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
