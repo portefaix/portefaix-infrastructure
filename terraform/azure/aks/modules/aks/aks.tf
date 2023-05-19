@@ -65,6 +65,11 @@ module "aks" {
   workload_identity_enabled = var.workload_identity_enabled
   oidc_issuer_enabled       = var.oidc_issuer_enabled
 
+  identity = {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.aks_identity.id]
+  }
+
   os_disk_size_gb           = var.os_disk_size_gb
   agents_min_count          = var.agents_min_count
   agents_max_count          = var.agents_max_count
