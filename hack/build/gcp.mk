@@ -58,8 +58,8 @@ check-gcp-project: guard-ENV ## Check requirements
 	fi
 
 .PHONY: gcp-project-switch
-gcp-project-switch: ## Switch GCP project
-	gcloud config set project ${GCP_INIT_PROJECT}
+gcp-project-switch: guard-ENV ## Switch GCP project
+	gcloud config set project ${GCP_PROJECT}
 
 .PHONY: gcp-organization-bootstrap
 gcp-organization-bootstrap: guard-GCP_ORG_ID guard-GCP_USER ## Bootstrap the organization for Google Cloud Platform
