@@ -54,6 +54,8 @@ module "aks" {
   open_service_mesh_enabled           = var.open_service_mesh_enabled
   key_vault_secrets_provider_enabled  = var.key_vault_secrets_provider_enabled
   secret_rotation_enabled             = var.secret_rotation_enabled
+  workload_identity_enabled           = var.workload_identity_enabled
+  oidc_issuer_enabled                 = var.oidc_issuer_enabled
 
   os_disk_size_gb           = var.os_disk_size_gb
   agents_min_count          = var.agents_min_count

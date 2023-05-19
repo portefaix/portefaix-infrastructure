@@ -185,6 +185,18 @@ variable "secret_rotation_enabled" {
   default     = false
 }
 
+variable "workload_identity_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable or Disable Workload Identity. Defaults to false."
+}
+
+variable "oidc_issuer_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable or Disable the OIDC issuer URL. Defaults to false."
+}
+
 #############################################################################
 # Default node pool
 
@@ -254,32 +266,6 @@ variable "api_server_authorized_ip_ranges" {
   description = "The IP ranges to allow for incoming traffic to the server nodes."
   default     = null
 }
-
-# Maintenance Windows
-
-# variable "enable_maintenance_window" {
-#   description = "Enable maintenance for AKS cluster"
-#   type        = bool
-#   default     = false
-# }
-
-# variable "maintenance_allowed" {
-#   description = "Days and hours when maintenance is allowed"
-#   type = list(object({
-#     day   = string
-#     hours = list(string)
-#   }))
-#   default = []
-# }
-
-# variable "maintenance_not_allowed" {
-#   description = "Days and hours when maintenance is not allowed"
-#   type = list(object({
-#     end   = string
-#     start = string
-#   }))
-#   default = []
-# }
 
 #############################################################################
 # Addons node pool

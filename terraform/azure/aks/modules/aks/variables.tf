@@ -66,7 +66,6 @@ variable "aks_resource_group_location" {
   description = "The Azure Region where the Resource Group for AKS should exist."
 }
 
-
 variable "cluster_name" {
   type        = string
   description = "Name of the AKS cluster"
@@ -185,6 +184,18 @@ variable "secret_rotation_enabled" {
   default     = false
 }
 
+variable "workload_identity_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable or Disable Workload Identity. Defaults to false."
+}
+
+variable "oidc_issuer_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable or Disable the OIDC issuer URL. Defaults to false."
+}
+
 #############################################################################
 # Default node pool
 
@@ -255,31 +266,32 @@ variable "api_server_authorized_ip_ranges" {
   default     = null
 }
 
-# Maintenance Windows
-
-# variable "enable_maintenance_window" {
-#   description = "Enable maintenance for AKS cluster"
-#   type        = bool
-#   default     = false
-# }
-
-# variable "maintenance_allowed" {
-#   description = "Days and hours when maintenance is allowed"
-#   type = list(object({
-#     day   = string
-#     hours = list(string)
-#   }))
-#   default = []
-# }
-
-# variable "maintenance_not_allowed" {
-#   description = "Days and hours when maintenance is not allowed"
-#   type = list(object({
-#     end   = string
-#     start = string
-#   }))
-#   default = []
-# }
+variable "maintenance_window" {
+  type = object({
+    allowed = list(object({
+      day   = string
+      hours = set(number)
+    })),
+    not_allowed = list(object({
+      end   = string
+      start = string
+    })),
+  })
+  default = {
+    allowed = [
+      {
+        day   = "Saturday"
+        hours = [21, 22, 22]
+      },
+      {
+        day   = "Sunday"
+        hours = [1, 2, 3, 4, 5, 6, 7, 8]
+      }
+    ],
+    not_allowed = []
+  }
+  description = "(Optional) Maintenance configuration of the managed cluster."
+}
 
 #############################################################################
 # Addons node pool

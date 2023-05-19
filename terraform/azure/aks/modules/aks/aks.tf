@@ -62,6 +62,12 @@ module "aks" {
   key_vault_secrets_provider_enabled = var.key_vault_secrets_provider_enabled
   secret_rotation_enabled            = var.secret_rotation_enabled
 
+  workload_identity_enabled = var.workload_identity_enabled
+  oidc_issuer_enabled       = var.oidc_issuer_enabled
+
+  identity_type = "UserAssigned"
+  identity_ids  = [azurerm_user_assigned_identity.aks_identity.id]
+
   os_disk_size_gb           = var.os_disk_size_gb
   agents_min_count          = var.agents_min_count
   agents_max_count          = var.agents_max_count
@@ -74,12 +80,7 @@ module "aks" {
   agents_labels             = var.agents_labels
   agents_tags               = var.agents_tags
 
-  # TODO: AKS maintenance windows
-  # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
-  # https://github.com/Azure/terraform-azurerm-aks/pull/133
-  # enable_maintenance_window = true
-  # maintenance_allowed       = var.maintenance_allowed
-  # maintenance_not_allowed   = var.maintenance_not_allowed
+  maintenance_window = var.maintenance_window
 
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
