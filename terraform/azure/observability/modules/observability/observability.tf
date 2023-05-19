@@ -16,7 +16,7 @@
 
 module "prometheus" {
   source  = "nlamirault/observability/azurerm//modules/prometheus"
-  version = "0.5.0"
+  version = "2.0.0"
 
   resource_group_name     = var.prometheus_resource_group_name
   resource_group_location = var.prometheus_resource_group_location
@@ -26,7 +26,7 @@ module "prometheus" {
 
 module "thanos" {
   source  = "nlamirault/observability/azurerm//modules/thanos"
-  version = "0.5.0"
+  version = "2.0.0"
 
   resource_group_name     = var.thanos_resource_group_name
   resource_group_location = var.thanos_resource_group_location
@@ -36,7 +36,7 @@ module "thanos" {
 
 module "loki" {
   source  = "nlamirault/observability/azurerm//modules/loki"
-  version = "0.5.0"
+  version = "2.0.0"
 
   resource_group_name     = var.loki_resource_group_name
   resource_group_location = var.loki_resource_group_location
@@ -46,7 +46,7 @@ module "loki" {
 
 module "tempo" {
   source  = "nlamirault/observability/azurerm//modules/tempo/"
-  version = "0.5.0"
+  version = "2.0.0"
 
   resource_group_name     = var.tempo_resource_group_name
   resource_group_location = var.tempo_resource_group_location
