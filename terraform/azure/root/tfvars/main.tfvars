@@ -21,6 +21,13 @@
 ############################################################################
 # Root
 
-org_name = "portefaix"
+organization = "portefaix"
 
-root_id = "portefaix"
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
+# subscription_core_staging_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
+# subscription_core_prod_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
+subscription_shared_id = "719259e8-1fae-4da0-ab76-1880c938c756"
+# subscription_network_id = "719259e8-1fae-4da0-ab76-1880c938c756"
+# subscription_testing_id = "719259e8-1fae-4da0-ab76-1880c938c756"
+subscription_logging_id = "7d4c373f-e1ca-46e9-83c6-a20bb02bc7b2"
+# subscription_audit_id = "7d4c373f-e1ca-46e9-83c6-a20bb02bc7b2"
