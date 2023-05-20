@@ -19,7 +19,7 @@
 
 
 #############################################################################
-# Root
+# Groups
 
 variable "organization" {
   type        = string
@@ -70,6 +70,9 @@ variable "subscription_logging_id" {
 #   type = string
 #   description = "The Suspended subscription ID"
 # }
+
+#############################################################################
+# Secrets
 
 # variable "portefaix_version" {
 #   type        = string
