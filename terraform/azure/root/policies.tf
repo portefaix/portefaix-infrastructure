@@ -15,6 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_policy_definition" "rg_require_service_tag" {
+  provider = azurerm.audit
+
   name         = "portefaix-rg-require-tag-service"
   policy_type  = "Custom"
   mode         = "All"

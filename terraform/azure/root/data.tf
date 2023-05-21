@@ -41,9 +41,9 @@ data "azurerm_subscription" "shared" {
 #   subscription_id = var.subscription_testing_id
 # }
 
-# data "azurerm_subscription" "audit" {
-#   subscription_id = var.subscription_audit_id
-# }
+data "azurerm_subscription" "audit" {
+  subscription_id = var.subscription_audit_id
+}
 
 data "azurerm_subscription" "logging" {
   subscription_id = var.subscription_logging_id

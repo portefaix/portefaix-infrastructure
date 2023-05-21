@@ -26,6 +26,11 @@ variable "organization" {
   description = "Name of the organization"
 }
 
+variable "resource_group_location" {
+  type        = string
+  description = "The Azure Region where the Resource Group will be created."
+}
+
 variable "subscription_core_dev_id" {
   type        = string
   description = "The Subscription ID for Core Dev resources"
@@ -61,10 +66,10 @@ variable "subscription_logging_id" {
   description = "The Subscription ID for Logging resources"
 }
 
-# variable "subscription_audit_id" {
-#   type = string
-#   description = "The Subscription ID for Audit resources"
-# }
+variable "subscription_audit_id" {
+  type        = string
+  description = "The Subscription ID for Audit resources"
+}
 
 # variable "subscription_suspended_id" {
 #   type = string

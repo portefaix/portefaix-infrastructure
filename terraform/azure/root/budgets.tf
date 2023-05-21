@@ -28,12 +28,12 @@ module "budget_security" {
   subscription_id = data.azurerm_subscription.logging.id
 }
 
-# module "budget_audit" {
-#   source = "./modules/budgets"
+module "budget_audit" {
+  source = "./modules/budgets"
 
-#   organization = var.organization
-#   subscription_id = data.azurerm_subscription.audit.id
-# }
+  organization    = var.organization
+  subscription_id = data.azurerm_subscription.audit.id
+}
 
 module "budget_shared" {
   source = "./modules/budgets"

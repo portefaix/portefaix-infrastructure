@@ -15,57 +15,57 @@
 # SPDX-License-Identifier: Apache-2.0
 
 provider "azurerm" {
-  features {}
   # subscription_id   = "<azure_subscription_id>"
   # tenant_id         = "<azure_subscription_tenant_id>"
   # client_id         = "<service_principal_appid>"
   # client_secret     = "<service_principal_password>"
+  features {}
 }
 
 # provider "azurerm" {
-#   features {}
 #   alias = "core_prod"
-#   subscription_id = "xxxxxxx"
+#   subscription_id = var.subscription_core_prod_id
+#   features {}
 # }
 
 # provider "azurerm" {
 #   features {}
 #   alias = "core_staging"
-#   subscription_id = "xxxxxxx"
+#   subscription_id = var.subscription_core_staging_id
 # }
 
-# provider "azurerm" {
-#   features {}
-#   alias = "core_dev"
-#   subscription_id = "xxxxxxx"
-# }
+provider "azurerm" {
+  alias           = "core_dev"
+  subscription_id = var.subscription_core_dev_id
+  features {}
+}
+
+provider "azurerm" {
+  alias           = "shared"
+  subscription_id = var.subscription_shared_id
+  features {}
+}
 
 # provider "azurerm" {
-#   features {}
-#   alias = "shared"
-#   subscription_id = "xxxxxxx"
-# }
-
-# provider "azurerm" {
-#   features {}
 #   alias = "network"
-#   subscription_id = "xxxxxxx"
+#   subscription_id = var.subscription_network_id
+#   features {}
 # }
 
 # provider "azurerm" {
-#   features {}
-#   alias = "logging"
-#   subscription_id = "xxxxxxx"
-# }
-
-# provider "azurerm" {
-#   features {}
 #   alias = "testing"
-#   subscription_id = "xxxxxxx"
+#   subscription_id = var.subscription_testing_id
+#   features {}
 # }
 
-# provider "azurerm" {
-#   features {}
-#   alias = "audit"
-#   subscription_id = "xxxxxxx"
-# }
+provider "azurerm" {
+  alias           = "logging"
+  subscription_id = var.subscription_logging_id
+  features {}
+}
+
+provider "azurerm" {
+  alias           = "audit"
+  subscription_id = var.subscription_audit_id
+  features {}
+}

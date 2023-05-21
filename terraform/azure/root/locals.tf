@@ -18,4 +18,6 @@ locals {
   shared_group   = "Shared"
   security_group = "Security"
   core_group     = "Core"
+
+  rg_core = "core"
 }

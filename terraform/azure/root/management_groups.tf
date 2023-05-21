@@ -28,7 +28,7 @@ resource "azurerm_management_group" "security" {
 
   subscription_ids = [
     data.azurerm_subscription.logging.subscription_id,
-    # data.azurerm_subscription.audit.subscription_id,
+    data.azurerm_subscription.audit.subscription_id,
   ]
 }
 
