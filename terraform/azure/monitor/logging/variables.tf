@@ -17,10 +17,10 @@
 ############################################################################
 # Provider
 
-#variable subscription_id {
-#  type        = string
-#  description = "The Subscription ID which should be used"
-#}
+variable "subscription_logging_id" {
+  type        = string
+  description = "The Subscription ID for Logging resources"
+}
 
 #############################################################################
 # Monitor

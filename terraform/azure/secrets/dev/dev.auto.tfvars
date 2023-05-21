@@ -24,7 +24,6 @@
 resource_group_name     = "portefaix-dev-secrets"
 resource_group_location = "West Europe"
 
-
 tags = {
   "project"           = "portefaix"
   "made-by"           = "terraform"

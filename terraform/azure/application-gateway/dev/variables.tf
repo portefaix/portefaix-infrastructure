@@ -17,6 +17,10 @@
 ############################################################################
 # Provider
 
+variable "subscription_network_id" {
+  type        = string
+  description = "The Subscription ID for Networking resources"
+}
 
 #############################################################################
 # Application Gateway

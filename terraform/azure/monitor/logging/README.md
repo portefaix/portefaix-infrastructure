@@ -28,6 +28,7 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_location"></a> [location](#input\_location) | The location of the azure resources | `string` | `"westeurope"` | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | The name of the organization | `string` | n/a | yes |
+| <a name="input_subscription_logging_id"></a> [subscription\_logging\_id](#input\_subscription\_logging\_id) | The Subscription ID for Logging resources | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
 
 ## Outputs
