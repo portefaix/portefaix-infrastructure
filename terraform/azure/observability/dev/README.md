@@ -6,7 +6,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.36.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.57.0 |
 
 ## Providers
 
@@ -32,6 +32,7 @@ No resources.
 | <a name="input_prometheus_resource_group_location"></a> [prometheus\_resource\_group\_location](#input\_prometheus\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
 | <a name="input_prometheus_resource_group_name"></a> [prometheus\_resource\_group\_name](#input\_prometheus\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
 | <a name="input_prometheus_tags"></a> [prometheus\_tags](#input\_prometheus\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
+| <a name="input_subscription_core_dev_id"></a> [subscription\_core\_dev\_id](#input\_subscription\_core\_dev\_id) | The Subscription ID for Core Dev resources | `string` | n/a | yes |
 | <a name="input_tempo_resource_group_location"></a> [tempo\_resource\_group\_location](#input\_tempo\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
 | <a name="input_tempo_resource_group_name"></a> [tempo\_resource\_group\_name](#input\_tempo\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
 | <a name="input_tempo_tags"></a> [tempo\_tags](#input\_tempo\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |

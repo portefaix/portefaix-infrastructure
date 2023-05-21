@@ -17,7 +17,8 @@
 ############################################################################
 # Provider
 
-subscription_network_id = "xxxxx"
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
+subscription_network_id  = "xxxxx"
 
 ############################################################################
 # VNet

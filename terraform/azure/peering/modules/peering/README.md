@@ -6,13 +6,14 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.36.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.57.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.27.0 |
+| <a name="provider_azurerm.core"></a> [azurerm.core](#provider\_azurerm.core) | 3.57.0 |
+| <a name="provider_azurerm.network"></a> [azurerm.network](#provider\_azurerm.network) | 3.57.0 |
 
 ## Modules
 
@@ -22,12 +23,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_virtual_network_peering.back](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/virtual_network_peering) | resource |
-| [azurerm_virtual_network_peering.go](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/virtual_network_peering) | resource |
-| [azurerm_resource_group.core](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/resource_group) | data source |
-| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/resource_group) | data source |
-| [azurerm_virtual_network.core](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/virtual_network) | data source |
-| [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/virtual_network) | data source |
+| [azurerm_virtual_network_peering.back](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/virtual_network_peering) | resource |
+| [azurerm_virtual_network_peering.go](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/virtual_network_peering) | resource |
+| [azurerm_resource_group.core](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/data-sources/resource_group) | data source |
+| [azurerm_resource_group.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/data-sources/resource_group) | data source |
+| [azurerm_virtual_network.core](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/data-sources/virtual_network) | data source |
+| [azurerm_virtual_network.hub](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/data-sources/virtual_network) | data source |
 
 ## Inputs
 

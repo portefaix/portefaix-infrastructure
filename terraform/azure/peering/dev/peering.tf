@@ -17,6 +17,11 @@
 module "peering" {
   source = "../modules/peering"
 
+  provider = {
+    azure.core    = azure.core_dev
+    azure.network = azure.network
+  }
+
   core_rg_name   = var.core_rg_name
   core_vnet_name = var.core_vnet_name
   hub_rg_name    = var.hub_rg_name

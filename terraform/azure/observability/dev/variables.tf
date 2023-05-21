@@ -17,10 +17,10 @@
 ############################################################################
 # Provider
 
-#variable subscription_id {
-#  type        = string
-#  description = "The Subscription ID which should be used"
-#}
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core Dev resources"
+}
 
 #############################################################################
 # Observability
