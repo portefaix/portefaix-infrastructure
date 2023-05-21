@@ -46,15 +46,10 @@ variable "subscription_core_dev_id" {
 #   description = "The Subscription ID for Core Prod resources"
 # }
 
-variable "subscription_shared_id" {
+variable "subscription_network_id" {
   type        = string
-  description = "The Subscription ID for Shared resources"
+  description = "The Subscription ID for Networking resources"
 }
-
-# variable "subscription_network_id" {
-#   type = string
-#   description = "The Subscription ID for Networking resources"
-# }
 
 # variable "subscription_testing_id" {
 #   type = string

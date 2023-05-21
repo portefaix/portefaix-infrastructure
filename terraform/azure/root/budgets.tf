@@ -35,19 +35,12 @@ module "budget_audit" {
   subscription_id = data.azurerm_subscription.audit.id
 }
 
-module "budget_shared" {
+module "budget_network" {
   source = "./modules/budgets"
 
   organization    = var.organization
-  subscription_id = data.azurerm_subscription.shared.id
+  subscription_id = data.azurerm_subscription.network.id
 }
-
-# module "budget_network" {
-#   source = "./modules/budgets"
-
-#   organization = var.organization
-#   subscription_id = data.azurerm_subscription.network.id
-# }
 
 # module "budget_testing" {
 #   source = "./modules/budgets"

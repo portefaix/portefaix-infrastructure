@@ -35,19 +35,12 @@ resource "azurerm_resource_group" "core_dev" {
 #   location = var.resource_group_location
 # }
 
-resource "azurerm_resource_group" "shared" {
-  provider = azurerm.shared
+resource "azurerm_resource_group" "network" {
+  provider = azurerm.network
 
-  name     = format("%s-shared-%s", var.organization, local.rg_core)
+  name     = format("%s-network-%s", var.organization, local.rg_core)
   location = var.resource_group_location
 }
-
-# resource "azurerm_resource_group" "network" {
-#   provider = azurerm.network
-
-#   name     = format("%s-network-%s", var.organization, local.rg_core)
-#   location = var.resource_group_location
-# }
 
 resource "azurerm_resource_group" "logging" {
   provider = azurerm.logging

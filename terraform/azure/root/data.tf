@@ -29,13 +29,9 @@ data "azurerm_subscription" "core_dev" {
 #     subscription_id = var.subscription_core_prod_id
 # }
 
-data "azurerm_subscription" "shared" {
-  subscription_id = var.subscription_shared_id
+data "azurerm_subscription" "network" {
+  subscription_id = var.subscription_network_id
 }
-
-# data "azurerm_subscription" "network" {
-#   subscription_id = var.subscription_network_id
-# }
 
 # data "azurerm_subscription" "testing" {
 #   subscription_id = var.subscription_testing_id

@@ -27,22 +27,6 @@ workspace_environment = "dev"
 
 workspaces = {
 
-  # Logging
-
-  portefaix-azure-audit-monitor = {
-    directory      = "terraform/azure/monitor/logging"
-    tags           = ["azure", "logging", "monitor"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/monitor/*.tf",
-    ]
-  },
-
   # Network
 
   portefaix-azure-network-hub = {
@@ -56,6 +40,108 @@ workspaces = {
       "*.tf",
       "*.tfvars",
       "../modules/hub/*.tf",
+    ]
+  },
+
+  portefaix-azure-network-application-gateway = {
+    directory      = "terraform/azure/application-gateway/network"
+    tags           = ["azure", "network", "application-gateway"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
+    ]
+  },
+
+  portefaix-azure-network-bastion = {
+    directory      = "terraform/azure/bastion/network"
+    tags           = ["azure", "network", "bastion"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
+    ]
+  },
+
+  portefaix-azure-network-firewall = {
+    directory      = "terraform/azure/firewall/network"
+    tags           = ["azure", "network", "firewall"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
+    ]
+  },
+
+  portefaix-azure-network-traffic-manager = {
+    directory      = "terraform/azure/traffic-manager/network"
+    tags           = ["azure", "network", "traffic-manager"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
+    ]
+  },
+
+  portefaix-azure-network-bastion = {
+    directory      = "terraform/azure/bastion/network"
+    tags           = ["azure", "network", "bastion"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/bastion/*.tf",
+    ]
+  },
+
+  # Logging
+
+  portefaix-azure-logging-monitor = {
+    directory      = "terraform/azure/monitor/logging"
+    tags           = ["azure", "logging", "monitor"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/monitor/*.tf",
+    ]
+  },
+
+  # Orga Common
+
+  portefaix-azure-orga-peering = {
+    directory      = "terraform/azure/peering/orga"
+    tags           = ["azure", "orga", "peering"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/monitor/*.tf",
     ]
   },
 
@@ -88,6 +174,7 @@ workspaces = {
       "../modules/nat-gateway/*.tf",
     ]
   },
+
   portefaix-azure-dev-nat-gateway = {
     directory      = "terraform/azure/nat-gateway/dev"
     tags           = ["azure", "natgateway"]
@@ -101,19 +188,21 @@ workspaces = {
       "../modules/nat-gateway/*.tf",
     ]
   },
-  portefaix-azure-dev-application-gateway = {
-    directory      = "terraform/azure/application-gateway/dev"
-    tags           = ["azure", "applicationgateway"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/application-gateway/*.tf",
-    ]
-  },
+
+  # portefaix-azure-dev-application-gateway = {
+  #   directory      = "terraform/azure/application-gateway/dev"
+  #   tags           = ["azure", "applicationgateway"]
+  #   gitops         = false
+  #   branch         = "master"
+  #   auto_apply     = true
+  #   execution_mode = "remote"
+  #   trigger = [
+  #     "*.tf",
+  #     "*.tfvars",
+  #     "../modules/application-gateway/*.tf",
+  #   ]
+  # },
+
   portefaix-azure-dev-aks = {
     directory      = "terraform/azure/aks/dev"
     tags           = ["azure", "aks"]
@@ -127,6 +216,7 @@ workspaces = {
       "../modules/aks/*.tf",
     ]
   },
+
   portefaix-azure-dev-secrets = {
     directory      = "terraform/azure/secrets/dev"
     tags           = ["azure", "secrets"]
@@ -140,6 +230,7 @@ workspaces = {
       "../modules/secrets/*.tf",
     ]
   },
+
   portefaix-azure-dev-observability = {
     directory      = "terraform/azure/observability/dev"
     tags           = ["azure", "kubernetes", "observability"]
@@ -153,6 +244,7 @@ workspaces = {
       "../modules/observability/*.tf",
     ]
   },
+
   portefaix-azure-dev-velero = {
     directory      = "terraform/azure/velero/dev"
     tags           = ["azure", "kubernetes", "velero"]
@@ -164,45 +256,6 @@ workspaces = {
       "*.tf",
       "*.tfvars",
       "../modules/velero/*.tf",
-    ]
-  },
-  portefaix-azure-dev-bastion = {
-    directory      = "terraform/azure/bastion/dev"
-    tags           = ["azure", "bastion"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/bastion/*.tf",
-    ]
-  },
-  portefaix-azure-dev-peering = {
-    directory      = "terraform/azure/peering/dev"
-    tags           = ["azure", "peering"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/peering/*.tf",
-    ]
-  },
-  portefaix-azure-dev-firewall = {
-    directory      = "terraform/azure/firewall/dev"
-    tags           = ["azure", "firewall"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/firewall/*.tf",
     ]
   },
 

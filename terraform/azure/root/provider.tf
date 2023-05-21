@@ -41,16 +41,16 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias           = "shared"
-  subscription_id = var.subscription_shared_id
+  alias           = "network"
+  subscription_id = var.subscription_network_id
   features {}
 }
 
-# provider "azurerm" {
-#   alias = "network"
-#   subscription_id = var.subscription_network_id
-#   features {}
-# }
+provider "azurerm" {
+  alias           = "shared"
+  subscription_id = var.subscription_network_id
+  features {}
+}
 
 # provider "azurerm" {
 #   alias = "testing"
