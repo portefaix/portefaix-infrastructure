@@ -22,7 +22,7 @@ terraform {
     organization = "portefaix"
 
     workspaces {
-      name = "portefaix-azure-dev-hub"
+      name = "portefaix-azure-network-hub"
     }
   }
 }

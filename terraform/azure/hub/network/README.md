@@ -31,6 +31,7 @@ No resources.
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Name of the resource group to be imported. | `string` | n/a | yes |
 | <a name="input_subnet_names"></a> [subnet\_names](#input\_subnet\_names) | A list of public subnets inside the vNet. | `list(string)` | n/a | yes |
 | <a name="input_subnet_prefixes"></a> [subnet\_prefixes](#input\_subnet\_prefixes) | The address prefix to use for the subnet. | `list(string)` | n/a | yes |
+| <a name="input_subscription_network_id"></a> [subscription\_network\_id](#input\_subscription\_network\_id) | The Subscription ID for Networking resources | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to associate with your network and subnets. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
 | <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | The virtual network name | `string` | n/a | yes |
 

@@ -21,8 +21,8 @@
 ############################################################################
 # Nat Gateway
 
-hub_rg_name   = "portefaix-dev-hub"
-hub_vnet_name = "portefaix-dev-hub"
+hub_rg_name   = "portefaix-network-hub"
+hub_vnet_name = "portefaix-network-hub"
 
 resource_group_name     = "portefaix-dev-nat-gw"
 resource_group_location = "West Europe"

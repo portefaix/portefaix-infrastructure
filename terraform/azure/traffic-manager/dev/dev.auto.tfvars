@@ -21,7 +21,7 @@
 #############################################################################
 # Bastion
 
-hub_rg_name = "portefaix-dev-hub"
+hub_rg_name = "portefaix-network-hub"
 
 appgw_westeurope_ip_name = ""
 

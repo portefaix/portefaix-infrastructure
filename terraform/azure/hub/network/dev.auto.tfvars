@@ -21,10 +21,10 @@
 ############################################################################
 # VNet
 
-resource_group_name     = "portefaix-dev-hub"
+resource_group_name     = "portefaix-network-hub"
 resource_group_location = "West Europe"
 
-vnet_name = "portefaix-dev-hub"
+vnet_name = "portefaix-network-hub"
 
 address_space = ["10.10.0.0/16"]
 
@@ -32,7 +32,7 @@ subnet_prefixes = []
 subnet_names    = []
 
 tags = {
-  "env"               = "dev"
+  "env"               = "network"
   "service"           = "hub"
   "project"           = "portefaix"
   "made-by"           = "terraform"

@@ -21,8 +21,8 @@
 #############################################################################
 # Bastion
 
-hub_rg_name   = "portefaix-dev-hub"
-hub_vnet_name = "portefaix-dev-hub"
+hub_rg_name   = "portefaix-network-hub"
+hub_vnet_name = "portefaix-network-hub"
 
 service_name = "portefaix-dev"
 
