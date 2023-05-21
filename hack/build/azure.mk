@@ -60,7 +60,7 @@ INSPEC_PORTEFAIX_AZURE = https://github.com/portefaix/portefaix-inspec-azure/arc
 azure-sp: ## Create Azure Service Principal
 	@az ad sp create-for-rbac \
 		--name=$(AZ_SP_NAME) \
-		--role="Contributor" --scopes="/subscriptions/${AZURE_SUBSCRIPTION_ID}"
+		--role="Owner" --scopes="/subscriptions/${AZURE_SUBSCRIPTION_ID}"
 
 .PHONY: azure-storage-account
 azure-storage-account: ## Create storage account
