@@ -26,6 +26,41 @@ organization = "portefaix"
 workspace_environment = "dev"
 
 workspaces = {
+
+  # Logging
+
+  portefaix-azure-audit-monitor = {
+    directory      = "terraform/azure/monitor/logging"
+    tags           = ["azure", "logging", "monitor"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/monitor/*.tf",
+    ]
+  },
+
+  # Network
+
+  portefaix-azure-network-hub = {
+    directory      = "terraform/azure/hub/network"
+    tags           = ["azure", "network", "hub"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
+    ]
+  },
+
+  # Core Dev
+
   portefaix-azure-dev-vnet = {
     directory      = "terraform/azure/vnet/dev"
     tags           = ["azure", "vnet"]
@@ -39,19 +74,7 @@ workspaces = {
       "../modules/vnet/*.tf",
     ]
   },
-  portefaix-azure-dev-hub = {
-    directory      = "terraform/azure/hub/dev"
-    tags           = ["azure", "hub"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/hub/*.tf",
-    ]
-  },
+
   portefaix-azure-dev-public-ips-nat-gateway = {
     directory      = "terraform/azure/public-ips/nat-gateway/dev"
     tags           = ["azure", "publicip", "natgateway"]

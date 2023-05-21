@@ -1,3 +1,4 @@
+
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +15,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource_group_name  = "portefaix-root"
-storage_account_name = "portefaixroot"
-container_name       = "portefaix-root-tfstates"
-key                  = "terraform-cloud/terraform.tfstate"
+locals {
+  service_name = format("%s-monitor", var.organization)
+}

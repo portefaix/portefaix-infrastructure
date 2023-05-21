@@ -14,7 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource_group_name  = "portefaix-root"
-storage_account_name = "portefaixroot"
-container_name       = "portefaix-root-tfstates"
-key                  = "terraform-cloud/terraform.tfstate"
+module "monitor" {
+  source = "../modules/monitor"
+
+  organization = var.organization
+  location     = var.location
+
+  tags = var.tags
+}

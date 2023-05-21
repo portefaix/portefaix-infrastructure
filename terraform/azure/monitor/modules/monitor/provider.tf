@@ -14,7 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource_group_name  = "portefaix-root"
-storage_account_name = "portefaixroot"
-container_name       = "portefaix-root-tfstates"
-key                  = "terraform-cloud/terraform.tfstate"
+provider "azurerm" {
+  features {}
+}
