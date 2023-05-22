@@ -38,6 +38,4 @@ module "vnet" {
   # }
 
   tags = var.tags
-
-  depends_on = [azurerm_resource_group.vnet]
 }

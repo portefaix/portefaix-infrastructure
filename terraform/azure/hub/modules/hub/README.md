@@ -24,7 +24,6 @@
 
 | Name | Type |
 |------|------|
-| [azurerm_network_ddos_protection_plan.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/network_ddos_protection_plan) | resource |
 | [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/resource_group) | resource |
 
 ## Inputs
