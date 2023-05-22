@@ -16,5 +16,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  service_name = format("%s-monitor", var.organization)
+  service_name = format("%s-logging-monitor", var.organization)
 }

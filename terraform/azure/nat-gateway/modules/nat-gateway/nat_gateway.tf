@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_nat_gateway" "this" {
-  name                = var.nat_gateway_name
+  name                = local.service_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   sku_name            = "Standard"

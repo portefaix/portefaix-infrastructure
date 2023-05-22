@@ -22,7 +22,7 @@ resource "azurerm_subnet" "this" {
 }
 
 resource "azurerm_public_ip" "this" {
-  name                = format("%s-firewall", var.service_name)
+  name                = format("%s-core", local.service_name)
   resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
   allocation_method   = "Static"
@@ -31,22 +31,24 @@ resource "azurerm_public_ip" "this" {
 }
 
 resource "azurerm_firewall" "this" {
-  name                = var.service_name
+  name                = format("%s-core", local.service_name)
   resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
 
-  sku_name = "AZFW_Hub"
+  sku_name = "AZFW_VNet"
   sku_tier = "Standard"
 
   ip_configuration {
-    name                 = var.service_name
+    name                 = format("%s-core", local.service_name)
     subnet_id            = azurerm_subnet.this.id
     public_ip_address_id = azurerm_public_ip.this.id
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_firewall_network_rule_collection" "time" {
-  name                = format("%s-time", var.service_name)
+  name                = format("%s-time", local.service_name)
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 101
@@ -63,7 +65,7 @@ resource "azurerm_firewall_network_rule_collection" "time" {
 }
 
 resource "azurerm_firewall_network_rule_collection" "dns" {
-  name                = format("%s-dns", var.service_name)
+  name                = format("%s-dns", local.service_name)
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 102
@@ -80,7 +82,7 @@ resource "azurerm_firewall_network_rule_collection" "dns" {
 }
 
 resource "azurerm_firewall_network_rule_collection" "servicetags" {
-  name                = format("%s-servicetags", var.service_name)
+  name                = format("%s-servicetags", local.service_name)
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 110
@@ -102,7 +104,7 @@ resource "azurerm_firewall_network_rule_collection" "servicetags" {
 }
 
 resource "azurerm_firewall_application_rule_collection" "aksbasics" {
-  name                = format("%s-aksbasics", var.service_name)
+  name                = format("%s-aksbasics", local.service_name)
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 101
@@ -139,7 +141,7 @@ resource "azurerm_firewall_application_rule_collection" "aksbasics" {
 }
 
 resource "azurerm_firewall_application_rule_collection" "publicimages" {
-  name                = format("%s-publicimages", var.service_name)
+  name                = format("%s-publicimages", local.service_name)
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 103

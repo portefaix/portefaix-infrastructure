@@ -25,25 +25,24 @@ variable "hub_rg_name" {
   description = "The name of the resource grupe of the Hub virtual network"
 }
 
-
 variable "hub_vnet_name" {
   type        = string
   description = "The name of the Hub virtual network"
 }
 
-variable "resource_group_name" {
-  description = "Name of the resource group to be imported."
+variable "organization" {
   type        = string
+  description = "Specifies the name of the Organization"
+}
+
+variable "env" {
+  type        = string
+  description = "Specifies the name of the environment"
 }
 
 variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group should exist."
-}
-
-variable "nat_gateway_name" {
-  type        = string
-  description = "Name of the Nat Gateway"
 }
 
 variable "tags" {

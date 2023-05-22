@@ -17,9 +17,9 @@
 module "firewall" {
   source = "../modules/firewall"
 
+  organization  = var.organization
   hub_rg_name   = var.hub_rg_name
   hub_vnet_name = var.hub_vnet_name
-  service_name  = var.service_name
   subnet_prefix = var.subnet_prefix
   tags          = var.tags
 }

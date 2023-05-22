@@ -13,7 +13,6 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm.core"></a> [azurerm.core](#provider\_azurerm.core) | 3.57.0 |
-| <a name="provider_azurerm.core_dev"></a> [azurerm.core\_dev](#provider\_azurerm.core\_dev) | 3.57.0 |
 | <a name="provider_azurerm.network"></a> [azurerm.network](#provider\_azurerm.network) | 3.57.0 |
 
 ## Modules
@@ -37,8 +36,10 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_core_rg_name"></a> [core\_rg\_name](#input\_core\_rg\_name) | Name of the Core resource group. | `string` | n/a | yes |
 | <a name="input_core_vnet_name"></a> [core\_vnet\_name](#input\_core\_vnet\_name) | The Core virtual network name | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment | `string` | n/a | yes |
 | <a name="input_hub_rg_name"></a> [hub\_rg\_name](#input\_hub\_rg\_name) | Name of the Bastion resource group. | `string` | n/a | yes |
 | <a name="input_hub_vnet_name"></a> [hub\_vnet\_name](#input\_hub\_vnet\_name) | The Bastion virtual network name | `string` | n/a | yes |
+| <a name="input_organization"></a> [organization](#input\_organization) | Name of the organization. | `string` | n/a | yes |
 
 ## Outputs
 

@@ -14,7 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#tfsec:ignore:AZU001
+# tfsec:ignore:azure-network-ssh-blocked-from-internet
+# tfsec:ignore:azure-network-no-public-ingress
 module "ssh" {
   source  = "Azure/network-security-group/azurerm"
   version = "4.1.0"

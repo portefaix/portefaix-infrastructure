@@ -22,10 +22,12 @@ subscription_network_id = "719259e8-1fae-4da0-ab76-1880c938c756"
 ############################################################################
 # Firewall
 
+organization = "portefaix"
+
+resource_group_location = "West Europe"
+
 hub_rg_name   = "portefaix-network-hub"
 hub_vnet_name = "portefaix-network-hub"
-
-service_name = "portefaix-dev"
 
 subnet_prefix = "10.10.1.0/24"
 

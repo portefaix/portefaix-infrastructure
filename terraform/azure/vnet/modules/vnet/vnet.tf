@@ -20,7 +20,7 @@ module "vnet" {
 
   use_for_each = true
 
-  vnet_name           = var.vnet_name
+  vnet_name           = local.service_name
   vnet_location       = var.resource_group_location
   resource_group_name = azurerm_resource_group.vnet.name
 

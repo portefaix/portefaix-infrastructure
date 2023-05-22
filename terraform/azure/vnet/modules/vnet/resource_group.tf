@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_resource_group" "vnet" {
-  name     = local.service_name
+  name     = format("%s-vnet", local.service_name)
   location = var.resource_group_location
   tags     = var.tags
 }

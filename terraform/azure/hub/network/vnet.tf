@@ -17,13 +17,11 @@
 module "hub" {
   source = "../modules/hub"
 
-  resource_group_name     = var.resource_group_name
+  organization            = var.organization
   resource_group_location = var.resource_group_location
-
-  vnet_name       = var.vnet_name
-  address_space   = var.address_space
-  subnet_prefixes = var.subnet_prefixes
-  subnet_names    = var.subnet_names
+  address_space           = var.address_space
+  subnet_prefixes         = var.subnet_prefixes
+  subnet_names            = var.subnet_names
 
   tags = var.tags
 }

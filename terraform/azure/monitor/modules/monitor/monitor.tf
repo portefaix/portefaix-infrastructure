@@ -15,9 +15,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_log_analytics_workspace" "this" {
-  name                = var.service_name
+  name                = local.service_name
   location            = var.location
-  resource_group_name = azurerm_resource_group.this.namename
+  resource_group_name = azurerm_resource_group.this.name
   sku                 = var.sku
   retention_in_days   = var.retention_in_days
 

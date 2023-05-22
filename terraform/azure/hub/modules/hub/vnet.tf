@@ -14,14 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+resource "azurerm_network_ddos_protection_plan" "this" {
+  name                = local.service_name
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+  tags                = var.tags
+}
+
 module "vnet" {
   source  = "Azure/vnet/azurerm"
   version = "4.0.0"
 
   use_for_each = true
 
-  vnet_name           = var.vnet_name
-  vnet_location       = var.resource_group_location
+  vnet_name           = local.service_name
+  vnet_location       = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
 
   address_space   = var.address_space
@@ -37,7 +44,10 @@ module "vnet" {
   #   var.subnet_names[0] = true,
   # }
 
-  tags = var.tags
+  ddos_protection_plan = {
+    id     = azurerm_network_ddos_protection_plan.this.id
+    enable = true
+  }
 
-  depends_on = [azurerm_resource_group.this]
+  tags = var.tags
 }

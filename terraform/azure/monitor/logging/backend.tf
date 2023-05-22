@@ -22,7 +22,7 @@ terraform {
     organization = "portefaix"
 
     workspaces {
-      name = "portefaix-azure-orga-monitor"
+      name = "portefaix-azure-logging-monitor"
     }
   }
 }

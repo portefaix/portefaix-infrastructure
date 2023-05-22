@@ -22,7 +22,7 @@ terraform {
     organization = "portefaix"
 
     workspaces {
-      name = "portefaix-azure-dev-firewall"
+      name = "portefaix-azure-network-firewall"
     }
   }
 }

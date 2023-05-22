@@ -67,7 +67,7 @@ workspaces = {
     trigger = [
       "*.tf",
       "*.tfvars",
-      "../modules/hub/*.tf",
+      "../modules/bastion/*.tf",
     ]
   },
 
@@ -81,7 +81,7 @@ workspaces = {
     trigger = [
       "*.tf",
       "*.tfvars",
-      "../modules/hub/*.tf",
+      "../modules/firewall/*.tf",
     ]
   },
 
@@ -95,21 +95,7 @@ workspaces = {
     trigger = [
       "*.tf",
       "*.tfvars",
-      "../modules/hub/*.tf",
-    ]
-  },
-
-  portefaix-azure-network-bastion = {
-    directory      = "terraform/azure/bastion/network"
-    tags           = ["azure", "network", "bastion"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/bastion/*.tf",
+      "../modules/traffic-manager/*.tf",
     ]
   },
 

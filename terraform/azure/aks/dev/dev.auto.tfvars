@@ -22,9 +22,9 @@ subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 #############################################################################
 # Networking
 
-virtual_network_name     = "portefaix-dev"
-vnet_resource_group_name = "portefaix-dev-vnet"
-aks_subnet_name          = "portefaix-dev-aks"
+virtual_network_name     = "portefaix-core-dev"
+vnet_resource_group_name = "portefaix-core-dev-vnet"
+aks_subnet_name          = "portefaix-core-dev-aks"
 appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 
 #############################################################################
@@ -35,7 +35,7 @@ appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 #############################################################################
 # AKS
 
-aks_resource_group_name     = "portefaix-dev-aks"
+aks_resource_group_name     = "portefaix-core-dev-aks"
 aks_resource_group_location = "West Europe"
 
 cluster_name       = "portefaix-dev-aks"

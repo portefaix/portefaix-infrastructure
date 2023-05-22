@@ -25,12 +25,12 @@ subscription_network_id = "719259e8-1fae-4da0-ab76-1880c938c756"
 hub_rg_name   = "portefaix-network-hub"
 hub_vnet_name = "portefaix-network-hub"
 
-service_name = "portefaix-dev"
+service_name = "portefaix"
 
 subnet_prefix = "10.10.2.0/24"
 
 tags = {
-  "env"               = "dev"
+  "env"               = "network"
   "project"           = "portefaix"
   "service"           = "bastion"
   "made-by"           = "terraform"

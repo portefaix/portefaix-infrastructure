@@ -14,27 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-############################################################################
-# Provider
-
-subscription_network_id = "719259e8-1fae-4da0-ab76-1880c938c756"
-
-############################################################################
-# VNet
-
-organization = "portefaix"
-
-resource_group_location = "West Europe"
-
-address_space = ["10.10.0.0/16"]
-
-subnet_prefixes = []
-subnet_names    = []
-
-tags = {
-  "env"               = "network"
-  "service"           = "hub"
-  "project"           = "portefaix"
-  "made-by"           = "terraform"
-  "portefaix-version" = "v0.43.0"
+locals {
+  service_name = format("%s-firewall", var.organization)
 }

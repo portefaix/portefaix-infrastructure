@@ -21,9 +21,9 @@
 ############################################################################
 # Firewall
 
-variable "service_name" {
+variable "organization" {
   type        = string
-  description = "Specifies the name of the Firewall"
+  description = "Specifies the name of the Organization"
 }
 
 variable "hub_rg_name" {
