@@ -18,3 +18,9 @@ provider "azurerm" {
   # subscription_id = var.subscription_id
   features {}
 }
+
+provider "azurerm" {
+  alias = "network"
+  # subscription_id = var.subscription_id
+  features {}
+}

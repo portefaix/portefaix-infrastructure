@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_virtual_network_peering" "go" {
-  provider = azurerm.core
+  provider = azurerm.core_dev
 
   name                         = format("peer-%s-to-%s", data.azurerm_virtual_network.core.name, data.azurerm_resource_group.hub.name)
   resource_group_name          = data.azurerm_resource_group.core.name

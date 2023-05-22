@@ -17,6 +17,11 @@
 module "nat_gateway" {
   source = "../modules/nat-gateway"
 
+  providers = {
+    azurerm         = azurerm.core_dev
+    azurerm.network = azurerm.network
+  }
+
   hub_rg_name   = var.hub_rg_name
   hub_vnet_name = var.hub_vnet_name
 

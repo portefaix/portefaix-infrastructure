@@ -13,6 +13,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm.core"></a> [azurerm.core](#provider\_azurerm.core) | 3.57.0 |
+| <a name="provider_azurerm.core_dev"></a> [azurerm.core\_dev](#provider\_azurerm.core\_dev) | 3.57.0 |
 | <a name="provider_azurerm.network"></a> [azurerm.network](#provider\_azurerm.network) | 3.57.0 |
 
 ## Modules

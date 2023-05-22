@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.36.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.57.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.27.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.57.0 |
 
 ## Modules
 
@@ -22,12 +22,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_nat_gateway.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/nat_gateway) | resource |
-| [azurerm_nat_gateway_public_ip_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/nat_gateway_public_ip_association) | resource |
-| [azurerm_public_ip.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/public_ip) | resource |
-| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/resource_group) | resource |
-| [azurerm_subnet_nat_gateway_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/resources/subnet_nat_gateway_association) | resource |
-| [azurerm_subnet.firewall](https://registry.terraform.io/providers/hashicorp/azurerm/3.36.0/docs/data-sources/subnet) | data source |
+| [azurerm_nat_gateway.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/nat_gateway) | resource |
+| [azurerm_nat_gateway_public_ip_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/nat_gateway_public_ip_association) | resource |
+| [azurerm_public_ip.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/public_ip) | resource |
+| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/resource_group) | resource |
+| [azurerm_subnet_nat_gateway_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/subnet_nat_gateway_association) | resource |
+| [azurerm_subnet.firewall](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/data-sources/subnet) | data source |
 
 ## Inputs
 
