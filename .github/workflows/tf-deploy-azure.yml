@@ -28,7 +28,7 @@ on: # yamllint disable-line rule:truthy
         description: "Terraform version"
         required: true
         # datasource=github-tags depName=hashicorp/terraform
-        default: '1.2.2'
+        default: '1.4.6'
 
 # env:
 #   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID_DEV }}
@@ -268,15 +268,15 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/peering/orga
+      working-directory: terraform/azure/peering/dev
 
     # - name: Terraform Plan
     #   run: terraform plan
-    #   working-directory: terraform/azure/peering/orga
+    #   working-directory: terraform/azure/peering/dev
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      working-directory: terraform/azure/peering/orga
+      working-directory: terraform/azure/peering/dev
 
   azure_aks:
     needs: azure_peering
