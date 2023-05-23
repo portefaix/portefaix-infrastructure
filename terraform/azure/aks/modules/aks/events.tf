@@ -73,6 +73,14 @@ resource "azurerm_eventgrid_topic" "this" {
   tags = var.tags
 }
 
+# resource "azurerm_eventgrid_system_topic" "acr" {
+#   name                   = format("%s-acr", local.service_name)
+#   resource_group_name    = azurerm_resource_group.example.name
+#   location               = azurerm_resource_group.example.location
+#   source_arm_resource_id = azurerm_storage_account.example.id
+#   topic_type             = "Microsoft.ContainerRegistry.Registries"
+# }
+
 # resource "azurerm_eventgrid_event_subscription" "this" {
 #   name                 = format("%s-events", local.service_name)
 #   scope                = azurerm_eventgrid_topic.this.id
