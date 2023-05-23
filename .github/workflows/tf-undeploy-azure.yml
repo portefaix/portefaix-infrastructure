@@ -246,7 +246,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Delete Application Gateway / network"
+        echo "Delete Application Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -259,11 +259,11 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/application-gateway/network
+      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
 
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
-      working-directory: terraform/azure/application-gateway/network
+      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
 
   azure_hub:
     needs:
