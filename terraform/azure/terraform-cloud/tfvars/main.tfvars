@@ -101,6 +101,22 @@ workspaces = {
     ]
   },
 
+  # Audit
+
+  portefaix-azure-audit-defender = {
+    directory      = "terraform/azure/defender/audit"
+    tags           = ["azure", "audit", "defender"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/defender/*.tf",
+    ]
+  },
+
   # Core Dev
 
   portefaix-azure-dev-vnet = {
