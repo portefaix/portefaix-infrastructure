@@ -14,12 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "application_gateway" {
-  source = "../modules/application-gateway"
-
-  hub_rg_name   = var.hub_rg_name
-  hub_vnet_name = var.hub_vnet_name
-  service_name  = var.service_name
-  subnet_prefix = var.subnet_prefix
-  tags          = var.tags
+provider "azurerm" {
+  subscription_id = var.subscription_core_dev_id
+  features {}
 }

@@ -14,7 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "azurerm" {
-  subscription_id = var.subscription_network_id
-  features {}
+resource "azurerm_resource_group" "this" {
+  name     = local.service_name
+  location = var.resource_group_location
+  tags     = var.tags
 }

@@ -43,20 +43,6 @@ workspaces = {
     ]
   },
 
-  portefaix-azure-network-application-gateway = {
-    directory      = "terraform/azure/application-gateway/network"
-    tags           = ["azure", "network", "application-gateway"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/hub/*.tf",
-    ]
-  },
-
   portefaix-azure-network-bastion = {
     directory      = "terraform/azure/bastion/network"
     tags           = ["azure", "network", "bastion"]
@@ -144,6 +130,20 @@ workspaces = {
       "*.tf",
       "*.tfvars",
       "../modules/vnet/*.tf",
+    ]
+  },
+
+  portefaix-azure-dev-application-gateway = {
+    directory      = "terraform/azure/application-gateway/dev"
+    tags           = ["azure", "dev", "application-gateway"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/hub/*.tf",
     ]
   },
 
