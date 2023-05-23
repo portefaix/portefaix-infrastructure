@@ -19,14 +19,10 @@ module "aks" {
 
   virtual_network_name     = var.virtual_network_name
   vnet_resource_group_name = var.vnet_resource_group_name
-  aks_subnet_name          = var.aks_subnet_name
   appgw_subnet_name        = var.appgw_subnet_name
 
-  aks_resource_group_name     = var.aks_resource_group_name
-  aks_resource_group_location = var.aks_resource_group_location
+  resource_group_location = var.resource_group_location
 
-  cluster_name       = var.cluster_name
-  prefix             = var.prefix
   kubernetes_version = var.kubernetes_version
 
   tags = var.tags

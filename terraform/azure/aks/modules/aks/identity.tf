@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_user_assigned_identity" "aks_identity" {
-  name                = "${var.cluster_name}-cluster-identity"
+  name                = "${local.service_name}-cluster-identity"
   resource_group_name = azurerm_resource_group.aks.name
   location            = azurerm_resource_group.aks.location
 }

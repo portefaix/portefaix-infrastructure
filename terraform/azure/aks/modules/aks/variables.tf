@@ -25,11 +25,6 @@
 #############################################################################
 # Networking
 
-variable "aks_subnet_name" {
-  type        = string
-  description = "Name of the AKS subnet"
-}
-
 variable "appgw_subnet_name" {
   type        = string
   description = "Name of the Application Gateway subnet"
@@ -56,24 +51,9 @@ variable "vnet_resource_group_name" {
 #############################################################################
 # Kubernetes cluster
 
-variable "aks_resource_group_name" {
-  type        = string
-  description = "Name of the resource group for AKS"
-}
-
-variable "aks_resource_group_location" {
+variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group for AKS should exist."
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "Name of the AKS cluster"
-}
-
-variable "prefix" {
-  description = "(Required) The prefix for the resources created in the specified Azure Resource Group"
-  type        = string
 }
 
 variable "kubernetes_version" {

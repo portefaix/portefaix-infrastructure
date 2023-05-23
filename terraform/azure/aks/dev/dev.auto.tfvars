@@ -24,7 +24,6 @@ subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 virtual_network_name     = "portefaix-core-dev"
 vnet_resource_group_name = "portefaix-core-dev-vnet"
-aks_subnet_name          = "portefaix-core-dev-aks"
 appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 
 #############################################################################
@@ -35,11 +34,10 @@ appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 #############################################################################
 # AKS
 
-aks_resource_group_name     = "portefaix-core-dev-aks"
-aks_resource_group_location = "West Europe"
+resource_group_location = "West Europe"
 
-cluster_name       = "portefaix-dev-aks"
-prefix             = "portefaix-dev-aks"
+# cluster_name       = "portefaix-dev-aks"
+# prefix             = "portefaix-dev-aks"
 kubernetes_version = "1.21.1"
 
 private_cluster_enabled = false

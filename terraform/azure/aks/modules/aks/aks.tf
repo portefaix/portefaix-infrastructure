@@ -23,14 +23,13 @@ module "aks" {
   version = "7.0.0"
   # source = "git://github.com/Azure/terraform-azurerm-aks.git?ref=master"
 
+  cluster_name         = local.service_name
+  prefix               = local.service_name
   resource_group_name  = azurerm_resource_group.aks.name
-  vnet_subnet_id       = data.azurerm_subnet.aks.id
-  cluster_name         = var.cluster_name
-  prefix               = var.prefix
   kubernetes_version   = var.kubernetes_version
   orchestrator_version = var.kubernetes_version
 
-  tags = var.tags
+  vnet_subnet_id = data.azurerm_subnet.aks.id
 
   private_cluster_enabled = var.private_cluster_enabled
 
@@ -88,6 +87,8 @@ module "aks" {
   # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
   # https://github.com/Azure/terraform-azurerm-aks/pull/127
   # node_pools = var.node_pools
+
+  tags = var.tags
 
   depends_on = [
     azurerm_resource_group.aks
