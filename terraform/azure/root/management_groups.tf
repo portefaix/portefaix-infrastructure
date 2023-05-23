@@ -37,6 +37,7 @@ resource "azurerm_management_group" "shared" {
   parent_management_group_id = azurerm_management_group.this.id
 
   subscription_ids = [
+    data.azurerm_subscription.shared.subscription_id,
     data.azurerm_subscription.network.subscription_id,
     # data.azurerm_subscription.testing.subscription_id,
   ]

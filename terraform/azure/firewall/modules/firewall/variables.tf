@@ -38,7 +38,7 @@ variable "hub_vnet_name" {
 
 variable "subnet_prefix" {
   type        = string
-  description = "The address prefix to use for the Azure Bastion subnet"
+  description = "The address prefix to use for the Azure Firewall subnet"
 }
 
 variable "tags" {

@@ -26,13 +26,13 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_hub_rg_name"></a> [hub\_rg\_name](#input\_hub\_rg\_name) | The name of the resource grupe of the Hub virtual network | `string` | n/a | yes |
-| <a name="input_hub_vnet_name"></a> [hub\_vnet\_name](#input\_hub\_vnet\_name) | The name of the Hub virtual network | `string` | n/a | yes |
-| <a name="input_nat_gateway_name"></a> [nat\_gateway\_name](#input\_nat\_gateway\_name) | Name of the Nat Gateway | `string` | n/a | yes |
+| <a name="input_core_rg_name"></a> [core\_rg\_name](#input\_core\_rg\_name) | Name of the Core resource group. | `string` | n/a | yes |
+| <a name="input_core_vnet_name"></a> [core\_vnet\_name](#input\_core\_vnet\_name) | The Core virtual network name | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Specifies the name of the environment | `string` | n/a | yes |
+| <a name="input_organization"></a> [organization](#input\_organization) | Specifies the name of the Organization | `string` | n/a | yes |
 | <a name="input_resource_group_location"></a> [resource\_group\_location](#input\_resource\_group\_location) | The Azure Region where the Resource Group should exist. | `string` | n/a | yes |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Name of the resource group to be imported. | `string` | n/a | yes |
+| <a name="input_subnet_prefix"></a> [subnet\_prefix](#input\_subnet\_prefix) | The address prefix to use for the Azure NAT Gateway subnet | `string` | n/a | yes |
 | <a name="input_subscription_core_dev_id"></a> [subscription\_core\_dev\_id](#input\_subscription\_core\_dev\_id) | The Subscription ID for Core Dev resources | `string` | n/a | yes |
-| <a name="input_subscription_network_id"></a> [subscription\_network\_id](#input\_subscription\_network\_id) | The Subscription ID for Networking resources | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to associate with your network and subnets. | `map(string)` | n/a | yes |
 
 ## Outputs

@@ -26,8 +26,8 @@ subscription_network_id  = "719259e8-1fae-4da0-ab76-1880c938c756"
 organization = "portefaix"
 environment  = "dev"
 
-core_vnet_name = "portefaix-dev"
-core_rg_name   = "portefaix-dev-vnet"
+core_vnet_name = "portefaix-core-dev"
+core_rg_name   = "portefaix-core-dev-vnet"
 
 hub_vnet_name = "portefaix-network-hub"
 hub_rg_name   = "portefaix-network-hub"

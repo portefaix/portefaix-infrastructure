@@ -101,22 +101,6 @@ workspaces = {
     ]
   },
 
-  # Orga Common
-
-  portefaix-azure-orga-peering = {
-    directory      = "terraform/azure/peering/orga"
-    tags           = ["azure", "orga", "peering"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-      "../modules/monitor/*.tf",
-    ]
-  },
-
   # Core Dev
 
   portefaix-azure-dev-vnet = {
@@ -130,6 +114,20 @@ workspaces = {
       "*.tf",
       "*.tfvars",
       "../modules/vnet/*.tf",
+    ]
+  },
+
+  portefaix-azure-dev-peering = {
+    directory      = "terraform/azure/peering/dev"
+    tags           = ["azure", "dev", "peering"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/peering/*.tf",
     ]
   },
 
@@ -174,20 +172,6 @@ workspaces = {
       "../modules/nat-gateway/*.tf",
     ]
   },
-
-  # portefaix-azure-dev-application-gateway = {
-  #   directory      = "terraform/azure/application-gateway/dev"
-  #   tags           = ["azure", "applicationgateway"]
-  #   gitops         = false
-  #   branch         = "master"
-  #   auto_apply     = true
-  #   execution_mode = "remote"
-  #   trigger = [
-  #     "*.tf",
-  #     "*.tfvars",
-  #     "../modules/application-gateway/*.tf",
-  #   ]
-  # },
 
   portefaix-azure-dev-aks = {
     directory      = "terraform/azure/aks/dev"

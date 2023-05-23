@@ -17,9 +17,9 @@
 module "peering" {
   source = "../modules/peering"
 
-  provider = {
-    azure.core    = azure.core_dev
-    azure.network = azure.network
+  providers = {
+    azurerm.core    = azurerm.core
+    azurerm.network = azurerm.network
   }
 
   organization   = var.organization

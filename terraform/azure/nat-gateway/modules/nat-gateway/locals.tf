@@ -15,5 +15,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  service_name = format("%s-core-%s-nat-gw", var.organization, var.env)
+  service_name = format("%s-core-%s-nat-gateway", var.organization, var.environment)
 }

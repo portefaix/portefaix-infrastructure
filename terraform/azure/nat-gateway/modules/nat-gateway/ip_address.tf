@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_public_ip" "this" {
-  name                = azurerm_resource_group.this.name
+  name                = local.service_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   allocation_method   = "Static"

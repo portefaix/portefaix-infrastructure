@@ -26,19 +26,10 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_loki_resource_group_location"></a> [loki\_resource\_group\_location](#input\_loki\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
-| <a name="input_loki_resource_group_name"></a> [loki\_resource\_group\_name](#input\_loki\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
-| <a name="input_loki_tags"></a> [loki\_tags](#input\_loki\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
-| <a name="input_prometheus_resource_group_location"></a> [prometheus\_resource\_group\_location](#input\_prometheus\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
-| <a name="input_prometheus_resource_group_name"></a> [prometheus\_resource\_group\_name](#input\_prometheus\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
-| <a name="input_prometheus_tags"></a> [prometheus\_tags](#input\_prometheus\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
+| <a name="input_resource_group_location"></a> [resource\_group\_location](#input\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
 | <a name="input_subscription_core_dev_id"></a> [subscription\_core\_dev\_id](#input\_subscription\_core\_dev\_id) | The Subscription ID for Core Dev resources | `string` | n/a | yes |
-| <a name="input_tempo_resource_group_location"></a> [tempo\_resource\_group\_location](#input\_tempo\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
-| <a name="input_tempo_resource_group_name"></a> [tempo\_resource\_group\_name](#input\_tempo\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
-| <a name="input_tempo_tags"></a> [tempo\_tags](#input\_tempo\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
-| <a name="input_thanos_resource_group_location"></a> [thanos\_resource\_group\_location](#input\_thanos\_resource\_group\_location) | The Azure Region where the Resource Group should exist | `string` | n/a | yes |
-| <a name="input_thanos_resource_group_name"></a> [thanos\_resource\_group\_name](#input\_thanos\_resource\_group\_name) | The Name which should be used for this Resource Group | `string` | n/a | yes |
-| <a name="input_thanos_tags"></a> [thanos\_tags](#input\_thanos\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resource. | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
 
 ## Outputs
 

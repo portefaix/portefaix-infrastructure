@@ -21,6 +21,10 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "3.57.0"
+      configuration_aliases = [
+        azurerm.core,
+        azurerm.network,
+      ]
     }
   }
 }

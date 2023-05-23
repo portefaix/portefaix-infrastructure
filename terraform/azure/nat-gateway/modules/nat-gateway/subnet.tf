@@ -14,10 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-#   alias = "core"
-# }
-
-# provider "azurerm" {
-#   alias = "network"
-# }
+resource "azurerm_subnet" "this" {
+  name                 = local.service_name
+  resource_group_name  = data.azurerm_resource_group.core.name
+  virtual_network_name = data.azurerm_virtual_network.core.name
+  address_prefixes     = [var.subnet_prefix]
+}
