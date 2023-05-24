@@ -17,17 +17,20 @@
 ############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 ############################################################################
 # Nat Gateway
 
-hub_rg_name   = "portefaix-dev-hub"
-hub_vnet_name = "portefaix-dev-hub"
+organization = "portefaix"
+environment  = "dev"
 
-resource_group_name     = "portefaix-dev-nat-gw"
 resource_group_location = "West Europe"
 
-nat_gateway_name = "portefaix-dev"
+core_vnet_name = "portefaix-core-dev"
+core_rg_name   = "portefaix-core-dev-vnet"
+
+subnet_prefix = "10.0.65.0/24"
 
 tags = {
   "project"           = "portefaix"

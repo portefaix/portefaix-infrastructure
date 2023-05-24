@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Azure / Create
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -26,8 +27,8 @@ on:
       tf_version:
         description: "Terraform version"
         required: true
-        #datasource=github-tags depName=hashicorp/terraform
-        default: '1.2.2'
+        # datasource=github-tags depName=hashicorp/terraform
+        default: '1.4.6'
 
 # env:
 #   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID_DEV }}
@@ -36,6 +37,123 @@ on:
 #   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID_DEV }}
 
 jobs:
+
+  azure_hub:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy Portefaix on Azure / network"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    # - name: Terraform Format
+    #   id: fmt
+    #   run: terraform fmt -check
+    #   working-directory: terraform/azure/hub/terraform
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/hub/network
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/hub/network
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/hub/network
+
+  azure_bastion:
+    needs: azure_hub
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy Azure Bastion / network"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/bastion/network
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/bastion/network
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/bastion/network
+
+  azure_firewall:
+    needs: azure_hub
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy Azure Bastion / network"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/firewall/network
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/firewall/network
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/firewall/network
+
+  azure_monitor:
+    needs: azure_hub
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy Azure Monitor / logging"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/monitor/logging
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/monitor/logging
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/monitor/logging
+
   azure_vnet:
     runs-on: ubuntu-latest
     steps:
@@ -72,96 +190,8 @@ jobs:
       env:
         TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
 
-  azure_hub:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Portefaix on Azure / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    # - name: Terraform Format
-    #   id: fmt
-    #   run: terraform fmt -check
-    #   working-directory: terraform/azure/hub/terraform
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/hub/${{ github.event.inputs.env }}
-
-    # - name: Terraform Plan
-    #   run: terraform plan
-    #   working-directory: terraform/azure/hub/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/azure/hub/${{ github.event.inputs.env }}
-
-  azure_bastion:
-    needs: azure_hub
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Azure Bastion / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/bastion/${{ github.event.inputs.env }}
-
-    # - name: Terraform Plan
-    #   run: terraform plan
-    #   working-directory: terraform/azure/bastion/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/azure/bastion/${{ github.event.inputs.env }}
-
-  azure_firewall:
-    needs: azure_hub
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Azure Bastion / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/firewall/${{ github.event.inputs.env }}
-
-    # - name: Terraform Plan
-    #   run: terraform plan
-    #   working-directory: terraform/azure/firewall/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/azure/firewall/${{ github.event.inputs.env }}
-
   azure_application_gateway:
-    needs: azure_hub
+    needs: azure_vnet
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -218,14 +248,14 @@ jobs:
 
   azure_peering:
     needs:
-      - azure_vnet
-      - azure_bastion
-      - azure_firewall
-      - azure_nat_gateway
+    - azure_vnet
+    - azure_bastion
+    - azure_firewall
+    - azure_nat_gateway
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Deploy Azure Virtual Network Peering / ${{ github.event.inputs.env }}"
+        echo "Deploy Azure Virtual Network Peering / Orga"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -238,18 +268,86 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/peering/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/peering/dev
 
     # - name: Terraform Plan
     #   run: terraform plan
-    #   working-directory: terraform/azure/peering/${{ github.event.inputs.env }}
+    #   working-directory: terraform/azure/peering/dev
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      working-directory: terraform/azure/peering/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/peering/dev
+
+  azure_acr_dev:
+    needs: azure_peering
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy ACR on Azure / ${{ github.event.inputs.env }}"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/acr/${{ github.event.inputs.env }}
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/acr/${{ github.event.inputs.env }}
+      env:
+        TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/acr/${{ github.event.inputs.env }}
+      env:
+        TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
+
+  azure_acr_shared:
+    needs: azure_peering
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Deploy ACR on Azure / shared"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/acr/shared
+
+    # - name: Terraform Plan
+    #   run: terraform plan
+    #   working-directory: terraform/azure/acr/shared
+      env:
+        TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure/acr/shared
+      env:
+        TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
 
   azure_aks:
-    needs: azure_peering
+    needs:
+    - azure_peering
+    - azure_application_gateway
+    - azure_acr_shared
+    - azure_acr_dev
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -279,33 +377,6 @@ jobs:
       working-directory: terraform/azure/aks/${{ github.event.inputs.env }}
       env:
         TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
-
-  # azure_sops:
-  #   needs: azure_aks
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - run: |
-  #       echo "Deploy Portefaix on Azure / ${{ github.event.inputs.env }}"
-
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-
-  #   - name: Setup Terraform
-  #     uses: hashicorp/setup-terraform@v1
-  #     with:
-  #       terraform_version: ${{ github.event.inputs.tf_version }}
-
-  #   - name: Terraform Init
-  #     run: terraform init -upgrade
-  #     working-directory: terraform/azure/sops/terraform
-
-  #   - name: Terraform Plan
-  #     run: terraform plan
-  #     working-directory: terraform/azure/sops/terraform
-
-  #   - name: Terraform Apply
-  #     run: terraform apply -auto-approve
-  #     working-directory: terraform/azure/sops/terraform
 
   azure_secrets:
     needs: azure_aks

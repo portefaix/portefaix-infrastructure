@@ -22,18 +22,22 @@ include $(MKFILE_DIR)/azure.*.mk
 
 ENVS = $(shell ls azure.*.mk | awk -F"." '{ print $$2 }')
 
-AZ_RESOURCE_GROUP = $(AZ_RESOURCE_GROUP_$(ENV))
-AZ_RESOURCE_GROUP_TAGS = $(AZ_RESOURCE_GROUP_TAGS_$(ENV))
-
 AZ_CURRENT_RESOURCE_GROUP = $(shell az)
 
-AZ_STORAGE_ACCOUNT= $(AZ_STORAGE_ACCOUNT_$(ENV))
+AZ_SP_NAME = portefaix
 
-AZ_LOCATION = $(AZ_LOCATION_$(ENV))
+AZ_RESOURCE_GROUP_ROOT = portefaix-root
+AZ_LOCATION_ROOT = westeurope
+AZ_RESOURCE_GROUP_TAGS_ROOT = "env=root project=portefaix made-by=azcli"
+AZ_STORAGE_ACCOUNT_ROOT = portefaixroot
+
+# AZ_RESOURCE_GROUP = $(AZ_RESOURCE_GROUP_$(ENV))
+# AZ_RESOURCE_GROUP_TAGS = $(AZ_RESOURCE_GROUP_TAGS_$(ENV))
+# AZ_STORAGE_ACCOUNT= $(AZ_STORAGE_ACCOUNT_$(ENV))
+# AZ_LOCATION = $(AZ_LOCATION_$(ENV))
+# AZ_SECRET_RESOURCE_GROUP = $(AZ_SECRET_RESOURCE_GROUP_$(ENV))
 
 CLUSTER = $(CLUSTER_$(ENV))
-
-AZ_SECRET_RESOURCE_GROUP = $(AZ_SECRET_RESOURCE_GROUP_$(ENV))
 
 # Windows Azure Active Directory
 AZURE_AD_ID = 00000002-0000-0000-c000-000000000000
@@ -52,63 +56,64 @@ INSPEC_PORTEFAIX_AZURE = https://github.com/portefaix/portefaix-inspec-azure/arc
 
 ##@ Azure
 
+.PHONY: azure-sp
+azure-sp: ## Create Azure Service Principal
+	@az ad sp create-for-rbac \
+		--name=$(AZ_SP_NAME) \
+		--role="Owner" --scopes="/subscriptions/${AZURE_SUBSCRIPTION_ID}"
+
 .PHONY: azure-storage-account
-azure-storage-account: guard-ENV ## Create storage account
+azure-storage-account: ## Create storage account
 	@az group create \
-		--name $(AZ_RESOURCE_GROUP) \
-		--location $(AZ_LOCATION) \
-		--tags "$(AZ_TAGS)"
-	@az storage account create --name $(AZ_STORAGE_ACCOUNT) \
-		--resource-group $(AZ_RESOURCE_GROUP) \
-		--location $(AZ_LOCATION)
+		--name $(AZ_RESOURCE_GROUP_ROOT) \
+		--location $(AZ_LOCATION_ROOT) \
+		--tags "$(AZ_RESOURCE_GROUP_TAGS_ROOT)"
+	@az storage account create --name $(AZ_STORAGE_ACCOUNT_ROOT) \
+		--resource-group $(AZ_RESOURCE_GROUP_ROOT) \
+		--location $(AZ_LOCATION_ROOT) \
+		--tags "$(AZ_RESOURCE_GROUP_TAGS_ROOT)"
+	@echo "Storage Account key:"
 	@az storage account keys list \
-		--resource-group $(AZ_RESOURCE_GROUP) \
-		--account-name $(AZ_STORAGE_ACCOUNT) --query [0].value -o tsv
+		--resource-group $(AZ_RESOURCE_GROUP_ROOT) \
+		--account-name $(AZ_STORAGE_ACCOUNT_ROOT) --query [0].value -o tsv
 
 .PHONY: azure-storage-container
-azure-storage-container: guard-ENV guard-KEY ## Create storage coutainer
-	@az storage container create --name $(AZ_RESOURCE_GROUP)-tfstates \
-		--account-name $(AZ_STORAGE_ACCOUNT) \
-		--account-key $(KEY)
+azure-storage-container: guard-AZ_STORAGE_ACCOUNT_KEY ## Create storage coutainer
+	@az storage container create --name $(AZ_RESOURCE_GROUP_ROOT)-tfstates \
+		--account-name $(AZ_STORAGE_ACCOUNT_ROOT) \
+		--account-key ${AZ_STORAGE_ACCOUNT_KEY}
 
-.PHONY: azure-kube-credentials
-azure-kube-credentials: guard-ENV ## Generate credentials
-	@az aks get-credentials \
-		--resource-group $(AZ_RESOURCE_GROUP) \
-		--name $(CLUSTER) \
-		--admin --overwrite-existing
-
-.PHONY: azure-sp
-azure-sp: guard-ENV ## Create Azure Service Principal
-	@az ad sp create-for-rbac \
-		--name=$(AZ_RESOURCE_GROUP) \
-		--role="Contributor" --scopes="/subscriptions/${AZURE_SUBSCRIPTION_ID}"
+# .PHONY: azure-kube-credentials
+# azure-kube-credentials: guard-ENV ## Generate credentials
+# 	@az aks get-credentials \
+# 		--resource-group $(AZ_RESOURCE_GROUP) \
+# 		--name $(CLUSTER) \
+# 		--admin --overwrite-existing
 
 .PHONY: azure-permissions
-azure-permissions: guard-ENV guard-ARM_CLIENT_ID ## Setup Azure permissions
-	@az ad app permission add --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --api-permissions $(AZURE_AD_PERMISSIONS_ID)=Role
-	@az ad app permission grant --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID)
+azure-permissions: guard-ARM_CLIENT_ID ## Setup Azure permissions
+	@az ad app permission add --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --api-permissions $(AZURE_AD_PERMISSIONS_ID)=Scope
+	@az ad app permission grant --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --scope Directory.Read.All
 	@az ad app permission admin-consent --id $(ARM_CLIENT_ID)
-# @az ad app permission add --id $(ARM_CLIENT_ID) --api $(AZURE_AD_ID) --api-permissions "("{0}=Scope" -f $(AZURE_AD_PERMISSIONS_ID))"
 
 .PHONY: azure-wasi
-azure-wasi: guard-ENV guard-ARM_CLIENT_ID ## Enable Azure preview
+azure-wasi: guard-ARM_CLIENT_ID ## Enable Azure preview
 	@az feature register --namespace "Microsoft.ContainerService" --name "WasmNodePoolPreview"
 	@az provider register --namespace Microsoft.ContainerService
 	@az extension add --name aks-preview
 	@az extension update --name aks-preview
 
-.PHONY: azure-keyvault-create
-azure-keyvault-create: guard-ENV ## Create a vault
-	@echo -e "$(OK_COLOR)[$(APP)] Create a KeyVault$(NO_COLOR)"
-	@az keyvault create --name portefaix-commons \
-		--resource-group $(AZ_SECRET_RESOURCE_GROUP) --location $(AZ_LOCATION)
+# .PHONY: azure-keyvault-create
+# azure-keyvault-create: guard-ENV ## Create a vault
+# 	@echo -e "$(OK_COLOR)[$(APP)] Create a KeyVault$(NO_COLOR)"
+# 	@az keyvault create --name portefaix-commons \
+# 		--resource-group $(AZ_SECRET_RESOURCE_GROUP) --location $(AZ_LOCATION)
 
-.PHONY: azure-secret-version-create
-azure-secret-version-create: guard-ENV guard-VERSION ## Create a secret
-	@echo -e "$(OK_COLOR)[$(APP)] Create a secret$(NO_COLOR)"
-	@az keyvault secret set --vault-name portefaix-commons \
-		--name portefaix-version --value $(VERSION)
+# .PHONY: azure-secret-version-create
+# azure-secret-version-create: guard-ENV guard-VERSION ## Create a secret
+# 	@echo -e "$(OK_COLOR)[$(APP)] Create a secret$(NO_COLOR)"
+# 	@az keyvault secret set --vault-name portefaix-commons \
+# 		--name portefaix-version --value $(VERSION)
 
 
 # ====================================

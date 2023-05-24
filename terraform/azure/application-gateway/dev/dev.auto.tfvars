@@ -17,16 +17,20 @@
 #############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 #############################################################################
 # Application Gateway
 
-hub_rg_name   = "portefaix-dev-hub"
-hub_vnet_name = "portefaix-dev-hub"
+organization = "portefaix"
+environment  = "dev"
 
-service_name = "portefaix-dev"
+resource_group_location = "West Europe"
 
-subnet_prefix = "10.0.16.0/20" #"10.10.3.0/24"
+core_rg_name   = "portefaix-core-dev-vnet"
+core_vnet_name = "portefaix-core-dev"
+
+subnet_prefix = "10.0.64.0/24"
 
 tags = {
   "env"               = "dev"

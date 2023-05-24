@@ -17,13 +17,13 @@
 ############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 ############################################################################
 # Secrets
 
 resource_group_name     = "portefaix-dev-secrets"
 resource_group_location = "West Europe"
-
 
 tags = {
   "project"           = "portefaix"

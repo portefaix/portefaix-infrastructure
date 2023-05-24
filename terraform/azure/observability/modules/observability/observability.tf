@@ -18,38 +18,46 @@ module "prometheus" {
   source  = "nlamirault/observability/azurerm//modules/prometheus"
   version = "0.5.0"
 
-  resource_group_name     = var.prometheus_resource_group_name
-  resource_group_location = var.prometheus_resource_group_location
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.resource_group_location
 
-  tags = var.prometheus_tags
+  tags = merge({
+    "service" = "prometheus"
+  }, var.tags)
 }
 
 module "thanos" {
   source  = "nlamirault/observability/azurerm//modules/thanos"
   version = "0.5.0"
 
-  resource_group_name     = var.thanos_resource_group_name
-  resource_group_location = var.thanos_resource_group_location
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.resource_group_location
 
-  tags = var.thanos_tags
+  tags = merge({
+    "service" = "thanos"
+  }, var.tags)
 }
 
 module "loki" {
   source  = "nlamirault/observability/azurerm//modules/loki"
   version = "0.5.0"
 
-  resource_group_name     = var.loki_resource_group_name
-  resource_group_location = var.loki_resource_group_location
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.resource_group_location
 
-  tags = var.loki_tags
+  tags = merge({
+    "service" = "loki"
+  }, var.tags)
 }
 
 module "tempo" {
   source  = "nlamirault/observability/azurerm//modules/tempo/"
   version = "0.5.0"
 
-  resource_group_name     = var.tempo_resource_group_name
-  resource_group_location = var.tempo_resource_group_location
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.resource_group_location
 
-  tags = var.tempo_tags
+  tags = merge({
+    "service" = "tempo"
+  }, var.tags)
 }

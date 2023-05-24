@@ -15,5 +15,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  service_name = var.resource_group_name
+  service_name = format("%s-core-%s", var.organization, var.environment)
 }

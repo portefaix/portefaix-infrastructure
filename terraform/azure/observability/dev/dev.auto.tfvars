@@ -17,57 +17,16 @@
 ############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 ##############################################################################
 # Obervability
 
-# Prometheus
+resource_group_name     = "portefaix-core-dev"
+resource_group_location = "West Europe"
 
-prometheus_resource_group_name     = "portefaix-dev"
-prometheus_resource_group_location = "West Europe"
-
-prometheus_tags = {
+tags = {
   "made-by"           = "terraform"
-  "service"           = "prometheus"
-  "project"           = "portefaix"
-  "env"               = "dev"
-  "portefaix-version" = "v0.43.0"
-}
-
-# Thanos
-
-thanos_resource_group_name     = "portefaix-dev"
-thanos_resource_group_location = "West Europe"
-
-thanos_tags = {
-  "made-by"           = "terraform"
-  "service"           = "thanos"
-  "project"           = "portefaix"
-  "env"               = "dev"
-  "portefaix-version" = "v0.43.0"
-}
-
-# Loki
-
-loki_resource_group_name     = "portefaix-dev"
-loki_resource_group_location = "West Europe"
-
-loki_tags = {
-  "made-by"           = "terraform"
-  "service"           = "loki"
-  "project"           = "portefaix"
-  "env"               = "dev"
-  "portefaix-version" = "v0.43.0"
-}
-
-# Tempo
-
-tempo_resource_group_name     = "portefaix-dev"
-tempo_resource_group_location = "West Europe"
-
-tempo_tags = {
-  "made-by"           = "terraform"
-  "service"           = "tempo"
   "project"           = "portefaix"
   "env"               = "dev"
   "portefaix-version" = "v0.43.0"

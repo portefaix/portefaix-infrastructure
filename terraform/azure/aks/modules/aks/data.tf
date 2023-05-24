@@ -14,14 +14,37 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# data "azurerm_resource_group" "core" {
+#   name = var.vnet_resource_group_name
+# }
+
+data "azurerm_virtual_network" "core" {
+  name                = var.virtual_network_name
+  resource_group_name = var.vnet_resource_group_name # data.azurerm_resource_group.core.name
+}
+
 data "azurerm_subnet" "aks" {
   name                 = var.aks_subnet_name
-  virtual_network_name = var.virtual_network_name
-  resource_group_name  = var.vnet_resource_group_name
+  virtual_network_name = data.azurerm_virtual_network.core.name
+  resource_group_name  = var.vnet_resource_group_name # data.azurerm_resource_group.core.name
 }
 
 data "azurerm_subnet" "appgw" {
   name                 = var.appgw_subnet_name
-  virtual_network_name = var.virtual_network_name
-  resource_group_name  = var.vnet_resource_group_name
+  virtual_network_name = data.azurerm_virtual_network.core.name
+  resource_group_name  = var.vnet_resource_group_name # data.azurerm_resource_group.core.name
+}
+
+data "azurerm_container_registry" "core" {
+  for_each = toset(var.acr_core)
+
+  name                = each.key
+  resource_group_name = each.value
+}
+
+data "azurerm_container_registry" "shared" {
+  for_each = toset(var.acr_shared)
+
+  name                = each.key
+  resource_group_name = each.value
 }

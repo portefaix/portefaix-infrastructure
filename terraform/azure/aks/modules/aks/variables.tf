@@ -56,29 +56,30 @@ variable "vnet_resource_group_name" {
 #############################################################################
 # Kubernetes cluster
 
-variable "aks_resource_group_name" {
+variable "organization" {
+  description = "Name of the organization."
   type        = string
-  description = "Name of the resource group for AKS"
 }
 
-variable "aks_resource_group_location" {
+variable "environment" {
+  type        = string
+  description = "The name of the environment"
+}
+
+variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group for AKS should exist."
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "Name of the AKS cluster"
-}
-
-variable "prefix" {
-  description = "(Required) The prefix for the resources created in the specified Azure Resource Group"
-  type        = string
 }
 
 variable "kubernetes_version" {
   type        = string
   description = "The AKS Kubernetes version"
+}
+
+variable "automatic_channel_upgrade" {
+  type        = string
+  default     = "stable"
+  description = "The upgrade channel for this Kubernetes Cluster"
 }
 
 variable "private_cluster_enabled" {
@@ -121,7 +122,6 @@ variable "network_policy" {
 variable "net_profile_dns_service_ip" {
   description = "(Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created."
   type        = string
-  default     = null
 }
 
 # variable "net_profile_outbound_type" {
@@ -139,7 +139,6 @@ variable "net_profile_dns_service_ip" {
 variable "net_profile_service_cidr" {
   description = "(Optional) The Network Range used by the Kubernetes service. Changing this forces a new resource to be created."
   type        = string
-  default     = null
 }
 
 #############################################################################
@@ -263,7 +262,7 @@ variable "agents_max_pods" {
 variable "api_server_authorized_ip_ranges" {
   type        = set(string)
   description = "The IP ranges to allow for incoming traffic to the server nodes."
-  default     = null
+  default     = []
 }
 
 variable "maintenance_window" {
@@ -288,7 +287,16 @@ variable "maintenance_window" {
         hours = [1, 2, 3, 4, 5, 6, 7, 8]
       }
     ],
-    not_allowed = []
+    not_allowed = [
+      {
+        start = "2023-12-31T01:00:00Z",
+        end   = "2023-12-31T23:00:00Z"
+      },
+      {
+        start = "2024-12-31T01:00:00Z",
+        end   = "2024-12-31T23:00:00Z"
+      }
+    ]
   }
   description = "(Optional) Maintenance configuration of the managed cluster."
 }
@@ -298,7 +306,7 @@ variable "maintenance_window" {
 
 variable "node_pools" {
   description = "Addons node pools"
-  type = list(object({
+  type = map(object({
     name                = string
     vm_size             = string
     os_disk_size_gb     = number
@@ -313,5 +321,20 @@ variable "node_pools" {
     labels              = map(string)
     tags                = map(string)
   }))
-  default = []
+  default = {}
+}
+
+#############################################################################
+# ACR
+
+variable "acr_core" {
+  description = "List of ACR for Core subscription"
+  type        = list(string)
+  default     = []
+}
+
+variable "acr_shared" {
+  description = "List of ACR for Shared subscription"
+  type        = list(string)
+  default     = []
 }

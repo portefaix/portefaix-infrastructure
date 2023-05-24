@@ -17,137 +17,26 @@
 ############################################################################
 # Provider
 
-#variable subscription_id {
-#  type        = string
-#  description = "The Subscription ID which should be used"
-#}
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core Dev resources"
+}
 
 #############################################################################
 # Observability
 
-# variable "aks_resource_group_name" {
-#   type        = string
-#   description = "The Name which should be used for the AKS Resource Group"
-# }
-
-# variable "cluster_name" {
-#   type        = string
-#   description = "Name of the AKS cluster"
-# }
-
-# Prometheus
-
-variable "prometheus_resource_group_name" {
+variable "resource_group_name" {
   type        = string
   description = "The Name which should be used for this Resource Group"
 }
 
-variable "prometheus_resource_group_location" {
+variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group should exist"
 }
 
-# variable "prometheus_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
 
-# variable "prometheus_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
-
-variable "prometheus_tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    "made-by" = "terraform"
-  }
-}
-
-# Thanos
-
-variable "thanos_resource_group_name" {
-  type        = string
-  description = "The Name which should be used for this Resource Group"
-}
-
-variable "thanos_resource_group_location" {
-  type        = string
-  description = "The Azure Region where the Resource Group should exist"
-}
-
-# variable "thanos_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "thanos_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
-
-variable "thanos_tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    "made-by" = "terraform"
-  }
-}
-
-# Loki
-
-variable "loki_resource_group_name" {
-  type        = string
-  description = "The Name which should be used for this Resource Group"
-}
-
-variable "loki_resource_group_location" {
-  type        = string
-  description = "The Azure Region where the Resource Group should exist"
-}
-
-# variable "loki_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "loki_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
-
-variable "loki_tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the resource."
-  default = {
-    "made-by" = "terraform"
-  }
-}
-
-# Tempo
-
-variable "tempo_resource_group_name" {
-  type        = string
-  description = "The Name which should be used for this Resource Group"
-}
-
-variable "tempo_resource_group_location" {
-  type        = string
-  description = "The Azure Region where the Resource Group should exist"
-}
-
-# variable "tempo_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "tempo_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
-
-variable "tempo_tags" {
+variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
   default = {

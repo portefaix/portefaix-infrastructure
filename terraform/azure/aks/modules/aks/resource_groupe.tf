@@ -15,6 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_resource_group" "aks" {
-  name     = var.aks_resource_group_name
-  location = var.aks_resource_group_location
+  name     = local.service_name
+  location = var.resource_group_location
 }

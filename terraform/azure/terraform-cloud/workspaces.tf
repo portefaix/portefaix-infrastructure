@@ -19,6 +19,7 @@ resource "tfe_workspace" "azure" {
 
   name              = each.key
   organization      = data.tfe_organization.portefaix.name
+  project_id        = tfe_project.this.id
   description       = format("The %s workspace", each.key)
   working_directory = each.value.directory
 

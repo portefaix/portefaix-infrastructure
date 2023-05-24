@@ -17,23 +17,18 @@
 ############################################################################
 # Provider
 
+
 ############################################################################
 # Nat Gateway
 
-variable "hub_rg_name" {
+variable "organization" {
   type        = string
-  description = "The name of the resource grupe of the Hub virtual network"
+  description = "Specifies the name of the Organization"
 }
 
-
-variable "hub_vnet_name" {
+variable "environment" {
   type        = string
-  description = "The name of the Hub virtual network"
-}
-
-variable "resource_group_name" {
-  description = "Name of the resource group to be imported."
-  type        = string
+  description = "Specifies the name of the environment"
 }
 
 variable "resource_group_location" {
@@ -41,9 +36,19 @@ variable "resource_group_location" {
   description = "The Azure Region where the Resource Group should exist."
 }
 
-variable "nat_gateway_name" {
+variable "core_rg_name" {
+  description = "Name of the Core resource group."
   type        = string
-  description = "Name of the Nat Gateway"
+}
+
+variable "core_vnet_name" {
+  type        = string
+  description = "The Core virtual network name"
+}
+
+variable "subnet_prefix" {
+  type        = string
+  description = "The address prefix to use for the Azure Bastion subnet"
 }
 
 variable "tags" {
