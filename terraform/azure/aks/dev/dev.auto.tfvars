@@ -22,8 +22,9 @@ subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 #############################################################################
 # Networking
 
-virtual_network_name     = "portefaix-core-dev"
 vnet_resource_group_name = "portefaix-core-dev-vnet"
+virtual_network_name     = "portefaix-core-dev"
+aks_subnet_name          = "portefaix-core-dev-aks"
 appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 
 #############################################################################
@@ -34,11 +35,14 @@ appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
 #############################################################################
 # AKS
 
+organization = "portefaix"
+environment  = "dev"
+
 resource_group_location = "West Europe"
 
 # cluster_name       = "portefaix-dev-aks"
 # prefix             = "portefaix-dev-aks"
-kubernetes_version = "1.21.1"
+kubernetes_version = "1.26.3"
 
 private_cluster_enabled = false
 
@@ -60,53 +64,16 @@ network_plugin = "azure"
 network_policy = "calico"
 
 # net_profile_pod_cidr           = "10.0.16.0/20"
-net_profile_service_cidr   = "10.0.32.0/20"
-net_profile_dns_service_ip = "10.0.32.10"
+net_profile_service_cidr   = "10.0.16.0/20"
+net_profile_dns_service_ip = "10.0.16.10"
 
 #############################################################################
 # Addon profile
 
-enable_http_application_routing = false
-enable_kube_dashboard           = false
-enable_azure_policy             = false
+http_application_routing_enabled = false
+# enable_kube_dashboard           = false
+azure_policy_enabled = false
 # aci_connector_linux             = false
-
-#############################################################################
-# Maintenance Window
-
-enable_maintenance_window = true
-maintenance_allowed = [
-  {
-    day   = "Monday",
-    hours = [1, 2, 3, 4, 5, 6, 20, 21, 22, 23]
-  },
-  {
-    day   = "Tuesday",
-    hours = [1, 2, 3, 4, 5, 6, 20, 21, 22, 23]
-  },
-  {
-    day   = "Wednesday",
-    hours = [1, 2, 3, 4, 5, 6, 20, 21, 22, 23]
-  },
-  {
-    day   = "Thursday",
-    hours = [1, 2, 3, 4, 5, 6, 20, 21, 22, 23]
-  },
-  {
-    day   = "Friday",
-    hours = [1, 2, 3, 4, 5, 6, 20, 21, 22, 23]
-  },
-]
-maintenance_not_allowed = [
-  {
-    start = "2021-12-31T01:00:00Z",
-    end   = "2021-12-31T23:00:00Z"
-  },
-  {
-    start = "2022-12-31T01:00:00Z",
-    end   = "2022-12-31T23:00:00Z"
-  }
-]
 
 #############################################################################
 # Node pools
@@ -138,8 +105,71 @@ agents_tags = {
   "made-by"  = "terraform"
 }
 
-node_pools = [
-  {
+# node_pools = [
+#   {
+#     name                = "ops"
+#     vm_size             = "Standard_D2s_v3"
+#     os_disk_size_gb     = 50
+#     os_disk_type        = "Managed"
+#     priority            = "Spot"
+#     enable_auto_scaling = true
+#     count               = 0
+#     min_count           = 0
+#     max_count           = 4
+#     max_pods            = 110
+#     workload_runtime    = "OCIContainer"
+#     labels = {
+#       "project"  = "portefaix"
+#       "env"      = "dev"
+#       "service"  = "kubernetes"
+#       "nodepool" = "ops"
+#       "made-by"  = "terraform"
+#     },
+#     taints = [
+#       "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+#     ],
+#     tags = {
+#       "env"      = "dev"
+#       "project"  = "portefaix"
+#       "service"  = "kubernetes"
+#       "nodepool" = "ops"
+#       "made-by"  = "terraform"
+#     }
+#   },
+#   {
+#     name                = "wasi"
+#     vm_size             = "Standard_D2s_v3"
+#     os_disk_size_gb     = 50
+#     os_disk_type        = "Managed"
+#     priority            = "Spot"
+#     enable_auto_scaling = true
+#     count               = 0
+#     min_count           = 0
+#     max_count           = 4
+#     max_pods            = 110
+#     workload_runtime    = "WasmWasi"
+#     labels = {
+#       "project"  = "portefaix"
+#       "env"      = "dev"
+#       "service"  = "kubernetes"
+#       "nodepool" = "wasi"
+#       "made-by"  = "terraform"
+#     },
+#     taints = [
+#       "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+#     ],
+#     tags = {
+#       "env"      = "dev"
+#       "project"  = "portefaix"
+#       "service"  = "kubernetes"
+#       "nodepool" = "wasi"
+#       "made-by"  = "terraform"
+#     }
+#   }
+# ]
+
+node_pools = {
+  "ops" = {
     name                = "ops"
     vm_size             = "Standard_D2s_v3"
     os_disk_size_gb     = 50
@@ -169,7 +199,7 @@ node_pools = [
       "made-by"  = "terraform"
     }
   },
-  {
+  "wasi" = {
     name                = "wasi"
     vm_size             = "Standard_D2s_v3"
     os_disk_size_gb     = 50
@@ -199,4 +229,16 @@ node_pools = [
       "made-by"  = "terraform"
     }
   }
+}
+
+#############################################################################
+# ACR
+
+acr_core = [
+  "portefaixdevacrcharts",
+  "portefaixdevacrcontainers"
+]
+
+acr_shared = [
+  "portefaixsharedacrcharts"
 ]

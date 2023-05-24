@@ -14,5 +14,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+resource "azurerm_container_registry" "this" {
+  for_each = var.repositories
+
+  name                = replace(format("%s-%s", local.service_name, each.key), "-", "")
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+  sku                 = "Standard"
+
+  # retention_policy {
+  #   days    = 7
+  #   enabled = true
+  # }
+
+  tags = var.tags
+}

@@ -14,5 +14,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+############################################################################
+# Provider
+
+subscription_shared_id = "e1eafa8a-caca-4eaf-8fbc-b1bb71b4f868"
+
+############################################################################
+# ACR
+
+organization = "portefaix"
+environment  = "shared"
+
+resource_group_location = "West Europe"
+
+repositories = {
+  "charts" = {
+    retention_policy = {
+      days    = 7
+      enabled = true
+    }
+  }
+}
+
+tags = {
+  "env"               = "shared"
+  "project"           = "portefaix"
+  "service"           = "acr"
+  "made-by"           = "terraform"
+  "portefaix-version" = "v0.43.0"
+}

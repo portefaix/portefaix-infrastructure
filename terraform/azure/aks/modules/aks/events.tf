@@ -14,75 +14,75 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_eventhub_namespace" "this" {
-  name                = local.service_name
-  resource_group_name = azurerm_resource_group.aks.name
-  location            = azurerm_resource_group.aks.location
-  sku                 = "Standard"
-  capacity            = 1
+# resource "azurerm_eventhub_namespace" "this" {
+#   name                = local.service_name
+#   resource_group_name = azurerm_resource_group.aks.name
+#   location            = azurerm_resource_group.aks.location
+#   sku                 = "Standard"
+#   capacity            = 1
 
-  network_rulesets {
-    default_action = "Deny"
-    # Subnets where eventhub is reachable
-    virtual_network_rule {
-      subnet_id = data.azurerm_subnet.aks.id
-    }
-    virtual_network_rule {
-      subnet_id = data.azurerm_subnet.appgw.id
-    }
-    trusted_service_access_enabled = true
-  }
+#   network_rulesets {
+#     default_action = "Deny"
+#     # Subnets where eventhub is reachable
+#     virtual_network_rule {
+#       subnet_id = data.azurerm_subnet.aks.id
+#     }
+#     # virtual_network_rule {
+#     #   subnet_id = data.azurerm_subnet.appgw.id
+#     # }
+#     trusted_service_access_enabled = true
+#   }
 
-  tags = var.tags
-}
-
-resource "azurerm_eventhub" "this" {
-  name                = format("%s-events", local.service_name)
-  namespace_name      = azurerm_eventhub_namespace.aks.name
-  resource_group_name = azurerm_resource_group.aks.name
-  partition_count     = 2
-  message_retention   = 1
-}
-
-resource "azurerm_eventhub_namespace_authorization_rule" "aks" {
-  name                = format("%s-diagnostic", local.service_name)
-  namespace_name      = azurerm_eventhub_namespace.this.name
-  resource_group_name = azurerm_resource_group.aks.name
-
-  listen = false
-  send   = true
-  manage = false
-}
-
-resource "azurerm_eventhub_namespace_authorization_rule" "listen" {
-  name                = format("%s-listen", local.service_name)
-  namespace_name      = azurerm_eventhub_namespace.this.name
-  resource_group_name = azurerm_resource_group.aks.name
-
-  listen = true
-  send   = false
-  manage = false
-}
-
-resource "azurerm_eventgrid_topic" "this" {
-  name                = format("%s-events", local.service_name)
-  resource_group_name = azurerm_resource_group.aks.name
-  location            = azurerm_resource_group.aks.location
-  intput_schema       = "CloudEventSchemaV1_0"
-
-  tags = var.tags
-}
-
-# resource "azurerm_eventgrid_system_topic" "acr" {
-#   name                   = format("%s-acr", local.service_name)
-#   resource_group_name    = azurerm_resource_group.example.name
-#   location               = azurerm_resource_group.example.location
-#   source_arm_resource_id = azurerm_storage_account.example.id
-#   topic_type             = "Microsoft.ContainerRegistry.Registries"
+#   tags = var.tags
 # }
 
-# resource "azurerm_eventgrid_event_subscription" "this" {
-#   name                 = format("%s-events", local.service_name)
-#   scope                = azurerm_eventgrid_topic.this.id
-#   eventhub_endpoint_id = azurerm_eventhub.this.id
+# resource "azurerm_eventhub" "this" {
+#   name                = format("%s-events", local.service_name)
+#   namespace_name      = azurerm_eventhub_namespace.this.name
+#   resource_group_name = azurerm_resource_group.aks.name
+#   partition_count     = 2
+#   message_retention   = 1
 # }
+
+# resource "azurerm_eventhub_namespace_authorization_rule" "aks" {
+#   name                = format("%s-diagnostic", local.service_name)
+#   namespace_name      = azurerm_eventhub_namespace.this.name
+#   resource_group_name = azurerm_resource_group.aks.name
+
+#   listen = false
+#   send   = true
+#   manage = false
+# }
+
+# resource "azurerm_eventhub_namespace_authorization_rule" "listen" {
+#   name                = format("%s-listen", local.service_name)
+#   namespace_name      = azurerm_eventhub_namespace.this.name
+#   resource_group_name = azurerm_resource_group.aks.name
+
+#   listen = true
+#   send   = false
+#   manage = false
+# }
+
+# resource "azurerm_eventgrid_topic" "this" {
+#   name                = format("%s-events", local.service_name)
+#   resource_group_name = azurerm_resource_group.aks.name
+#   location            = azurerm_resource_group.aks.location
+#   input_schema       = "CloudEventSchemaV1_0"
+
+#   tags = var.tags
+# }
+
+# # resource "azurerm_eventgrid_system_topic" "acr" {
+# #   name                   = format("%s-acr", local.service_name)
+# #   resource_group_name    = azurerm_resource_group.example.name
+# #   location               = azurerm_resource_group.example.location
+# #   source_arm_resource_id = azurerm_storage_account.example.id
+# #   topic_type             = "Microsoft.ContainerRegistry.Registries"
+# # }
+
+# # resource "azurerm_eventgrid_event_subscription" "this" {
+# #   name                 = format("%s-events", local.service_name)
+# #   scope                = azurerm_eventgrid_topic.this.id
+# #   eventhub_endpoint_id = azurerm_eventhub.this.id
+# # }

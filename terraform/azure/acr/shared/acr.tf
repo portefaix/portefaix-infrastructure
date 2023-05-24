@@ -14,5 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+module "acr" {
+  source = "../modules/acr"
+
+  organization            = var.organization
+  environment             = var.environment
+  resource_group_location = var.resource_group_location
+  repositories            = var.repositories
+  tags                    = var.tags
+}

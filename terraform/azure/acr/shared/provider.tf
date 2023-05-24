@@ -14,5 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+provider "azurerm" {
+  subscription_id = var.subscription_shared_id
+  features {}
+}

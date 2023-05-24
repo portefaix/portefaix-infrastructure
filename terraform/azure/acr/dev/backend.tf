@@ -14,5 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+terraform {
+  # backend "azurerm" {
+  # }
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "portefaix"
+
+    workspaces {
+      name = "portefaix-azure-dev-acr"
+    }
+  }
+}

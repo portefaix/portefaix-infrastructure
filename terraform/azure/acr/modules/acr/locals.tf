@@ -14,5 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-# }
+locals {
+  service_name = format("%s-%s-acr", var.organization, var.environment)
+}

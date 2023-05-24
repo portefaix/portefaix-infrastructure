@@ -101,6 +101,22 @@ workspaces = {
     ]
   },
 
+  # Shared
+
+  portefaix-azure-shared-acr = {
+    directory      = "terraform/azure/acr/shared"
+    tags           = ["azure", "shared", "acr"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/acr/*.tf",
+    ]
+  },
+
   # Audit
 
   portefaix-azure-audit-defender = {
@@ -121,7 +137,7 @@ workspaces = {
 
   portefaix-azure-dev-vnet = {
     directory      = "terraform/azure/vnet/dev"
-    tags           = ["azure", "vnet"]
+    tags           = ["azure", "core", "vnet"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -135,7 +151,7 @@ workspaces = {
 
   portefaix-azure-dev-peering = {
     directory      = "terraform/azure/peering/dev"
-    tags           = ["azure", "dev", "peering"]
+    tags           = ["azure", "core", "peering"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -149,7 +165,7 @@ workspaces = {
 
   portefaix-azure-dev-application-gateway = {
     directory      = "terraform/azure/application-gateway/dev"
-    tags           = ["azure", "dev", "application-gateway"]
+    tags           = ["azure", "core", "application-gateway"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -163,7 +179,7 @@ workspaces = {
 
   portefaix-azure-dev-public-ips-nat-gateway = {
     directory      = "terraform/azure/public-ips/nat-gateway/dev"
-    tags           = ["azure", "publicip", "natgateway"]
+    tags           = ["azure", "core", "publicip", "natgateway"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -177,7 +193,7 @@ workspaces = {
 
   portefaix-azure-dev-nat-gateway = {
     directory      = "terraform/azure/nat-gateway/dev"
-    tags           = ["azure", "natgateway"]
+    tags           = ["azure", "core", "natgateway"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -189,9 +205,23 @@ workspaces = {
     ]
   },
 
+  portefaix-azure-dev-acr = {
+    directory      = "terraform/azure/acr/dev"
+    tags           = ["azure", "core", "acr"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+      "../modules/acr/*.tf",
+    ]
+  },
+
   portefaix-azure-dev-aks = {
     directory      = "terraform/azure/aks/dev"
-    tags           = ["azure", "aks"]
+    tags           = ["azure", "core", "aks"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -205,7 +235,7 @@ workspaces = {
 
   portefaix-azure-dev-secrets = {
     directory      = "terraform/azure/secrets/dev"
-    tags           = ["azure", "secrets"]
+    tags           = ["azure", "core", "secrets"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -219,7 +249,7 @@ workspaces = {
 
   portefaix-azure-dev-observability = {
     directory      = "terraform/azure/observability/dev"
-    tags           = ["azure", "kubernetes", "observability"]
+    tags           = ["azure", "core", "kubernetes", "observability"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
@@ -233,7 +263,7 @@ workspaces = {
 
   portefaix-azure-dev-velero = {
     directory      = "terraform/azure/velero/dev"
-    tags           = ["azure", "kubernetes", "velero"]
+    tags           = ["azure", "core", "kubernetes", "velero"]
     gitops         = false
     branch         = "master"
     auto_apply     = true
