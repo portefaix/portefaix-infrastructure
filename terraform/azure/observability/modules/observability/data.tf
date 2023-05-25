@@ -13,3 +13,7 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+
+data "azurerm_resource_group" "this" {
+  name = var.cluster_rg_name
+}

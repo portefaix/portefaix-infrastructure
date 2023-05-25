@@ -21,27 +21,27 @@
 #############################################################################
 # Observability
 
+variable "cluster_name" {
+  type        = string
+  description = "Name of the EKS cluster"
+}
+
+variable "cluster_rg_name" {
+  type        = string
+  description = "The AKS cluster resource group name"
+}
+
 # Prometheus
 
-variable "prometheus_resource_group_name" {
+variable "prometheus_namespace" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "The Kubernetes namespace"
 }
 
-variable "prometheus_resource_group_location" {
+variable "prometheus_service_account" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The Kubernetes service account"
 }
-
-# variable "prometheus_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "prometheus_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
 
 variable "prometheus_tags" {
   type        = map(string)
@@ -51,29 +51,19 @@ variable "prometheus_tags" {
   }
 }
 
-# Thanos
+# Mimir
 
-variable "thanos_resource_group_name" {
+variable "mimir_namespace" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "The Kubernetes namespace"
 }
 
-variable "thanos_resource_group_location" {
+variable "mimir_service_account" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The Kubernetes service account"
 }
 
-# variable "thanos_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "thanos_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
-
-variable "thanos_tags" {
+variable "mimir_tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
   default = {
@@ -83,25 +73,15 @@ variable "thanos_tags" {
 
 # Loki
 
-variable "loki_resource_group_name" {
+variable "loki_namespace" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "The Kubernetes namespace"
 }
 
-variable "loki_resource_group_location" {
+variable "loki_service_account" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The Kubernetes service account"
 }
-
-# variable "loki_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "loki_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
 
 variable "loki_tags" {
   type        = map(string)
@@ -113,25 +93,15 @@ variable "loki_tags" {
 
 # Tempo
 
-variable "tempo_resource_group_name" {
+variable "tempo_namespace" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "The Kubernetes namespace"
 }
 
-variable "tempo_resource_group_location" {
+variable "tempo_service_account" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The Kubernetes service account"
 }
-
-# variable "tempo_storage_account_name" {
-#   type        = string
-#   description = "Specifies the name of the storage account"
-# }
-
-# variable "tempo_storage_container_name" {
-#   type        = string
-#   description = "The name of the Container which should be created within the Storage Account"
-# }
 
 variable "tempo_tags" {
   type        = map(string)

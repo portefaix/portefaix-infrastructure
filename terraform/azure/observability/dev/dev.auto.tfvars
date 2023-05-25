@@ -23,8 +23,12 @@
 
 # Prometheus
 
-prometheus_resource_group_name     = "portefaix-dev"
-prometheus_resource_group_location = "West Europe"
+cluster_rg_name     = "portefaix-dev-aks"
+cluster_rg_location = "West Europe"
+cluster_name        = "portefaix-dev-aks"
+
+prometheus_namespace       = "monitoring"
+prometheus_service_account = "prometheus"
 
 prometheus_tags = {
   "made-by"           = "terraform"
@@ -34,12 +38,12 @@ prometheus_tags = {
   "portefaix-version" = "v0.43.0"
 }
 
-# Thanos
+# Mimir
 
-thanos_resource_group_name     = "portefaix-dev"
-thanos_resource_group_location = "West Europe"
+mimir_namespace       = "monitoring"
+mimir_service_account = "mimir"
 
-thanos_tags = {
+mimir_tags = {
   "made-by"           = "terraform"
   "service"           = "thanos"
   "project"           = "portefaix"
@@ -49,8 +53,8 @@ thanos_tags = {
 
 # Loki
 
-loki_resource_group_name     = "portefaix-dev"
-loki_resource_group_location = "West Europe"
+loki_namespace       = "logging"
+loki_service_account = "loki"
 
 loki_tags = {
   "made-by"           = "terraform"
@@ -62,8 +66,8 @@ loki_tags = {
 
 # Tempo
 
-tempo_resource_group_name     = "portefaix-dev"
-tempo_resource_group_location = "West Europe"
+tempo_namespace       = "tracing"
+tempo_service_account = "tempo"
 
 tempo_tags = {
   "made-by"           = "terraform"
