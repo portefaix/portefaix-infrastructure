@@ -17,6 +17,10 @@
 ############################################################################
 # Provider
 
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core Dev resources"
+}
 
 #############################################################################
 # Velero

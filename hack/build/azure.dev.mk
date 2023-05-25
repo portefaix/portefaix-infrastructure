@@ -14,13 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-AZ_RESOURCE_GROUP_dev = portefaix-dev-aks
+# AZ_RESOURCE_GROUP_dev = portefaix-dev-aks
 
-AZ_RESOURCE_GROUP_TAGS_dev = "env=dev project=portefaix made-by=azcli"
+# AZ_RESOURCE_GROUP_TAGS_dev = "env=dev project=portefaix made-by=azcli"
 
-AZ_STORAGE_ACCOUNT_dev = portefaixdev
+# AZ_STORAGE_ACCOUNT_dev = portefaixdev
 
-AZ_LOCATION_dev = westeurope
+# AZ_LOCATION_dev = westeurope
 
 CLUSTER_dev = portefaix-dev-aks
 
@@ -30,4 +30,4 @@ SOPS_PROVIDER_dev = age
 SOPS_KEY_dev = age1wt7t48m206gv74llh9fs8u4kaapnjzhxydyk3a9mavzkaulsz5nq9qujgc
 SOPS_AGE_KEY_FILE_dev = .secrets/azure/dev/age/age.agekey
 
-AZ_SECRET_RESOURCE_GROUP_dev = portefaix-dev #-secrets
+# AZ_SECRET_RESOURCE_GROUP_dev = portefaix-dev #-secrets

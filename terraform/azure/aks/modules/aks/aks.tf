@@ -23,14 +23,14 @@ module "aks" {
   version = "7.0.0"
   # source = "git://github.com/Azure/terraform-azurerm-aks.git?ref=master"
 
-  resource_group_name  = azurerm_resource_group.aks.name
-  vnet_subnet_id       = data.azurerm_subnet.aks.id
-  cluster_name         = var.cluster_name
-  prefix               = var.prefix
-  kubernetes_version   = var.kubernetes_version
-  orchestrator_version = var.kubernetes_version
+  cluster_name              = local.service_name
+  prefix                    = local.service_name
+  resource_group_name       = azurerm_resource_group.aks.name
+  kubernetes_version        = var.kubernetes_version
+  orchestrator_version      = var.kubernetes_version
+  automatic_channel_upgrade = var.automatic_channel_upgrade
 
-  tags = var.tags
+  vnet_subnet_id = data.azurerm_subnet.aks.id
 
   private_cluster_enabled = var.private_cluster_enabled
 
@@ -43,8 +43,8 @@ module "aks" {
 
   public_ssh_key = var.public_ssh_key
 
-  role_based_access_control_enabled = false
-  # rbac_aad_managed                 = false
+  role_based_access_control_enabled = true
+  rbac_aad_managed                  = true
   # rbac_aad_admin_group_object_ids  = var.admin_group_object_ids
 
   # enable_log_analytics_workspace  = false
@@ -82,12 +82,17 @@ module "aks" {
 
   maintenance_window = var.maintenance_window
 
+  public_network_access_enabled   = false
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
   # TODO: AKS: Another node pools
   # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
   # https://github.com/Azure/terraform-azurerm-aks/pull/127
   # node_pools = var.node_pools
+
+  tags = var.tags
+
+  node_pools = var.node_pools
 
   depends_on = [
     azurerm_resource_group.aks

@@ -17,14 +17,13 @@
 ############################################################################
 # Provider
 
-#variable subscription_id {
-#  type        = string
-#  description = "The Subscription ID which should be used"
-#}
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core Dev resources"
+}
 
 #############################################################################
 # Networking
-
 
 variable "aks_subnet_name" {
   type        = string
@@ -57,25 +56,19 @@ variable "vnet_resource_group_name" {
 #############################################################################
 # Kubernetes cluster
 
-variable "aks_resource_group_name" {
+variable "organization" {
+  description = "Name of the organization."
   type        = string
-  description = "Name of the resource group for AKS"
 }
 
-variable "aks_resource_group_location" {
+variable "environment" {
+  type        = string
+  description = "The name of the environment"
+}
+
+variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group for AKS should exist."
-}
-
-
-variable "cluster_name" {
-  type        = string
-  description = "Name of the AKS cluster"
-}
-
-variable "prefix" {
-  description = "(Required) The prefix for the resources created in the specified Azure Resource Group"
-  type        = string
 }
 
 variable "kubernetes_version" {
@@ -87,11 +80,6 @@ variable "private_cluster_enabled" {
   description = "If true cluster API server will be exposed only on internal IP address and available only in cluster vnet."
   type        = bool
 }
-
-# variable "authorized_ip_ranges" {
-#   type        = list(string)
-#   description = "The IP ranges to whitelist for incoming traffic to the masters."
-# }
 
 variable "tags" {
   type        = map(string)
@@ -122,7 +110,6 @@ variable "network_policy" {
 variable "net_profile_dns_service_ip" {
   description = "(Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created."
   type        = string
-  default     = null
 }
 
 # variable "net_profile_outbound_type" {
@@ -140,7 +127,6 @@ variable "net_profile_dns_service_ip" {
 variable "net_profile_service_cidr" {
   description = "(Optional) The Network Range used by the Kubernetes service. Changing this forces a new resource to be created."
   type        = string
-  default     = null
 }
 
 #############################################################################
@@ -264,7 +250,7 @@ variable "agents_max_pods" {
 variable "api_server_authorized_ip_ranges" {
   type        = set(string)
   description = "The IP ranges to allow for incoming traffic to the server nodes."
-  default     = null
+  default     = []
 }
 
 #############################################################################
@@ -272,7 +258,7 @@ variable "api_server_authorized_ip_ranges" {
 
 variable "node_pools" {
   description = "Addons node pools"
-  type = list(object({
+  type = map(object({
     name                = string
     vm_size             = string
     os_disk_size_gb     = number
@@ -287,5 +273,20 @@ variable "node_pools" {
     labels              = map(string)
     tags                = map(string)
   }))
-  default = []
+  default = {}
+}
+
+#############################################################################
+# ACR
+
+variable "acr_core" {
+  description = "List of ACR for Core subscription"
+  type        = list(string)
+  default     = []
+}
+
+variable "acr_shared" {
+  description = "List of ACR for Shared subscription"
+  type        = list(string)
+  default     = []
 }

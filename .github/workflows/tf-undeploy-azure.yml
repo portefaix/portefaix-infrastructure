@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Azure / Destroy
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -26,10 +27,10 @@ on:
       tf_version:
         description: "Terraform version"
         required: true
-        #datasource=github-tags depName=hashicorp/terraform
-        default: '1.2.2'
+        # datasource=github-tags depName=hashicorp/terraform
+        default: '1.4.6'
   schedule:
-    - cron: "0 23 * * *"
+  - cron: "0 23 * * *"
 
 # env:
 #   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID_DEV }}
@@ -89,8 +90,8 @@ jobs:
 
   azure_secrets:
     needs:
-      - observability
-      - velero
+    - observability
+    - velero
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -115,9 +116,9 @@ jobs:
 
   azure_aks:
     needs:
-      - observability
-      - velero
-      - azure_secrets
+    - observability
+    - velero
+    - azure_secrets
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -143,7 +144,7 @@ jobs:
         TF_VAR_authorized_ip_ranges: "[\"${{ secrets.HOME_IP_ADDRESS }}\"]"
 
   azure_nat_gateway:
-    # needs: azure_aks
+    needs: azure_aks
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -166,10 +167,34 @@ jobs:
       run: terraform destroy -auto-approve
       working-directory: terraform/azure/nat-gateway/${{ github.event.inputs.env }}
 
+  azure_application_gateway:
+    needs: azure_aks
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Delete Application Gateway / ${{ github.event.inputs.env }}"
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ github.event.inputs.tf_version }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      run: terraform init -upgrade
+      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
+
+    - name: Terraform Destroy
+      run: terraform destroy -auto-approve
+      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
+
   azure_peering:
     needs:
-      - azure_aks
-      - azure_nat_gateway
+    - azure_aks
+    - azure_nat_gateway
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -197,7 +222,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Delete Azure Bastion / ${{ github.event.inputs.env }}"
+        echo "Delete Azure Bastion / network"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -210,18 +235,18 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/bastion/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/bastion/network
 
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
-      working-directory: terraform/azure/bastion/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/bastion/network
 
   azure_firewall:
     needs: azure_peering
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Delete Azure Firewall / ${{ github.event.inputs.env }}"
+        echo "Delete Azure Firewall / network"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -234,44 +259,20 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/firewall/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/firewall/network
 
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
-      working-directory: terraform/azure/firewall/${{ github.event.inputs.env }}
-
-  azure_application_gateway:
-    needs: azure_peering
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Delete Application Gateway / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
-
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
-      working-directory: terraform/azure/application-gateway/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/firewall/network
 
   azure_hub:
     needs:
-      - azure_firewall
-      - azure_bastion
+    - azure_firewall
+    - azure_bastion
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Delete VNet / ${{ github.event.inputs.env }}"
+        echo "Delete VNet / network"
 
     - name: Checkout
       uses: actions/checkout@v3
@@ -284,18 +285,18 @@ jobs:
 
     - name: Terraform Init
       run: terraform init -upgrade
-      working-directory: terraform/azure/hub/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/hub/network
 
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
-      working-directory: terraform/azure/hub/${{ github.event.inputs.env }}
+      working-directory: terraform/azure/hub/network
 
   azure_vnet:
     needs:
-      - azure_aks
-      - azure_nat_gateway
-      - azure_bastion
-      - azure_firewall
+    - azure_aks
+    - azure_nat_gateway
+    - azure_bastion
+    - azure_firewall
     runs-on: ubuntu-latest
     steps:
     - run: |

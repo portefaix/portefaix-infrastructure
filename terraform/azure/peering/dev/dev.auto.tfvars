@@ -17,15 +17,17 @@
 ############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
+subscription_network_id  = "719259e8-1fae-4da0-ab76-1880c938c756"
 
 ############################################################################
 # VNet
 
-# resource_group_name     = "portefaix-dev-peering"
-# resource_group_location = "West Europe"
+organization = "portefaix"
+environment  = "dev"
 
-core_vnet_name = "portefaix-dev"
-core_rg_name   = "portefaix-dev-vnet"
+core_vnet_name = "portefaix-core-dev"
+core_rg_name   = "portefaix-core-dev-vnet"
 
-hub_vnet_name = "portefaix-dev-hub"
-hub_rg_name   = "portefaix-dev-hub"
+hub_vnet_name = "portefaix-network-hub"
+hub_rg_name   = "portefaix-network-hub"

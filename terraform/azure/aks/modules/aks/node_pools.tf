@@ -15,28 +15,28 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # https://github.com/Azure/terraform-azurerm-aks/pull/212
-resource "azurerm_kubernetes_cluster_node_pool" "aks" {
-  for_each = { for pool in var.node_pools : pool.name => pool }
+# resource "azurerm_kubernetes_cluster_node_pool" "aks" {
+#   for_each = { for pool in var.node_pools : pool.name => pool }
 
-  vnet_subnet_id        = data.azurerm_subnet.aks.id
-  kubernetes_cluster_id = module.aks.aks_id
+#   vnet_subnet_id        = data.azurerm_subnet.aks.id
+#   kubernetes_cluster_id = module.aks.aks_id
 
-  zones = var.agents_availability_zones
+#   zones = var.agents_availability_zones
 
-  name                  = each.value.name
-  os_type               = "Linux"
-  priority              = each.value.priority
-  vm_size               = each.value.vm_size
-  os_disk_size_gb       = each.value.os_disk_size_gb
-  os_disk_type          = each.value.os_disk_type
-  enable_auto_scaling   = each.value.enable_auto_scaling
-  min_count             = each.value.min_count
-  max_count             = each.value.max_count
-  node_count            = each.value.count
-  workload_runtime      = each.value.workload_runtime
-  max_pods              = each.value.max_pods
-  node_labels           = each.value.labels
-  node_taints           = each.value.taints
-  tags                  = each.value.tags
-  enable_node_public_ip = false
-}
+#   name                  = each.value.name
+#   os_type               = "Linux"
+#   priority              = each.value.priority
+#   vm_size               = each.value.vm_size
+#   os_disk_size_gb       = each.value.os_disk_size_gb
+#   os_disk_type          = each.value.os_disk_type
+#   enable_auto_scaling   = each.value.enable_auto_scaling
+#   min_count             = each.value.min_count
+#   max_count             = each.value.max_count
+#   node_count            = each.value.count
+#   workload_runtime      = each.value.workload_runtime
+#   max_pods              = each.value.max_pods
+#   node_labels           = each.value.labels
+#   node_taints           = each.value.taints
+#   tags                  = each.value.tags
+#   enable_node_public_ip = false
+# }

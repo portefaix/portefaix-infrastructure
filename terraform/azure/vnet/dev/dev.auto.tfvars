@@ -17,14 +17,15 @@
 ############################################################################
 # Provider
 
+subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 ############################################################################
 # VNet
 
-resource_group_name     = "portefaix-dev-vnet"
-resource_group_location = "West Europe"
+organization = "portefaix"
+environment  = "dev"
 
-vnet_name = "portefaix-dev"
+resource_group_location = "West Europe"
 
 address_space = ["10.0.0.0/16"]
 
@@ -34,8 +35,8 @@ subnet_prefixes = [
 ]
 
 subnet_names = [
-  "portefaix-dev-aks",
-  "portefaix-dev-ilb",
+  "portefaix-core-dev-aks",
+  "portefaix-core-dev-ilb",
 ]
 
 tags = {

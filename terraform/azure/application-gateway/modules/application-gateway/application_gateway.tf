@@ -15,16 +15,17 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_subnet" "this" {
-  name                 = "ApplicationGatewaySubnet"
-  resource_group_name  = data.azurerm_resource_group.hub.name
-  virtual_network_name = data.azurerm_virtual_network.hub.name
+  name = "ApplicationGatewaySubnet"
+  # resource_group_name = azurerm_resource_group.this.name
+  resource_group_name  = data.azurerm_resource_group.core.name
+  virtual_network_name = data.azurerm_virtual_network.core.name
   address_prefixes     = [var.subnet_prefix]
 }
 
 resource "azurerm_public_ip" "this" {
-  name                = format("%s-application-gateway", var.service_name)
-  resource_group_name = data.azurerm_resource_group.hub.name
-  location            = data.azurerm_resource_group.hub.location
+  name                = local.service_name
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
   allocation_method   = "Static"
   sku                 = "Standard"
   tags                = var.tags

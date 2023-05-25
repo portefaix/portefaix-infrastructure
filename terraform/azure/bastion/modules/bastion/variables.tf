@@ -26,7 +26,6 @@ variable "hub_rg_name" {
   description = "The name of the resource grupe of the Hub virtual network"
 }
 
-
 variable "hub_vnet_name" {
   type        = string
   description = "The name of the Hub virtual network"

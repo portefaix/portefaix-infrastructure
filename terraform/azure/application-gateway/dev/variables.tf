@@ -17,23 +17,37 @@
 ############################################################################
 # Provider
 
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core resources"
+}
 
 #############################################################################
 # Application Gateway
 
-variable "hub_rg_name" {
+variable "organization" {
+  description = "Name of the organization."
+  type        = string
+}
+
+variable "environment" {
+  type        = string
+  description = "The name of the environment"
+}
+
+variable "resource_group_location" {
+  type        = string
+  description = "The Azure Region where the Resource Group will be created."
+}
+
+variable "core_rg_name" {
   type        = string
   description = "The name of the resource grupe of the Hub virtual network"
 }
 
-variable "hub_vnet_name" {
+variable "core_vnet_name" {
   type        = string
   description = "The name of the Hub virtual network"
-}
-
-variable "service_name" {
-  type        = string
-  description = "Specifies the name of the Application Gateway"
 }
 
 variable "subnet_prefix" {

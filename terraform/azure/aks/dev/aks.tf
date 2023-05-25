@@ -17,16 +17,16 @@
 module "aks" {
   source = "../modules/aks"
 
+  organization = var.organization
+  environment  = var.environment
+
   virtual_network_name     = var.virtual_network_name
   vnet_resource_group_name = var.vnet_resource_group_name
   aks_subnet_name          = var.aks_subnet_name
   appgw_subnet_name        = var.appgw_subnet_name
 
-  aks_resource_group_name     = var.aks_resource_group_name
-  aks_resource_group_location = var.aks_resource_group_location
+  resource_group_location = var.resource_group_location
 
-  cluster_name       = var.cluster_name
-  prefix             = var.prefix
   kubernetes_version = var.kubernetes_version
 
   tags = var.tags
@@ -45,6 +45,8 @@ module "aks" {
   # enable_role_based_access_control = false
   # rbac_aad_managed                 = false
   # rbac_aad_admin_group_object_ids  = var.admin_group_object_ids
+
+  node_pools = var.node_pools
 
   # enable_log_analytics_workspace     = false
   enable_auto_scaling                 = var.enable_auto_scaling
@@ -71,8 +73,6 @@ module "aks" {
 
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
-  # TODO: AKS: Another node pools
-  # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
-  # https://github.com/Azure/terraform-azurerm-aks/pull/127
-  node_pools = var.node_pools
+  acr_core   = var.acr_core
+  acr_shared = var.acr_shared
 }

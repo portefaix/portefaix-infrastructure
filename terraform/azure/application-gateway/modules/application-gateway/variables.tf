@@ -21,25 +21,53 @@
 #############################################################################
 # Application Gateway
 
-variable "hub_rg_name" {
+variable "organization" {
+  description = "Name of the organization."
   type        = string
-  description = "The name of the resource grupe of the Hub virtual network"
 }
 
-variable "hub_vnet_name" {
+variable "environment" {
   type        = string
-  description = "The name of the Hub virtual network"
+  description = "The name of the environment"
 }
 
-variable "service_name" {
+variable "resource_group_location" {
   type        = string
-  description = "Specifies the name of the Application Gateway"
+  description = "The Azure Region where the Resource Group will be created."
+}
+
+variable "core_rg_name" {
+  type        = string
+  description = "The name of the resource grupe of the Core virtual network"
+}
+
+variable "core_vnet_name" {
+  type        = string
+  description = "The name of the Core virtual network"
 }
 
 variable "subnet_prefix" {
   type        = string
   description = "The address prefix to use for the Application Gateway subnet"
 }
+
+# variable "whitelist_ipv4" {
+#   description = "Allow whitelist for IPV4 addresses"
+#   type        = list(string)
+#   default     = []
+# }
+
+# variable "blacklist_ipv4" {
+#   default     = []
+#   type        = list(string)
+#   description = "Block blacklist for IPV4 addresses"
+# }
+
+# variable "blocked_countries" {
+#   default     = []
+#   type        = list(string)
+#   description = "Block country codes"
+# }
 
 variable "tags" {
   description = "A map of tags to add to all resources"

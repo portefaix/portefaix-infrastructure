@@ -17,22 +17,27 @@
 ############################################################################
 # Provider
 
+variable "subscription_core_dev_id" {
+  type        = string
+  description = "The Subscription ID for Core Dev resources"
+}
+
 ############################################################################
 # VNet
 
-variable "resource_group_name" {
-  description = "Name of the resource group to be imported."
+variable "organization" {
+  description = "Name of the organization."
+  type        = string
+}
+
+variable "environment" {
+  description = "Name of the environment"
   type        = string
 }
 
 variable "resource_group_location" {
   type        = string
   description = "The Azure Region where the Resource Group should exist"
-}
-
-variable "vnet_name" {
-  type        = string
-  description = "The virtual network name"
 }
 
 variable "address_space" {

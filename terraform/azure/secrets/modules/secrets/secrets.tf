@@ -14,6 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:azure-keyvault-no-purge
+# tfsec:ignore:azure-keyvault-specify-network-acl
 resource "azurerm_key_vault" "this" {
   name                       = local.service_name
   location                   = azurerm_resource_group.this.location
@@ -68,6 +70,8 @@ resource "azurerm_key_vault_access_policy" "aks" {
   ]
 }
 
+# tfsec:ignore:azure-keyvault-ensure-secret-expiry
+# tfsec:ignore:azure-keyvault-content-type-for-secret
 resource "azurerm_key_vault_secret" "version" {
   key_vault_id = azurerm_key_vault.this.id
   name         = "portefaix-version"

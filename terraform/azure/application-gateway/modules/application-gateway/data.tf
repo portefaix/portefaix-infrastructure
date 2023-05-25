@@ -14,11 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-data "azurerm_resource_group" "hub" {
-  name = var.hub_rg_name
+data "azurerm_resource_group" "core" {
+  name = var.core_rg_name
 }
 
-data "azurerm_virtual_network" "hub" {
-  name                = var.hub_vnet_name
-  resource_group_name = data.azurerm_resource_group.hub.name
+data "azurerm_virtual_network" "core" {
+  name                = var.core_vnet_name
+  resource_group_name = data.azurerm_resource_group.core.name
 }

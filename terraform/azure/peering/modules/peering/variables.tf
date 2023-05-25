@@ -20,6 +20,16 @@
 ############################################################################
 # Virtual Network Peering
 
+variable "organization" {
+  description = "Name of the organization."
+  type        = string
+}
+
+variable "environment" {
+  description = "Name of the environment"
+  type        = string
+}
+
 variable "core_rg_name" {
   description = "Name of the Core resource group."
   type        = string

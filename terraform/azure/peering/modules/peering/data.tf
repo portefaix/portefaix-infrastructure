@@ -15,19 +15,27 @@
 # SPDX-License-Identifier: Apache-2.0
 
 data "azurerm_resource_group" "core" {
+  provider = azurerm.core
+
   name = var.core_rg_name
 }
 
 data "azurerm_virtual_network" "core" {
+  provider = azurerm.core
+
   name                = var.core_vnet_name
   resource_group_name = data.azurerm_resource_group.core.name
 }
 
 data "azurerm_resource_group" "hub" {
+  provider = azurerm.network
+
   name = var.hub_rg_name
 }
 
 data "azurerm_virtual_network" "hub" {
+  provider = azurerm.network
+
   name                = var.hub_vnet_name
   resource_group_name = data.azurerm_resource_group.hub.name
 }

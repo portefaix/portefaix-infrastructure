@@ -17,9 +17,11 @@
 module "application_gateway" {
   source = "../modules/application-gateway"
 
-  hub_rg_name   = var.hub_rg_name
-  hub_vnet_name = var.hub_vnet_name
-  service_name  = var.service_name
-  subnet_prefix = var.subnet_prefix
-  tags          = var.tags
+  organization            = var.organization
+  environment             = var.environment
+  resource_group_location = var.resource_group_location
+  core_rg_name            = var.core_rg_name
+  core_vnet_name          = var.core_vnet_name
+  subnet_prefix           = var.subnet_prefix
+  tags                    = var.tags
 }

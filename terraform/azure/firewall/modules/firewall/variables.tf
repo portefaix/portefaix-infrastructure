@@ -21,9 +21,9 @@
 ############################################################################
 # Firewall
 
-variable "service_name" {
+variable "organization" {
   type        = string
-  description = "Specifies the name of the Firewall"
+  description = "Specifies the name of the Organization"
 }
 
 variable "hub_rg_name" {
@@ -38,7 +38,7 @@ variable "hub_vnet_name" {
 
 variable "subnet_prefix" {
   type        = string
-  description = "The address prefix to use for the Azure Bastion subnet"
+  description = "The address prefix to use for the Azure Firewall subnet"
 }
 
 variable "tags" {
