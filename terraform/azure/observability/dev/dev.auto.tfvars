@@ -23,9 +23,8 @@
 
 # Prometheus
 
-cluster_rg_name     = "portefaix-dev-aks"
-cluster_rg_location = "West Europe"
-cluster_name        = "portefaix-dev-aks"
+cluster_rg_name = "portefaix-dev-aks"
+cluster_name    = "portefaix-dev-aks"
 
 prometheus_namespace       = "monitoring"
 prometheus_service_account = "prometheus"
