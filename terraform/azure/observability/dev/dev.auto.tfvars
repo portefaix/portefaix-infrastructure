@@ -44,7 +44,7 @@ mimir_service_account = "mimir"
 
 mimir_tags = {
   "made-by"           = "terraform"
-  "service"           = "thanos"
+  "service"           = "mimir"
   "project"           = "portefaix"
   "env"               = "dev"
   "portefaix-version" = "v0.43.0"
