@@ -21,19 +21,89 @@
 #############################################################################
 # Observability
 
+variable "cluster_name" {
+  type        = string
+  description = "Name of the EKS cluster"
+}
+
+variable "cluster_rg_name" {
+  type        = string
+  description = "The AKS cluster resource group name"
+}
+
 # Prometheus
 
-variable "resource_group_name" {
+variable "prometheus_namespace" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "The Kubernetes namespace"
 }
 
-variable "resource_group_location" {
+variable "prometheus_service_account" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The Kubernetes service account"
 }
 
-variable "tags" {
+variable "prometheus_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Mimir
+
+variable "mimir_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "mimir_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "mimir_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Loki
+
+variable "loki_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "loki_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "loki_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Tempo
+
+variable "tempo_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "tempo_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "tempo_tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
   default = {

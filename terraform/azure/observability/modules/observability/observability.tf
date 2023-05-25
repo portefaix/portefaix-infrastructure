@@ -16,48 +16,56 @@
 
 module "prometheus" {
   source  = "nlamirault/observability/azurerm//modules/prometheus"
-  version = "0.5.0"
+  version = "2.0.0"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
+  cluster_name            = var.cluster_name
+  cluster_rg_name         = data.azurerm_resource_group.this.name
+  resource_group_name     = data.azurerm_resource_group.this.name
+  resource_group_location = data.azurerm_resource_group.this.location
+  namespace               = var.prometheus_namespace
+  service_account         = var.prometheus_service_account
 
-  tags = merge({
-    "service" = "prometheus"
-  }, var.tags)
+  tags = var.prometheus_tags
 }
 
-module "thanos" {
-  source  = "nlamirault/observability/azurerm//modules/thanos"
-  version = "0.5.0"
+module "mimir" {
+  source  = "nlamirault/observability/azurerm//modules/mimir"
+  version = "2.0.0"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-
-  tags = merge({
-    "service" = "thanos"
-  }, var.tags)
+  cluster_name            = var.cluster_name
+  cluster_rg_name         = data.azurerm_resource_group.this.name
+  resource_group_name     = data.azurerm_resource_group.this.name
+  resource_group_location = data.azurerm_resource_group.this.location
+  namespace               = var.mimir_namespace
+  service_account         = var.mimir_service_account
+  bucket_name             = local.mimir_service
+  tags                    = var.mimir_tags
 }
 
 module "loki" {
   source  = "nlamirault/observability/azurerm//modules/loki"
-  version = "0.5.0"
+  version = "2.0.0"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-
-  tags = merge({
-    "service" = "loki"
-  }, var.tags)
+  cluster_name            = var.cluster_name
+  cluster_rg_name         = data.azurerm_resource_group.this.name
+  resource_group_name     = data.azurerm_resource_group.this.name
+  resource_group_location = data.azurerm_resource_group.this.location
+  namespace               = var.loki_namespace
+  service_account         = var.loki_service_account
+  bucket_name             = local.loki_service
+  tags                    = var.loki_tags
 }
 
 module "tempo" {
   source  = "nlamirault/observability/azurerm//modules/tempo/"
-  version = "0.5.0"
+  version = "2.0.0"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-
-  tags = merge({
-    "service" = "tempo"
-  }, var.tags)
+  cluster_name            = var.cluster_name
+  cluster_rg_name         = data.azurerm_resource_group.this.name
+  resource_group_name     = data.azurerm_resource_group.this.name
+  resource_group_location = data.azurerm_resource_group.this.location
+  namespace               = var.tempo_namespace
+  service_account         = var.tempo_service_account
+  bucket_name             = local.tempo_service
+  tags                    = var.tempo_tags
 }

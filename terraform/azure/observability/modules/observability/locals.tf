@@ -14,10 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "azurerm" {
-  alias = "core"
-}
-
-provider "azurerm" {
-  alias = "network"
+locals {
+  #   prometheus_service = format("%s-prometheus", var.cluster_rg_name)
+  mimir_service = format("%s-mimir", var.cluster_rg_name)
+  loki_service  = format("%s-loki", var.cluster_rg_name)
+  tempo_service = format("%s-tempo", var.cluster_rg_name)
 }

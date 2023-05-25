@@ -17,16 +17,60 @@
 ############################################################################
 # Provider
 
-subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 
 ##############################################################################
 # Obervability
 
-resource_group_name     = "portefaix-core-dev"
-resource_group_location = "West Europe"
+# Prometheus
 
-tags = {
+cluster_rg_name = "portefaix-dev-aks"
+cluster_name    = "portefaix-dev-aks"
+
+prometheus_namespace       = "monitoring"
+prometheus_service_account = "prometheus"
+
+prometheus_tags = {
   "made-by"           = "terraform"
+  "service"           = "prometheus"
+  "project"           = "portefaix"
+  "env"               = "dev"
+  "portefaix-version" = "v0.43.0"
+}
+
+# Mimir
+
+mimir_namespace       = "monitoring"
+mimir_service_account = "mimir"
+
+mimir_tags = {
+  "made-by"           = "terraform"
+  "service"           = "mimir"
+  "project"           = "portefaix"
+  "env"               = "dev"
+  "portefaix-version" = "v0.43.0"
+}
+
+# Loki
+
+loki_namespace       = "logging"
+loki_service_account = "loki"
+
+loki_tags = {
+  "made-by"           = "terraform"
+  "service"           = "loki"
+  "project"           = "portefaix"
+  "env"               = "dev"
+  "portefaix-version" = "v0.43.0"
+}
+
+# Tempo
+
+tempo_namespace       = "tracing"
+tempo_service_account = "tempo"
+
+tempo_tags = {
+  "made-by"           = "terraform"
+  "service"           = "tempo"
   "project"           = "portefaix"
   "env"               = "dev"
   "portefaix-version" = "v0.43.0"

@@ -18,7 +18,22 @@
 module "observability" {
   source = "../modules/observability"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-  tags                    = var.tags
+  cluster_rg_name = var.cluster_rg_name
+  cluster_name    = var.cluster_name
+
+  prometheus_namespace       = var.prometheus_namespace
+  prometheus_service_account = var.prometheus_service_account
+  prometheus_tags            = var.prometheus_tags
+
+  mimir_namespace       = var.mimir_namespace
+  mimir_service_account = var.mimir_service_account
+  mimir_tags            = var.mimir_tags
+
+  loki_namespace       = var.loki_namespace
+  loki_service_account = var.loki_service_account
+  loki_tags            = var.loki_tags
+
+  tempo_namespace       = var.tempo_namespace
+  tempo_service_account = var.tempo_service_account
+  tempo_tags            = var.tempo_tags
 }

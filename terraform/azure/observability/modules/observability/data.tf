@@ -14,10 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "azurerm" {
-  alias = "core"
-}
-
-provider "azurerm" {
-  alias = "network"
+data "azurerm_resource_group" "this" {
+  name = var.cluster_rg_name
 }

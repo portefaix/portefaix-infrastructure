@@ -17,26 +17,97 @@
 ############################################################################
 # Provider
 
-variable "subscription_core_dev_id" {
-  type        = string
-  description = "The Subscription ID for Core Dev resources"
-}
+#variable subscription_id {
+#  type        = string
+#  description = "The Subscription ID which should be used"
+#}
 
 #############################################################################
 # Observability
 
-variable "resource_group_name" {
+variable "cluster_name" {
   type        = string
-  description = "The Name which should be used for this Resource Group"
+  description = "Name of the AKS cluster"
 }
 
-variable "resource_group_location" {
+variable "cluster_rg_name" {
   type        = string
-  description = "The Azure Region where the Resource Group should exist"
+  description = "The AKS cluster resource group name"
 }
 
+# Prometheus
 
-variable "tags" {
+variable "prometheus_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "prometheus_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "prometheus_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Mimir
+
+variable "mimir_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "mimir_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "mimir_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Loki
+
+variable "loki_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "loki_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "loki_tags" {
+  type        = map(string)
+  description = "A mapping of tags to assign to the resource."
+  default = {
+    "made-by" = "terraform"
+  }
+}
+
+# Tempo
+
+variable "tempo_namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "tempo_service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "tempo_tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
   default = {
