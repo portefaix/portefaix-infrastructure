@@ -14,10 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# provider "azurerm" {
-#   alias = "core"
-# }
+provider "azurerm" {
+  alias = "core"
+}
 
-# provider "azurerm" {
-#   alias = "network"
-# }
+provider "azurerm" {
+  alias = "network"
+}
