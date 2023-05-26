@@ -22,7 +22,7 @@ module "alb_external" {
   version = "8.6.0"
 
   name      = local.alb_external_name
-  subnets   = data.aws_subnet_ids.public.ids
+  subnets   = data.aws_subnets.public.ids
   create_lb = true
   internal  = false
 
@@ -75,7 +75,7 @@ module "alb_internal" {
   version = "8.6.0"
 
   name      = local.alb_internal_name
-  subnets   = data.aws_subnet_ids.private.ids
+  subnets   = data.aws_subnets.private.ids
   create_lb = true
   internal  = true
 

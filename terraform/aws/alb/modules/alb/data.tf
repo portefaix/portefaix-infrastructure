@@ -23,23 +23,45 @@ data "aws_vpc" "this" {
   }
 }
 
-data "aws_subnet_ids" "public" {
-  vpc_id = data.aws_vpc.this.id
+# data "aws_subnet_ids" "public" {
+#   vpc_id = data.aws_vpc.this.id
+#   filter {
+#     name = "tag:Name"
+#     values = [
+#       format("%s-public", var.vpc_name)
+#     ]
+#   }
+# }
+
+# data "aws_subnet_ids" "private" {
+#   vpc_id = data.aws_vpc.this.id
+#   filter {
+#     name = "tag:Name"
+#     values = [
+#       format("%s-private", var.vpc_name)
+#     ]
+#   }
+# }
+
+data "aws_subnets" "private" {
   filter {
-    name = "tag:Name"
-    values = [
-      format("%s-public", var.vpc_name)
-    ]
+    name = "vpc-id"
+    values = [data.aws_vpc.this.id]
+  }
+
+  tags = {
+    public = true
   }
 }
 
-data "aws_subnet_ids" "private" {
-  vpc_id = data.aws_vpc.this.id
+data "aws_subnets" "public" {
   filter {
-    name = "tag:Name"
-    values = [
-      format("%s-private", var.vpc_name)
-    ]
+    name = "vpc-id"
+    values = [data.aws_vpc.this.id]
+  }
+
+  tags = {
+    private = true
   }
 }
 
