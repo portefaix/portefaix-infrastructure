@@ -75,7 +75,11 @@ function tf_validate() {
     echo_info "Infra component: ${infra}"
     pushd "${infra}" > /dev/null || exit 1
     output=$(mktemp)
-    terraform init -upgrade &> "${output}"
+    if [ -d "backend-vars" ]; then
+        terraform init -upgrade -backend-config=backend-vars/main.tfvars
+    else
+        terraform init -upgrade &> "${output}"
+    fi
     check_result "init" $? "${output}"
     terraform validate &> "${output}"
     check_result "validate" $? "${output}"

@@ -23,10 +23,5 @@ terraform {
       source  = "hashicorp/aws"
       version = "4.67.0"
     }
-    # tflint-ignore: terraform_unused_required_providers
-    template = {
-      source  = "hashicorp/template"
-      version = "2.2.0"
-    }
   }
 }
