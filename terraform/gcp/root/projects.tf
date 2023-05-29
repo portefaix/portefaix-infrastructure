@@ -20,9 +20,9 @@ module "network" {
 
   name              = format("%s-network", var.organization_name)
   random_project_id = true
-  org_id            = var.organization_id
+  org_id            = data.google_organization.this.id
   billing_account   = var.billing_account
-  folder_id         = module.folders.folders_map["Shared"].id # google_folder.shared.id
+  folder_id         = module.folders.folders_map["Shared"].id
 
   default_service_account        = "deprivilege"
   enable_shared_vpc_host_project = true
@@ -32,6 +32,7 @@ module "network" {
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "logging.googleapis.com",
+    "cloudbilling.googleapis.com",
     "billingbudgets.googleapis.com"
   ]
 
@@ -44,74 +45,6 @@ module "network" {
     environment = "shared"
   }, var.labels)
 }
-
-# module "vpc" {
-#   source  = "terraform-google-modules/network/google"
-#   version = "5.2.0"
-
-#   project_id                             = module.network.project_id
-#   network_name                           = var.network_name
-#   delete_default_internet_gateway_routes = true
-
-#   # subnets = var.subnets
-#   # secondary_ranges = var.secondary_ranges
-#   subnets = [
-#     {
-#       subnet_name   = "portefaix-core-prod"
-#       subnet_ip     = "10.10.0.0/20"
-#       subnet_region = "europe-west1"
-#       subnet_private_access = true
-#       subnet_flow_logs      = true
-#     },
-#     {
-#       subnet_name           = "portefaix-core-staging"
-#       subnet_ip             = "10.11.0.0/20"
-#       subnet_region         = "europe-west1"
-#       subnet_private_access = true
-#       subnet_flow_logs      = true
-#     },
-#     {
-#       subnet_name           = "portefaix-core-dev"
-#       subnet_ip             = "10.12.0.0/20"
-#       subnet_region         = "europe-west1"
-#       subnet_private_access = true
-#       subnet_flow_logs      = true
-#     }
-#   ]
-#   secondary_ranges = {
-#     portefaix-core-prod = [
-#       {
-#         range_name    = "portefaix-prod-gke-services"
-#         ip_cidr_range = "10.40.16.0/20"
-#       },
-#       {
-#         range_name    = "portefaix-prod-gke-pods"
-#         ip_cidr_range = "10.40.32.0/20"
-#       },
-#     ],
-#     portefaix-core-staging = [
-#       {
-#         range_name    = "portefaix-staging-gke-services"
-#         ip_cidr_range = "10.41.16.0/20"
-#       },
-#       {
-#         range_name    = "portefaix-staging-gke-pods"
-#         ip_cidr_range = "10.41.32.0/20"
-#       },
-#     ],
-#     portefaix-core-dev = [
-#       {
-#         range_name    = "portefaix-dev-gke-services"
-#         ip_cidr_range = "10.42.16.0/20"
-#       },
-#       {
-#         range_name    = "portefaix-dev-gke-pods"
-#         ip_cidr_range = "10.42.32.0/20"
-#       },
-#     ]
-#   }
-
-# }
 
 module "vpc_core_prod" {
   source  = "terraform-google-modules/network/google"
@@ -157,9 +90,9 @@ module "shared" {
   random_project_id       = true
   default_service_account = "deprivilege"
 
-  org_id          = var.organization_id
+  org_id          = data.google_organization.this.id
   billing_account = var.billing_account
-  folder_id       = module.folders.folders_map["Shared"].id # google_folder.shared.id
+  folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
     "logging.googleapis.com",
@@ -168,7 +101,6 @@ module "shared" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -189,9 +121,9 @@ module "testing" {
   random_project_id       = true
   default_service_account = "deprivilege"
 
-  org_id          = var.organization_id
+  org_id          = data.google_organization.this.id
   billing_account = var.billing_account
-  folder_id       = module.folders.folders_map["Shared"].id # google_folder.shared.id
+  folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
     "logging.googleapis.com",
@@ -200,7 +132,6 @@ module "testing" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -216,39 +147,6 @@ module "testing" {
   }, var.labels)
 }
 
-# module "security" {
-#   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-#   version = "13.1.0"
-
-#   name                    = format("%s-security", var.organization_name)
-#   random_project_id       = true
-#   default_service_account = "deprivilege"
-
-#   org_id          = var.organization_id
-#   billing_account = var.billing_account
-#   folder_id       = google_folder.security.id
-
-#   activate_apis = [
-#     "logging.googleapis.com",
-#     "pubsub.googleapis.com",
-#     "securitycenter.googleapis.com",
-#     "billingbudgets.googleapis.com"
-#   ]
-
-#   shared_vpc = module.network.project_id
-#   # shared_vpc_subnets = module.vpc.subnets_self_links
-#   shared_vpc_subnets = concat(
-#     module.vpc_core_prod.subnets_self_links,
-#     module.vpc_core_staging.subnets_self_links,
-#     module.vpc_core_dev.subnets_self_links
-#   )
-
-#   labels = merge({
-#     service     = "security"
-#     environment = "security"
-#   }, var.labels)
-# }
-
 module "audit" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
   version = "14.2.0"
@@ -257,9 +155,9 @@ module "audit" {
   random_project_id       = true
   default_service_account = "deprivilege"
 
-  org_id          = var.organization_id
+  org_id          = data.google_organization.this.id
   billing_account = var.billing_account
-  folder_id       = google_folder.security.id
+  folder_id       = module.folders.folders_map["Security"].id
 
   activate_apis = [
     "logging.googleapis.com",
@@ -268,7 +166,6 @@ module "audit" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -289,19 +186,18 @@ module "logging" {
   random_project_id       = true
   default_service_account = "deprivilege"
 
-  org_id          = var.organization_id
+  org_id          = data.google_organization.this.id
   billing_account = var.billing_account
-  folder_id       = module.folders.folders_map["Security"].id # google_folder.shared.id
+  folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
     "logging.googleapis.com",
-    # "bigquery.googleapis.com",
+    "monitoring.googleapis.com",
     "pubsub.googleapis.com",
     "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -319,81 +215,48 @@ module "logging" {
 }
 
 
-# module "core" {
-#   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-#   version = "13.1.0"
+module "core" {
+  source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
+  version = "13.1.0"
 
-#   for_each = toset(var.core_environments)
+  for_each = toset(var.core_environments)
 
-#   name                    = format("%s-core-%s", var.organization_name, each.key)
-#   random_project_id       = true
-#   default_service_account = "deprivilege"
+  name                    = format("%s-core-%s", var.organization_name, each.key)
+  random_project_id       = true
+  default_service_account = "deprivilege"
 
-#   org_id                  = var.organization_id
-#   billing_account         = var.billing_account
-#   folder_id               = google_folder.core.id
+  org_id          = data.google_organization.this.id
+  billing_account = var.billing_account
+  folder_id       = module.folders.folders_map["Core"].id
 
-#   activate_apis           = [
-#     "iam.googleapis.com",
-#     "cloudresourcemanager.googleapis.com",
-#     "compute.googleapis.com",
-#     "container.googleapis.com",
-#     "containerregistry.googleapis.com",
-#     "containersecurity.googleapis.com",
-#     "artifactregistry.googleapis.com",
-#     "secretmanager.googleapis.com",
-#     "dns.googleapis.com",
-#     "cloudkms.googleapis.com",
-#     "iap.googleapis.com",
-#     "logging.googleapis.com",
-#     "pubsub.googleapis.com",
-#     "iamcredentials.googleapis.com",
-#     "sts.googleapis.com",
-#     "billingbudgets.googleapis.com"
-#   ]
+  activate_apis = [
+    "iam.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "compute.googleapis.com",
+    "container.googleapis.com",
+    "containerregistry.googleapis.com",
+    "containersecurity.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "secretmanager.googleapis.com",
+    "dns.googleapis.com",
+    "cloudkms.googleapis.com",
+    "iap.googleapis.com",
+    "logging.googleapis.com",
+    "pubsub.googleapis.com",
+    "iamcredentials.googleapis.com",
+    "sts.googleapis.com",
+    "billingbudgets.googleapis.com"
+  ]
 
-#   shared_vpc         = module.network.project_id
-#   # shared_vpc_subnets = module.vpc.subnets_self_links
-#   shared_vpc_subnets = concat(
-#     module.vpc_core_prod.subnets_self_links,
-#     module.vpc_core_staging.subnets_self_links,
-#     module.vpc_core_dev.subnets_self_links
-#   )
+  shared_vpc = module.network.project_id
+  shared_vpc_subnets = concat(
+    module.vpc_core_prod.subnets_self_links,
+    module.vpc_core_staging.subnets_self_links,
+    module.vpc_core_dev.subnets_self_links
+  )
 
-#   # budget_alert_pubsub_topic   = var.org_testing_logs_project_alert_pubsub_topic
-#   # budget_alert_spent_percents = var.org_testing_logs_project_alert_spent_percents
-
-#   labels = merge({
-#     service = format("%s-core-%s", var.organization_name, each.key)
-#     environment = each.key
-#   }, var.labels)
-# }
-
-# module "core_dev" {
-#   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-#   version = "13.1.0"
-
-#   name                    = format("%s-core-dev", var.organization_name)
-#   random_project_id       = true
-#   default_service_account = "deprivilege"
-
-#   org_id                  = var.organization_id
-#   billing_account         = var.billing_account
-#   folder_id               = google_folder.core.id
-
-#   activate_apis = local.core_activate_apis
-
-#   shared_vpc         = module.network.project_id
-#   # shared_vpc_subnets = module.vpc.subnets_self_links
-#   shared_vpc_subnets = concat(
-#     module.vpc_core_dev.subnets_self_links
-#   )
-
-#   # budget_alert_pubsub_topic   = var.org_testing_logs_project_alert_pubsub_topic
-#   # budget_alert_spent_percents = var.org_testing_logs_project_alert_spent_percents
-
-#   labels = merge({
-#     service = format("%s-core-%s", var.organization_name, each.key)
-#     environment = each.key
-#   }, var.labels)
-# }
+  labels = merge({
+    service     = format("%s-core-%s", var.organization_name, each.key)
+    environment = each.key
+  }, var.labels)
+}

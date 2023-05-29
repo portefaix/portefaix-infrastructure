@@ -14,6 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# data "google_organization" "this" {
-#   organization = var.organization_id
-# }
+data "google_organization" "this" {
+  organization = var.organization_id
+}
