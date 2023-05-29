@@ -101,7 +101,6 @@ module "shared" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -133,7 +132,6 @@ module "testing" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -159,8 +157,7 @@ module "audit" {
 
   org_id          = data.google_organization.this.id
   billing_account = var.billing_account
-  folder_id       = module.folders.folders_map["Security"].id # google_folder.security.id
-  # folder_id = google_folder.security.id
+  folder_id       = module.folders.folders_map["Security"].id
 
   activate_apis = [
     "logging.googleapis.com",
@@ -169,7 +166,6 @@ module "audit" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -196,13 +192,12 @@ module "logging" {
 
   activate_apis = [
     "logging.googleapis.com",
-    # "bigquery.googleapis.com",
+    "monitoring.googleapis.com",
     "pubsub.googleapis.com",
     "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
@@ -254,15 +249,11 @@ module "core" {
   ]
 
   shared_vpc = module.network.project_id
-  # shared_vpc_subnets = module.vpc.subnets_self_links
   shared_vpc_subnets = concat(
     module.vpc_core_prod.subnets_self_links,
     module.vpc_core_staging.subnets_self_links,
     module.vpc_core_dev.subnets_self_links
   )
-
-  # budget_alert_pubsub_topic   = var.org_testing_logs_project_alert_pubsub_topic
-  # budget_alert_spent_percents = var.org_testing_logs_project_alert_spent_percents
 
   labels = merge({
     service     = format("%s-core-%s", var.organization_name, each.key)

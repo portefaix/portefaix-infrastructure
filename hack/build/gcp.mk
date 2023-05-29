@@ -86,72 +86,77 @@ gcp-bootstrap-credentials: ## Downloading key
 .PHONY: gcp-bootstrap-iam
 gcp-bootstrap-iam: guard-GCP_ORG_ID ## IAM for Bootstrap service account
 	@echo -e "$(OK_COLOR)[$(APP)] IAM for Bootstrap service account$(NO_COLOR)"
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.organizationAdmin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.projectCreator" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.projectMover" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/iam.organizationRoleAdmin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/billing.admin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/logging.admin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/compute.networkAdmin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding \
-		"$(GCP_ORG_ID)" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/iam.serviceAccountAdmin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.folderAdmin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/storage.admin" \
 		--user-output-enabled false
-	gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/orgpolicy.policyAdmin" \
 		--user-output-enabled false
-	gcloud projects add-iam-policy-binding \
-		"${GCP_ROOT_PROJECT}" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.projectIamAdmin" \
 		--user-output-enabled false
-	gcloud projects add-iam-policy-binding \
-		"${GCP_ROOT_PROJECT}" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/pubsub.admin" \
 		--user-output-enabled false
-	gcloud projects add-iam-policy-binding \
-		"${GCP_ROOT_PROJECT}" \
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/pubsub.editor" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/serviceusage.serviceUsageAdmin" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/pubsub.editor" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/resourcemanager.tagAdmin" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/resourcemanager.tagUser" \
 		--user-output-enabled false
 
 .PHONY: gcp-bootstrap-apis
@@ -163,22 +168,8 @@ gcp-bootstrap-apis: ## Enable APIs on project
 	gcloud services enable iamcredentials.googleapis.com --project $(GCP_ROOT_PROJECT)
 	gcloud services enable sts.googleapis.com --project $(GCP_ROOT_PROJECT)
 	gcloud services enable cloudbilling.googleapis.com --project $(GCP_ROOT_PROJECT)
-
-
-# .PHONY: gcp-organization-bootstrap
-# gcp-organization-bootstrap: guard-GCP_ORG_ID guard-GCP_USER ## Bootstrap the organization for Google Cloud Platform
-# 	@echo -e "$(OK_COLOR)[$(APP)] Bootstrap GCP Organization$(NO_COLOR)"
-# 	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/billing.admin"
-# 	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/logging.admin"
-# 	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/iam.organizationRoleAdmin"
-# 	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/resourcemanager.projectCreator"
-# 	@gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) --member user:$(GCP_USER) --role="roles/storage.admin"
-
-# .PHONY: gcp-organization-project
-# gcp-organization-project: guard-GCP_ORG_NAME guard-GCP_ORG_ID guard-GCP_BILLING
-# 	gcloud projects create $(GCP_ORG_NAME)-$(GCP_ROOT_PROJECT) --organization=$(GCP_ORG_ID)
-# 	gcloud alpha billing accounts projects link $(GCP_ORG_NAME)-$(GCP_ROOT_PROJECT) --billing-account=$(GCP_BILLING)
-
+	gcloud services enable billingbudgets.googleapis.com --project $(GCP_ROOT_PROJECT)
+	gcloud services enable cloudidentity.googleapis.com --project $(GCP_ROOT_PROJECT)
 
 
 # .PHONY: gcp-bootstrap-iam

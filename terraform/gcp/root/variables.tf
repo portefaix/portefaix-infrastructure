@@ -117,43 +117,34 @@ variable "default_network_tier" {
   default     = ""
 }
 
-variable "network_budget_amount" {
-  description = "The amount to use for the budget"
-  default     = 10
-  type        = number
-}
-
-variable "network_budget_alert_spent_percents" {
-  description = "The list of percentages of the budget to alert on"
-  type        = list(number)
-  default     = [0.7, 0.8, 0.9, 1.0]
-}
-
-variable "network_budget_alert_pubsub_topic" {
-  description = "The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form of `projects/{project_id}/topics/{topic_id}`"
-  type        = string
-  default     = null
-}
 
 #############################################################################
-# Logging
+# Billing
 
-variable "logging_budget_amount" {
-  description = "The amount to use for the budget"
-  default     = 10
-  type        = number
+variable "budgets_amounts" {
+  description = "The amounts to use for the budget"
+  type        = list(string)
+  default = [
+    "5",
+    "25",
+    "50",
+    "100",
+    "200",
+    "300",
+    "400",
+    "500"
+  ]
 }
 
-variable "logging_budget_alert_spent_percents" {
+variable "budget_alert_spent_percents" {
   description = "The list of percentages of the budget to alert on"
   type        = list(number)
-  default     = [0.7, 0.8, 0.9, 1.0]
+  default     = [0.5, 0.7, 1.0]
 }
 
-variable "logging_budget_alert_pubsub_topic" {
-  description = "The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form of `projects/{project_id}/topics/{topic_id}` for the logging project"
+variable "budget_topic_name" {
   type        = string
-  default     = null
+  description = "The Pub/Sub topic name for budget"
 }
 
 #############################################################################
@@ -173,10 +164,7 @@ variable "vms_to_allow" {
 #############################################################################
 # Commons
 
-variable "budget_topic_name" {
-  type        = string
-  description = "The Pub/Sub topic name for budget"
-}
+
 
 variable "labels" {
   description = "Labels to apply to the project."
