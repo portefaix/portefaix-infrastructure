@@ -40,11 +40,11 @@ labels:
   description: "Cloud Provider / Scaleway"
   color: "068082"
 
-- name: "cloud/digitalocean"
+- name: "cloud/oci"
   description: "Cloud Provider / OCI"
   color: "068082"
 
-- name: "cloud/digitalocean"
+- name: "cloud/ibmcloud"
   description: "Cloud Provider / IBMCloud"
   color: "068082"
 
