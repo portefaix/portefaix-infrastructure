@@ -41,6 +41,14 @@ labels:
   color: "068082"
 
 - name: "cloud/digitalocean"
+  description: "Cloud Provider / OCI"
+  color: "068082"
+
+- name: "cloud/digitalocean"
+  description: "Cloud Provider / IBMCloud"
+  color: "068082"
+
+- name: "cloud/digitalocean"
   description: "Cloud Provider / Digital Ocean"
   color: "068082"
 
