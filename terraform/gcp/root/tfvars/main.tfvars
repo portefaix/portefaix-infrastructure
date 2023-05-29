@@ -51,8 +51,6 @@ group_billing_admins  = "portefaix-billing-admins@portefaix.xyz"
 group_audit_admins    = "portefaix-audit-admins@portefaix.xyz"
 group_security_admins = "portefaix-security-admins@portefaix.xyz"
 
-# default_region       = "europe-west1"
-
 core_network_name = "portefaix-core"
 
 subnets = {
@@ -123,63 +121,6 @@ secondary_ranges = {
     ]
   }
 }
-
-# subnets = [
-#   {
-#     subnet_name   = "portefaix-core-prod"
-#     subnet_ip     = "10.10.0.0/20"
-#     subnet_region = "europe-west1"
-#     subnet_private_access = true
-#     subnet_flow_logs      = true
-#   },
-#   {
-#     subnet_name           = "portefaix-core-staging"
-#     subnet_ip             = "10.11.0.0/20"
-#     subnet_region         = "europe-west1"
-#     subnet_private_access = true
-#     subnet_flow_logs      = true
-#   },
-#   {
-#     subnet_name           = "portefaix-core-dev"
-#     subnet_ip             = "10.12.0.0/20"
-#     subnet_region         = "europe-west1"
-#     subnet_private_access = true
-#     subnet_flow_logs      = true
-#   },
-# ]
-
-# secondary_ranges = {
-#   portefaix-core-prod = [
-#     {
-#       range_name    = "portefaix-dev-gke-services"
-#       ip_cidr_range = "10.40.16.0/20"
-#     },
-#     {
-#       range_name    = "portefaix-dev-gke-pods"
-#       ip_cidr_range = "10.40.32.0/20"
-#     },
-#   ],
-#   portefaix-core-staging = [
-#     {
-#       range_name    = "portefaix-dev-gke-services"
-#       ip_cidr_range = "10.41.16.0/20"
-#     },
-#     {
-#       range_name    = "portefaix-dev-gke-pods"
-#       ip_cidr_range = "10.41.32.0/20"
-#     },
-#   ],
-#   portefaix-core-dev = [
-#     {
-#       range_name    = "portefaix-dev-gke-services"
-#       ip_cidr_range = "10.42.16.0/20"
-#     },
-#     {
-#       range_name    = "portefaix-dev-gke-pods"
-#       ip_cidr_range = "10.42.32.0/20"
-#     },
-#   ]
-# }
 
 budget_topic_name = "budget"
 # network_alert_pubsub_topic = "projects/{project_id}/topics/{topic_id}"

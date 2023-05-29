@@ -14,27 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "google_folder" "core" {
-  display_name = "Core"
-  parent       = local.org_parent #data.google_organization.this.name
-}
-
-resource "google_folder" "security" {
-  display_name = "Security"
-  parent       = local.org_parent #data.google_organization.this.name
-}
-
-resource "google_folder" "shared" {
-  display_name = "Shared"
-  parent       = local.org_parent #data.google_organization.this.name
-}
-
-resource "google_folder" "suspended" {
-  display_name = "Suspended"
-  parent       = local.org_parent #data.google_organization.this.name
-}
-
-
 module "folders" {
   source  = "terraform-google-modules/folders/google"
   version = "3.2.0"

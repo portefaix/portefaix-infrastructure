@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  org_parent = "organizations/${var.organization_id}"
+  # org_parent = "organizations/${var.organization_id}"
 
   # org_admins_org_iam_permissions = var.org_policy_admin_role == true ? [
   #   "roles/orgpolicy.policyAdmin",

@@ -89,12 +89,17 @@ gcp-bootstrap-iam: guard-GCP_ORG_ID ## IAM for Bootstrap service account
 	gcloud organizations add-iam-policy-binding \
 		"$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
-		--role="roles/resourcemanager.organizationViewer" \
+		--role="roles/resourcemanager.organizationAdmin" \
 		--user-output-enabled false
 	gcloud organizations add-iam-policy-binding \
 		"$(GCP_ORG_ID)" \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.projectCreator" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding \
+		"$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/resourcemanager.projectMover" \
 		--user-output-enabled false
 	gcloud organizations add-iam-policy-binding \
 		"$(GCP_ORG_ID)" \
@@ -128,6 +133,10 @@ gcp-bootstrap-iam: guard-GCP_ORG_ID ## IAM for Bootstrap service account
 	gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) \
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/storage.admin" \
+		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding $(GCP_ORG_ID) \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/orgpolicy.policyAdmin" \
 		--user-output-enabled false
 	gcloud projects add-iam-policy-binding \
 		"${GCP_ROOT_PROJECT}" \

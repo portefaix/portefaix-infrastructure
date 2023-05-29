@@ -34,7 +34,6 @@
 #   policy_type = "boolean"
 # }
 
-
 module "org_domain_restricted_sharing" {
   source  = "terraform-google-modules/org-policy/google//modules/domain_restricted_sharing"
   version = "5.2.2"

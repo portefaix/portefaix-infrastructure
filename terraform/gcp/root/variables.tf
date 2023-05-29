@@ -40,119 +40,41 @@ variable "core_environments" {
   type        = list(string)
 }
 
-variable "default_region" {
-  type        = string
-  description = "The location linked to the project"
-  default     = "europe-west1"
-}
+# variable "default_region" {
+#   type        = string
+#   description = "The location linked to the project"
+#   default     = "europe-west1"
+# }
 
 variable "billing_account" {
   description = "The ID of the billing account to associate projects with."
   type        = string
 }
 
-variable "group_org_admins" {
-  description = "Google Group for GCP Organization Administrators"
-  type        = string
-}
-
-variable "group_billing_admins" {
-  description = "Google Group for GCP Billing Administrators"
-  type        = string
-}
-
-variable "group_audit_admins" {
-  description = "Google Group for GCP Audit Administrators"
-  type        = string
-}
-
-variable "group_security_admins" {
-  description = "Google Group for GCP Security Administrators"
-  type        = string
-}
-
-variable "essential_contacts_language" {
-  description = "Essential Contacts preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages."
-  type        = string
-  default     = "en"
-}
-
-variable "sa_org_iam_permissions" {
-  description = "List of permissions granted to Terraform service account across the GCP organization."
-  type        = list(string)
-  default = [
-    "roles/billing.user",
-    "roles/compute.networkAdmin",
-    "roles/compute.xpnAdmin",
-    "roles/iam.securityAdmin",
-    "roles/iam.serviceAccountAdmin",
-    "roles/logging.configWriter",
-    "roles/orgpolicy.policyAdmin",
-    "roles/resourcemanager.folderAdmin",
-    "roles/resourcemanager.organizationViewer",
-  ]
-}
-
-variable "sa_enable_impersonation" {
-  description = "Allow org_admins group to impersonate service account & enable APIs required."
-  type        = bool
-  default     = true
-}
-
-variable "tf_service_account_id" {
-  description = "ID of service account for terraform in seed project"
-  type        = string
-  default     = "org-terraform"
-}
-
-variable "tf_service_account_name" {
-  description = "Display name of service account for terraform in seed project"
-  type        = string
-  default     = "Portefaix Organization Terraform Account"
-}
-
-# variable "groups" {
-#   description = "Contain the details of the Groups to be created."
-#   type = object({
-#     create_groups   = bool
-#     billing_project = string
-#     required_groups = object({
-#       group_org_admins           = string
-#       group_billing_admins       = string
-#       group_audit_admins         = string
-#       group_security_admins           = string
-#       group_network_admins = string
-#       group_developers = string
-#       group_devops = string
-#     })
-#     optional_groups = object({
-#       group_logging_admins      = string
-#       group_monitoring_admins    = string
-#     })
-#   })
-#   default = {
-#     create_groups   = true
-#     billing_project = ""
-#     required_groups = {
-#       group_org_admins           = "portefaix-organization-admins@portefaix.xyz"
-#       group_billing_admins       = "portefaix-billing-admins@portefaix.xyz"
-#       group_audit_admins           = "portefaix-audit-admins@portefaix.xyz"
-#       group_security_admins = "portefaix-security-admins@portefaix.xyz"
-#       group_network_admins = "portefaix-network-admins@portefaix.xyz"
-#       group_developers = "portefaix-developers-admins@portefaix.xyz"
-#       group_devops = "portefaix-devops-admins@portefaix.xyz"
-#     }
-#     optional_groups = {
-#       group_logging_admins = "portefaix-logging-admins@portefaix.xyz"
-#       group_monitoring_admins = "portefaix-monitoring-admins@portefaix.xyz"
-#     }
-#   }
+# variable "group_org_admins" {
+#   description = "Google Group for GCP Organization Administrators"
+#   type        = string
 # }
 
-# variable "initial_group_config" {
-#   description = "Define the group configuration when it are initialized. Valid values are: WITH_INITIAL_OWNER, EMPTY and INITIAL_GROUP_CONFIG_UNSPECIFIED."
+# variable "group_billing_admins" {
+#   description = "Google Group for GCP Billing Administrators"
 #   type        = string
-#   default     = "WITH_INITIAL_OWNER"
+# }
+
+# variable "group_audit_admins" {
+#   description = "Google Group for GCP Audit Administrators"
+#   type        = string
+# }
+
+# variable "group_security_admins" {
+#   description = "Google Group for GCP Security Administrators"
+#   type        = string
+# }
+
+# variable "essential_contacts_language" {
+#   description = "Essential Contacts preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages."
+#   type        = string
+#   default     = "en"
 # }
 
 #############################################################################
@@ -261,5 +183,6 @@ variable "labels" {
   type        = map(string)
   default = {
     project = "portefaix"
+    made-by = "terraform"
   }
 }
