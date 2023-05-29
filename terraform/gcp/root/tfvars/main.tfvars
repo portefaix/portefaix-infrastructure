@@ -40,7 +40,11 @@ organization_name = "portefaix"
 
 policy_domains_to_allow = ["portefaix.xyz"]
 
-core_environments = ["dev"] #, "staging", "prod"]
+core_environments = [
+  "dev",
+  # "staging",
+  # "prod"
+]
 
 group_org_admins      = "portefaix-organization-admins@portefaix.xyz"
 group_billing_admins  = "portefaix-billing-admins@portefaix.xyz"

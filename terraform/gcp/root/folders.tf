@@ -14,32 +14,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# resource "google_folder" "core" {
-#   display_name = "Core"
-#   parent       = local.org_parent #data.google_organization.this.name
-# }
+resource "google_folder" "core" {
+  display_name = "Core"
+  parent       = local.org_parent #data.google_organization.this.name
+}
 
-# resource "google_folder" "security" {
-#   display_name = "Security"
-#   parent       = local.org_parent #data.google_organization.this.name
-# }
+resource "google_folder" "security" {
+  display_name = "Security"
+  parent       = local.org_parent #data.google_organization.this.name
+}
 
-# resource "google_folder" "shared" {
-#   display_name = "Shared"
-#   parent       = local.org_parent #data.google_organization.this.name
-# }
+resource "google_folder" "shared" {
+  display_name = "Shared"
+  parent       = local.org_parent #data.google_organization.this.name
+}
 
-# resource "google_folder" "Suspended" {
-#   display_name = "Suspended"
-#   parent       = local.org_parent #data.google_organization.this.name
-# }
+resource "google_folder" "suspended" {
+  display_name = "Suspended"
+  parent       = local.org_parent #data.google_organization.this.name
+}
 
 
 module "folders" {
   source  = "terraform-google-modules/folders/google"
   version = "3.2.0"
 
-  parent = format("folders/%s", local.org_parent) #data.google_organization.this.name
+  parent = data.google_organization.this.name
 
   names = [
     "Core",
@@ -50,13 +50,13 @@ module "folders" {
 
   set_roles = true
 
-  per_folder_admins = {
-    # dev = "group:gcp-developers@domain.com"
-    # staging = "group:gcp-qa@domain.com"
-    # production = "group:gcp-ops@domain.com"
-  }
+  # per_folder_admins = {
+  #   dev = "group:gcp-developers@domain.com"
+  #   staging = "group:gcp-qa@domain.com"
+  #   production = "group:gcp-ops@domain.com"
+  # }
 
-  all_folder_admins = [
-    var.group_org_admins
-  ]
+  # all_folder_admins = [
+  #   var.group_org_admins
+  # ]
 }

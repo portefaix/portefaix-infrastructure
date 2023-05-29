@@ -14,23 +14,23 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# module "bootstrap" {
-#   source  = "terraform-google-modules/bootstrap/google"
-#   version = "6.2.0"
+module "bootstrap" {
+  source  = "terraform-google-modules/bootstrap/google"
+  version = "6.2.0"
 
-#   org_id          = var.organization_id
-#   billing_account = var.billing_account
+  org_id          = var.organization_id
+  billing_account = var.billing_account
 
-#   group_org_admins     = var.group_org_admins
-#   group_billing_admins = var.group_billing_admins
-#   default_region       = var.default_region
+  group_org_admins     = var.group_org_admins
+  group_billing_admins = var.group_billing_admins
+  default_region       = var.default_region
 
-#   sa_org_iam_permissions = var.sa_org_iam_permissions
-#   sa_enable_impersonation = var.sa_enable_impersonation
-#   tf_service_account_id = var.tf_service_account_id
-#   tf_service_account_name = var.tf_service_account_name
+  sa_org_iam_permissions = var.sa_org_iam_permissions
+  sa_enable_impersonation = var.sa_enable_impersonation
+  tf_service_account_id = var.tf_service_account_id
+  tf_service_account_name = var.tf_service_account_name
 
-#   project_labels = merge({
-#     service = "organization"
-#   }, var.labels)
-# }
+  project_labels = merge({
+    service = "organization"
+  }, var.labels)
+}

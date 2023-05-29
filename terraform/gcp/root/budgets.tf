@@ -15,27 +15,27 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # tfsec:ignore:google-iam-no-project-level-service-account-impersonation
-module "pubsub_budget" {
-  source  = "terraform-google-modules/pubsub/google"
-  version = "4.0.1"
+# module "pubsub_budget" {
+#   source  = "terraform-google-modules/pubsub/google"
+#   version = "4.0.1"
 
-  project_id = module.shared.project_id
-  topic      = format("%s-%s", var.organization_name, var.budget_topic_name)
-  topic_labels = merge({
-    service     = "budget"
-    role        = "pubsub"
-    environment = "shared"
-  }, var.labels)
-}
+#   project_id = module.shared.project_id
+#   topic      = format("%s-%s", var.organization_name, var.budget_topic_name)
+#   topic_labels = merge({
+#     service     = "budget"
+#     role        = "pubsub"
+#     environment = "shared"
+#   }, var.labels)
+# }
 
-module "network_budget" {
-  source  = "terraform-google-modules/project-factory/google//modules/budget"
-  version = "14.2.0"
+# module "network_budget" {
+#   source  = "terraform-google-modules/project-factory/google//modules/budget"
+#   version = "14.2.0"
 
-  billing_account = var.billing_account
-  projects        = [module.network.project_id]
+#   billing_account = var.billing_account
+#   projects        = [module.network.project_id]
 
-  amount               = var.network_budget_amount
-  alert_spent_percents = var.network_budget_alert_spent_percents
-  alert_pubsub_topic   = module.pubsub_budget.id
-}
+#   amount               = var.network_budget_amount
+#   alert_spent_percents = var.network_budget_alert_spent_percents
+#   alert_pubsub_topic   = module.pubsub_budget.id
+# }

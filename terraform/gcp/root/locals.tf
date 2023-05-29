@@ -77,23 +77,4 @@ locals {
   #   "storage.uniformBucketLevelAccess"
   # ])
 
-  # tflint-ignore: terraform_unused_declaration
-  # core_activate_apis = [
-  #   "iam.googleapis.com",
-  #   "cloudresourcemanager.googleapis.com",
-  #   "compute.googleapis.com",
-  #   "container.googleapis.com",
-  #   "containerregistry.googleapis.com",
-  #   "containersecurity.googleapis.com",
-  #   "artifactregistry.googleapis.com",
-  #   "secretmanager.googleapis.com",
-  #   "dns.googleapis.com",
-  #   "cloudkms.googleapis.com",
-  #   "iap.googleapis.com",
-  #   "logging.googleapis.com",
-  #   "pubsub.googleapis.com",
-  #   "iamcredentials.googleapis.com",
-  #   "sts.googleapis.com",
-  #   "billingbudgets.googleapis.com"
-  # ]
 }
