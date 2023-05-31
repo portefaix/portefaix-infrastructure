@@ -28,10 +28,22 @@ workspaces = {
 
   # Shared
 
+  portefaix-oci-shared-hub = {
+    directory      = "terraform/oci/hub/shared"
+    tags           = ["oci", "shared", "hub"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+    ]
+  },
 
   # Security
 
-  portefaix-oci-dev-bastion = {
+  portefaix-oci-security-bastion = {
     directory      = "terraform/oci/bastion/dev"
     tags           = ["oci", "security", "bastion"]
     gitops         = false
@@ -46,7 +58,7 @@ workspaces = {
 
   # Core
 
-  portefaix-oci-dev-vcn = {
+  portefaix-oci-core-dev-vcn = {
     directory      = "terraform/oci/vcn/dev"
     tags           = ["oci", "core", "vcn"]
     gitops         = false
@@ -59,7 +71,7 @@ workspaces = {
     ]
   },
 
-  portefaix-oci-dev-oke = {
+  portefaix-oci-core-dev-oke = {
     directory      = "terraform/oci/oke/dev"
     tags           = ["oci", "core", "oke"]
     gitops         = false

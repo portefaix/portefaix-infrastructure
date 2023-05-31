@@ -16,11 +16,10 @@
 
 module "hub" {
   source  = "oracle-terraform-modules/vcn/oci"
-  version = "3.2.0"
+  version = "3.5.4"
 
   compartment_id = var.compartment_id
-
-  label_prefix = var.organization
+  label_prefix   = var.organization
 
   vcn_name  = var.vcn_name
   vcn_cidrs = var.vcn_cidrs

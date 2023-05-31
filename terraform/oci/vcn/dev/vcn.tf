@@ -14,25 +14,22 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+module "vcn" {
+  source = "../modules/vcn"
 
-region = "uk-london-1"
+  compartment_id = var.compartment_id
+  organization   = var.organization
+  environment    = var.environment
 
-#############################################################################
-# ROOT
+  create_internet_gateway = var.create_internet_gateway
+  create_nat_gateway      = var.create_nat_gateway
+  create_service_gateway  = var.create_service_gateway
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
+  vcn_cidrs          = var.vcn_cidrs
+  control_plane_cidr = var.control_plane_cidr
+  workers_cidr       = var.workers_cidr
+  pub_lb_cidr        = var.pub_lb_cidr
+  int_lb_cidr        = var.int_lb_cidr
 
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  freeform_tags = var.freeform_tags
 }

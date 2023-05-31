@@ -19,7 +19,7 @@ module "hub" {
 
   compartment_id = var.compartment_id
 
-  label_prefix = var.label_prefix
+  organization = var.organization
   vcn_name     = var.vcn_name
   vcn_cidrs    = var.vcn_cidrs
 
@@ -31,6 +31,8 @@ module "hub" {
 
   create_service_gateway       = var.create_service_gateway
   service_gateway_display_name = var.service_gateway_display_name
+
+  mgmt_cidr = var.mgmt_cidr
 
   # nat_gateway_public_ip_id = var.nat_gateway_public_ip_id
 

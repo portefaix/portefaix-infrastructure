@@ -14,25 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
-
-region = "uk-london-1"
-
-#############################################################################
-# ROOT
-
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+locals {
+  vcn_name                  = format("%s-core-%s", var.organization, var.environment)
+  internet_gateway_name     = format("%s-core-%s", var.organization, var.environment)
+  nat_gateway_name          = format("%s-core-%s", var.organization, var.environment)
+  service_gateway_name      = format("%s-core-%s", var.organization, var.environment)
+  control_plane_subnet_name = format("%s-control-plane", local.vcn_name)
+  workers_subnet_name       = format("%s-workers", local.vcn_name)
+  pub_lb_subnet_name        = format("%s-pub-lb", local.vcn_name)
+  int_lb_subnet_name        = format("%s-int-lb", local.vcn_name)
 }

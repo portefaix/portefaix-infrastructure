@@ -41,3 +41,58 @@ resource "tfe_workspace" "this" {
 
   tag_names = each.value.tags
 }
+
+resource "tfe_variable" "tenancy_ocid" {
+  for_each = tfe_workspace.this
+
+  key          = "TF_VAR_tenancy_ocid"
+  value        = var.tenancy_ocid
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The OCI tenancy OCID authentication value"
+}
+
+resource "tfe_variable" "user_ocid" {
+  for_each = tfe_workspace.this
+
+  key          = "TF_VAR_user_ocid"
+  value        = var.user_ocid
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The OCI user OCID authentication value"
+}
+
+resource "tfe_variable" "fingerprint" {
+  for_each = tfe_workspace.this
+
+  key          = "TF_VAR_fingerprint"
+  value        = var.fingerprint
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The OCI key fingerprint authentication value"
+}
+
+resource "tfe_variable" "private_key" {
+  for_each = tfe_workspace.this
+
+  key          = "TF_VAR_private_key"
+  value        = base64encode(var.private_key)
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The OCI private key authentication value"
+}
+
+resource "tfe_variable" "region" {
+  for_each = tfe_workspace.this
+
+  key          = "TF_VAR_region"
+  value        = var.region
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The OCI region"
+}

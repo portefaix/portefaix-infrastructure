@@ -55,8 +55,10 @@ variable "compartment_id" {
   description = "The OCID of the parent compartment containing the compartment"
 }
 
-
-
+variable "core_environments" {
+  description = "List of Core environments"
+  type        = list(string)
+}
 
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."

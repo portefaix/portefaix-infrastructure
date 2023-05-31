@@ -50,13 +50,13 @@ variable "organization" {
   description = "Name of the Terraform Cloud organization"
 }
 
-variable "compartment_id" {
-  description = "compartment id where to create all resources"
+variable "environment" {
   type        = string
+  description = "Name of the Core environment"
 }
 
-variable "vcn_name" {
-  description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
+variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
 }
 
@@ -70,19 +70,16 @@ variable "freeform_tags" {
 
 variable "create_internet_gateway" {
   description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
-  default     = false
   type        = bool
 }
 
 variable "create_nat_gateway" {
   description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
-  default     = false
   type        = bool
 }
 
 variable "create_service_gateway" {
   description = "whether to create a service gateway. If set to true, creates a service gateway."
-  default     = false
   type        = bool
 }
 
@@ -94,22 +91,6 @@ variable "create_service_gateway" {
 variable "vcn_cidrs" {
   description = "The list of IPv4 CIDR blocks the VCN will use."
   type        = list(string)
-}
-
-variable "internet_gateway_display_name" {
-  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
-  type        = string
-}
-
-
-variable "nat_gateway_display_name" {
-  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
-  type        = string
-}
-
-variable "service_gateway_display_name" {
-  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
-  type        = string
 }
 
 # variable "internet_gateway_route_rules" {
@@ -126,7 +107,22 @@ variable "service_gateway_display_name" {
 
 # Subnets
 
-variable "mgmt_cidr" {
+variable "control_plane_cidr" {
   type        = string
-  description = "Managment subnet CIDR"
+  description = "Control plane subnet CIDR"
+}
+
+variable "workers_cidr" {
+  type        = string
+  description = "OKE Workers subnet CIDR"
+}
+
+variable "pub_lb_cidr" {
+  type        = string
+  description = "Public Load Balancer subnet CIDR"
+}
+
+variable "int_lb_cidr" {
+  type        = string
+  description = "Internal Load Balancer subnet CIDR"
 }

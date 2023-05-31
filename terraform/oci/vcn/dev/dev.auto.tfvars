@@ -14,25 +14,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
+#####################################################################""
 # Provider
 
 region = "uk-london-1"
 
-#############################################################################
-# ROOT
+
+##############################################################################
+# Hub
 
 organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
+environment    = "dev"
+compartment_id = "ocid1.compartment.oc1..aaaaaaaas7v6jey7zd67kotets3qk4oi6ile3dbkajpuh7xgye7nzr6lp6hq"
 
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
+vcn_cidrs = ["10.20.0.0/16"]
+
+create_internet_gateway = true
+create_nat_gateway      = false
+create_service_gateway  = false
 
 freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
+  project = "core"
+  env     = "dev"
   made-by = "terraform"
 }
+
+control_plane_cidr = "10.20.00.0/24"
+workers_cidr       = "10.20.10.0/24"
+pub_lb_cidr        = "10.20.20.0/24"
+int_lb_cidr        = "10.20.30.0/24"

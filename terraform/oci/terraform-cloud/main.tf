@@ -18,10 +18,10 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    oci = {
-      source  = "hashicorp/oci"
-      version = "4.66.0"
-    }
+    # oci = {
+    #   source  = "oracle/oci"
+    #   version = "4.122.0"
+    # }
     tfe = {
       source  = "hashicorp/tfe"
       version = "0.45.0"

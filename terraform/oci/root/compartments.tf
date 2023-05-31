@@ -15,9 +15,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "security" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+  source  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
+  version = "2.0.3"
+  # source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
 
   compartment_id          = var.compartment_id
   compartment_name        = "Security"
@@ -25,15 +25,15 @@ module "security" {
   compartment_create      = true
   enable_delete           = true
 
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
+  # freeform_tags = merge({
+  #   "service" = "organization"
+  # }, var.freeform_tags)
 }
 
 module "shared" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+  source  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
+  version = "2.0.3"
+  # source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
 
   compartment_id          = var.compartment_id
   compartment_name        = "Shared"
@@ -41,15 +41,15 @@ module "shared" {
   compartment_create      = true
   enable_delete           = true
 
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
+  # freeform_tags = merge({
+  #   "service" = "organization"
+  # }, var.freeform_tags)
 }
 
 module "core" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+  source  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
+  version = "2.0.3"
+  # source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
 
   compartment_id          = var.compartment_id
   compartment_name        = "Core"
@@ -57,15 +57,15 @@ module "core" {
   compartment_create      = true
   enable_delete           = true
 
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
+  # freeform_tags = merge({
+  #   "service" = "organization"
+  # }, var.freeform_tags)
 }
 
 module "suspended" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+  source  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
+  version = "2.0.3"
+  # source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
 
   compartment_id          = var.compartment_id
   compartment_name        = "Suspended"
@@ -73,7 +73,25 @@ module "suspended" {
   compartment_create      = true
   enable_delete           = true
 
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
+  # freeform_tags = merge({
+  #   "service" = "organization"
+  # }, var.freeform_tags)
+}
+
+module "core_envs" {
+  source  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
+  version = "2.0.3"
+  # source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+
+  for_each = toset(var.core_environments)
+
+  compartment_id          = module.core.compartment_id
+  compartment_name        = format("Core-%s", title(each.key))
+  compartment_description = "compartment created by terraform"
+  compartment_create      = true
+  enable_delete           = true
+
+  # freeform_tags = merge({
+  #   "service" = "organization"
+  # }, var.freeform_tags)
 }

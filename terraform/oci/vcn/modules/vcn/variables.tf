@@ -26,13 +26,13 @@ variable "organization" {
   description = "Name of the Terraform Cloud organization"
 }
 
-variable "compartment_id" {
-  description = "compartment id where to create all resources"
+variable "environment" {
   type        = string
+  description = "Name of the Core environment"
 }
 
-variable "vcn_name" {
-  description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
+variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
 }
 
@@ -54,47 +54,31 @@ variable "create_service_gateway" {
   type        = bool
 }
 
-# variable "nat_gateway_public_ip_id" {
-#   description = "OCID of reserved IP address for NAT gateway. The reserved public IP address needs to be manually created."
-#   type        = string
-# }
-
 variable "vcn_cidrs" {
   description = "The list of IPv4 CIDR blocks the VCN will use."
   type        = list(string)
 }
 
-variable "internet_gateway_display_name" {
-  description = "(Updatable) Name of Internet Gateway. Does not have to be unique."
+# Subnets
+
+variable "control_plane_cidr" {
   type        = string
+  description = "Control plane subnet CIDR"
 }
 
-
-variable "nat_gateway_display_name" {
-  description = "(Updatable) Name of NAT Gateway. Does not have to be unique."
+variable "workers_cidr" {
   type        = string
+  description = "OKE Workers subnet CIDR"
 }
 
-variable "service_gateway_display_name" {
-  description = "(Updatable) Name of Service Gateway. Does not have to be unique."
+variable "pub_lb_cidr" {
   type        = string
+  description = "Public Load Balancer subnet CIDR"
 }
 
-# variable "internet_gateway_route_rules" {
-#   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
-#   type        = list(map(string))
-#   default     = null
-# }
-
-# variable "nat_gateway_route_rules" {
-#   description = "(Updatable) list of routing rules to add to NAT Gateway Route Table"
-#   type        = list(map(string))
-#   default     = null
-# }
-
-variable "mgmt_cidr" {
+variable "int_lb_cidr" {
   type        = string
-  description = "Managment subnet CIDR"
+  description = "Internal Load Balancer subnet CIDR"
 }
 
 variable "freeform_tags" {
