@@ -107,22 +107,22 @@ variable "vcn_cidrs" {
 
 # Subnets
 
-variable "control_plane_cidr" {
-  type        = string
-  description = "Control plane subnet CIDR"
-}
+# variable "control_plane_cidr" {
+#   type        = string
+#   description = "Control plane subnet CIDR"
+# }
 
-variable "workers_cidr" {
-  type        = string
-  description = "OKE Workers subnet CIDR"
-}
+# variable "workers_cidr" {
+#   type        = string
+#   description = "OKE Workers subnet CIDR"
+# }
 
-variable "pub_lb_cidr" {
-  type        = string
-  description = "Public Load Balancer subnet CIDR"
-}
+# variable "pub_lb_cidr" {
+#   type        = string
+#   description = "Public Load Balancer subnet CIDR"
+# }
 
-variable "int_lb_cidr" {
-  type        = string
-  description = "Internal Load Balancer subnet CIDR"
-}
+# variable "int_lb_cidr" {
+#   type        = string
+#   description = "Internal Load Balancer subnet CIDR"
+# }

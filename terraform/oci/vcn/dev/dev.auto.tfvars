@@ -39,7 +39,7 @@ freeform_tags = {
   made-by = "terraform"
 }
 
-control_plane_cidr = "10.20.00.0/24"
-workers_cidr       = "10.20.10.0/24"
-pub_lb_cidr        = "10.20.20.0/24"
-int_lb_cidr        = "10.20.30.0/24"
+# control_plane_cidr = "10.20.00.0/24"
+# workers_cidr       = "10.20.10.0/24"
+# pub_lb_cidr        = "10.20.20.0/24"
+# int_lb_cidr        = "10.20.30.0/24"

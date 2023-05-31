@@ -14,43 +14,43 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "oci_core_subnet" "control_plane" {
-  cidr_block                 = var.control_plane_cidr
-  compartment_id             = var.compartment_id
-  display_name               = local.control_plane_subnet_name
-  dns_label                  = "cp"
-  prohibit_public_ip_on_vnic = true
-  vcn_id                     = module.vcn.vcn_id
-  route_table_id             = module.vcn.ig_route_id
-}
+# resource "oci_core_subnet" "control_plane" {
+#   cidr_block                 = var.control_plane_cidr
+#   compartment_id             = var.compartment_id
+#   display_name               = local.control_plane_subnet_name
+#   dns_label                  = "cp"
+#   prohibit_public_ip_on_vnic = true
+#   vcn_id                     = module.vcn.vcn_id
+#   route_table_id             = module.vcn.ig_route_id
+# }
 
-resource "oci_core_subnet" "workers" {
-  cidr_block                 = var.workers_cidr
-  compartment_id             = var.compartment_id
-  display_name               = local.workers_subnet_name
-  dns_label                  = "workers"
-  prohibit_public_ip_on_vnic = true
-  vcn_id                     = module.vcn.vcn_id
-  route_table_id             = module.vcn.ig_route_id
-}
+# resource "oci_core_subnet" "workers" {
+#   cidr_block                 = var.workers_cidr
+#   compartment_id             = var.compartment_id
+#   display_name               = local.workers_subnet_name
+#   dns_label                  = "workers"
+#   prohibit_public_ip_on_vnic = true
+#   vcn_id                     = module.vcn.vcn_id
+#   route_table_id             = module.vcn.ig_route_id
+# }
 
-resource "oci_core_subnet" "int_lb" {
-  cidr_block                 = var.int_lb_cidr
-  compartment_id             = var.compartment_id
-  display_name               = local.int_lb_subnet_name
-  dns_label                  = "intlb"
-  prohibit_public_ip_on_vnic = true
-  vcn_id                     = module.vcn.vcn_id
-  route_table_id             = module.vcn.nat_route_id
-}
+# resource "oci_core_subnet" "int_lb" {
+#   cidr_block                 = var.int_lb_cidr
+#   compartment_id             = var.compartment_id
+#   display_name               = local.int_lb_subnet_name
+#   dns_label                  = "intlb"
+#   prohibit_public_ip_on_vnic = true
+#   vcn_id                     = module.vcn.vcn_id
+#   route_table_id             = module.vcn.nat_route_id
+# }
 
-resource "oci_core_subnet" "pub_lb" {
-  cidr_block                 = var.pub_lb_cidr
-  compartment_id             = var.compartment_id
-  display_name               = local.pub_lb_subnet_name
-  dns_label                  = "publb"
-  prohibit_public_ip_on_vnic = false
-  vcn_id                     = module.vcn.vcn_id
-  route_table_id             = module.vcn.ig_route_id
-  # security_list_ids          = [oci_core_security_list.pub_lb_seclist[0].id]
-}
+# resource "oci_core_subnet" "pub_lb" {
+#   cidr_block                 = var.pub_lb_cidr
+#   compartment_id             = var.compartment_id
+#   display_name               = local.pub_lb_subnet_name
+#   dns_label                  = "publb"
+#   prohibit_public_ip_on_vnic = false
+#   vcn_id                     = module.vcn.vcn_id
+#   route_table_id             = module.vcn.ig_route_id
+#   # security_list_ids          = [oci_core_security_list.pub_lb_seclist[0].id]
+# }
