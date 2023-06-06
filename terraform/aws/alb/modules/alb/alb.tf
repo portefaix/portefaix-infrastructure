@@ -19,7 +19,7 @@
 #tfsec:ignore:AWS083
 module "alb_external" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "8.6.0"
+  version = "8.6.1"
 
   name      = local.alb_external_name
   subnets   = data.aws_subnets.public.ids
@@ -72,7 +72,7 @@ module "alb_external" {
 
 module "alb_internal" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "8.6.0"
+  version = "8.6.1"
 
   name      = local.alb_internal_name
   subnets   = data.aws_subnets.private.ids
