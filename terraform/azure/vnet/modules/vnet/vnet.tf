@@ -16,7 +16,7 @@
 
 module "vnet" {
   source  = "Azure/vnet/azurerm"
-  version = "4.0.0"
+  version = "4.1.0"
 
   use_for_each = true
 
