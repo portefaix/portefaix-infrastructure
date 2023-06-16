@@ -217,7 +217,7 @@ module "logging" {
 
 module "core" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "13.1.0"
+  version = "14.2.0"
 
   for_each = toset(var.core_environments)
 
