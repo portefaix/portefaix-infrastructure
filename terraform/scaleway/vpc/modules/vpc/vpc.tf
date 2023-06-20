@@ -19,6 +19,11 @@ resource "scaleway_vpc_private_network" "this" {
   tags = var.tags
 }
 
+resource "scaleway_vpc_private_network" "kapsule" {
+  name = format("%s-kapsule", var.name)
+  tags = concat(var.tags, "kapsule")
+}
+
 resource "scaleway_vpc_public_gateway_dhcp" "this" {
   subnet = "192.168.1.0/24"
 }

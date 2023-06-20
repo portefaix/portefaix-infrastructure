@@ -14,13 +14,28 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "observability" {
-  source = "../modules/observability"
+#######################################################################
+# Provider
 
-  project_id   = var.project_id
-  cluster_name = var.cluster_name
-  region       = var.region
-  mimir_tags   = var.mimir_tags
-  loki_tags    = var.loki_tags
-  tempo_tags   = var.tempo_tags
+variable "region" {
+  type        = string
+  description = "The region that will be used as default value for all resources."
+}
+
+variable "zone" {
+  type        = string
+  description = "The zone that will be used as default value for all resources"
+}
+
+#######################################################################
+# External Secrets Operator
+
+variable "project_id" {
+  type        = string
+  description = "ID of the project"
+}
+
+variable "cluster_name" {
+  type        = string
+  description = "Name of the Kapsule cluster"
 }
