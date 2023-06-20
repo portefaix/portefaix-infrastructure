@@ -51,7 +51,7 @@
 #tfsec:ignore:AWS076
 module "logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.13.0"
+  version = "3.14.0"
 
   bucket = local.alb_logs_bucket_name
   acl    = "log-delivery-write"
