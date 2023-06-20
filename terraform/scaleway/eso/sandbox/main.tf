@@ -14,13 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "observability" {
-  source = "../modules/observability"
+terraform {
+  required_version = ">= 1.0.0"
 
-  project_id   = var.project_id
-  cluster_name = var.cluster_name
-  region       = var.region
-  mimir_tags   = var.mimir_tags
-  loki_tags    = var.loki_tags
-  tempo_tags   = var.tempo_tags
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.21.0"
+    }
+  }
 }

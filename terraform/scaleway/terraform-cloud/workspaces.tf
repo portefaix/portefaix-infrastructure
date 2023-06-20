@@ -129,3 +129,17 @@ resource "tfe_variable" "aws_region" {
   workspace_id = each.value.id
   description  = "The AWS region"
 }
+
+resource "tfe_variable" "project_id" {
+  for_each = toset([
+    "portefaix-scaleway-sandbox-eso",
+    "portefaix-scaleway-sandbox-observability"
+  ])
+
+  key          = "TF_VAR_project_id"
+  value        = var.env_project_id
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = tfe_workspace.this[each.value].id
+  description  = "The Scaleway project ID"
+}

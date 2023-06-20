@@ -78,6 +78,18 @@ workspaces = {
       "*.tfvars",
     ]
   },
+  portefaix-scaleway-sandbox-eso = {
+    directory      = "terraform/scaleway/eso/sandbox"
+    tags           = ["scaleway", "core", "stack"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+    ]
+  },
 }
 
 gh_organization = "portefaix"
