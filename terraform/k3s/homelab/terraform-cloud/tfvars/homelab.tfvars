@@ -39,6 +39,18 @@ workspaces = {
       "*.tfvars",
     ]
   },
+  portefaix-homelab-waf = {
+    directory      = "terraform/homelab/waf"
+    tags           = ["homelab", "security", "waf"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+    ]
+  },
   portefaix-homelab-observability = {
     directory      = "terraform/homelab/observability"
     tags           = ["homelab", "core", "observability"]
