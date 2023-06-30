@@ -47,3 +47,18 @@ resource "scalr_workspace" "this" {
   #   alias = "us_east2"
   # }
 }
+
+resource "scalr_variable" "cloudflare_api_token" {
+  for_each = toset([
+    "portefaix-homelab-waf"
+  ])
+
+  key            = "TF_VAR_cloudflare_api_token"
+  value          = var.cloudflare_api_token
+  hcl            = false
+  category       = "shell"
+  sensitive      = true
+  workspace_id   = scalr_workspace.this[each.value].id
+  environment_id = data.scalr_environment.this.id
+  account_id     = var.account_id
+}

@@ -37,7 +37,7 @@ workspaces = {
     branch    = "main"
   },
   portefaix-homelab-waf = {
-    directory = "terraform/k3s/homelab/waf"
+    directory = "terraform/k3s/waf/homelab"
     branch    = "feat/scalr"
   },
 }

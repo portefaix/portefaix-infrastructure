@@ -28,7 +28,7 @@
 terraform {
   cloud {
     hostname     = "portefaix.scalr.io"
-    organization = "portefaix"
+    organization = "env-v0nvj3kjiijbjp115"
 
     workspaces {
       name = "portefaix-homelab-waf"

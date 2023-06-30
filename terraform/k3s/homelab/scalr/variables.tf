@@ -72,3 +72,8 @@ variable "gh_repo" {
   type        = string
   description = "Repository name in your VCS provider"
 }
+
+variable "cloudflare_api_token" {
+  description = "The Cloudflare account ID"
+  type        = string
+}

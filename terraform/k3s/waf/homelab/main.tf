@@ -26,5 +26,9 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "4.8.0"
     }
+    scalr = {
+      source  = "registry.scalr.io/scalr/scalr"
+      version = "1.1.0"
+    }
   }
 }
