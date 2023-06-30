@@ -29,15 +29,15 @@ tags = ["main"]
 
 workspaces = {
   portefaix-homelab-dns = {
-    directory = "terraform/homelab/dns"
+    directory = "terraform/k3s/homelab/dns"
     branch    = "main"
   },
   portefaix-homelab-observability = {
-    directory = "terraform/homelab/observability"
+    directory = "terraform/k3s/homelab/observability"
     branch    = "main"
   },
   portefaix-homelab-waf = {
-    directory = "terraform/homelab/waf"
+    directory = "terraform/k3s/homelab/waf"
     branch    = "feat/scalr"
   },
 }
