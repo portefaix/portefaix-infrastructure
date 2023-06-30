@@ -31,10 +31,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Configure Tailscale
-      uses: tailscale/github-action@v1
+    - name: Tailscale
+      uses: tailscale/github-action@v2
       with:
-        authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:ci
 
     - name: Tailscale status
       run: |
