@@ -24,3 +24,14 @@
 #     skip_metadata_api_check     = true
 #   }
 # }
+
+terraform {
+  cloud {
+    hostname     = "portefaix.scalr.io"
+    organization = "portefaix"
+
+    workspaces {
+      name = "portefaix-homelab-waf"
+    }
+  }
+}
