@@ -48,7 +48,7 @@ module "network" {
 
 module "vpc_core_prod" {
   source  = "terraform-google-modules/network/google"
-  version = "7.0.0"
+  version = "7.1.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-prod", var.core_network_name)
@@ -60,7 +60,7 @@ module "vpc_core_prod" {
 
 module "vpc_core_staging" {
   source  = "terraform-google-modules/network/google"
-  version = "7.0.0"
+  version = "7.1.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-staging", var.core_network_name)
@@ -72,7 +72,7 @@ module "vpc_core_staging" {
 
 module "vpc_core_dev" {
   source  = "terraform-google-modules/network/google"
-  version = "7.0.0"
+  version = "7.1.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-dev", var.core_network_name)
