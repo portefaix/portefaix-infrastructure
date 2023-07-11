@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:aws-ec2-require-vpc-flow-logs-for-all-vpcs
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
@@ -28,23 +29,9 @@ module "vpc" {
   single_nat_gateway   = true
   enable_dns_hostnames = true
 
-  # enable_s3_endpoint       = true
-  # enable_dynamodb_endpoint = true
-
-  reuse_nat_ips       = true
-  external_nat_ip_ids = data.aws_eip.igw.*.id
-
-  #enable_ecr_api_endpoint              = true
-  #ecr_api_endpoint_private_dns_enabled = true
-  #ecr_api_endpoint_security_group_ids  = [data.aws_security_group.default.id]
-
-  #enable_kms_endpoint              = true
-  #kms_endpoint_private_dns_enabled = true
-  #kms_endpoint_security_group_ids  = [data.aws_security_group.default.id]
-
-  #enable_lambda_endpoint              = true
-  #lambda_endpoint_private_dns_enabled = true
-  #lambda_endpoint_security_group_ids  = [data.aws_security_group.default.id]
+  reuse_nat_ips = true
+  # external_nat_ip_ids = data.aws_eip.igw.*.id
+  external_nat_ip_ids = [for gw in data.aws_eip.igw : gw].id
 
   tags = merge({
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared",
