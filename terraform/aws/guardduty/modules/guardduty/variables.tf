@@ -77,6 +77,72 @@ variable "display_name" {
   default     = "Managed by Terraform"
 }
 
+variable "filter_config" {
+  description = <<EOF
+  Specifies AWS GuardDuty Filter configuration.
+  `name` - The name of the filter
+  `rank` - Specifies the position of the filter in the list of current filters. Also specifies the order in which this filter is applied to the findings.
+  `action` - Specifies the action that is to be applied to the findings that match the filter. Can be one of ARCHIVE or NOOP.
+  `criterion` - Configuration block for `finding_criteria`. Composed by `field` and one or more of the following operators: `equals` | `not_equals` | `greater_than` | `greater_than_or_equal` | `less_than` | `less_than_or_equal`.
+  EOF
+  type = list(object({
+    name        = string
+    description = optional(string)
+    rank        = number
+    action      = string
+    criterion = list(object({
+      field                 = string
+      equals                = optional(list(string))
+      not_equals            = optional(list(string))
+      greater_than          = optional(string)
+      greater_than_or_equal = optional(string)
+      less_than             = optional(string)
+      less_than_or_equal    = optional(string)
+    }))
+  }))
+  default = null
+}
+
+variable "ipset_config" {
+  description = <<EOF
+  Specifies AWS GuardDuty IPSet configuration.
+  `activate` - Specifies whether GuardDuty is to start using the uploaded IPSet.
+  `name` - The friendly name to identify the IPSet.
+  `format` - The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`.
+  `content`- Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text. Example: `10.0.0.0/8\n`.
+  `key` - Name of the object once it is in the bucket.
+  EOF
+  type = list(object({
+    activate = bool
+    name     = string
+    format   = string
+    content  = string
+    key      = string
+  }))
+  default = null
+}
+
+variable "threatintelset_config" {
+  description = <<EOF
+  Specifies AWS GuardDuty ThreatIntelSet configuration.
+  `activate` - Specifies whether GuardDuty is to start using the uploaded ThreatIntelSet.
+  `name` - The friendly name to identify the ThreatIntelSet.
+  `format` - The format of the file that contains the ThreatIntelSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`.
+  `content`- Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text. Example: `10.0.0.0/8\n`.
+  `key` - Name of the object once it is in the bucket.
+  `object_acl`- Canned ACL to apply to the object. Valid values are `private` | `public-read` | `public-read-write` | `aws-exec-read` | `authenticated-read` | `bucket-owner-read` | `bucket-owner-full-control`.
+  EOF
+  type = list(object({
+    activate   = bool
+    name       = string
+    format     = string
+    content    = string
+    key        = string
+    object_acl = string
+  }))
+  default = null
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags for AWS resources"
