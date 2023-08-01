@@ -36,7 +36,8 @@ vpc_name = "portefaix-staging"
 
 cluster_name = "portefaix-staging-eks"
 
-cluster_version = "1.23"
+cluster_version = "1.26"
+
 tags = {
   "Name"    = "portefaix-staging-eks"
   "Env"     = "Staging"
@@ -180,11 +181,29 @@ fargate_profiles = {
 
 cluster_addons = {
   coredns = {
-    resolve_conflicts = "OVERWRITE"
+    most_recent = true
   }
-  kube-proxy = {}
+  kube-proxy = {
+    most_recent = true
+  }
   vpc-cni = {
-    resolve_conflicts = "OVERWRITE"
+    # The VPC CNI addon should be deployed before compute to ensure
+    # the addon is configured before data plane compute resources are created
+    # See README for further details
+    before_compute = true
+    most_recent    = true # To ensure access to the latest settings provided
+    preserve       = true
+    configuration_values = jsonencode({
+      env = {
+        # Reference https://aws.github.io/aws-eks-best-practices/reliability/docs/networkmanagement/#cni-custom-networking
+        AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG = "true"
+        ENI_CONFIG_LABEL_DEF               = "topology.kubernetes.io/zone"
+
+        # Reference docs https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html
+        ENABLE_PREFIX_DELEGATION = "true"
+        WARM_PREFIX_TARGET       = "1"
+      }
+    })
   }
 }
 

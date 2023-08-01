@@ -20,7 +20,7 @@ module "karpenter" {
 
   cluster_name = module.eks.cluster_name
 
-  # irsa_name                       = var.karpenter_role_name
+  irsa_name                       = var.karpenter_role_name
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
   irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
 
@@ -28,7 +28,11 @@ module "karpenter" {
   # we can re-use the role that was created for the node group
   create_iam_role = false
   iam_role_arn    = module.eks.eks_managed_node_groups["initial"].iam_role_arn
-  # iam_role_name   = var.karpenter_role_nam
+  # iam_role_name   = var.karpenter_role_name
+
+  policies = {
+    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  }
 
   queue_name                = var.karpenter_queue_name
   queue_managed_sse_enabled = false

@@ -95,7 +95,18 @@ variable "eks_managed_node_group_defaults" {
 variable "fargate_profiles" {
   description = "Map of Fargate Profile definitions to create"
   type        = any
-  default     = {}
+  default = {
+    karpenter = {
+      selectors = [
+        { namespace = "karpenter" }
+      ]
+    }
+    # kube-system = {
+    #   selectors = [
+    #     { namespace = "kube-system" }
+    #   ]
+    # }
+  }
 }
 
 variable "fargate_profile_defaults" {
