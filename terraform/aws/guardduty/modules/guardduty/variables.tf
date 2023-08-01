@@ -35,6 +35,36 @@ variable "service_name" {
   type        = string
 }
 
+variable "enable_s3_protection" {
+  description = "Configure and enable S3 protection."
+  type        = bool
+  default     = true
+}
+
+variable "enable_kubernetes_protection" {
+  description = "Configure and enable Kubernetes audit logs as a data source for Kubernetes protection."
+  type        = bool
+  default     = true
+}
+
+variable "enable_malware_protection" {
+  description = "Configure and enable Malware Protection as data source for EC2 instances with findings for the detector."
+  type        = bool
+  default     = true
+}
+
+variable "auto_enable_organization_members" {
+  description = "Indicates the auto-enablement configuration of GuardDuty for the member accounts in the organization. Valid values are `ALL`, `NEW`, `NONE`."
+  type        = string
+  default     = "NEW"
+}
+
+variable "finding_publishing_frequency" {
+  description = "Specifies the frequency of notifications sent for subsequent finding occurrences. If the detector is a GuardDuty member account, the value is determined by the GuardDuty primary account and cannot be modified. For standalone and GuardDuty primary accounts, it must be configured in Terraform to enable drift detection. Valid values for standalone and primary accounts: `FIFTEEN_MINUTES`, `ONE_HOUR`, `SIX_HOURS`. Defaults to `SIX_HOURS`."
+  type        = string
+  default     = "FIFTEEN_MINUTES"
+}
+
 variable "sns_create_topic" {
   description = "Whether to create the SNS topic"
   type        = bool

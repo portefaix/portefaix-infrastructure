@@ -18,23 +18,36 @@ resource "aws_guardduty_detector" "this" {
   provider = aws.audit
   enable   = true
 
-  # Additional setting to turn on S3 Protection
   datasources {
     s3_logs {
-      enable = true
+      enable = var.enable_s3_protection
+    }
+    kubernetes {
+      audit_logs {
+        enable = var.enable_kubernetes_protection
+      }
+    }
+    malware_protection {
+      scan_ec2_instance_with_findings {
+        ebs_volumes {
+          enable = var.enable_malware_protection
+        }
+      }
     }
   }
+
+  finding_publishing_frequency = var.finding_publishing_frequency
 
   tags = merge({
     Env = "Audit"
   }, var.tags)
 }
 
-# resource "aws_guardduty_publishing_destination" "this" {
-#   provider   = aws.security
-#   depends_on = [aws_guardduty_organization_admin_account.this]
+resource "aws_guardduty_publishing_destination" "this" {
+  provider   = aws.security
+  depends_on = [aws_guardduty_organization_admin_account.this]
 
-#   detector_id     = aws_guardduty_detector.this.id
-#   destination_arn = var.gd_publishing_dest_bucket_arn
-#   kms_key_arn     = var.gd_kms_key_arn
-# }
+  detector_id     = aws_guardduty_detector.this.id
+  destination_arn = var.gd_publishing_dest_bucket_arn
+  kms_key_arn     = var.gd_kms_key_arn
+}
