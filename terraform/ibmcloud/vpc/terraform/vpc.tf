@@ -16,7 +16,7 @@
 
 module "vpc" {
   source  = "terraform-ibm-modules/vpc/ibm//modules/vpc"
-  version = "1.1.1"
+  version = "1.1.2"
 
   resource_group_id = data.ibm_resource_group.this.id
 
