@@ -24,7 +24,7 @@ region = "eu-west-1"
 
 org_name = "portefaix"
 
-# audit_account_id = "752792911180"
+audit_account_id = "752792911180"
 
 ##############################################################################
 # Security Hub
