@@ -83,6 +83,11 @@ aws-secret-version-update: guard-ENV guard-VERSION # Update secret
 	@aws secretsmanager update-secret --secret-id portefaix-version \
 		--secret-string $(VERSION)
 
+.PHONY: aws-registry-login
+aws-registry-login: guard-AWS_REGISTRY_REGION guard-AWS_REGISTRY
+	@echo -e "$(INFO_COLOR)Authenticate to GCP Registry: $(AWS_REGISTRY)$(NO_COLOR)"
+	aws ecr get-login-password --region $(AWS_REGISTRY_REGION) | helm registry login --username AWS --password-stdin $(AWS_REGISTRY)
+
 # ====================================
 # S O P S
 # ====================================
