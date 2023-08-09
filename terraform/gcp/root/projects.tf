@@ -16,7 +16,7 @@
 
 module "network" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "14.2.1"
+  version = "14.3.0"
 
   name              = format("%s-network", var.organization_name)
   random_project_id = true
@@ -84,7 +84,7 @@ module "vpc_core_dev" {
 
 module "shared" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.1"
+  version = "14.3.0"
 
   name                    = format("%s-shared", var.organization_name)
   random_project_id       = true
@@ -115,7 +115,7 @@ module "shared" {
 
 module "testing" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.1"
+  version = "14.3.0"
 
   name                    = format("%s-testing", var.organization_name)
   random_project_id       = true
@@ -149,7 +149,7 @@ module "testing" {
 
 module "audit" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.1"
+  version = "14.3.0"
 
   name                    = format("%s-audit", var.organization_name)
   random_project_id       = true
@@ -180,7 +180,7 @@ module "audit" {
 
 module "logging" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.1"
+  version = "14.3.0"
 
   name                    = format("%s-logging", var.organization_name)
   random_project_id       = true
@@ -217,7 +217,7 @@ module "logging" {
 
 module "core" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.1"
+  version = "14.3.0"
 
   for_each = toset(var.core_environments)
 
