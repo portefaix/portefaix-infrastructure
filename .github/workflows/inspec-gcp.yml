@@ -27,6 +27,9 @@ on:
         required: true
         default: 'prod'
 
+permissions:
+  contents: read
+
 jobs:
   gcp_cis:
     runs-on: ubuntu-latest

@@ -28,6 +28,9 @@ on:
         required: true
         default: '1.0.10'
 
+permissions:
+  contents: read
+
 jobs:
 
   alicloud_vpc:

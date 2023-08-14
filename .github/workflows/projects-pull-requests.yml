@@ -36,6 +36,9 @@ on:
       - opened
       - labeled
 
+permissions:
+  contents: read
+
 jobs:
   cloud-aws:
     name: Add PR to Project AWS

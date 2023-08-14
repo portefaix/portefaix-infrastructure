@@ -29,6 +29,9 @@ on:
         #datasource=github-tags depName=hashicorp/terraform
         default: '1.2.2'
 
+permissions:
+  contents: read
+
 jobs:
 
   #############################################################################
