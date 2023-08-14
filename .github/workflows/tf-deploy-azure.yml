@@ -36,6 +36,9 @@ on: # yamllint disable-line rule:truthy
 #   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID_DEV }}
 #   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID_DEV }}
 
+permissions:
+  contents: read
+
 jobs:
 
   azure_hub:

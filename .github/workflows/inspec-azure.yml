@@ -31,6 +31,9 @@ on:
         required: true
         default: 'dev'
 
+permissions:
+  contents: read
+
 jobs:
   azure_cis:
     runs-on: ubuntu-latest

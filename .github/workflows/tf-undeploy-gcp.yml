@@ -31,6 +31,9 @@ on:
   schedule:
     - cron: "0 23 * * *"
 
+permissions:
+  contents: read
+
 jobs:
 
   gcp_observability:

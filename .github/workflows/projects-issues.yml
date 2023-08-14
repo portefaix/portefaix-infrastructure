@@ -22,6 +22,9 @@ on:
       - opened
       - labeled
 
+permissions:
+  contents: read
+
 jobs:
   cloud-aws:
     name: Add issue to Project AWS
