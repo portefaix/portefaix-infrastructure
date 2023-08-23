@@ -17,7 +17,7 @@
 # tfsec:ignore:aws-s3-enable-bucket-logging
 module "s3_bucket_ipset_log" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.14.1"
+  version = "3.15.0"
 
   providers = {
     aws = aws.audit
@@ -51,7 +51,7 @@ module "s3_bucket_ipset_log" {
 
 module "s3_bucket_ipset" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.14.1"
+  version = "3.15.0"
 
   providers = {
     aws = aws.audit
