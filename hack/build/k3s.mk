@@ -94,6 +94,7 @@ cloudflare-bucket-clean: guard-ENV guard-BUCKET ## Delete all objects into a R2 
 k3s-create: guard-SERVER_IP guard-EXTERNAL_IP guard-USER guard-ENV ## Setup a k3s cluster
 	@echo -e "$(OK_COLOR)[$(APP)] Install K3S$(NO_COLOR)"
 	@k3sup install --ip $(SERVER_IP) --user $(K3S_USER) \
+		--cluster \
 		--k3s-version $(K3S_VERSION) --merge \
 		--k3s-extra-args "$(K3S_ARGS) --node-ip=$(SERVER_IP) --node-external-ip=$(EXTERNAL_IP)" \
 		--ssh-key $(K3S_SSH_KEY) \
