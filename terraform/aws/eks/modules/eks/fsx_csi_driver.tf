@@ -16,7 +16,7 @@
 
 module "irsa_fsx_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.29.0"
+  version = "5.30.0"
 
   role_name                    = var.fsx_csi_controller_role_name
   attach_fsx_lustre_csi_policy = true
