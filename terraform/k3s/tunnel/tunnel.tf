@@ -24,15 +24,15 @@ resource "cloudflare_tunnel" "this" {
   secret     = random_id.tunnel_secret.b64_std
 }
 
-resource "cloudflare_record" "this" {
-  for_each = var.records
+# resource "cloudflare_record" "this" {
+#   for_each = var.records
 
-  zone_id = data.cloudflare_zone.this.id
-  name    = format("%s.%s", each.key, local.domain)
-  value   = cloudflare_tunnel.this.cname
-  type    = "CNAME"
-  proxied = true
-}
+#   zone_id = data.cloudflare_zone.this.id
+#   name    = format("%s.%s", each.key, local.domain)
+#   value   = cloudflare_tunnel.this.cname
+#   type    = "CNAME"
+#   proxied = true
+# }
 
 resource "cloudflare_tunnel_config" "this" {
   for_each = var.records
@@ -41,7 +41,8 @@ resource "cloudflare_tunnel_config" "this" {
   tunnel_id  = cloudflare_tunnel.this.id
   config {
     ingress_rule {
-      hostname = cloudflare_record.this[each.key].hostname
+      # hostname = cloudflare_record.this[each.key].hostname
+      hostname = format("%s.%s.%s", each.value.hostname, local.domain, data.cloudflare_zone.this.name)
       service  = format("http://%s", each.value.service)
     }
     ingress_rule {
