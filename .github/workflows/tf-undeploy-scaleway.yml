@@ -41,7 +41,7 @@ jobs:
         echo "Delete Kepsule / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -64,7 +64,7 @@ jobs:
         echo "Delete Registry / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -87,7 +87,7 @@ jobs:
         echo "Delete Observability / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -110,7 +110,7 @@ jobs:
         echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
