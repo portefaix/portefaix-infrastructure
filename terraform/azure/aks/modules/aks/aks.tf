@@ -20,7 +20,7 @@
 #tfsec:ignore:GEN001
 module "aks" {
   source  = "Azure/aks/azurerm"
-  version = "7.3.1"
+  version = "7.3.2"
   # source = "git://github.com/Azure/terraform-azurerm-aks.git?ref=master"
 
   cluster_name              = local.service_name
