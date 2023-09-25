@@ -63,9 +63,6 @@ aws-admin: guard-ENV ## Generate credentials
 aws-kube-credentials: guard-ENV ## Generate credentials
 	@aws eks update-kubeconfig --name $(AWS_CLUSTER) --region $(AWS_REGION)
 
-.PHONY: aws-assume-role
-aws-assume-role: guard-ENV ## Assume role
-
 .PHONY: aws-secret-version-create
 aws-secret-version-create: guard-ENV guard-VERSION # Generate secret
 	@echo -e "$(INFO_COLOR)Create the secret for Portefaix version into $(AWS_PROJECT)$(NO_COLOR)"
@@ -87,6 +84,14 @@ aws-secret-version-update: guard-ENV guard-VERSION # Update secret
 aws-registry-login: guard-AWS_REGISTRY_REGION guard-AWS_REGISTRY
 	@echo -e "$(INFO_COLOR)Authenticate to GCP Registry: $(AWS_REGISTRY)$(NO_COLOR)"
 	aws ecr get-login-password --region $(AWS_REGISTRY_REGION) | helm registry login --username AWS --password-stdin $(AWS_REGISTRY)
+
+.PHONY: aws-assume-role
+aws-assume-role: guard-ACCOUNT_ID
+	@echo -e "$(INFO_COLOR)AWS Assume Role$(NO_COLOR)"
+	aws sts assume-role --region $(AWS_REGION) \
+		--role-arn "arn:aws:iam::$(ACCOUNT_ID):role/Administrator" \
+		--role-session-name "portefaix-${USER}"
+
 
 # ====================================
 # S O P S
