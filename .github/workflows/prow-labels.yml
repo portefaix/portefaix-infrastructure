@@ -14,8 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: "Project / Label PRs from globs"
-on:
+
+on: # yamllint disable-line rule:truthy
   schedule:
   - cron: "0 * * * *"
 

@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: AWS / Create
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -44,7 +45,7 @@ jobs:
         echo "Deploy Security Hub"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -74,7 +75,7 @@ jobs:
         echo "Deploy IAM Access Analyzer"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -104,7 +105,7 @@ jobs:
         echo "Deploy GuardDuty"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -134,7 +135,7 @@ jobs:
         echo "Deploy Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -164,7 +165,7 @@ jobs:
         echo "Deploy Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -205,7 +206,7 @@ jobs:
         echo "Deploy Shared ChatBot"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -235,7 +236,7 @@ jobs:
         echo "Deploy Shared ECR"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -273,7 +274,7 @@ jobs:
         echo "Elastic IP for Internet Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -304,7 +305,7 @@ jobs:
         echo "VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -335,7 +336,7 @@ jobs:
         echo "Deploy Bastion / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -366,7 +367,7 @@ jobs:
         echo "Deploy Teleport / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -396,7 +397,7 @@ jobs:
     - run: |
         echo "Deploy ECr / ${{ github.event.inputs.env }}"
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -426,7 +427,7 @@ jobs:
     - run: |
         echo "Deploy Notifications / ${{ github.event.inputs.env }}"
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -458,7 +459,7 @@ jobs:
         echo "Deploy GuardDuty / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -529,7 +530,7 @@ jobs:
         echo "Deploy EKS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -560,7 +561,7 @@ jobs:
         echo "Deploy Observability stack / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -591,7 +592,7 @@ jobs:
         echo "Deploy External DNS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -622,7 +623,7 @@ jobs:
         echo "Deploy Velero / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -653,7 +654,7 @@ jobs:
         echo "Deploy Vector / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -684,7 +685,7 @@ jobs:
         echo "Deploy Cert-Manager / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2

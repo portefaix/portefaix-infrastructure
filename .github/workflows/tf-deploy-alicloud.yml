@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Alicloud / Create
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -40,7 +41,7 @@ jobs:
         echo "VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -64,7 +65,7 @@ jobs:
         echo "SSH Key Pair / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -88,7 +89,7 @@ jobs:
         echo "NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -112,7 +113,7 @@ jobs:
         echo "Elastic IP Address for NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -138,7 +139,7 @@ jobs:
         echo "ACK / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2

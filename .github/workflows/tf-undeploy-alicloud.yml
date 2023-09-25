@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Alicloud / Destroy
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -43,7 +44,7 @@ jobs:
         echo "Delete ACK / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -67,7 +68,7 @@ jobs:
         echo "Delete SSH KeyPair / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -91,7 +92,7 @@ jobs:
         echo "Delete Elastic IP Address for NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -115,7 +116,7 @@ jobs:
         echo "Delete NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -141,7 +142,7 @@ jobs:
         echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2

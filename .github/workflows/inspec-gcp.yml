@@ -14,12 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: GCP / Inspec
 
 env:
   CHEF_LICENSE: accept
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -43,7 +44,7 @@ jobs:
         echo "Inspect CIS on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -93,7 +94,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -137,7 +138,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -181,7 +182,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -225,7 +226,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -269,7 +270,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -313,7 +314,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1
@@ -357,7 +358,7 @@ jobs:
         echo "Test Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
     - name: Configure GCP credentials
       uses: google-github-actions/setup-gcloud@v1.1.1

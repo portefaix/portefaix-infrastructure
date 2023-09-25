@@ -14,11 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Exoscale / Security
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
-on:
+on: # yamllint disable-line rule:truthy
   # push:
   #   branches:
   #     - main
@@ -26,9 +27,9 @@ on:
   #     - "terraform/exoscale/**"
   pull_request:
     branches:
-      - main
+    - main
     paths:
-      - "terraform/exoscale/**"
+    - "terraform/exoscale/**"
 
 jobs:
 
@@ -36,11 +37,11 @@ jobs:
     name: exoscale-sks
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+    - name: Checkout
+      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
-      - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/exoscale/sks/terraform
+    - name: Terraform security scan modules
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/exoscale/sks/terraform
