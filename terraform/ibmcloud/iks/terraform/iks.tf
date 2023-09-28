@@ -16,7 +16,7 @@
 
 module "iks" {
   source  = "terraform-ibm-modules/cluster/ibm//modules/vpc-kubernetes"
-  version = "1.5.0"
+  version = "1.6.0"
 
   resource_group_id = data.ibm_resource_group.this.id
   vpc_id            = data.ibm_is_vpc.this.id
@@ -44,7 +44,7 @@ module "iks" {
 
 module "pools" {
   source  = "terraform-ibm-modules/cluster/ibm//modules/configure-vpc-worker-pool"
-  version = "1.5.0"
+  version = "1.6.0"
 
   for_each = { for pool in var.node_pools : pool.name => pool }
 
@@ -65,7 +65,7 @@ module "pools" {
 
 module "alb" {
   source  = "terraform-ibm-modules/cluster/ibm//modules/configure-vpc-alb"
-  version = "1.5.0"
+  version = "1.6.0"
 
   alb_id            = data.ibm_container_vpc_cluster.this.albs[0].id
   enable            = var.alb_enable
