@@ -14,6 +14,4 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-locals {
-  domain = format("%s.%s", var.environment, var.cloud)
-}
+locals {}

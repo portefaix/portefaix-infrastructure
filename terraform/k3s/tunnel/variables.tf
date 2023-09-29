@@ -35,25 +35,23 @@ variable "name" {
   description = "Name of the Cloudflare Tunnel"
 }
 
-variable "environment" {
-  description = "The name of the Environment"
-  type        = string
-}
-
-variable "cloud" {
-  description = "The name of the Cloud Provider"
-  type        = string
-}
-
 variable "zone_name" {
   description = "The name of the zone"
   type        = string
 }
 
-variable "records" {
-  type = map(object({
-    hostname = string
-    service  = string
-  }))
-  description = "A list of records"
+variable "applications" {
+  type        = list(string)
+  description = "A list of applications"
+  default     = []
+}
+
+variable "github_oauth_client_id" {
+  type        = string
+  description = "Client ID from the Github OAuth application"
+}
+
+variable "github_oauth_client_secret" {
+  type        = string
+  description = "Client secret from the Github OAuth application"
 }

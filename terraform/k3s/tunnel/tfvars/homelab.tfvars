@@ -23,20 +23,20 @@
 
 cloud       = "k3s"
 environment = "homelab"
-name        = "portefaix-homelab"
+name        = "portefaix-k3s-homelab"
 zone_name   = "portefaix.xyz"
 
-records = {
-  "hajimari" = {
-    hostname = "hajimari",
-    service  = "hajimari"
-  },
-  "grafana" = {
-    hostname = "grafana"
-    service  = "grafana"
-  },
-  "prometheus" = {
-    hostname = "prometheus"
-    service  = "prometheus"
-  }
-}
+applications = [
+  "alertmanager",
+  "argo-cd",
+  "backstage",
+  "cilium",
+  "grafana",
+  "hajimari",
+  "agent-logs",
+  "agent-metrics",
+  "agent-traces",
+  "agent-profiles",
+  "prometheus",
+  "pyrra",
+]
