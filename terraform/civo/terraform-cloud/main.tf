@@ -24,7 +24,7 @@ terraform {
     }
     civo = {
       source  = "civo/civo"
-      version = "1.0.35"
+      version = "1.0.36"
     }
     tfe = {
       source  = "hashicorp/tfe"
