@@ -15,15 +15,3 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-server_log_level: debug
-server_log_format: json
-
-grafana_api_key: "{{ lookup('env','PORTEFAIX_GRAFANA_CLOUD_API_KEY') }}"
-
-prometheus_user: "{{ lookup('env','PORTEFAIX_GRAFANA_CLOUD_PROMETHEUS') }}"
-loki_user: "{{ lookup('env','PORTEFAIX_GRAFANA_CLOUD_LOKI') }}"
-tempo_user: "{{ lookup('env','PORTEFAIX_GRAFANA_CLOUD_TEMPO') }}"
-
-grafana_location_prometheus: us-central1
-grafana_location_loki: us-central1
-grafana_location_tempo: us-central1
