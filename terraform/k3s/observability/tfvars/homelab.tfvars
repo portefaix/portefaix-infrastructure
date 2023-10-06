@@ -21,12 +21,29 @@
 ##############################################################################
 # Observability
 
-buckets = [
-  "portefaix-homelab-logs-admin",
-  "portefaix-homelab-logs-chunks",
-  "portefaix-homelab-logs-ruler",
-  "portefaix-homelab-metrics-admin",
-  "portefaix-homelab-metrics-ruler",
-  "portefaix-homelab-metrics-tsdb",
-  "portefaix-homelab-traces-chunks",
-]
+buckets = {
+  "portefaix-homelab-logs-admin" = {
+    days = 30
+  },
+  "portefaix-homelab-logs-chunks" = {
+    days = 30
+  },
+  "portefaix-homelab-logs-ruler" = {
+    days = 30
+  },
+  "portefaix-homelab-metrics-admin" = {
+    days = 160
+  },
+  "portefaix-homelab-metrics-alert" = {
+    days = 160
+  },
+  "portefaix-homelab-metrics-ruler" = {
+    days = 160
+  },
+  "portefaix-homelab-metrics-tsdb" = {
+    days = 160
+  },
+  "portefaix-homelab-traces-chunks" = {
+    days = 160
+  },
+}

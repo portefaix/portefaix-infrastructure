@@ -17,8 +17,24 @@
 resource "aws_s3_bucket" "observability" {
   provider = aws.cloudflare_r2
 
-  for_each = toset(var.buckets)
-  bucket   = each.value
+  for_each = var.buckets
+  bucket   = each.key
 
   force_destroy = true
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "life_cycles" {
+  provider = aws.cloudflare_r2
+
+  for_each = var.buckets
+
+  bucket = aws_s3_bucket.observability[each.key].id
+
+  rule {
+    id     = "expire-bucket"
+    status = "Enabled"
+    expiration {
+      days = each.value.days
+    }
+  }
 }

@@ -33,17 +33,14 @@ provider "aws" {
   # skip loading instance profile credentials from 169.254.169.254
   skip_metadata_api_check = true
   # skip ec2/DescribeAccountAttributes to ec2.auto.amazonaws.com
-  skip_get_ec2_platforms = true
+  # skip_get_ec2_platforms = true
   endpoints {
     # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/
     s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
   }
 }
 
-# provider "cloudflare" {
-#   api_token = var.cloudflare_api_token
-#   # account_id is considered deprecated, but as of 3.20.0
-#   # it is still required in the provider
-#   # for cloudflare_worker_script
-#   account_id = var.account_id
-# }
+provider "cloudflare" {
+  #   account_id = var.cloudflare_account_id
+  api_token = var.cloudflare_api_token
+}
