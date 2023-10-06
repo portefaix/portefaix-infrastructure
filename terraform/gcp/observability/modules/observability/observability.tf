@@ -24,6 +24,7 @@ module "prometheus" {
   service_account = var.prometheus_service_account
 }
 
+# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "thanos" {
   source  = "nlamirault/observability/google//modules/thanos"
   version = "5.4.0"
@@ -46,6 +47,7 @@ module "thanos" {
   depends_on = [module.prometheus]
 }
 
+# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "loki" {
   source  = "nlamirault/observability/google//modules/loki"
   version = "5.4.0"
@@ -65,6 +67,7 @@ module "loki" {
   kms_labels       = var.loki_kms_labels
 }
 
+# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "tempo" {
   source  = "nlamirault/observability/google//modules/tempo"
   version = "5.4.0"

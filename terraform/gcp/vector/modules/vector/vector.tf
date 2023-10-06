@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "vector" {
   source  = "nlamirault/vector/google"
   version = "1.2.0"

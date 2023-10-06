@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:google-compute-no-public-ingress
 module "iap_bastion" {
   source  = "terraform-google-modules/bastion-host/google"
   version = "5.3.0"

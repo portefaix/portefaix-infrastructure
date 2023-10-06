@@ -6,25 +6,25 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | < 5.0.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 4.84.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | < 5.0.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_dns"></a> [dns](#module\_dns) | terraform-google-modules/cloud-dns/google | 4.2.0 |
+| <a name="module_dns"></a> [dns](#module\_dns) | terraform-google-modules/cloud-dns/google | 5.1.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [google_compute_network.vpc](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
+| [google_compute_network.vpc](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/data-sources/compute_network) | data source |
 
 ## Inputs
 

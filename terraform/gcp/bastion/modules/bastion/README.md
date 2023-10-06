@@ -6,26 +6,26 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | < 5.0.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 4.84.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | < 5.0.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_iap_bastion"></a> [iap\_bastion](#module\_iap\_bastion) | terraform-google-modules/bastion-host/google | 5.0.1 |
+| <a name="module_iap_bastion"></a> [iap\_bastion](#module\_iap\_bastion) | terraform-google-modules/bastion-host/google | 5.3.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [google_compute_network.network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
-| [google_compute_subnetwork.subnet](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_subnetwork) | data source |
+| [google_compute_network.network](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/data-sources/compute_network) | data source |
+| [google_compute_subnetwork.subnet](https://registry.terraform.io/providers/hashicorp/google/4.84.0/docs/data-sources/compute_subnetwork) | data source |
 
 ## Inputs
 
