@@ -21,7 +21,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "2.28.0"
+      version = "2.29.0"
     }
   }
 }
