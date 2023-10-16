@@ -24,7 +24,7 @@ terraform {
     }
     vultr = {
       source  = "vultr/vultr"
-      version = "2.16.2"
+      version = "2.16.4"
     }
     tfe = {
       source  = "hashicorp/tfe"
