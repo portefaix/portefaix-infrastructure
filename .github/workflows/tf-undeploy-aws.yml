@@ -47,7 +47,7 @@ jobs:
         echo "Delete Bastion"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -77,7 +77,7 @@ jobs:
         echo "Delete Security Hub"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -107,7 +107,7 @@ jobs:
         echo "Delete GuardDuty"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -137,7 +137,7 @@ jobs:
         echo "Delete Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -167,7 +167,7 @@ jobs:
         echo "Delete Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -209,7 +209,7 @@ jobs:
         echo "Delete ChatBot / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -239,7 +239,7 @@ jobs:
         echo "Delete Shared ECR / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -274,7 +274,7 @@ jobs:
         echo "Delete Notifications / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -305,7 +305,7 @@ jobs:
         echo "Delete ECR / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -336,7 +336,7 @@ jobs:
         echo "Delete Observability stack / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -367,7 +367,7 @@ jobs:
         echo "Delete External DNS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -398,7 +398,7 @@ jobs:
         echo "Delete Velero / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -429,7 +429,7 @@ jobs:
         echo "Delete Vector / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -460,7 +460,7 @@ jobs:
         echo "Delete Cert-Manager / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -521,7 +521,7 @@ jobs:
         echo "Delete Bastion / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -561,7 +561,7 @@ jobs:
         echo "Delete EKS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -592,7 +592,7 @@ jobs:
         echo "Delete Bastion / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -623,7 +623,7 @@ jobs:
         echo "Delete GuardDuty / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -691,7 +691,7 @@ jobs:
         echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -722,7 +722,7 @@ jobs:
         echo "Delete Elastic IP for Internet Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
