@@ -48,7 +48,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -108,7 +108,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -138,7 +138,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -168,7 +168,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -209,7 +209,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -239,7 +239,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -277,7 +277,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -308,7 +308,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -339,7 +339,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -370,7 +370,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -400,7 +400,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -430,7 +430,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -462,7 +462,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -533,7 +533,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -564,7 +564,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -595,7 +595,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -626,7 +626,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -657,7 +657,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -688,7 +688,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
