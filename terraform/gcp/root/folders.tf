@@ -16,7 +16,7 @@
 
 module "folders" {
   source  = "terraform-google-modules/folders/google"
-  version = "4.0.0"
+  version = "4.0.1"
 
   parent = data.google_organization.this.name
 
