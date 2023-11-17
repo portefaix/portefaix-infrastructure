@@ -22,7 +22,7 @@
 #tfsec:ignore:google-gke-enforce-pod-security-policy
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  version = "28.0.0"
+  version = "29.0.0"
 
   project_id      = var.project
   name            = var.name
