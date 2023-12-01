@@ -32,18 +32,18 @@ buckets = {
     days = 30
   },
   "portefaix-homelab-metrics-admin" = {
-    days = 160
+    days = 30
   },
   "portefaix-homelab-metrics-alert" = {
-    days = 160
+    days = 30
   },
   "portefaix-homelab-metrics-ruler" = {
-    days = 160
+    days = 30
   },
   "portefaix-homelab-metrics-tsdb" = {
-    days = 160
+    days = 30
   },
   "portefaix-homelab-traces-chunks" = {
-    days = 160
+    days = 30
   },
 }
