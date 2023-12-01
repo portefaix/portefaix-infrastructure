@@ -84,7 +84,7 @@ repos:
       - id: conventional-pre-commit
         stages: [commit-msg]
   - repo: https://github.com/spinergie/pre-commit-dprint
-    rev: v0.43.1
+    rev: v0.43.2
     hooks:
       - id: dprint
         pass_filenames: false
