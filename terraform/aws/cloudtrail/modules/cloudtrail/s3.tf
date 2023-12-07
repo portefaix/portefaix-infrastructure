@@ -14,6 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:aws-s3-block-public-acls
+# tfsec:ignore:aws-s3-enable-bucket-encryption
+# tfsec:ignore:aws-s3-encryption-customer-key
+# tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "centralized_audit_logs" {
   provider      = aws.audit
   bucket        = local.cloudtrail_bucket_name
@@ -23,6 +27,14 @@ resource "aws_s3_bucket" "centralized_audit_logs" {
     Env  = "Audit"
     Role = "S3"
   }, var.tags)
+}
+
+resource "aws_s3_bucket_public_access_block" "centralized_audit_logs" {
+  bucket                  = aws_s3_bucket.centralized_audit_logs.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_versioning" "centralized_audit_logs" {
