@@ -93,7 +93,8 @@ function check_infra() {
         echo_fail "Invalid directory: ${dir}"
         exit 1
     fi
-    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform"); do
+    # Do not validate module: https://github.com/hashicorp/terraform/issues/28490
+    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | sort -u); do
         tf_dir=${tf_file%/*}
         tf_validate "${tf_dir}"
     done
