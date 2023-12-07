@@ -24,7 +24,6 @@ module "s3_bucket_ipset_log" {
   }
 
   bucket = format("%s-logs", local.ipset_name)
-  acl    = null # "log-delivery-write"
 
   block_public_acls       = true
   block_public_policy     = true
@@ -58,7 +57,6 @@ module "s3_bucket_ipset" {
   }
 
   bucket = local.ipset_name
-  acl    = var.guardduty_bucket_acl
 
   attach_policy                         = true
   policy                                = data.aws_iam_policy_document.guardduty_bucket_policy.json

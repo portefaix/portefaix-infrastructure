@@ -95,10 +95,11 @@ resource "aws_guardduty_ipset" "this" {
 
   for_each = { for ipset in var.ipset_config : ipset.name => ipset }
 
-  activate = each.value.activate
-  name     = each.value.name
-  format   = each.value.format
-  location = "https://s3.amazonaws.com/${aws_s3_object.ipset[each.key].bucket}/${each.value.key}"
+  activate    = each.value.activate
+  name        = each.value.name
+  detector_id = aws_guardduty_detector.this.id
+  format      = each.value.format
+  location    = "https://s3.amazonaws.com/${aws_s3_object.ipset[each.key].bucket}/${each.value.key}"
 
   tags = merge({
     Name = each.value.name,
