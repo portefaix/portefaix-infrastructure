@@ -16,20 +16,20 @@
 
 extends: default
 
-ignore: |
-  **/templates/*.yaml
+# ignore: |
+#   **/templates/*.yaml
 
 rules:
   comments:
     min-spaces-from-content: 1
   comments-indentation: disable
   line-length: disable
-  # braces:
-  #   min-spaces-inside: 0
-  #   max-spaces-inside: 0
-  # brackets:
-  #   min-spaces-inside: 0
-  #   max-spaces-inside: 0
-  # indentation:
-  #   spaces: 2
-  #   indent-sequences: false # consistent
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+  indentation:
+    spaces: 2
+    indent-sequences: false # consistent
