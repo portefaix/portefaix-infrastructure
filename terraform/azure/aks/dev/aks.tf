@@ -23,6 +23,7 @@ module "aks" {
   virtual_network_name     = var.virtual_network_name
   vnet_resource_group_name = var.vnet_resource_group_name
   aks_subnet_name          = var.aks_subnet_name
+  pods_subnet_name         = var.pods_subnet_name
   appgw_subnet_name        = var.appgw_subnet_name
 
   resource_group_location = var.resource_group_location
@@ -33,8 +34,9 @@ module "aks" {
 
   private_cluster_enabled = var.private_cluster_enabled
 
-  network_plugin = var.network_plugin
-  network_policy = var.network_policy
+  ebpf_data_plane = var.ebpf_data_plane
+  network_plugin  = var.network_plugin
+  network_policy  = var.network_policy
 
   # net_profile_pod_cidr           = var.net_profile_pod_cidr
   net_profile_service_cidr   = var.net_profile_service_cidr

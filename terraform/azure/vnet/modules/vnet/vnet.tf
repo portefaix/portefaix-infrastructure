@@ -26,7 +26,9 @@ module "vnet" {
 
   address_space   = var.address_space
   subnet_prefixes = var.subnet_prefixes
-  subnet_names    = var.subnet_names
+  subnet_names = [
+    for s in var.subnet_names : format("%s-%s", locale.local.service_name, s)
+  ]
 
   # subnet_service_endpoints = {
   #   subnet2 = ["Microsoft.Storage", "Microsoft.Sql"],

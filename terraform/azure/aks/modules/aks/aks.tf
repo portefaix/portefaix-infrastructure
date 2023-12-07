@@ -34,8 +34,9 @@ module "aks" {
 
   private_cluster_enabled = var.private_cluster_enabled
 
-  network_plugin = var.network_plugin
-  network_policy = var.network_policy
+  ebpf_data_plane = var.ebpf_data_plane
+  network_plugin  = var.network_plugin
+  network_policy  = var.network_policy
 
   # net_profile_pod_cidr           = var.net_profile_pod_cidr
   net_profile_service_cidr   = var.net_profile_service_cidr
@@ -85,14 +86,12 @@ module "aks" {
   public_network_access_enabled   = false
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
-  # TODO: AKS: Another node pools
-  # labels: kind/feature, priority/high, lifecycle/frozen, area/terraform, cloud/azure
-  # https://github.com/Azure/terraform-azurerm-aks/pull/127
-  # node_pools = var.node_pools
+  node_pools = {
+    for key, value in var.node_pools :
+    key => merge(value, { pod_subnet_id = data.azurerm_subnet.pods.id })
+  }
 
   tags = var.tags
-
-  node_pools = var.node_pools
 
   depends_on = [
     azurerm_resource_group.aks

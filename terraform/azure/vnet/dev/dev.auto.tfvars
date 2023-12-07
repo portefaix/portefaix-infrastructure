@@ -35,8 +35,8 @@ subnet_prefixes = [
 ]
 
 subnet_names = [
-  "portefaix-core-dev-aks",
-  "portefaix-core-dev-ilb",
+  "aks",
+  "pods",
 ]
 
 tags = {
