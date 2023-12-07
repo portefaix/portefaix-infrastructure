@@ -4,7 +4,7 @@
   "toml": {
   },
   "excludes": [
-    "README.md"
+    "terraform/**/README.md"
   ],
   "plugins": [
     "https://plugins.dprint.dev/markdown-0.16.2.wasm",
