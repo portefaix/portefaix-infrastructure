@@ -45,10 +45,7 @@
 # }
 
 
-#tfsec:ignore:AWS073
-#tfsec:ignore:AWS074
-#tfsec:ignore:AWS075
-#tfsec:ignore:AWS076
+# tfsec:ignore:aws-s3-enable-bucket-encryption
 module "logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.15.1"
