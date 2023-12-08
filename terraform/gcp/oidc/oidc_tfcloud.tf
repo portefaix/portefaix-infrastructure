@@ -15,12 +15,12 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_network" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }
 
@@ -41,12 +41,12 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_shared" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }
 
@@ -67,12 +67,12 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_logging" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }
 
@@ -93,12 +93,12 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_testing" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }
 
@@ -119,12 +119,12 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_audit" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }
 
@@ -145,11 +145,11 @@ resource "google_iam_workload_identity_pool_provider" "tfcloud_core_dev" {
   description                        = "OIDC identity pool provider for Terraform Cloud Dynamic Credentials integration"
 
   # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
-  attribute_condition = local.attribute_condition
-  attribute_mapping   = local.attribute_mapping
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
   
   oidc {
     # Should be different if self hosted TFE instance is used
-    issuer_uri = var.issuer_uri
+    issuer_uri = var.tfcloud_uri
   }
 }

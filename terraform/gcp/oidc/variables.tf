@@ -60,9 +60,14 @@ variable "billing_account" {
   type        = string
 }
 
-variable "issuer_uri" {
+variable "tfcloud_uri" {
   type = string
   description = "URL of Terraform Cloud"
+}
+
+variable "github_actions_uri" {
+  type = string
+  description = "URL of Github Actions"
 }
 
 variable "tfcloud_organization_id" {

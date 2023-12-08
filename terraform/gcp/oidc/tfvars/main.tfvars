@@ -31,6 +31,8 @@ core_dev_project_id = "portefaix-core-dev-4d8a"
 #############################################################################
 # OIDC
 
-issuer_uri = "https://app.terraform.io"
+tfcloud_uri = "https://app.terraform.io"
+
+github_actions_uri = "https://token.actions.githubusercontent.com"
 
 tfcloud_organization_id = "portefaix"
