@@ -14,9 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-locals {
-  tags = merge(var.tags, {
-    Service = "Github",
-    Role    = "OIDC",
-  })
+#############################################################################
+# Provider
+
+region = "eu-west-1"
+
+#############################################################################
+# Github
+
+github_repo = "portefaix/portefaix-infrastructure"
+
+organization = "portefaix"
+
+#############################################################################
+# Commons
+
+tags = {
+  "Env" = "Root"
 }

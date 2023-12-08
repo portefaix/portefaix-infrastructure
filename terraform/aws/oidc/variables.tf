@@ -17,16 +17,44 @@
 #############################################################################
 # Provider
 
-region = "eu-west-1"
+variable "region" {
+  type        = string
+  description = "AWS Region"
+}
+
+variable "default_tags" {
+  type        = map(string)
+  description = "Tags for the AWS provider"
+  default = {
+    "Project"           = "Portefaix"
+    "Made-By"           = "Terraform"
+    "Portefaix-Version" = "v0.41.0"
+  }
+}
 
 #############################################################################
-# Github
+# OIDC
 
-github_repo = "portefaix/portefaix-infrastructure"
+variable "github_repo" {
+  type        = string
+  description = "Github repository"
+}
+
+variable "tfcloud_hostname" {
+  type        = string
+  description = "URL of Terraform cloud"
+  default     = "app.terraform.io"
+}
+
+variable "organization" {
+  type        = string
+  description = "Name of the Terraform Cloud organization"
+}
 
 #############################################################################
 # Commons
 
-tags = {
-  "Env" = "Root"
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
 }
