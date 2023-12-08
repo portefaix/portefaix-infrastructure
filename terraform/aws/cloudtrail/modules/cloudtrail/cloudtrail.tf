@@ -14,8 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#tfsec:ignore:aws-cloudtrail-enable-at-rest-encryption
-#tfsec:ignore:aws-cloudtrail-enable-log-validation
+# tfsec:ignore:aws-cloudtrail-enable-at-rest-encryption
+# tfsec:ignore:aws-cloudtrail-enable-log-validation
+# tfsec:ignore:aws-cloudtrail-ensure-cloudwatch-integration
 resource "aws_cloudtrail" "organizational_trail" {
   name                          = var.cloudtrail_name
   s3_bucket_name                = aws_s3_bucket.centralized_audit_logs.id

@@ -14,14 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
-
-  required_providers {
-    # tflint-ignore: terraform_unused_required_providers
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.29.0"
-    }
-  }
+locals {
+  tags = merge(var.tags, {
+    Service = "Github",
+    Role    = "OIDC",
+  })
 }

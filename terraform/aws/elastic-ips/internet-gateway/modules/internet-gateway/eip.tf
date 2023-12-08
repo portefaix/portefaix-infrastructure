@@ -15,6 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "aws_eip" "internet_gateway" {
-  vpc  = true
-  tags = var.tags
+  domain = "vpc"
+  tags   = var.tags
 }

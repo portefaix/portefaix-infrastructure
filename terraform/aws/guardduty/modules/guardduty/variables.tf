@@ -87,17 +87,17 @@ variable "filter_config" {
   EOF
   type = list(object({
     name        = string
-    description = optional(string)
+    description = string
     rank        = number
     action      = string
     criterion = list(object({
       field                 = string
-      equals                = optional(list(string))
-      not_equals            = optional(list(string))
-      greater_than          = optional(string)
-      greater_than_or_equal = optional(string)
-      less_than             = optional(string)
-      less_than_or_equal    = optional(string)
+      equals                = list(string)
+      not_equals            = list(string)
+      greater_than          = string
+      greater_than_or_equal = string
+      less_than             = string
+      less_than_or_equal    = string
     }))
   }))
   default = null

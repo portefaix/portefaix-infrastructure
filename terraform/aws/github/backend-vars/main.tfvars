@@ -14,14 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
-
-  required_providers {
-    # tflint-ignore: terraform_unused_required_providers
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.29.0"
-    }
-  }
-}
+bucket         = "portefaix-tfstates"
+region         = "eu-west-1"
+dynamodb_table = "portefaix-tfstate-lock"
+key            = "github/terraform.tfstate"

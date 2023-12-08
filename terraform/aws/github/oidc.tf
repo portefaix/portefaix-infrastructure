@@ -14,14 +14,28 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
+module "iam_github_oidc_provider" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
+  version = "5.32.0"
 
-  required_providers {
-    # tflint-ignore: terraform_unused_required_providers
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.29.0"
-    }
+  tags = local.tags
+}
+
+module "iam_github_oidc_role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-role"
+  version = "5.30.0"
+
+  name        = "PortefaixGithubActions"
+  description = "IAM role that can be assumed by GitHub Actions"
+
+  subjects = [
+    format("repo:%s:pull_request", var.github_repo),
+    format("%s:ref:refs/heads/master", var.github_repo),
+  ]
+
+  policies = {
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
   }
+
+  tags = local.tags
 }

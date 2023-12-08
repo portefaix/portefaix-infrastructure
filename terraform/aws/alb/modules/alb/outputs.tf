@@ -15,11 +15,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 output "alb_external_dns_name" {
-  value       = module.alb_external.lb_dns_name
+  value       = module.alb_external.dns_name
   description = "The DNS name of the external load balancer."
 }
 
 output "alb_internal_dns_name" {
-  value       = module.alb_internal.lb_dns_name
+  value       = module.alb_internal.dns_name
   description = "The DNS name of the internal load balancer."
 }

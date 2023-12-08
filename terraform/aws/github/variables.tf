@@ -17,31 +17,33 @@
 #############################################################################
 # Provider
 
-region = "eu-west-1"
+variable "region" {
+  type        = string
+  description = "AWS Region"
+}
 
-#############################################################################
-# Project
-
-org_name = "portefaix"
-
-core_account_id = "845676325565"
-
-##############################################################################
-# External DNS
-
-cluster_name = "portefaix-staging-eks"
-
-namespace       = "storage"
-service_account = "velero"
-
-tags = {
-  "Env"     = "Staging"
-  "Service" = "Velero"
+variable "default_tags" {
+  type        = map(string)
+  description = "Tags for the AWS provider"
+  default = {
+    "Project"           = "Portefaix"
+    "Made-By"           = "Terraform"
+    "Portefaix-Version" = "v0.41.0"
+  }
 }
 
 #############################################################################
-# KMS
+# Github
 
-enable_kms = false
+variable "github_repo" {
+  type        = string
+  description = "Github repository"
+}
 
-deletion_window_in_days = 30
+#############################################################################
+# Commons
+
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
+}

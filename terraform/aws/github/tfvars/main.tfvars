@@ -14,14 +14,19 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "velero" {
-  source = "../modules/velero"
+#############################################################################
+# Provider
 
-  cluster_name = var.cluster_name
+region = "eu-west-1"
 
-  namespace               = var.namespace
-  service_account         = var.service_account
-  tags                    = var.tags
-  enable_kms              = var.enable_kms
-  deletion_window_in_days = var.deletion_window_in_days
+#############################################################################
+# Github
+
+github_repo = "portefaix/portefaix-infrastructure"
+
+#############################################################################
+# Commons
+
+tags = {
+  "Env" = "Root"
 }
