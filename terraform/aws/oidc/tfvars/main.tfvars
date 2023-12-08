@@ -14,13 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
+#############################################################################
+# Provider
 
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.29.0"
-    }
-  }
+region = "eu-west-1"
+
+#############################################################################
+# Github
+
+github_repo = "portefaix/portefaix-infrastructure"
+
+organization = "portefaix"
+
+#############################################################################
+# Commons
+
+tags = {
+  "Env" = "Root"
 }

@@ -29,8 +29,7 @@ module "vpc" {
   single_nat_gateway   = true
   enable_dns_hostnames = true
 
-  reuse_nat_ips = true
-  # external_nat_ip_ids = data.aws_eip.igw.*.id
+  reuse_nat_ips       = true
   external_nat_ip_ids = [for gw in data.aws_eip.igw : gw].id
 
   tags = merge({

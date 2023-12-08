@@ -14,7 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-bucket         = "portefaix-tfstates"
-region         = "eu-west-1"
-dynamodb_table = "portefaix-tfstate-lock"
-key            = "github/terraform.tfstate"
+locals {
+  tfcloud_url                        = format("https://%s", var.tfcloud_hostname)
+  tfcloud_workload_identity_audience = "aws.workload.identity"
+
+  oidc_policy = "arn:aws:iam::aws:policy/AdministratorAccess"
+
+  tags = merge(var.tags, {
+    Service = "OIDC",
+  })
+}

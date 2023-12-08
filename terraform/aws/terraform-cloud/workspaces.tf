@@ -42,27 +42,27 @@ resource "tfe_workspace" "aws" {
   tag_names = each.value.tags
 }
 
-resource "tfe_variable" "aws_acces_key" {
-  for_each = tfe_workspace.aws
+# resource "tfe_variable" "aws_acces_key" {
+#   for_each = tfe_workspace.aws
 
-  key          = "AWS_ACCESS_KEY_ID"
-  value        = var.access_key
-  category     = "env"
-  sensitive    = "true"
-  workspace_id = each.value.id
-  description  = "The AWS access key"
-}
+#   key          = "AWS_ACCESS_KEY_ID"
+#   value        = var.access_key
+#   category     = "env"
+#   sensitive    = "true"
+#   workspace_id = each.value.id
+#   description  = "The AWS access key"
+# }
 
-resource "tfe_variable" "aws_secret_key" {
-  for_each = tfe_workspace.aws
+# resource "tfe_variable" "aws_secret_key" {
+#   for_each = tfe_workspace.aws
 
-  key          = "AWS_SECRET_ACCESS_KEY"
-  value        = var.secret_key
-  category     = "env"
-  sensitive    = "true"
-  workspace_id = each.value.id
-  description  = "The AWS secret key"
-}
+#   key          = "AWS_SECRET_ACCESS_KEY"
+#   value        = var.secret_key
+#   category     = "env"
+#   sensitive    = "true"
+#   workspace_id = each.value.id
+#   description  = "The AWS secret key"
+# }
 
 resource "tfe_variable" "slack_webhook_url" {
   key          = "TF_VAR_slack_webhook_url"
@@ -106,4 +106,26 @@ resource "tfe_variable" "org_email_domain" {
   sensitive    = "true"
   workspace_id = tfe_workspace.aws[each.value].id
   description  = "Organization email domain"
+}
+
+resource "tfe_variable" "tfcloud_oidc" {
+  for_each = tfe_workspace.aws
+
+  key          = "TFC_AWS_PROVIDER_AUTH"
+  value        = "true"
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "Enable Terraform Cloud OIDC"
+}
+
+resource "tfe_variable" "aws_role_arn" {
+  for_each = tfe_workspace.aws
+
+  key          = "TFC_AWS_RUN_ROLE_ARN"
+  value        = var.aws_role_arn
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = each.value.id
+  description  = "The AWS access key"
 }

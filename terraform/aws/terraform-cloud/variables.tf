@@ -73,14 +73,19 @@ variable "github_oauth_token" {
   description = "Github token for Terraform Cloud"
 }
 
-variable "access_key" {
-  type        = string
-  description = "AWS access key"
-}
+# variable "access_key" {
+#   type        = string
+#   description = "AWS access key"
+# }
 
-variable "secret_key" {
+# variable "secret_key" {
+#   type        = string
+#   description = "AWS secret key"
+# }
+
+variable "aws_role_arn" {
   type        = string
-  description = "AWS secret key"
+  description = "AWS Role ARN for Terraform Cloud"
 }
 
 variable "slack_webhook_url" {

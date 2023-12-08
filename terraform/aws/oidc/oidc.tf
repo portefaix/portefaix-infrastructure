@@ -34,8 +34,30 @@ module "iam_github_oidc_role" {
   ]
 
   policies = {
-    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+    AdministratorAccess = local.oidc_policy
   }
 
   tags = local.tags
+}
+
+resource "aws_iam_openid_connect_provider" "tfcloud" {
+  url             = local.tfcloud_url
+  client_id_list  = [local.tfcloud_workload_identity_audience]
+  thumbprint_list = [data.tls_certificate.tfcloud.certificates[0].sha1_fingerprint]
+
+  tags = local.tags
+}
+
+resource "aws_iam_role" "tfcloud" {
+  name        = format("PortefaixTFCloud-%s", var.organization)
+  description = "IAM role that can be assumed by Terraform Cloud"
+
+  assume_role_policy = data.aws_iam_policy_document.tfcloud.json
+
+  tags = local.tags
+}
+
+resource "aws_iam_role_policy_attachment" "tfcloud" {
+  role       = aws_iam_role.tfcloud.name
+  policy_arn = local.oidc_policy
 }
