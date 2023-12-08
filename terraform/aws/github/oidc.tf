@@ -23,7 +23,7 @@ module "iam_github_oidc_provider" {
 
 module "iam_github_oidc_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-role"
-  version = "5.30.0"
+  version = "5.32.0"
 
   name        = "PortefaixGithubActions"
   description = "IAM role that can be assumed by GitHub Actions"
