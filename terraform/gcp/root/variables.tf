@@ -164,8 +164,6 @@ variable "vms_to_allow" {
 #############################################################################
 # Commons
 
-
-
 variable "labels" {
   description = "Labels to apply to the project."
   type        = map(string)
