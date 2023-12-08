@@ -45,6 +45,13 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         terraform_version: "1.1.7"
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.AWS_ASSUME_ROLE }}
+        role-session-name: githubactions
+        aws-region: ${{ secrets.AWS_REGION_STAGING }}
+
     - name: Terraform validate
       run: |
         ./hack/scripts/terraform-validate.sh aws true
