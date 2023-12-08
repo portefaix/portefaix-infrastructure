@@ -20,9 +20,9 @@ name: AWS / Validate
 on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
-      - main
+    - main
     paths:
-      - 'terraform/aws/**'
+    - 'terraform/aws/**'
   # push:
   #   branches:
   #     - main
@@ -43,6 +43,7 @@ jobs:
       uses: hashicorp/setup-terraform@v3
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        terraform_version: "1.1.7"
 
     - name: Terraform validate
       run: |
