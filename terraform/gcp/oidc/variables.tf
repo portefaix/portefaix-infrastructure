@@ -79,3 +79,15 @@ variable "tfcloud_workspace_id" {
   description = "Terraform Cloud workspace id."
   type        = string
 }
+
+variable "gh_owner" {
+  type = string
+  description = "Username of the GitHub repository owner"
+  default     = "portefaix"
+}
+
+variable "gh_repo_name" {
+  type = string
+  description = "GitHub repository to set actions secrets"
+  default     = "portefaix-infrastructure"
+}
