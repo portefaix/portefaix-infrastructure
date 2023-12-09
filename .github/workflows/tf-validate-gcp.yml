@@ -52,6 +52,7 @@ jobs:
       with:
         project_id: portefaix-network-8f80
         workload_identity_provider: 'projects/portefaix-network-8f80/locations/global/workloadIdentityPools/portefaix-github-actions-network/providers/portefaix-gha-network'
+        service_account: terraform-network@portefaix-network-8f80.iam.gserviceaccount.com
 
     - name: Terraform validate
       run: |
