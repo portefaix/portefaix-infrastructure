@@ -158,6 +158,11 @@ gcp-bootstrap-iam: guard-GCP_ORG_ID ## IAM for Bootstrap service account
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.tagUser" \
 		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/iam.workloadIdentityPoolAdmin" \
+		--user-output-enabled false
+
 
 .PHONY: gcp-bootstrap-apis
 gcp-bootstrap-apis: ## Enable APIs on project
