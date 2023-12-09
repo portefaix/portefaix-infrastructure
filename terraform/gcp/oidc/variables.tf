@@ -74,3 +74,8 @@ variable "tfcloud_organization_id" {
   type = string
   description = "Terraform Cloud organization ID"
 }
+
+variable "tfcloud_workspace_id" {
+  description = "Terraform Cloud workspace id."
+  type        = string
+}

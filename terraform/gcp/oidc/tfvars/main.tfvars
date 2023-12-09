@@ -36,3 +36,4 @@ tfcloud_uri = "https://app.terraform.io"
 github_actions_uri = "https://token.actions.githubusercontent.com"
 
 tfcloud_organization_id = "portefaix"
+tfcloud_workspace_id = "111"

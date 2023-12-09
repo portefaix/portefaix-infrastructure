@@ -30,9 +30,17 @@ terraform {
         google.core_dev,
       ]
     }
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "0.50.0"
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "5.8.0"
+      configuration_aliases = [
+        google-beta.network,
+        google-beta.shared,
+        google-beta.logging,
+        google-beta.testing,
+        google-beta.audit,
+        google-beta.core_dev,
+      ]
     }
   }
 }

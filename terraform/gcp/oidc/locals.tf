@@ -1,4 +1,10 @@
 locals {
+  workload_identity_pool_desc = "Identity Pool for"
+  workload_identity_pool_provider_desc = "OIDC identity pool provider for"
+
+  tfcloud_service = "terraform-cloud"
+  tfcloud_wip_desc = format("%s %s Pool", local.workload_identity_pool_desc, title(local.tfcloud_service))
+  tfcloud_wip_provider_desc = format("%s %s", local.workload_identity_pool_provider_desc, title(local.tfcloud_service))
   tfcloud_attribute_condition = "attribute.terraform_organization_id == \"${var.tfcloud_organization_id}\""
   tfcloud_attribute_mapping = {
     "google.subject"                        = "assertion.sub"
@@ -14,8 +20,14 @@ locals {
     "attribute.terraform_full_workspace"    = "assertion.terraform_full_workspace"
   }
 
-  github_actions_attribute_mapping = {
-    "google.subject"       = "assertion.sub"
-    "attribute.repository" = "assertion.repository"
-  }
+  gh_actions_service = "github-actions"
+  gh_actions_wip_desc = format("%s %s Pool", local.workload_identity_pool_desc, title(local.gh_actions_service))
+  gh_actions_wip_provider_desc = format("%s %s", local.workload_identity_pool_provider_desc, title(local.gh_actions_service))
+
+  # github_actions_attribute_mapping = {
+  #   "google.subject"       = "assertion.sub"
+  #   "attribute.actor"      = "assertion.actor"
+  #   "attribute.aud"        = "assertion.aud"
+  #   "attribute.repository" = "assertion.repository"
+  # }
 }

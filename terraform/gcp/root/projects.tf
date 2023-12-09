@@ -25,7 +25,6 @@ module "network" {
   folder_id         = module.folders.folders_map["Shared"].id
 
   default_service_account        = "deprivilege"
-  enable_shared_vpc_host_project = true
   default_network_tier           = var.default_network_tier
 
   activate_apis = [

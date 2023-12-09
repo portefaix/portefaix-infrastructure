@@ -50,6 +50,38 @@ provider "google" {
   project = var.core_dev_project_id
 }
 
-provider "tfe" {
-  hostname = "app.terraform.io"
+provider "google-beta" {
+  alias = "network"
+  region  = var.region
+  project = var.network_project_id
+}
+
+provider "google-beta" {
+  alias = "shared"
+  region  = var.region
+  project = var.shared_project_id
+}
+
+provider "google-beta" {
+  alias = "logging"
+  region  = var.region
+  project = var.logging_project_id
+}
+
+provider "google-beta" {
+  alias = "testing"
+  region  = var.region
+  project = var.testing_project_id
+}
+
+provider "google-beta" {
+  alias = "audit"
+  region  = var.region
+  project = var.audit_project_id
+}
+
+provider "google-beta" {
+  alias = "core_dev"
+  region  = var.region
+  project = var.core_dev_project_id
 }
