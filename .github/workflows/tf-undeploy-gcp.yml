@@ -141,7 +141,6 @@ jobs:
 
   gcp_gke:
     needs:
-      # - gcp_sops
       - gcp_observability
       - gcp_cert_manager
       - gcp_external_dns
