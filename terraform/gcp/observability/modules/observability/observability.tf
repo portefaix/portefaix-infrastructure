@@ -16,7 +16,7 @@
 
 module "prometheus" {
   source  = "nlamirault/observability/google//modules/prometheus"
-  version = "5.4.0"
+  version = "6.0.0"
 
   project = var.project
 
@@ -27,7 +27,7 @@ module "prometheus" {
 # tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "thanos" {
   source  = "nlamirault/observability/google//modules/thanos"
-  version = "5.4.0"
+  version = "6.0.0"
 
   project = var.project
 
@@ -50,7 +50,7 @@ module "thanos" {
 # tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "loki" {
   source  = "nlamirault/observability/google//modules/loki"
-  version = "5.4.0"
+  version = "6.0.0"
 
   project = var.project
 
@@ -70,7 +70,7 @@ module "loki" {
 # tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "tempo" {
   source  = "nlamirault/observability/google//modules/tempo"
-  version = "5.4.0"
+  version = "6.0.0"
 
   project = var.project
 
@@ -89,7 +89,7 @@ module "tempo" {
 
 module "grafana" {
   source  = "nlamirault/observability/google//modules/grafana"
-  version = "5.4.0"
+  version = "6.0.0"
 
   project = var.project
 
