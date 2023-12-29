@@ -20,7 +20,7 @@ terraform {
   required_providers {
     alicloud = {
       source  = "aliyun/alicloud"
-      version = "1.214.0"
+      version = "1.214.1"
     }
   }
 }
