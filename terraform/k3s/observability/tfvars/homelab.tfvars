@@ -46,4 +46,7 @@ buckets = {
   "portefaix-homelab-traces-chunks" = {
     days = 30
   },
+  "portefaix-homelab-quickwit-data" = {
+    days = 30
+  },
 }

@@ -19,6 +19,7 @@
 
 region = "europe-west1"
 
+bootstrap_project_id = "portefaix-bootstrap"
 network_project_id = "portefaix-network-8f80"
 shared_project_id = "portefaix-shared-ded0"
 logging_project_id = "portefaix-logging-dc58"

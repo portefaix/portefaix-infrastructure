@@ -22,6 +22,7 @@ terraform {
       source  = "hashicorp/google"
       version = "5.8.0"
       configuration_aliases = [
+        google.bootstrap,
         google.network,
         google.shared,
         google.logging,
@@ -34,6 +35,7 @@ terraform {
       source  = "hashicorp/google-beta"
       version = "5.8.0"
       configuration_aliases = [
+        google-beta.bootstrap,
         google-beta.network,
         google-beta.shared,
         google-beta.logging,

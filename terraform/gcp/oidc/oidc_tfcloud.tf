@@ -1,3 +1,29 @@
+resource "google_iam_workload_identity_pool" "tfcloud_bootstrap" {
+  provider = google.bootstrap
+
+  workload_identity_pool_id = format("%s-tfcloud-bootstrap", var.tfcloud_organization_id)
+  display_name              = title(local.tfcloud_service)
+  description               = local.tfcloud_wip_desc
+}
+
+resource "google_iam_workload_identity_pool_provider" "tfcloud_bootstrap" {
+  provider = google.bootstrap
+
+  workload_identity_pool_id          = google_iam_workload_identity_pool.tfcloud_bootstrap.workload_identity_pool_id
+  workload_identity_pool_provider_id = format("%s-tfcloud-bootstrap", var.tfcloud_organization_id)
+  display_name                       = title(local.tfcloud_service)
+  description                        = local.tfcloud_wip_provider_desc
+
+  # Use condition to make sure only token generated for a specific TFC Org can be used across org workspaces
+  attribute_condition = local.tfcloud_attribute_condition
+  attribute_mapping   = local.tfcloud_attribute_mapping
+  
+  oidc {
+    # Should be different if self hosted TFE instance is used
+    issuer_uri = var.tfcloud_uri
+  }
+}
+
 resource "google_iam_workload_identity_pool" "tfcloud_network" {
   provider = google.network
 
