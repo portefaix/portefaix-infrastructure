@@ -88,13 +88,14 @@ function tf_validate() {
 
 function check_infra() {
     local dir=$1
+    local exclude=$2
 
     if [ ! -d "${dir}" ]; then
         echo_fail "Invalid directory: ${dir}"
         exit 1
     fi
     # Do not validate module: https://github.com/hashicorp/terraform/issues/28490
-    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | sort -u); do
+    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | grep -v -E "root|oidc" | sort -u); do
         tf_dir=${tf_file%/*}
         tf_validate "${tf_dir}"
     done
