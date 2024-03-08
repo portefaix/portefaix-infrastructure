@@ -52,8 +52,6 @@ module "aks" {
 
   azure_policy_enabled = var.azure_policy_enabled
 
-  ingress_application_gateway_subnet_id = data.azurerm_subnet.appgw.id
-
   open_service_mesh_enabled = var.open_service_mesh_enabled
 
   key_vault_secrets_provider_enabled = var.key_vault_secrets_provider_enabled
