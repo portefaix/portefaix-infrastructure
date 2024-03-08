@@ -52,7 +52,7 @@ jobs:
       with:
         project_id: portefaix-bootstrap
         workload_identity_provider: 'projects/portefaix-bootstrap/locations/global/workloadIdentityPools/portefaix-gha-bootstrap/providers/portefaix-gha-bootstrap'
-        service_account: terraform-boostrap@portefaix-bootstrap.iam.gserviceaccount.com
+        service_account: portefaix-boostrap@portefaix-bootstrap.iam.gserviceaccount.com
 
     - name: Terraform validate
       run: |
