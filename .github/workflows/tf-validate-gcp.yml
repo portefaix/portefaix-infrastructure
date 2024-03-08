@@ -51,7 +51,7 @@ jobs:
     - uses: google-github-actions/auth@v2.1.2
       with:
         project_id: portefaix-network-8f80
-        workload_identity_provider: 'projects/${{ secrets.GCP_PRJ_NETWORK_ID }}/locations/global/workloadIdentityPools/portefaix-gha-network/providers/portefaix-gha-network'
+        workload_identity_provider: 'projects/portefaix-network-8f80/locations/global/workloadIdentityPools/portefaix-gha-network/providers/portefaix-gha-network'
         service_account: terraform-network@portefaix-network-8f80.iam.gserviceaccount.com
 
     - name: Terraform validate

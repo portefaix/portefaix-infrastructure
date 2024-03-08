@@ -32,7 +32,8 @@ on: # yamllint disable-line rule:truthy
 
 permissions:
   contents: read
-
+  id-token: 'write'
+  
 jobs:
   gcp_vpc:
     runs-on: ubuntu-latest
