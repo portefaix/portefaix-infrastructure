@@ -79,7 +79,6 @@ module "aks" {
 
   maintenance_window = var.maintenance_window
 
-  public_network_access_enabled   = false
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
   # TODO: AKS: Another node pools
