@@ -20,7 +20,7 @@
 #tfsec:ignore:GEN001
 module "aks" {
   source  = "Azure/aks/azurerm"
-  version = "7.5.0"
+  version = "8.0.0"
   # source = "git://github.com/Azure/terraform-azurerm-aks.git?ref=master"
 
   cluster_name              = local.service_name
@@ -52,11 +52,6 @@ module "aks" {
 
   azure_policy_enabled = var.azure_policy_enabled
 
-  http_application_routing_enabled = var.http_application_routing_enabled
-
-  ingress_application_gateway_enabled   = var.ingress_application_gateway_enabled
-  ingress_application_gateway_subnet_id = data.azurerm_subnet.appgw.id
-
   open_service_mesh_enabled = var.open_service_mesh_enabled
 
   key_vault_secrets_provider_enabled = var.key_vault_secrets_provider_enabled
@@ -82,7 +77,6 @@ module "aks" {
 
   maintenance_window = var.maintenance_window
 
-  public_network_access_enabled   = false
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
   # TODO: AKS: Another node pools
