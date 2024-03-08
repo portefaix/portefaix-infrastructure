@@ -21,9 +21,11 @@ module "network" {
   name              = format("%s-network", var.organization_name)
   random_project_id = true
   org_id            = data.google_organization.this.id
-  billing_account   = var.billing_account
   folder_id         = module.folders.folders_map["Shared"].id
+  billing_account   = var.billing_account
+  # budget_amount     = 10
 
+  enable_shared_vpc_host_project = true
   default_service_account        = "deprivilege"
   default_network_tier           = var.default_network_tier
 
