@@ -142,12 +142,6 @@ variable "azure_policy_enabled" {
   type        = bool
 }
 
-variable "ingress_application_gateway_enabled" {
-  description = "If true will enable Application Gateway ingress controller to this Kubernetes Cluster"
-  type        = bool
-  default     = false
-}
-
 variable "open_service_mesh_enabled" {
   type        = bool
   description = "Is Open Service Mesh enabled."
