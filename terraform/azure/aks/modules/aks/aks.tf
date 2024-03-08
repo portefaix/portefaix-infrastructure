@@ -52,8 +52,6 @@ module "aks" {
 
   azure_policy_enabled = var.azure_policy_enabled
 
-  http_application_routing_enabled = var.http_application_routing_enabled
-
   ingress_application_gateway_enabled   = var.ingress_application_gateway_enabled
   ingress_application_gateway_subnet_id = data.azurerm_subnet.appgw.id
 

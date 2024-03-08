@@ -51,7 +51,6 @@ module "aks" {
   # enable_log_analytics_workspace     = false
   enable_auto_scaling                 = var.enable_auto_scaling
   azure_policy_enabled                = var.azure_policy_enabled
-  http_application_routing_enabled    = var.http_application_routing_enabled
   ingress_application_gateway_enabled = var.ingress_application_gateway_enabled
   open_service_mesh_enabled           = var.open_service_mesh_enabled
   key_vault_secrets_provider_enabled  = var.key_vault_secrets_provider_enabled

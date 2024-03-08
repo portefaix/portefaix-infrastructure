@@ -144,11 +144,6 @@ variable "net_profile_service_cidr" {
 #############################################################################
 # Addon profile
 
-variable "http_application_routing_enabled" {
-  type        = bool
-  description = "Is HTTP Application Routing Enabled"
-}
-
 # variable "aci_connector_linux" {
 #   type        = bool
 #   description = "Is the virtual node addon enabled"
