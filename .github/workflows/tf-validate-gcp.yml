@@ -51,7 +51,7 @@ jobs:
     - uses: google-github-actions/auth@v2.1.2
       with:
         project_id: portefaix-bootstrap
-        workload_identity_provider: 'projects/portefaix-bootstrap/locations/global/workloadIdentityPools/portefaix-gha-bootstrap/providers/portefaix-gha-bootstrap'
+        workload_identity_provider: 'projects/1081501690701/locations/global/workloadIdentityPools/portefaix-gha-bootstrap/providers/portefaix-gha-bootstrap'
         service_account: portefaix-boostrap@portefaix-bootstrap.iam.gserviceaccount.com
 
     - name: Terraform validate
