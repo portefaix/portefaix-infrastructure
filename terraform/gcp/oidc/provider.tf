@@ -15,6 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 provider "google" {
+  alias = "bootstrap"
+  region  = var.region
+  project = var.bootstrap_project_id
+}
+
+provider "google" {
   alias = "network"
   region  = var.region
   project = var.network_project_id
@@ -48,6 +54,12 @@ provider "google" {
   alias = "core_dev"
   region  = var.region
   project = var.core_dev_project_id
+}
+
+provider "google-beta" {
+  alias = "bootstrap"
+  region  = var.region
+  project = var.bootstrap_project_id
 }
 
 provider "google-beta" {

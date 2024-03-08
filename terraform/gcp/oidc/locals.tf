@@ -30,4 +30,6 @@ locals {
   #   "attribute.aud"        = "assertion.aud"
   #   "attribute.repository" = "assertion.repository"
   # }
+
+  sa_name = "terraform"
 }

@@ -22,6 +22,11 @@ variable "region" {
   description = "The location linked to the project"
 }
 
+variable "bootstrap_project_id" {
+  type = string
+  description = "ID of the Bootstrap GCP project"
+}
+
 variable "network_project_id" {
   type = string
   description = "ID of the Network GCP project"

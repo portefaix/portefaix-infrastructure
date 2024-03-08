@@ -1,19 +1,19 @@
-module "gh_oidc_network" {
+module "gh_oidc_bootstrap" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   version = "v3.1.2"
 
   providers = {
-    google = google.network
-    google-beta = google-beta.network
+    google = google.bootstrap
+    google-beta = google-beta.bootstrap
   }
 
-  project_id = var.network_project_id
+  project_id = var.bootstrap_project_id
 
-  pool_id           = format("%s-gha-network", var.tfcloud_organization_id)
+  pool_id           = format("%s-gha-bootstrap", var.tfcloud_organization_id)
   pool_display_name = title(local.gh_actions_service)
   pool_description  = local.gh_actions_wip_desc
 
-  provider_id       = format("%s-gha-network", var.tfcloud_organization_id)
+  provider_id       = format("%s-gha-bootstrap", var.tfcloud_organization_id)
   provider_display_name = title(local.gh_actions_service)
   provider_description = local.gh_actions_wip_provider_desc
 
@@ -21,9 +21,15 @@ module "gh_oidc_network" {
   # attribute_mapping = local.github_actions_attribute_mapping
 
   sa_mapping = {
-    (module.sa_tf.service_account.account_id) = {
+    # (module.sa_tf_bootstrap.service_account.account_id) = {
+    "terraform-bootstrap" = {
       attribute = "attribute.repository/${var.gh_owner}/${var.gh_repo_name}"
-      sa_name   = module.sa_tf.service_account.name
+      sa_name   = module.sa_tf_bootstrap.service_account.name
+    }
+    # (module.sa_tf_network.service_account.account_id) = {
+    "terraform-network" = {
+      attribute = "attribute.repository/${var.gh_owner}/${var.gh_repo_name}"
+      sa_name   = module.sa_tf_network.service_account.name
     }
   }
 }
