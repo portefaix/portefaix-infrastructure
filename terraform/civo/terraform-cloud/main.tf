@@ -20,7 +20,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.30.0"
+      version = "5.39.1"
     }
     civo = {
       source  = "civo/civo"
@@ -28,7 +28,7 @@ terraform {
     }
     tfe = {
       source  = "hashicorp/tfe"
-      version = "0.50.0"
+      version = "0.52.0"
     }
   }
 }

@@ -21,7 +21,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     google = {
       source  = "hashicorp/google"
-      version = "5.8.0"
+      version = "5.19.0"
     }
     # google-beta = {
     #   source  = "hashicorp/google-beta"

@@ -26,7 +26,7 @@ config {
 
 plugin "aws" {
   enabled = true
-  version = "0.28.0"
+  version = "0.30.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 
@@ -38,6 +38,6 @@ plugin "azurerm" {
 
 plugin "google" {
   enabled = true
-  version = "0.26.0"
+  version = "0.27.1"
   source  = "github.com/terraform-linters/tflint-ruleset-google"
 }
