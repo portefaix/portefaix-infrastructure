@@ -81,18 +81,18 @@ module "eks" {
     "karpenter.sh/discovery/${var.cluster_name}" = var.cluster_name
   }
 
-  # Update aws-auth configmap with Karpenter node role so they can join the cluster
-  manage_aws_auth_configmap = true
-  aws_auth_roles = [
-    {
-      rolearn  = module.karpenter.role_arn
-      username = "system:node:{{EC2PrivateDNSName}}"
-      groups = [
-        "system:bootstrappers",
-        "system:nodes",
-      ]
-    },
-  ]
+  # # Update aws-auth configmap with Karpenter node role so they can join the cluster
+  # manage_aws_auth_configmap = true
+  # aws_auth_roles = [
+  #   {
+  #     rolearn  = module.karpenter.role_arn
+  #     username = "system:node:{{EC2PrivateDNSName}}"
+  #     groups = [
+  #       "system:bootstrappers",
+  #       "system:nodes",
+  #     ]
+  #   },
+  # ]
 
   self_managed_node_group_defaults = merge(
     var.self_managed_node_group_defaults,
