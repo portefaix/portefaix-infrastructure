@@ -76,7 +76,8 @@ function tf_validate() {
     pushd "${infra}" > /dev/null || exit 1
     output=$(mktemp)
     if [ -d "backend-vars" ]; then
-        terraform init -upgrade -backend-config=backend-vars/main.tfvars
+        tfvar_file=$(ls backend-vars/*.tfvars)
+        terraform init -upgrade -backend-config="${tfvar_file}"
     else
         terraform init -upgrade &> "${output}"
     fi
