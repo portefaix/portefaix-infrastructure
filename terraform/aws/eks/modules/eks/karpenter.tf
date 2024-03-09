@@ -21,7 +21,8 @@ module "karpenter" {
   cluster_name = module.eks.cluster_name
 
   enable_irsa                     = true
-  irsa_name                       = var.karpenter_role_name
+  iam_role_name                   = var.karpenter_role_name
+  node_iam_role_name              = format("%s-node", var.karpenter_role_name)
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
   irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
 
