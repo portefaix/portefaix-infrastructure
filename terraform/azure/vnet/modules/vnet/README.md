@@ -7,26 +7,26 @@
 | Name                                                                     | Version  |
 | ------------------------------------------------------------------------ | -------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement_azurerm)       | 3.57.0   |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement_azurerm)       | 3.82.0   |
 
 ## Providers
 
 | Name                                                         | Version |
 | ------------------------------------------------------------ | ------- |
-| <a name="provider_azurerm"></a> [azurerm](#provider_azurerm) | 3.57.0  |
+| <a name="provider_azurerm"></a> [azurerm](#provider_azurerm) | 3.58.0  |
 
 ## Modules
 
 | Name                                            | Source                               | Version |
 | ----------------------------------------------- | ------------------------------------ | ------- |
 | <a name="module_ssh"></a> [ssh](#module_ssh)    | Azure/network-security-group/azurerm | 4.1.0   |
-| <a name="module_vnet"></a> [vnet](#module_vnet) | Azure/vnet/azurerm                   | 4.0.0   |
+| <a name="module_vnet"></a> [vnet](#module_vnet) | Azure/vnet/azurerm                   | 4.1.0   |
 
 ## Resources
 
 | Name                                                                                                                          | Type     |
 | ----------------------------------------------------------------------------------------------------------------------------- | -------- |
-| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/3.57.0/docs/resources/resource_group) | resource |
+| [azurerm_resource_group.vnet](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/resource_group) | resource |
 
 ## Inputs
 
