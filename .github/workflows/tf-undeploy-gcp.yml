@@ -45,7 +45,7 @@ jobs:
         echo "Delete Observability on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -79,7 +79,7 @@ jobs:
         echo "Delete CertManager on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -113,7 +113,7 @@ jobs:
         echo "Delete External DNS on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -150,7 +150,7 @@ jobs:
         echo "Undeploy Portefaix on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -186,7 +186,7 @@ jobs:
         echo "Cloud NAT on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -220,7 +220,7 @@ jobs:
         echo "Cloud DNS on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -254,7 +254,7 @@ jobs:
         echo "Cloud Armor on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -288,7 +288,7 @@ jobs:
         echo "PubSub on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -322,7 +322,7 @@ jobs:
         echo "PubSub on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -356,7 +356,7 @@ jobs:
         echo "Artifact Registry on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -390,7 +390,7 @@ jobs:
         echo "External IP for Cloud NAT on GCP / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -424,7 +424,7 @@ jobs:
         echo "External IP for External Load Balancer / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -458,7 +458,7 @@ jobs:
         echo "Internal IP for Internal Load Balancer / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -501,7 +501,7 @@ jobs:
         echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
