@@ -20,7 +20,7 @@ terraform {
   required_providers {
     civo = {
       source  = "civo/civo"
-      version = "1.0.41"
+      version = "1.0.45"
     }
   }
 }
