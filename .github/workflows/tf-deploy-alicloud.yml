@@ -41,7 +41,7 @@ jobs:
         echo "VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -65,7 +65,7 @@ jobs:
         echo "SSH Key Pair / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -89,7 +89,7 @@ jobs:
         echo "NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -113,7 +113,7 @@ jobs:
         echo "Elastic IP Address for NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -139,7 +139,7 @@ jobs:
         echo "ACK / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
