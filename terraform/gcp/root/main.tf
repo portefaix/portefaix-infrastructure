@@ -24,7 +24,7 @@ terraform {
     # }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "5.30.0"
+      version = "5.36.0"
     }
   }
 }
