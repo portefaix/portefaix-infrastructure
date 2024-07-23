@@ -29,6 +29,12 @@ data "azurerm_subnet" "aks" {
   resource_group_name  = var.vnet_resource_group_name # data.azurerm_resource_group.core.name
 }
 
+data "azurerm_subnet" "pods" {
+  name                 = var.pods_subnet_name
+  virtual_network_name = data.azurerm_virtual_network.core.name
+  resource_group_name  = var.vnet_resource_group_name # data.azurerm_resource_group.core.name
+}
+
 data "azurerm_subnet" "appgw" {
   name                 = var.appgw_subnet_name
   virtual_network_name = data.azurerm_virtual_network.core.name

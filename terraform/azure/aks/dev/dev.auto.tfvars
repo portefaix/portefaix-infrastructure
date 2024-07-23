@@ -25,7 +25,8 @@ subscription_core_dev_id = "b7ff400c-0b01-4a49-af59-f179d610026a"
 vnet_resource_group_name = "portefaix-core-dev-vnet"
 virtual_network_name     = "portefaix-core-dev"
 aks_subnet_name          = "portefaix-core-dev-aks"
-appgw_subnet_name        = "ApplicationGatewaySubnet" #"portefaix-dev-appgw"
+pods_subnet_name         = "portefaix-core-dev-pods"
+appgw_subnet_name        = "ApplicationGatewaySubnet"
 
 #############################################################################
 # Active Directory
@@ -60,8 +61,9 @@ tags = {
 #############################################################################
 # Network profile
 
-network_plugin = "azure"
-network_policy = "calico"
+ebpf_data_plane = "cilium"
+network_plugin  = "azure"
+network_policy  = "calico"
 
 # net_profile_pod_cidr           = "10.0.16.0/20"
 net_profile_service_cidr   = "10.0.16.0/20"
@@ -70,9 +72,9 @@ net_profile_dns_service_ip = "10.0.16.10"
 #############################################################################
 # Addon profile
 
+azure_policy_enabled             = false
 http_application_routing_enabled = false
-# enable_kube_dashboard           = false
-azure_policy_enabled = false
+# enable_kube_dashboard            = false
 # aci_connector_linux             = false
 
 #############################################################################
