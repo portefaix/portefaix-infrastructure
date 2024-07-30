@@ -21,7 +21,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     civo = {
       source  = "civo/civo"
-      version = "1.0.45"
+      version = "1.0.48"
     }
   }
 }
