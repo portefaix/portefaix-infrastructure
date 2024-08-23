@@ -25,18 +25,20 @@ cloud       = "k3s"
 environment = "homelab"
 name        = "portefaix-k3s-homelab"
 zone_name   = "portefaix.xyz"
+subdomain   = "homelab.k3s"
 
 applications = [
   "alertmanager",
+  "alloy-events",
+  "alloy-logs",
+  "alloy-metrics",
+  "alloy-profiles",
+  "alloy-traces",
   "argo-cd",
-  "backstage",
+  "argo-workflows",
   "cilium",
   "grafana",
-  "hajimari",
-  "agent-logs",
-  "agent-metrics",
-  "agent-traces",
-  "agent-profiles",
+  "homepage",
   "prometheus",
   "pyrra",
 ]

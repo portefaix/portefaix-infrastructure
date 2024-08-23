@@ -28,7 +28,8 @@ resource "cloudflare_record" "this" {
   for_each = toset(var.applications)
 
   zone_id = data.cloudflare_zone.this.id
-  name    = each.key
+  name    = format("%s", each.key)
+  # name    = format("%s.%s", each.key, var.subdomain)
   value   = cloudflare_tunnel.this.cname
   type    = "CNAME"
   proxied = true
@@ -40,6 +41,7 @@ resource "cloudflare_access_application" "this" {
   zone_id          = data.cloudflare_zone.this.id
   name             = each.key
   domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+  # domain           = format("%s.%s.%s", each.key, var.subdomain, data.cloudflare_zone.this.name)
   session_duration = "1h"
 }
 
