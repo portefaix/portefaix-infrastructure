@@ -37,7 +37,7 @@ MNT_BOOT_homelab = /mnt/portefaix/boot
 RPI_HOME_homelab = $(MNT_ROOT)/home/pi
 
 K3S_SSH_KEY_homelab = ~/.ssh/id_ed25519
-K3S_VERSION_homelab = v1.29.0+k3s1
+K3S_VERSION_homelab = v1.30.2+k3s1
 K3S_USER_homelab = portefaix
 
 AKEYLESS_PROFILE_homelab = portefaix-homelab
