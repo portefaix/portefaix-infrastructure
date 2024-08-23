@@ -39,11 +39,13 @@ module "vpc" {
   public_subnet_tags = merge({
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
     "kubernetes.io/role/elb"                        = "1"
+    "profile"                                       = "public"
   }, var.public_subnet_tags)
 
   private_subnet_tags = merge({
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"               = "1"
+    "profile"                                       = "private"
     # Tags subnets for Karpenter auto-discovery
     "karpenter.sh/discovery/${var.eks_cluster_name}" = var.eks_cluster_name
   }, var.private_subnet_tags)

@@ -157,6 +157,14 @@ eks_managed_node_groups = {
 }
 
 fargate_profiles = {
+  karpenter = {
+    name = "karpenter"
+    selectors = [
+      {
+        namespace = "karpenter"
+      }
+    ]
+  }
   pocs = {
     name = "pocs"
     selectors = [

@@ -16,15 +16,16 @@
 
 module "karpenter" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version = "20.20.0"
+  version = "20.24.0"
 
   cluster_name = module.eks.cluster_name
 
+  iam_role_name      = var.karpenter_role_name
+  node_iam_role_name = format("%s-node", var.karpenter_role_name)
+  
   enable_irsa                     = true
-  iam_role_name                   = var.karpenter_role_name
-  node_iam_role_name              = format("%s-node", var.karpenter_role_name)
-  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
   irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
+  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
 
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
