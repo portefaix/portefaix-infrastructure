@@ -1,0 +1,40 @@
+---
+- name: K3s | Ensure Audit Directory exists
+  ansible.builtin.file:
+    path: /var/lib/rancher/k3s/server/audit
+    owner: root
+    group: root
+    mode: '0700'
+    state: directory
+
+- name: K3s | Ensure Audit Logs Directory exists
+  ansible.builtin.file:
+    path: /var/lib/rancher/k3s/server/logs
+    owner: root
+    group: root
+    mode: '0700'
+    state: directory
+
+# - name: K3s | Create Audit Policy
+#   ansible.builtin.template:
+#     src: "audit.yaml.j2"
+#     dest:  /var/lib/rancher/k3s/server/audit/audit.yaml
+#     owner: root
+#     group: root
+#     mode: '0644'
+
+# - name: K3s | Create Audit webhook
+#   ansible.builtin.template:
+#     src: "webhook.yaml.j2"
+#     dest:  /var/lib/rancher/k3s/server/audit/webhook.yaml
+#     owner: root
+#     group: root
+#     mode: '0644'
+
+# - name: K3s | Create Baseline Cluster Pod Security Admission Policy
+#   ansible.builtin.template:
+#     src: "psa.yaml.j2"
+#     dest: /var/lib/rancher/k3s/server/psa.yaml
+#     owner: root
+#     group: root
+#     mode: '0644'

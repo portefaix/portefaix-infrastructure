@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Config
+clusters:
+- name: falco
+  cluster:
+    server: http://192.168.0.61:9765/k8s-audit
+contexts:
+- context:
+    cluster: falco
+    user: ""
+  name: default-context
+current-context: default-context
+preferences: {}
+users: []
