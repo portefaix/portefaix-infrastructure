@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include: freebox.yml
+- ansible.builtin.include_tasks: freebox.yml
   tags:
     - freebox
     - portefaix

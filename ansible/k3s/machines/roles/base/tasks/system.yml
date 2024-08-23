@@ -47,3 +47,10 @@
     name: fs.inotify.max_user_instances
     value: '512'
     sysctl_set: yes
+
+- name: Allow portefaix to sudo all commands
+  community.general.sudoers:
+    name: portefaix
+    user: portefaix
+    commands: ALL
+    state: present
