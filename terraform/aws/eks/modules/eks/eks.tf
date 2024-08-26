@@ -29,9 +29,10 @@ module "eks" {
   vpc_id     = data.aws_vpc.main.id
   subnet_ids = data.aws_subnets.private.ids
 
-  cluster_endpoint_private_access = true
-  enable_irsa                     = true
-  openid_connect_audiences        = ["sts.amazonaws.com"]
+  enable_cluster_creator_admin_permissions = true
+  cluster_endpoint_private_access          = true
+  enable_irsa                              = true
+  openid_connect_audiences                 = ["sts.amazonaws.com"]
 
   # cluster_security_group_additional_rules = {
   #   egress_nodes_ephemeral_ports_tcp = {
