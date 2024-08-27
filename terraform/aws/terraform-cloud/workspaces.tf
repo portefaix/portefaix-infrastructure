@@ -38,8 +38,8 @@ resource "tfe_workspace" "aws" {
   allow_destroy_plan  = true
   execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
-
-  tag_names = each.value.tags
+  terraform_version   = "latest"
+  tag_names           = each.value.tags
 }
 
 # resource "tfe_variable" "aws_acces_key" {
