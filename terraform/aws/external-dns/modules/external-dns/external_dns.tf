@@ -35,7 +35,7 @@ module "irsa" {
   tags = var.tags
 }
 
-module "pod_identity_fsx_csi_driver" {
+module "pod_identity" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
   version = "1.4.0"
 
