@@ -34,6 +34,9 @@ module "eks" {
 
   cluster_addons = var.cluster_addons
 
+  enable_irsa         = false
+  enable_pod_identity = true
+
   ebs_csi_driver_tags          = var.ebs_csi_driver_tags
   ebs_csi_controller_sa_name   = var.ebs_csi_controller_sa_name
   ebs_csi_controller_namespace = var.ebs_csi_controller_namespace

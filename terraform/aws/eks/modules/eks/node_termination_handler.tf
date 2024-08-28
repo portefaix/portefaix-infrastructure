@@ -37,3 +37,27 @@ module "irs_node_termination_handler" {
     var.tags
   )
 }
+
+module "pod_identity_node_termination_handler" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "1.4.0"
+
+  for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
+
+  name = var.node_termination_handler_role_name
+
+  associations = {
+    main = {
+      cluster_name    = data.aws_eks_cluster.this.id
+      namespace       = var.node_termination_handler_namespace
+      service_account = var.node_termination_handler_sa_name
+    }
+  }
+
+  tags = merge(
+    { "Name" = var.node_termination_handler_role_name },
+    var.cluster_tags,
+    var.node_termination_handler_tags,
+    var.tags
+  )
+}

@@ -26,11 +26,11 @@ module "karpenter" {
   node_iam_role_name = format("%s-node", var.karpenter_role_name)
   # iam_policy_name    = "KarpenterIRSA-${module.eks.cluster_name}"
 
-  enable_irsa                     = true
+  enable_irsa                     = var.enable_irsa
   irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
 
-  enable_pod_identity             = true
+  enable_pod_identity             = var.enable_pod_identity
   create_pod_identity_association = true
   namespace                       = var.karpenter_namespace
   service_account                 = var.karpenter_sa_name

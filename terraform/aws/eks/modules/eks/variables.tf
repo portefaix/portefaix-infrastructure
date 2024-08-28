@@ -109,6 +109,16 @@ variable "cluster_addons" {
   default     = {}
 }
 
+variable "enable_irsa" {
+  type        = bool
+  description = "Enable IRSA resources"
+}
+
+variable "enable_pod_identity" {
+  type        = bool
+  description = "Enable EKS Pod Identity resources"
+}
+
 #############################################################################
 # EBS CSI Driver
 

@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "appmesh_irsa" {
+module "irsa_appmesh" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "5.42.0"
 
@@ -25,6 +25,30 @@ module "appmesh_irsa" {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["${var.appmesh_namespace}:${var.appmesh_sa_name}"]
+    }
+  }
+
+  tags = merge(
+    { "Name" = var.appmesh_controller_role_name },
+    var.cluster_tags,
+    var.appmesh_tags,
+    var.tags
+  )
+}
+
+module "pod_identity_appmesh" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "1.4.0"
+
+  for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
+
+  name = var.appmesh_controller_role_name
+
+  associations = {
+    main = {
+      cluster_name    = data.aws_eks_cluster.this.id
+      namespace       = var.appmesh_namespace
+      service_account = var.appmesh_sa_name
     }
   }
 
