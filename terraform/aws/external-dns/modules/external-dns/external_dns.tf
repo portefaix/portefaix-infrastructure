@@ -14,14 +14,42 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "external_dns" {
-  source  = "nlamirault/external-dns/aws"
-  version = "2.0.0"
+module "irsa" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "5.42.0"
 
-  cluster_name = var.cluster_name
+  for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
-  namespace       = var.namespace
-  service_account = var.service_account
+  role_name                    = var.role_name
+  attach_fsx_lustre_csi_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
+      namespace_service_accounts = [
+        "${var.namespace}:${var.service_account}",
+      ]
+    }
+  }
+
+  tags = var.tags
+}
+
+module "pod_identity_fsx_csi_driver" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "1.4.0"
+
+  for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
+
+  name = var.role_name
+
+  associations = {
+    main = {
+      cluster_name    = data.aws_eks_cluster.this.id
+      namespace       = var.namespace
+      service_account = var.service_account
+    }
+  }
 
   tags = var.tags
 }

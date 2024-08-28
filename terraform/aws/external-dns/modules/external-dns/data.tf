@@ -1,4 +1,4 @@
-# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,17 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# SPDX-License-Identifier: Apache-2.0
 
-module "external_dns" {
-  source = "../modules/external-dns"
-
-  cluster_name = var.cluster_name
-
-  namespace           = var.namespace
-  service_account     = var.service_account
-  tags                = var.tags
-  enable_irsa         = false
-  enable_pod_identity = true
+data "aws_eks_cluster" "this" {
+  name = var.cluster_name
 }
