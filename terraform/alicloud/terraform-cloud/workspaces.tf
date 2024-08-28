@@ -37,8 +37,8 @@ resource "tfe_workspace" "alicloud" {
   allow_destroy_plan  = true
   execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
-
-  tag_names = each.value.tags
+  terraform_version   = "latest"
+  tag_names           = each.value.tags
 }
 
 resource "tfe_variable" "alicloud_acces_key" {

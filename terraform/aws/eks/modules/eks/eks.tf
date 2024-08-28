@@ -29,100 +29,42 @@ module "eks" {
   vpc_id     = data.aws_vpc.main.id
   subnet_ids = data.aws_subnets.private.ids
 
+  enable_irsa              = true
+  openid_connect_audiences = ["sts.amazonaws.com"]
+
+  iam_role_name = var.cluster_name
+
   enable_cluster_creator_admin_permissions = true
-  cluster_endpoint_private_access          = true
-  enable_irsa                              = true
-  openid_connect_audiences                 = ["sts.amazonaws.com"]
 
-  # cluster_security_group_additional_rules = {
-  #   egress_nodes_ephemeral_ports_tcp = {
-  #     description                = "To node 1025-65535"
-  #     protocol                   = "tcp"
-  #     from_port                  = 1025
-  #     to_port                    = 65535
-  #     type                       = "egress"
-  #     source_node_security_group = true
-  #   }
-  # }
-
-  node_security_group_additional_rules = {
-    # Control plane invoke Karpenter webhook
-    ingress_karpenter_webhook_tcp = {
-      description                   = "Cluster API to Node group for Karpenter webhook"
-      protocol                      = "tcp"
-      from_port                     = 8443
-      to_port                       = 8443
-      type                          = "ingress"
-      source_cluster_security_group = true
-    }
-
-    ingress_self_all = {
-      description = "Node to node all ports/protocols"
-      protocol    = "-1"
-      from_port   = 0
-      to_port     = 0
-      type        = "ingress"
-      self        = true
-    }
-    egress_all = {
-      description      = "Node all egress"
-      protocol         = "-1"
-      from_port        = 0
-      to_port          = 0
-      type             = "egress"
-      cidr_blocks      = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
-    }
+  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = true
+  cluster_security_group_name     = var.cluster_name
+  cluster_security_group_tags = {
+    format("karpenter.sh/discovery/%s", var.cluster_name) = var.cluster_name
   }
+  cluster_enabled_log_types = [
+    "api",
+    "audit",
+    "authenticator",
+    "controllerManager",
+    "scheduler"
+  ]
+  cluster_addons = var.cluster_addons
 
   node_security_group_tags = {
-    # NOTE - if creating multiple security groups with this module, only tag the
-    # security group that Karpenter should utilize with the following tag
-    # (i.e. - at most, only one security group should have this tag in your account)
-    "karpenter.sh/discovery/${var.cluster_name}" = var.cluster_name
+    format("karpenter.sh/discovery/%s", var.cluster_name) = var.cluster_name
   }
 
-  # # Update aws-auth configmap with Karpenter node role so they can join the cluster
-  # manage_aws_auth_configmap = true
-  # aws_auth_roles = [
-  #   {
-  #     rolearn  = module.karpenter.role_arn
-  #     username = "system:node:{{EC2PrivateDNSName}}"
-  #     groups = [
-  #       "system:bootstrappers",
-  #       "system:nodes",
-  #     ]
-  #   },
-  # ]
-
-  self_managed_node_group_defaults = merge(
-    var.self_managed_node_group_defaults,
-    {
-      vpc_security_group_ids = [aws_security_group.additional.id]
-    }
-  )
-  self_managed_node_groups = var.self_managed_node_groups
-
-  eks_managed_node_group_defaults = merge(
-    var.eks_managed_node_group_defaults,
-    {
-      vpc_security_group_ids = [aws_security_group.additional.id]
-      iam_role_additional_policies = [
-        # Required by Karpenter
-        "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-      ]
-      tags = {
-        # This will tag the launch template created for use by Karpenter
-        "karpenter.sh/discovery/${var.cluster_name}" = var.cluster_name
-      }
-    }
-  )
   eks_managed_node_groups = var.eks_managed_node_groups
+  eks_managed_node_group_defaults = {
+    iam_role_additional_policies = {
+      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+      CloudWatchAgentServerPolicy  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+    }
+  }
 
   fargate_profile_defaults = var.fargate_profile_defaults
   fargate_profiles         = var.fargate_profiles
-
-  cluster_addons = var.cluster_addons
 
   cluster_tags = merge(var.cluster_tags, var.tags)
   tags         = var.tags

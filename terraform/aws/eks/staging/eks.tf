@@ -26,10 +26,8 @@ module "eks" {
   tags         = var.tags
   cluster_tags = var.cluster_tags
 
-  self_managed_node_group_defaults = var.self_managed_node_group_defaults
-  self_managed_node_groups         = var.self_managed_node_groups
-  eks_managed_node_group_defaults  = var.eks_managed_node_group_defaults
-  eks_managed_node_groups          = var.eks_managed_node_groups
+  eks_managed_node_group_defaults = var.eks_managed_node_group_defaults
+  eks_managed_node_groups         = var.eks_managed_node_groups
 
   fargate_profile_defaults = var.fargate_profile_defaults
   fargate_profiles         = var.fargate_profiles

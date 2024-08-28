@@ -30,6 +30,11 @@ module "karpenter" {
   irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
 
+  enable_pod_identity             = true
+  create_pod_identity_association = true
+  namespace                       = var.karpenter_namespace
+  service_account                 = var.karpenter_sa_name
+
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }

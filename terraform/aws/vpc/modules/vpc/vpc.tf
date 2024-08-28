@@ -25,12 +25,13 @@ module "vpc" {
   private_subnets = var.private_subnet_cidr
   public_subnets  = var.public_subnet_cidr
 
-  enable_nat_gateway   = var.enable_nat_gateway
-  single_nat_gateway   = true
-  enable_dns_hostnames = true
+  enable_nat_gateway     = var.enable_nat_gateway
+  single_nat_gateway     = true
+  enable_dns_hostnames   = true
+  one_nat_gateway_per_az = false
 
-  reuse_nat_ips       = true
-  external_nat_ip_ids = [for gw in data.aws_eip.igw : gw].id
+  # reuse_nat_ips    = true
+  # external_nat_ips = [data.aws_eip.igw.id]
 
   tags = merge({
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared",
@@ -43,11 +44,12 @@ module "vpc" {
   }, var.public_subnet_tags)
 
   private_subnet_tags = merge({
-    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"               = "1"
-    "profile"                                       = "private"
-    # Tags subnets for Karpenter auto-discovery
+    "kubernetes.io/cluster/${var.eks_cluster_name}"  = "shared"
+    "kubernetes.io/role/internal-elb"                = "1"
+    "profile"                                        = "private"
     "karpenter.sh/discovery/${var.eks_cluster_name}" = var.eks_cluster_name
   }, var.private_subnet_tags)
 
+  nat_gateway_tags = var.nat_gateway_tags
+  igw_tags         = var.igw_tags
 }

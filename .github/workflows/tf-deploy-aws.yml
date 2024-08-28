@@ -27,8 +27,7 @@ on: # yamllint disable-line rule:truthy
       tf_version:
         description: "Terraform version"
         required: true
-        # datasource=github-tags depName=hashicorp/terraform
-        default: '1.2.2'
+        default: 'latest'
 
 permissions:
   id-token: write   # This is required for requesting the JWT

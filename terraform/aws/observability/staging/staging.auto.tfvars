@@ -44,17 +44,17 @@ prometheus_tags = {
   "Role"    = "Prometheus"
 }
 
-# Thanos
+# mimir
 
-thanos_namespace        = "monitoring"
-thanos_service_accounts = ["thanos-store", "thanos-query", "thanos-compact"]
+mimir_namespace       = "monitoring"
+mimir_service_account = "mimir"
 
-thanos_enable_kms = false
+mimir_enable_kms = false
 
-thanos_tags = {
+mimir_tags = {
   "Env"     = "Staging"
   "Service" = "Observability"
-  "Role"    = "Thanos"
+  "Role"    = "Mimir"
 }
 
 # Loki

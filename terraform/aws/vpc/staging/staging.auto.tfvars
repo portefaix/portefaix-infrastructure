@@ -55,11 +55,20 @@ private_subnet_tags = {
   "Service" = "Subnets"
 }
 
+igw_eip_name = "portefaix-staging"
+
 igw_tags = {
   "Name"    = "portefaix-staging"
   "Env"     = "Staging"
-  "Service" = "Elastic IP"
+  "Service" = "Gateway"
   "Role"    = "Internet Gateway"
+}
+
+nat_gateway_tags = {
+  "Name"    = "portefaix-staging"
+  "Env"     = "Staging"
+  "Service" = "Gateway"
+  "Role"    = "NAT Gateway"
 }
 
 eks_cluster_name = "portefaix-staging-eks"

@@ -16,6 +16,10 @@
 
 data "aws_availability_zones" "available" {}
 
-data "aws_eip" "igw" {
-  tags = var.igw_tags
-}
+# data "aws_eip" "igw" {
+#   # tags = var.igw_tags
+#   filter {
+#     name   = "tag:Name"
+#     values = [var.igw_eip_name]
+#   }
+# }

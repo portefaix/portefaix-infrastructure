@@ -14,9 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "alicloud" {
-}
-
-provider "tfe" {
-  hostname = "app.terraform.io"
+resource "tfe_project" "this" {
+  name         = "Alicloud"
+  organization = "portefaix"
 }
