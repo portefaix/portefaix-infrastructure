@@ -24,10 +24,10 @@ module "observability" {
   prometheus_tags            = var.prometheus_tags
   prometheus_enable_kms      = var.prometheus_enable_kms
 
-  thanos_namespace        = var.thanos_namespace
-  thanos_service_accounts = var.thanos_service_accounts
-  thanos_tags             = var.thanos_tags
-  thanos_enable_kms       = var.thanos_enable_kms
+  mimir_namespace       = var.mimir_namespace
+  mimir_service_account = var.mimir_service_account
+  mimir_tags            = var.mimir_tags
+  mimir_enable_kms      = var.mimir_enable_kms
 
   loki_namespace       = var.loki_namespace
   loki_service_account = var.loki_service_account

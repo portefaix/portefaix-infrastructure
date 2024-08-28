@@ -69,18 +69,6 @@ variable "cluster_tags" {
   }
 }
 
-variable "self_managed_node_groups" {
-  description = "Map of self-managed node group definitions to create"
-  type        = any
-  default     = {}
-}
-
-variable "self_managed_node_group_defaults" {
-  description = "Map of self-managed node group default configurations"
-  type        = any
-  default     = {}
-}
-
 variable "eks_managed_node_groups" {
   description = "Map of EKS managed node group definitions to create"
   type        = any
@@ -119,6 +107,16 @@ variable "cluster_addons" {
   description = "Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
   type        = any
   default     = {}
+}
+
+variable "enable_irsa" {
+  type        = bool
+  description = "Enable IRSA resources"
+}
+
+variable "enable_pod_identity" {
+  type        = bool
+  description = "Enable EKS Pod Identity resources"
 }
 
 #############################################################################

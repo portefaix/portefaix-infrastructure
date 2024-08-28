@@ -36,7 +36,7 @@ vpc_name = "portefaix-staging"
 
 cluster_name = "portefaix-staging-eks"
 
-cluster_version = "1.26"
+cluster_version = "1.30"
 
 tags = {
   "Name"    = "portefaix-staging-eks"
@@ -46,30 +46,6 @@ tags = {
 
 cluster_tags = {
   "Role" = "EKS Cluster"
-}
-
-self_managed_node_group_defaults = {
-  ami_type       = "AL2_x86_64"
-  instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
-  disk_size      = 50
-}
-
-self_managed_node_groups = {
-  # addons = {
-  #   instance_type = "m5.large"
-  #   instance_market_options = {
-  #     market_type = "spot"
-  #   }
-
-  #   bootstrap_extra_args = "--kubelet-extra-args '--node-labels=node.kubernetes.io/lifecycle=spot'"
-
-  #   post_bootstrap_user_data = <<-EOT
-  #   cd /tmp
-  #   sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-  #   sudo systemctl enable amazon-ssm-agent
-  #   sudo systemctl start amazon-ssm-agent
-  #   EOT
-  # }
 }
 
 eks_managed_node_group_defaults = {
@@ -106,12 +82,6 @@ eks_managed_node_groups = {
       max_unavailable_percentage = 50 # or set `max_unavailable`
     }
 
-    iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore", # Required by Karpenter
-      "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
-    ]
-
     tags = {
       NodePool                                       = "core"
       "karpenter.sh/discovery/portefaix-staging-eks" = "portefaix-staging-eks"
@@ -142,12 +112,6 @@ eks_managed_node_groups = {
     update_config = {
       max_unavailable_percentage = 50 # or set `max_unavailable`
     }
-
-    iam_role_additional_policies = [
-      "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-      "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore", # Required by Karpenter
-      "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
-    ]
 
     tags = {
       NodePool                                       = "ops"
@@ -195,23 +159,10 @@ cluster_addons = {
     most_recent = true
   }
   vpc-cni = {
-    # The VPC CNI addon should be deployed before compute to ensure
-    # the addon is configured before data plane compute resources are created
-    # See README for further details
-    before_compute = true
-    most_recent    = true # To ensure access to the latest settings provided
-    preserve       = true
-    configuration_values = jsonencode({
-      env = {
-        # Reference https://aws.github.io/aws-eks-best-practices/reliability/docs/networkmanagement/#cni-custom-networking
-        AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG = "true"
-        ENI_CONFIG_LABEL_DEF               = "topology.kubernetes.io/zone"
-
-        # Reference docs https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html
-        ENABLE_PREFIX_DELEGATION = "true"
-        WARM_PREFIX_TARGET       = "1"
-      }
-    })
+    most_recent = true
+  }
+  eks-pod-identity-agent = {
+    most_recent = true
   }
 }
 
@@ -224,8 +175,8 @@ ebs_csi_controller_sa_name   = "ebs-csi-controller"
 ebs_csi_controller_namespace = "kube-system"
 
 ebs_csi_driver_tags = {
-  "Role"  = "csi-driver"
-  "Addon" = "ebs-csi-driver"
+  "Role"    = "ebs-csi-driver"
+  "Service" = "csi-driver"
 }
 
 #############################################################################
@@ -237,8 +188,8 @@ efs_csi_controller_sa_name   = "efs-csi-controller"
 efs_csi_controller_namespace = "kube-system"
 
 efs_csi_driver_tags = {
-  "Role"  = "csi-driver"
-  "Addon" = "efs-csi-driver"
+  "Role"    = "efs-csi-driver"
+  "Service" = "csi-driver"
 }
 
 #############################################################################
@@ -250,8 +201,8 @@ fsx_csi_controller_sa_name   = "fsx-csi-controller"
 fsx_csi_controller_namespace = "kube-system"
 
 fsx_csi_driver_tags = {
-  "Role"  = "csi-driver"
-  "Addon" = "fsx-csi-driver"
+  "Role"    = "fsx-csi-driver"
+  "Service" = "csi-driver"
 }
 
 #############################################################################
@@ -260,8 +211,8 @@ fsx_csi_driver_tags = {
 # secret_store_csi_controller_role_name = "secret-store-csi-driver-controller"
 
 secret_store_csi_driver_tags = {
-  "Role"  = "csi-driver"
-  "Addon" = "secret-store-csi-driver"
+  "Role"    = "secret-store-csi-driver"
+  "Service" = "secrets-manager"
 }
 secrets_data = []
 
@@ -272,8 +223,8 @@ alb_controller_sa_name   = "aws-load-balancer-controller"
 alb_controller_namespace = "kube-system"
 
 alb_controller_tags = {
-  "Role"  = "aws-alb-controller"
-  "Addon" = "load-balancer"
+  "Role"    = "aws-alb-controller"
+  "Service" = "load-balancer"
 }
 
 #############################################################################
@@ -283,8 +234,8 @@ appmesh_sa_name   = "appmesh-controller"
 appmesh_namespace = "appmesh-system"
 
 appmesh_tags = {
-  "Role"  = "appmesh-controller"
-  "Addon" = "appmesh"
+  "Role"    = "appmesh-controller"
+  "Service" = "service-mesh"
 }
 
 #############################################################################
@@ -294,20 +245,30 @@ node_termination_handler_sa_name   = "node-terminaison-hander"
 node_termination_handler_namespace = "kube-system"
 
 node_termination_handler_tags = {
-  "Role"  = "node-terminaison-hander"
-  "Addon" = "node-terminaison-hander"
+  "Role"    = "node-terminaison-hander"
+  "Service" = "system"
 }
 
 #############################################################################
 # Karpenter
 
-karpenter_sa_name         = "karpenter"
-karpenter_namespace       = "kube-system"
-karpenter_node_group_name = "core"
+karpenter_sa_name   = "karpenter"
+karpenter_namespace = "kube-system"
 
 karpenter_tags = {
-  "Role"  = "karpenter"
-  "Addon" = "karpenter"
+  "Role"    = "karpenter"
+  "Service" = "autoscaler"
 }
 
-queue_name = "portefaix-staging-eks-karpenter"
+karpenter_queue_name = "portefaix-staging-eks-karpenter"
+
+#############################################################################
+# External Secrets Operator
+
+eso_sa_name   = "eso-controller"
+eso_namespace = "kube-system"
+
+eso_tags = {
+  "Role"    = "external-secrets-operator"
+  "Service" = "secrets-manager"
+}

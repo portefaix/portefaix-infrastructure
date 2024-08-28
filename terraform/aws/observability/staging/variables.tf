@@ -75,24 +75,24 @@ variable "prometheus_enable_kms" {
   description = "Enable custom KMS key"
 }
 
-# Thanos
+# Mimir
 
-variable "thanos_namespace" {
+variable "mimir_namespace" {
   type        = string
   description = "The Kubernetes namespace"
 }
 
-variable "thanos_service_accounts" {
-  type        = list(string)
+variable "mimir_service_account" {
+  type        = string
   description = "The Kubernetes service account"
 }
 
-variable "thanos_tags" {
+variable "mimir_tags" {
   type        = map(string)
-  description = "Tags for Thanos"
+  description = "Tags for Mimir"
 }
 
-variable "thanos_enable_kms" {
+variable "mimir_enable_kms" {
   type        = bool
   description = "Enable custom KMS key"
 }

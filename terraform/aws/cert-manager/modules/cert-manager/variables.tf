@@ -22,6 +22,12 @@ variable "cluster_name" {
   description = "Name of the EKS cluster"
 }
 
+variable "role_name" {
+  description = "The name of the External DNS IAM role"
+  type        = string
+  default     = "cert-manager"
+}
+
 variable "namespace" {
   type        = string
   description = "The Kubernetes namespace"
@@ -30,6 +36,16 @@ variable "namespace" {
 variable "service_account" {
   type        = string
   description = "The Kubernetes service account"
+}
+
+variable "enable_irsa" {
+  type        = bool
+  description = "Enable IRSA resources"
+}
+
+variable "enable_pod_identity" {
+  type        = bool
+  description = "Enable EKS Pod Identity resources"
 }
 
 variable "tags" {

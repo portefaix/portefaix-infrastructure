@@ -19,7 +19,9 @@ module "external_dns" {
 
   cluster_name = var.cluster_name
 
-  namespace       = var.namespace
-  service_account = var.service_account
-  tags            = var.tags
+  namespace           = var.namespace
+  service_account     = var.service_account
+  tags                = var.tags
+  enable_irsa         = false
+  enable_pod_identity = true
 }

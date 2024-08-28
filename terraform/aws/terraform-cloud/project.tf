@@ -15,5 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "tfe_project" "this" {
-  name = "AWS"
+  name         = "AWS"
+  organization = "portefaix"
 }

@@ -108,10 +108,26 @@ variable "eks_cluster_name" {
 #############################################################################
 # Internet Gateway
 
+variable "igw_eip_name" {
+  type        = string
+  description = "Elastic IP name for Internet Gateway"
+}
+
 variable "igw_tags" {
   type        = map(string)
-  description = "Tags for Internet NAT Gateway"
+  description = "Tags for Internet Gateway"
   default = {
     "Service" = "Internet Gateway"
+  }
+}
+
+#############################################################################
+# NAT Gateway
+
+variable "nat_gateway_tags" {
+  type        = map(string)
+  description = "Tags for NAT Gateway"
+  default = {
+    "Service" = "NAT Gateway"
   }
 }
