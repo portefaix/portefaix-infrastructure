@@ -16,7 +16,7 @@
 
 module "internal_lb" {
   source  = "terraform-google-modules/address/google"
-  version = "3.2.0"
+  version = "4.0.0"
 
   project_id   = var.project_id
   region       = var.region
