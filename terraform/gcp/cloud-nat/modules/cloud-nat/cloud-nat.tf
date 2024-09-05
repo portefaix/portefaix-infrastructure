@@ -16,7 +16,7 @@
 
 module "cloud_nat" {
   source  = "terraform-google-modules/cloud-nat/google"
-  version = "5.2.0"
+  version = "5.3.0"
 
   project_id       = var.project
   region           = var.region
