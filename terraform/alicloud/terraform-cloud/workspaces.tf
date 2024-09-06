@@ -35,10 +35,16 @@ resource "tfe_workspace" "alicloud" {
   global_remote_state = true
   trigger_prefixes    = each.value.trigger
   allow_destroy_plan  = true
-  execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
   terraform_version   = "latest"
   tag_names           = each.value.tags
+}
+
+resource "tfe_workspace_settings" "alicloud" {
+  for_each = var.workspaces
+
+  workspace_id   = tfe_workspace.alicloud[each.key].id
+  execution_mode = each.value.execution_mode
 }
 
 resource "tfe_variable" "alicloud_acces_key" {
