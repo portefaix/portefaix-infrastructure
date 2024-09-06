@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "gateway_api" {
-  source = "../modules/gateway_api"
+  source = "../modules/gateway-api"
 
   cluster_name        = var.cluster_name
   namespace           = var.namespace
