@@ -35,12 +35,17 @@ resource "tfe_workspace" "gcp" {
   global_remote_state = true
   trigger_prefixes    = each.value.trigger
   allow_destroy_plan  = true
-  execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
 
   tag_names = each.value.tags
 }
 
+resource "tfe_workspace_settings" "gcp" {
+  for_each = var.workspaces
+
+  workspace_id   = tfe_workspace.gcp[each.key].id
+  execution_mode = each.value.execution_mode
+}
 
 resource "tfe_variable" "gcp_credentials" {
   for_each = tfe_workspace.gcp

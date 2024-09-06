@@ -36,8 +36,14 @@ resource "tfe_workspace" "this" {
   global_remote_state = true
   trigger_prefixes    = each.value.trigger
   allow_destroy_plan  = true
-  execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
 
   tag_names = each.value.tags
+}
+
+resource "tfe_workspace_settings" "this" {
+  for_each = var.workspaces
+
+  workspace_id   = tfe_workspace.this[each.key].id
+  execution_mode = each.value.execution_mode
 }
