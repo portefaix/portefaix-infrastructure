@@ -30,11 +30,11 @@ module "network" {
   default_network_tier           = var.default_network_tier
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "logging.googleapis.com",
     "cloudbilling.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   # budget_amount               = var.network_budget_amount
@@ -96,9 +96,15 @@ module "shared" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
+    "container.googleapis.com",
+    "gkehub.googleapis.com",
     "logging.googleapis.com",
+    "multiclusteringress.googleapis.com",
+    # "multiclusterservicediscovery.googleapis.com",
+    "networkservices.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
+    "trafficdirector.googleapis.com",
   ]
 
   shared_vpc = module.network.project_id
@@ -127,9 +133,9 @@ module "testing" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -161,9 +167,9 @@ module "audit" {
   folder_id       = module.folders.folders_map["Security"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -192,10 +198,10 @@ module "logging" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -231,22 +237,22 @@ module "core" {
   folder_id       = module.folders.folders_map["Core"].id
 
   activate_apis = [
-    "iam.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "cloudkms.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "container.googleapis.com",
     "containerregistry.googleapis.com",
     "containersecurity.googleapis.com",
-    "artifactregistry.googleapis.com",
-    "secretmanager.googleapis.com",
     "dns.googleapis.com",
-    "cloudkms.googleapis.com",
+    "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
     "iap.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "iamcredentials.googleapis.com",
+    "secretmanager.googleapis.com",
     "sts.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
