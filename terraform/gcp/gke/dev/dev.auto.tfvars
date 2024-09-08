@@ -122,6 +122,8 @@ create_service_account = true
 remove_default_node_pool = true
 initial_node_count       = 0
 
+gateway_api_channel = "CHANNEL_STANDARD"
+
 node_pools = [
   {
     name            = "core"

@@ -473,6 +473,11 @@ variable "monitoring_enable_managed_prometheus" {
   default     = false
 }
 
+variable "gateway_api_channel" {
+  type        = string
+  description = "The gateway api channel of this cluster. Accepted values are `CHANNEL_STANDARD` and `CHANNEL_DISABLED`."
+}
+
 ############################################################################
 # Node Pools
 

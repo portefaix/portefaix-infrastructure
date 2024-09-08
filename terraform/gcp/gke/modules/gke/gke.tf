@@ -88,6 +88,7 @@ module "gke" {
   identity_namespace                = var.identity_namespace
   disable_legacy_metadata_endpoints = var.disable_legacy_metadata_endpoints
   enable_confidential_nodes         = var.enable_confidential_nodes
+  gateway_api_channel               = var.gateway_api_channel
 
   # Features
 
