@@ -14,8 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "application_gateway" {
-  source = "../modules/application-gateway"
+module "agfc" {
+  source = "../modules/agfc"
 
   organization            = var.organization
   environment             = var.environment

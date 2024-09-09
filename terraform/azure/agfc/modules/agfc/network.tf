@@ -14,19 +14,30 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_subnet" "this" {
-  name = "ApplicationGatewaySubnet"
-  # resource_group_name = azurerm_resource_group.this.name
+# create subnet for Application Gateway for Containers
+resource "azurerm_subnet" "appgw_subnet" {
+  name = local.service_name
   resource_group_name  = data.azurerm_resource_group.core.name
   virtual_network_name = data.azurerm_virtual_network.core.name
-  address_prefixes     = [var.subnet_prefix]
+  address_prefixes = ["192.168.0.0/24"]
+ 
+  delegation {
+    name = "delegation"
+ 
+    service_delegation {
+      name    = "Microsoft.ServiceNetworking/trafficControllers"
+    }
+  }
 }
 
-resource "azurerm_public_ip" "this" {
+# create network security group & associate with subnet
+resource "azurerm_network_security_group" "this" {
   name                = local.service_name
-  resource_group_name = azurerm_resource_group.this.name
-  location            = azurerm_resource_group.this.location
-  allocation_method   = "Static"
-  sku                 = "Standard"
-  tags                = var.tags
+  location            = data.azurerm_resource_group.core.location
+  resource_group_name = data.azurerm_resource_group.core.name
+}
+ 
+resource "azurerm_subnet_network_security_group_association" "this" {
+  subnet_id                 = azurerm_subnet.appgw_subnet.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
 }

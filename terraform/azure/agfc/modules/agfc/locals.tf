@@ -15,5 +15,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  service_name = format("%s-core-%s-application-gateway", var.organization, var.environment)
+  service_name = format("%s-core-%s-agfc", var.organization, var.environment)
 }
