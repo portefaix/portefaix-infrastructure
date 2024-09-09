@@ -42,11 +42,6 @@ variable "prometheus_tags" {
   }
 }
 
-variable "prometheus_enable_kms" {
-  type        = bool
-  description = "Enable custom KMS key"
-}
-
 # Mimir
 
 variable "mimir_namespace" {

@@ -16,16 +16,16 @@
 
 # create subnet for Application Gateway for Containers
 resource "azurerm_subnet" "appgw_subnet" {
-  name = local.service_name
+  name                 = local.service_name
   resource_group_name  = data.azurerm_resource_group.core.name
   virtual_network_name = data.azurerm_virtual_network.core.name
-  address_prefixes = ["192.168.0.0/24"]
- 
+  address_prefixes     = ["192.168.0.0/24"]
+
   delegation {
     name = "delegation"
- 
+
     service_delegation {
-      name    = "Microsoft.ServiceNetworking/trafficControllers"
+      name = "Microsoft.ServiceNetworking/trafficControllers"
     }
   }
 }
@@ -36,8 +36,8 @@ resource "azurerm_network_security_group" "this" {
   location            = data.azurerm_resource_group.core.location
   resource_group_name = data.azurerm_resource_group.core.name
 }
- 
+
 resource "azurerm_subnet_network_security_group_association" "this" {
   subnet_id                 = azurerm_subnet.appgw_subnet.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.this.id
 }

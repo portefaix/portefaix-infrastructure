@@ -46,17 +46,37 @@ variable "core_account_id" {
 }
 
 #############################################################################
-# AWS Load Balancer
+# Gateway API
 
-variable "vpc_name" {
+variable "cluster_name" {
   type        = string
-  description = "ID of the VPC"
+  description = "Name of the EKS cluster"
 }
 
-variable "alb_tags" {
+variable "namespace" {
+  type        = string
+  description = "The Kubernetes namespace"
+}
+
+variable "service_account" {
+  type        = string
+  description = "The Kubernetes service account"
+}
+
+variable "enable_irsa" {
+  type        = bool
+  description = "Enable IRSA resources"
+}
+
+variable "enable_pod_identity" {
+  type        = bool
+  description = "Enable EKS Pod Identity resources"
+}
+
+variable "tags" {
   description = "A map of tags to add to all resources."
   type        = map(string)
   default = {
-    "Service" = "ALB"
+    "Service" = "Gateway API"
   }
 }

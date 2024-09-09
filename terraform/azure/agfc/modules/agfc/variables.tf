@@ -46,29 +46,6 @@ variable "core_vnet_name" {
   description = "The name of the Core virtual network"
 }
 
-variable "subnet_prefix" {
-  type        = string
-  description = "The address prefix to use for the Application Gateway subnet"
-}
-
-# variable "whitelist_ipv4" {
-#   description = "Allow whitelist for IPV4 addresses"
-#   type        = list(string)
-#   default     = []
-# }
-
-# variable "blacklist_ipv4" {
-#   default     = []
-#   type        = list(string)
-#   description = "Block blacklist for IPV4 addresses"
-# }
-
-# variable "blocked_countries" {
-#   default     = []
-#   type        = list(string)
-#   description = "Block country codes"
-# }
-
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

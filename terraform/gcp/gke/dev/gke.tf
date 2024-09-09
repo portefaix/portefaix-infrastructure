@@ -97,4 +97,5 @@ module "gke" {
   config_connector                     = var.config_connector
   filestore_csi_driver                 = var.filestore_csi_driver
   monitoring_enable_managed_prometheus = var.monitoring_enable_managed_prometheus
+  gateway_api_channel                  = var.gateway_api_channel
 }

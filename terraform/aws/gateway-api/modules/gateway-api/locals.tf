@@ -15,5 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  role_name = format("%s-aws-gateway-controller", var.cluster_name)
+  service_network = var.cluster_name
+  role_name       = format("%s-aws-gateway-controller", var.cluster_name)
 }

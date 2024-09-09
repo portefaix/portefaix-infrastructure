@@ -27,7 +27,7 @@ module "prometheus" {
 }
 
 module "mimir" {
-  source  = "nlamirault/observability/aws//modules/thanos"
+  source  = "nlamirault/observability/aws//modules/mimir"
   version = "5.0.0"
 
   cluster_name        = var.cluster_name

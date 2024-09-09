@@ -17,11 +17,6 @@
 #############################################################################
 # Gateway API
 
-variable "service_network" {
-  type        = string
-  description = "Name of the VPC Lattice service network"
-}
-
 variable "cluster_name" {
   type        = string
   description = "Name of the EKS cluster"
