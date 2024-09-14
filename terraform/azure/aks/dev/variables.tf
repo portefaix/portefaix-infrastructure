@@ -30,6 +30,11 @@ variable "aks_subnet_name" {
   description = "Name of the AKS subnet"
 }
 
+variable "pods_subnet_name" {
+  type        = string
+  description = "Name of the Kubernetes pods subnet"
+}
+
 variable "appgw_subnet_name" {
   type        = string
   description = "Name of the Application Gateway subnet"
@@ -99,7 +104,6 @@ variable "public_ssh_key" {
 variable "network_plugin" {
   type        = string
   description = "The CNI network plugin to use (only azure, or kubenet)"
-  default     = "kubenet"
 }
 
 variable "network_policy" {
@@ -109,6 +113,11 @@ variable "network_policy" {
 
 variable "net_profile_dns_service_ip" {
   description = "(Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created."
+  type        = string
+}
+
+variable "ebpf_data_plane" {
+  description = "(Optional) Specifies the eBPF data plane used for building the Kubernetes network"
   type        = string
 }
 
