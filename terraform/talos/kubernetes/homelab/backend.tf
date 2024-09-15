@@ -14,31 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+terraform {
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "portefaix"
 
-
-##############################################################################
-# Tunnel
-
-cloud       = "k3s"
-environment = "homelab"
-name        = "portefaix-k3s-homelab"
-zone_name   = "portefaix.xyz"
-subdomain   = "homelab.k3s"
-
-applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
+    workspaces {
+      name = "portefaix-talos-homelab-cluster"
+    }
+  }
+}

@@ -27,6 +27,19 @@ workspaces = {
 
   # Organization (multiple accounts)
 
+  portefaix-homelab-kubernetes = {
+    directory      = "terraform/homelab/kubernetes"
+    tags           = ["homelab", "core", "kubernetes"]
+    gitops         = false
+    branch         = "master"
+    auto_apply     = true
+    execution_mode = "remote"
+    trigger = [
+      "*.tf",
+      "*.tfvars",
+    ]
+  },
+
   portefaix-homelab-dns = {
     directory      = "terraform/homelab/dns"
     tags           = ["homelab", "core", "dns"]
