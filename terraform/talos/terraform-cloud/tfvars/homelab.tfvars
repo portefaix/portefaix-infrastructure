@@ -27,7 +27,7 @@ workspaces = {
 
   # Organization (multiple accounts)
 
-  portefaix-homelab-kubernetes = {
+  portefaix-talos-homelab-kubernetes = {
     directory      = "terraform/homelab/kubernetes"
     tags           = ["homelab", "core", "kubernetes"]
     gitops         = false
@@ -40,7 +40,7 @@ workspaces = {
     ]
   },
 
-  portefaix-homelab-dns = {
+  portefaix-talos-homelab-dns = {
     directory      = "terraform/homelab/dns"
     tags           = ["homelab", "core", "dns"]
     gitops         = false
@@ -52,7 +52,7 @@ workspaces = {
       "*.tfvars",
     ]
   },
-  portefaix-homelab-waf = {
+  portefaix-talos-homelab-waf = {
     directory      = "terraform/homelab/waf"
     tags           = ["homelab", "security", "waf", "security"]
     gitops         = false
@@ -64,7 +64,7 @@ workspaces = {
       "*.tfvars",
     ]
   },
-  portefaix-homelab-observability = {
+  portefaix-talos-homelab-observability = {
     directory      = "terraform/homelab/observability"
     tags           = ["homelab", "core", "observability"]
     gitops         = false
@@ -76,7 +76,7 @@ workspaces = {
       "*.tfvars",
     ]
   },
-  portefaix-homelab-tunnel = {
+  portefaix-talos-homelab-tunnel = {
     directory      = "terraform/homelab/tunnel"
     tags           = ["homelab", "core", "tunnel", "security"]
     gitops         = false
