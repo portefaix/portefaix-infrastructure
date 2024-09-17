@@ -14,14 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-output "talosconfig" {
-  description = "Talos configuration"
-  value       = data.talos_client_configuration.this.talos_config
-  sensitive   = true
-}
-
-output "kubeconfig" {
-  description = "Talos Kubernetes configuration"
-  value       = talos_cluster_kubeconfig.this.kubeconfig_raw
-  sensitive   = true
+locals {
+  config_patches = {
+    "controleplane" = "${path.module}/templates/controlplane.yaml.tftpl"
+    "worker"        = "${path.module}/templates/worker.yaml.tftpl"
+  }
 }

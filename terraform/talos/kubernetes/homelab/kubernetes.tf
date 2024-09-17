@@ -14,14 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-output "talosconfig" {
-  description = "Talos configuration"
-  value       = data.talos_client_configuration.this.talos_config
-  sensitive   = true
-}
+module "kubernetes" {
+  source = "../modules/kubernetes"
 
-output "kubeconfig" {
-  description = "Talos Kubernetes configuration"
-  value       = talos_cluster_kubeconfig.this.kubeconfig_raw
-  sensitive   = true
+  cluster_name     = var.cluster_name
+  cluster_endpoint = var.cluster_endpoint
+  extensions       = var.extensions
+  nodes            = var.nodes
 }

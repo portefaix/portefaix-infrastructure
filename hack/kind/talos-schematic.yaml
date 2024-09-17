@@ -14,14 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-output "talosconfig" {
-  description = "Talos configuration"
-  value       = data.talos_client_configuration.this.talos_config
-  sensitive   = true
-}
-
-output "kubeconfig" {
-  description = "Talos Kubernetes configuration"
-  value       = talos_cluster_kubeconfig.this.kubeconfig_raw
-  sensitive   = true
-}
+---
+customization:
+  systemExtensions:
+    officialExtensions:
+    - siderolabs/tailscale

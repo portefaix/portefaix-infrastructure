@@ -19,54 +19,28 @@
 
 
 #######################################################################
-# SKS
+# Kubernetes cluster
 
-variable "name" {
-  description = "The name of the SKS cluster."
+variable "cluster_name" {
+  description = "The name of the Talos Kubernetes cluster."
   type        = string
 }
 
-variable "zone" {
-  description = "The name of the zone to deploy the SKS cluster into."
+variable "cluster_endpoint" {
+  description = "The IP adress of the Control Plane node."
   type        = string
 }
 
-variable "kubernetes_version" {
-  type        = string
-  description = "The Kubernetes version of the SKS cluster control plane"
-}
-
-variable "service_level" {
-  type        = string
-  description = "The service level of the SKS cluster control plane"
-}
-
-variable "cni" {
-  type        = string
-  description = "The Kubernetes CNI plugin to be deployed in the SKS cluster control plane"
-}
-
-variable "exoscale_ccm" {
-  type        = bool
-  description = "Deploy the Exoscale Cloud Controller Manager in the SKS cluster control plane_"
-}
-
-variable "metrics_server" {
-  type        = bool
-  description = "Deploy the Kubernetes Metrics Server in the SKS cluster control plane"
-}
-
-variable "auto_upgrade" {
-  type        = bool
-  description = "Enable automatic upgrading of the SKS cluster control plane Kubernetes version"
-}
-
-variable "node_pools" {
-  description = "The SKS node pools to create."
-  type = list(object({
-    name          = string
-    instance_type = string
-    size          = number
+variable "nodes" {
+  description = "Configuration for cluster nodes"
+  type = map(object({
+    host_node    = string
+    machine_type = string
+    ip           = string
   }))
-  default = []
+}
+
+variable "extensions" {
+  description = "List of Talos extensions to add"
+  type        = list(string)
 }

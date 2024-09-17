@@ -14,10 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "cluster" {
-  source = "../modules/kubernetes"
+CLUSTER_homelab = talos-portefaix-homelab
 
-  cluster_name          = var.cluster_name
-  control_plane_ip_addr = var.control_plane_ip_addr
-  tags                  = var.tags
-}
+KUBE_CONTEXT_homelab = talos-portefaix-homelab
+
+AKEYLESS_PROFILE_homelab = portefaix-homelab
+
+CLOUDFLARE_BUCKET_homelab = portefaix-talos-tfstates
+CLOUDFLARE_ACCOUNT_homelab = $(shell echo ${CLOUDFLARE_ACCOUNT_ID})

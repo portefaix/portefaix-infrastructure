@@ -18,19 +18,50 @@
 # Kubernetes
 
 variable "cluster_name" {
-  type = string
+  description = "Name of the Kubernetes cluster"
+  type        = string
 }
 
-# variable "default_gateway" {
-#   type    = string
+variable "cluster_endpoint" {
+  description = "IP address of the cluster endpoint"
+  type        = string
+}
+
+variable "talos_version" {
+  description = "Which version of Talos to use"
+  type        = string
+  default     = "v1.7.6"
+}
+
+variable "nodes" {
+  description = "Configuration for cluster nodes"
+  type = map(object({
+    host_node    = string
+    machine_type = string
+    ip           = string
+  }))
+  default = {}
+}
+
+# variable "extensions" {
+#   description = "List of Talos extensions to add"
+#   type        = list(string)
 # }
 
-variable "control_plane_ip_addr" {
-  type = string
-}
+# variable "image" {
+#   description = "Talos image configuration"
+#   type = object({
+#     factory_url = optional(string, "https://factory.talos.dev")
+#     schematic = string
+#     version   = string
+#     update_schematic = optional(string)
+#     update_version = optional(string)
+#     extensions = list(string)
+#   })
+# }
 
-variable "tags" {
-  type        = string
-  description = "Tags"
-  default     = "terraform"
-}
+# variable "tags" {
+#   type        = string
+#   description = "Tags"
+#   default     = "terraform"
+# }
