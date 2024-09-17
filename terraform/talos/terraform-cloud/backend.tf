@@ -14,31 +14,19 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+terraform {
+  backend "s3" {
+    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
+    region = "us-east-1" # "auto"
 
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    skip_s3_checksum            = true
 
-##############################################################################
-# Tunnel
-
-cloud       = "k3s"
-environment = "homelab"
-name        = "portefaix-k3s-homelab"
-zone_name   = "portefaix.xyz"
-subdomain   = "homelab.k3s"
-
-applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
+    endpoints {
+      s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
+    }
+  }
+}

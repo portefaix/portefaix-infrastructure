@@ -38,9 +38,9 @@ resource "cloudflare_record" "this" {
 resource "cloudflare_access_application" "this" {
   for_each = toset(var.applications)
 
-  zone_id          = data.cloudflare_zone.this.id
-  name             = each.key
-  domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+  zone_id = data.cloudflare_zone.this.id
+  name    = each.key
+  domain  = format("%s.%s", each.key, data.cloudflare_zone.this.name)
   # domain           = format("%s.%s.%s", each.key, var.subdomain, data.cloudflare_zone.this.name)
   session_duration = "1h"
 }
