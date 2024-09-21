@@ -14,13 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-TALOS_CLUSTER_homelab = portefaix-talos-homelab
-
-TALOS_ENDPOINT_homelab = https://192.168.0.61:6443
-
-KUBE_CONTEXT_homelab = portefaix-talos-homelab
-
-AKEYLESS_PROFILE_homelab = portefaix-homelab
-
-CLOUDFLARE_BUCKET_homelab = portefaix-talos-tfstates
-CLOUDFLARE_ACCOUNT_homelab = $(shell echo ${CLOUDFLARE_ACCOUNT_ID})
+---
+creation_rules:
+- age: "age156sk4rpmpya89sjzphqal806mkq36aka8f46atujve72fcpvzs9s07cdxv"

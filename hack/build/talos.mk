@@ -20,10 +20,18 @@ MKFILE_DIR := $(dir $(MKFILE_PATH))
 include $(MKFILE_DIR)/commons.mk
 include $(MKFILE_DIR)/talos.*.mk
 
+TALOS_CONFIG=hack/talos
+TALOS_OUTPUT=.secrets/talos
+
 TALOS_VERSION=v1.7.6
 
 CLOUDFLARE_BUCKET = $(CLOUDFLARE_BUCKET_$(ENV))
 CLOUDFLARE_ACCOUNT = $(CLOUDFLARE_ACCOUNT_$(ENV))
+
+AKEYLESS_PROFILE = $(AKEYLESS_PROFILE_$(ENV))
+
+TALOS_CLUSTER = $(TALOS_CLUSTER_$(ENV))
+TALOS_ENDPOINT = $(TALOS_ENDPOINT_$(ENV))
 
 # ====================================
 # C L O U D F L A R E
@@ -49,12 +57,84 @@ cloudflare-bucket-clean: guard-ENV guard-BUCKET ## Delete all objects into a R2 
 ##@ Talos
 
 .PHONY: talos-image
-talos-image: guard-SCHEMATIC ## Generate ID for Talos image
-	@curl -X POST --data-binary @$(SCHEMATIC) https://factory.talos.dev/schematics
+talos-image: guard-ENV ## Generate ID for Talos image
+	@pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talhelper genurl iso
+		&& popd
 
-.PHONY: talos-iso
-talos-iso: guard-SCHEMATIC_ID guard-ARCH ## Download Talos iso
-	@curl -O --progress-bar https://factory.talos.dev/image/$(SCHEMATIC_ID)/$(TALOS_VERSION)/metal-$(ARCH).iso
+.PHONY: talos-secrets
+talos-secrets:
+	pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talhelper gensecret > talsecret.sops.yaml
+		&& popd
+
+.PHONY: talos-config
+talos-config: guard-ENV ## Generate the Talos configuration
+	pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talhelper genconfig \
+		&& popd
+
+.PHONY: talos-apply
+talos-apply: guard-ENV guard-NODE_NAME guard-NODE_IP ## Generate the Talos configuration
+	pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talosctl apply-config --insecure --nodes $(NODE_IP) --file clusterconfig/$(TALOS_CLUSTER)-$(NODE_NAME).yaml \
+		&& popd
+
+.PHONY: talos-bootstrap
+talos-bootstrap: guard-ENV guard-NODE_IP ## Bootstrap the Talos cluster
+	pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talosctl bootstrap -n $(NODE_IP) \
+		&& popd
+
+.PHONY: talos-kubeconfig
+talos-kubeconfig: guard-ENV guard-NODE_IP ## Bootstrap the Talos cluster
+	pushd $(TALOS_CONFIG)/$(ENV) \
+		&& talosctl kubeconfig -n $(NODE_IP) ./kubeconfig \
+		&& popd
+
+# .PHONY: talos-image
+# talos-image: guard-ENV ## Generate ID for Talos image
+# 	@curl -X POST --data-binary @$(SCHEMATIC) https://factory.talos.dev/schematics
+
+# .PHONY: talos-iso
+# talos-iso: guard-SCHEMATIC_ID guard-ARCH ## Download Talos iso
+# 	@curl -O --progress-bar https://factory.talos.dev/image/$(SCHEMATIC_ID)/$(TALOS_VERSION)/metal-$(ARCH).iso
+
+# .PHONY: talos-init
+# talos-init: guard-ENV ## Generate Talos secrets
+# 	talosctl gen secrets -o $(TALOS_OUTPUT)/secrets.yaml              \
+# 	&& talosctl gen config --force                                    \
+# 		-o $(TALOS_OUTPUT)                                            \
+#         --with-secrets $(TALOS_OUTPUT)/secrets.yaml                   \
+#         $(TALOS_CLUSTER) $(TALOS_ENDPOINT) --install-disk '/dev/sdb'
+
+# .PHONY: talos-config-endpoint
+# talos-config-endpoint: guard-ENV guard-ENDPOINT_IP ## Configure Talosctl endpoint
+# 	talosctl --talosconfig=$(TALOS_OUTPUT)/talosconfig config endpoint $(ENDPOINT_IP) \
+# 		&& talosctl config merge $(TALOS_OUTPUT)/talosconfig
+
+# .PHONY: talos-config-node
+# talos-config-node: guard-ENV guard-NODE_IP ## Configure Talosctl node
+# 	talosctl --talosconfig=$(TALOS_OUTPUT)/talosconfig config node $(NODE_IP) \
+# 		&& talosctl config merge $(TALOS_OUTPUT)/talosconfig
+
+# .PHONY: talos-apply-controlplane
+# talos-apply-controlplane: guard-ENV guard-NODE_IP ## Setup the controlplane
+# 	talosctl gen config --force \
+#         --output $(TALOS_OUTPUT)/controlplane.yaml                \
+#         --with-secrets $(TALOS_OUTPUT)/secrets.yaml               \
+#         --with-cluster-discovery=false                            \
+#         --output-types controlplane                               \
+#         --config-patch @$(TALOS_CONFIG)/patches/controlplane.yaml \
+#         --config-patch @$(TALOS_CONFIG)/nodes/controlplane.yaml   \
+#         $(TALOS_CLUSTER) $(TALOS_ENDPOINT)                        \
+# 	&& talosctl apply-config                                      \
+# 		--file $(TALOS_OUTPUT)/controlplane.yaml                  \
+# 		-e $(TALOS_ENDPOINT) -n $(NODE_IP)
+
+# .PHONY: talos-bootstrap
+# talos-bootstrap: guard-ENV guard-NODE_IP
+# 	talosctl bootstrap --talosconfig $(TALOS_OUTPUT)/talosconfig -e $(NODE_IP) -n $(NODE_IP)
 
 .PHONY: talos-kube-credentials
 talos-kube-credentials: guard-ENV ## Credentials for Talos (ENV=xxx)
@@ -66,6 +146,13 @@ talos-kube-credentials: guard-ENV ## Credentials for Talos (ENV=xxx)
 # ====================================
 
 ##@ AKeyless
+
+.PHONY: akeyless-get-secret
+akeyless-get-secret: guard-NAME guard-ENV ## Get a new secret
+	@echo -e "$(OK_COLOR)[$(APP)] Akeyless secret: $(NAME)$(NO_COLOR)"
+	akeyless get-secret-value --name=$(NAME) \
+		--profile=$(AKEYLESS_PROFILE)
+
 
 .PHONY: akeyless-add-secret
 akeyless-add-secret: guard-NAME guard-VALUE guard-ENV ## Add a new secret

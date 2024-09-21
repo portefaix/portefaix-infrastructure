@@ -17,7 +17,7 @@
 include hack/build/commons.mk
 -include hack/build/$(CLOUD).$(ENV).mk
 
-TERRAFORM=tofu
+TERRAFORM=terraform # tofu
 
 # ====================================
 # D E V E L O P M E N T

@@ -14,13 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-TALOS_CLUSTER_homelab = portefaix-talos-homelab
-
-TALOS_ENDPOINT_homelab = https://192.168.0.61:6443
-
-KUBE_CONTEXT_homelab = portefaix-talos-homelab
-
-AKEYLESS_PROFILE_homelab = portefaix-homelab
-
-CLOUDFLARE_BUCKET_homelab = portefaix-talos-tfstates
-CLOUDFLARE_ACCOUNT_homelab = $(shell echo ${CLOUDFLARE_ACCOUNT_ID})
+---
+# https://github.com/siderolabs/extensions/tree/main/network/tailscale
+machine:
+  files:
+  - content: |
+      TS_ACCEPT_DNS=true
+      TS_AUTH_ONCE=true
+      TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+      TS_ROUTES=10.96.0.0/12
+    permissions: 0o644
+    path: /var/etc/tailscale/auth.env
+    op: create

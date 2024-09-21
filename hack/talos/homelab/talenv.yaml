@@ -14,13 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-TALOS_CLUSTER_homelab = portefaix-talos-homelab
-
-TALOS_ENDPOINT_homelab = https://192.168.0.61:6443
-
-KUBE_CONTEXT_homelab = portefaix-talos-homelab
-
-AKEYLESS_PROFILE_homelab = portefaix-homelab
-
-CLOUDFLARE_BUCKET_homelab = portefaix-talos-tfstates
-CLOUDFLARE_ACCOUNT_homelab = $(shell echo ${CLOUDFLARE_ACCOUNT_ID})
+---
+clusterName: portefaix-talos-homelab
+talosVersion: v1.7.6
+kubernetesVersion: v1.30.3
+endpoint: https://192.168.0.61:6443
+# domainName: piccola.us
+gateway: 10.0.5.1
+vip: 10.0.5.150
+ip_portefaix: 192.168.0.61
