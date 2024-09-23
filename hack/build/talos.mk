@@ -72,12 +72,13 @@ talos-secrets:
 talos-config: guard-ENV ## Generate the Talos configuration
 	pushd $(TALOS_CONFIG)/$(ENV) \
 		&& talhelper genconfig \
+		&& cp clusterconfig/talosconfig ${HOME}/.talos/config \
 		&& popd
 
 .PHONY: talos-apply
 talos-apply: guard-ENV guard-NODE_NAME guard-NODE_IP ## Generate the Talos configuration
 	pushd $(TALOS_CONFIG)/$(ENV) \
-		&& talosctl apply-config --insecure --nodes $(NODE_IP) --file clusterconfig/$(TALOS_CLUSTER)-$(NODE_NAME).yaml \
+		&& talosctl apply-config --nodes $(NODE_IP) --file clusterconfig/$(TALOS_CLUSTER)-$(NODE_NAME).yaml \
 		&& popd
 
 .PHONY: talos-bootstrap
