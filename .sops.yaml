@@ -14,14 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-output "talosconfig" {
-  description = "Talos configuration"
-  value       = data.talos_client_configuration.this.talos_config
-  sensitive   = true
-}
-
-output "kubeconfig" {
-  description = "Talos Kubernetes configuration"
-  value       = talos_cluster_kubeconfig.this.kubeconfig_raw
-  sensitive   = true
-}
+---
+creation_rules:
+- age: "age156sk4rpmpya89sjzphqal806mkq36aka8f46atujve72fcpvzs9s07cdxv"

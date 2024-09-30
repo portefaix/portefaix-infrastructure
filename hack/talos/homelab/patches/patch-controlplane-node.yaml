@@ -14,9 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-locals {
-  config_patches = {
-    "controleplane" = "${path.module}/templates/controlplane.yaml.tftpl"
-    "worker"        = "${path.module}/templates/worker.yaml.tftpl"
-  }
-}
+---
+machine:
+  nodeLabels:
+    portefaix.xyz/master: "true"
+  # nodeAnnotations: {}
+  # nodeTaints: {}

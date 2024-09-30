@@ -14,13 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
-
-    workspaces {
-      name = "portefaix-talos-homelab-cluster"
-    }
-  }
-}
+---
+machine:
+  kubelet:
+    # extraArgs:
+    #   feature-gates: GracefulNodeShutdown=true
+    #   rotate-server-certificates: true
+    extraConfig:
+      maxPods: 250

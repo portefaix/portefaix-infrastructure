@@ -15,11 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-version: v1alpha1
-debug: false
-persist: true
 machine:
-  network:
-    hostname: ${hostname}
   nodeLabels:
-    node-role.kubernetes.io/worker=true
+    portefaix.xyz/worker: "true"
+  # nodeAnnotations: {}
+  # nodeTaints: {}
