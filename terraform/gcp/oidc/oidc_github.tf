@@ -1,6 +1,6 @@
 module "gh_oidc_bootstrap" {
   source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
-  version = "v3.1.2"
+  version = "v4.0.0"
 
   providers = {
     google = google.bootstrap
