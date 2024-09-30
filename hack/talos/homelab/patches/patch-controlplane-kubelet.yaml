@@ -15,14 +15,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# https://github.com/siderolabs/extensions/tree/main/network/tailscale
 machine:
-  files:
-  - content: |
-      TS_ACCEPT_DNS=true
-      TS_AUTH_ONCE=true
-      TS_AUTHKEY=${TAILSCALE_AUTHKEY}
-      TS_ROUTES=10.96.0.0/12
-    permissions: 0o644
-    path: /var/etc/tailscale/auth.env
-    op: create
+  kubelet:
+    # extraArgs:
+    #   feature-gates: GracefulNodeShutdown=true
+    #   rotate-server-certificates: true
+    extraConfig:
+      maxPods: 250

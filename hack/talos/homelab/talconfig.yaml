@@ -15,8 +15,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
+
 clusterName: ${clusterName}
+# renovate: depName=ghcr.io/siderolabs/installer datasource=docker
 talosVersion: ${talosVersion}
+# renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: ${kubernetesVersion}
 endpoint: ${endpoint}
 allowSchedulingOnMasters: true
@@ -26,15 +30,19 @@ additionalMachineCertSans:
 - ${ip_portefaix_tailscale}
 # additionalApiServerCertSans:
 # - home-cluster.local
+
+# https://www.talos.dev/v1.8/introduction/troubleshooting/#conflict-on-kubernetes-and-host-subnets
 clusterPodNets:
 - 10.244.0.0/16
 clusterSvcNets:
 - 10.96.0.0/12
+
 cniConfig:
   name: none
 
+# Patches to be applied to all nodes
 patches:
-- "@./patch-tailscale-underlay.yaml"
+- "@./patches/patch-tailscale.yaml"
 
 nodes:
 - hostname: portefaix
@@ -46,26 +54,25 @@ nodes:
     arch: amd64
     # useUKI: true
     # secureboot: true
-  nodeLabels:
-    portefaix.xyz/master: "true"
+  # nodeLabels: []
   # nodeAnnotations:
-  #   rack: homelab
+  #   portefaix.xyz/env: homelab
   # nodeTaints:
   #   mytaint: mytaints:NoSchedule
-  nameservers:
-  - 1.1.1.1
-  - 8.8.8.8
-  schematic:
-    customization:
-      # extraKernelArgs:
-      # - net.ifnames=0
-      systemExtensions:
-        officialExtensions:
-        - siderolabs/tailscale
-  extensionServices:
-  - name: tailscale
-    environment:
-    - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  # nameservers:
+  # - 1.1.1.1
+  # - 8.8.8.8
+  # schematic:
+  #   customization:
+  #     # extraKernelArgs:
+  #     # - net.ifnames=0
+  #     systemExtensions:
+  #       officialExtensions:
+  #       - siderolabs/tailscale
+  # extensionServices:
+  # - name: tailscale
+  #   environment:
+  #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
 # - hostname: portefaix-1
 #   controlPlane: false
 #   ipAddress: 192.1680.0.208
@@ -82,15 +89,77 @@ nodes:
 #     portefaix.xyz/lowcost: "true"
 - hostname: portefaix-6
   controlPlane: false
-  ipAddress: 192.168.0.233
+  ipAddress: ${ip_portefaix_6}
   installDisk: /dev/nvme0n1
-  nodeLabels:
-    portefaix.xyz/worker: "true"
-    portefaix.xyz/infra: "true"
+  machineSpec:
+    mode: metal
+    arch: amd64
+    # nodeLabels: []
+    # nameservers:
+    # - 1.1.1.1
+    # - 8.8.8.8
+    # schematic:
+    #   customization:
+    #     # extraKernelArgs:
+    #     # - net.ifnames=0
+    #     systemExtensions:
+    #       officialExtensions:
+    #       - siderolabs/tailscale
+    # extensionServices:
+    # - name: tailscale
+    #   environment:
+    #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
 - hostname: portefaix-7
   controlPlane: false
-  ipAddress: 192.1680.0.250
+  ipAddress: ${ip_portefaix_7}
   installDisk: /dev/nvme0n1
-  nodeLabels:
-    portefaix.xyz/worker: "true"
-    portefaix.xyz/infra: "true"
+  machineSpec:
+    mode: metal
+    arch: amd64
+    # nodeLabels: []
+    # nameservers:
+    # - 1.1.1.1
+    # - 8.8.8.8
+    # schematic:
+    #   customization:
+    #     # extraKernelArgs:
+    #     # - net.ifnames=0
+    #     systemExtensions:
+    #       officialExtensions:
+    #       - siderolabs/tailscale
+    # extensionServices:
+    # - name: tailscale
+    #   environment:
+    #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+
+controlPlane:
+  schematic:
+    customization:
+      # extraKernelArgs:
+      # - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+        - siderolabs/tailscale
+  extensionServices:
+  - name: tailscale
+    environment:
+    - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  patches:
+  - "@./patches/patch-controlplane-node.yaml"
+  - "@./patches/patch-controlplane-kubelet.yaml"
+  - "@./patches/patch-controlplane-cluster.yaml"
+
+worker:
+  schematic:
+    customization:
+      # extraKernelArgs:
+      # - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+        - siderolabs/tailscale
+  extensionServices:
+  - name: tailscale
+    environment:
+    - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  patches:
+  - "@./patches/patch-worker-node.yaml"

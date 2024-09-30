@@ -58,40 +58,40 @@ cloudflare-bucket-clean: guard-ENV guard-BUCKET ## Delete all objects into a R2 
 
 .PHONY: talos-image
 talos-image: guard-ENV ## Generate ID for Talos image
-	@pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talhelper genurl iso
-		&& popd
+		&& popd > /dev/null
 
 .PHONY: talos-secrets
 talos-secrets:
-	pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talhelper gensecret > talsecret.sops.yaml
-		&& popd
+		&& popd > /dev/null
 
 .PHONY: talos-config
 talos-config: guard-ENV ## Generate the Talos configuration
-	pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talhelper genconfig \
 		&& cp clusterconfig/talosconfig ${HOME}/.talos/config \
-		&& popd
+		&& popd > /dev/null
 
 .PHONY: talos-apply
 talos-apply: guard-ENV guard-NODE_NAME guard-NODE_IP ## Generate the Talos configuration
-	pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talosctl apply-config --nodes $(NODE_IP) --file clusterconfig/$(TALOS_CLUSTER)-$(NODE_NAME).yaml \
-		&& popd
+		&& popd > /dev/null
 
 .PHONY: talos-bootstrap
 talos-bootstrap: guard-ENV guard-NODE_IP ## Bootstrap the Talos cluster
-	pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talosctl bootstrap -n $(NODE_IP) \
-		&& popd
+		&& popd > /dev/null
 
 .PHONY: talos-kubeconfig
 talos-kubeconfig: guard-ENV guard-NODE_IP ## Bootstrap the Talos cluster
-	pushd $(TALOS_CONFIG)/$(ENV) \
+	@pushd $(TALOS_CONFIG)/$(ENV) > /dev/null \
 		&& talosctl kubeconfig -n $(NODE_IP) ./kubeconfig \
-		&& popd
+		&& popd > /dev/null
 
 # .PHONY: talos-image
 # talos-image: guard-ENV ## Generate ID for Talos image
