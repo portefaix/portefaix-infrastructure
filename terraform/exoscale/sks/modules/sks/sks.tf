@@ -15,9 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "sks" {
-  # source  = "nlamirault/sks/exoscale"
-  # version = "0.2.0"
-  source = "/Users/nicolas.lamirault/Projects/terraform-exoscale-sks"
+  source  = "nlamirault/sks/exoscale"
+  version = "0.2.0"
 
   name = var.name
   zone = var.zone
