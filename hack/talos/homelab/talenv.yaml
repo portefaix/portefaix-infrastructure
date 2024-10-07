@@ -20,8 +20,8 @@ talosVersion: v1.7.6
 kubernetesVersion: v1.30.3
 endpoint: https://192.168.0.61:6443
 # domainName: homelab.talos.portefaix.xyz
-gateway: 10.0.5.1
-vip: 10.0.5.150
+# gateway: 10.0.5.1
+# vip: 10.0.5.150
 ip_portefaix: 192.168.0.61
 ip_portefaix_tailscale: 100.65.154.6
 ip_portefaix_2: 192.168.0.208

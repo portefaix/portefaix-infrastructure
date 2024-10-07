@@ -28,10 +28,7 @@ allowSchedulingOnMasters: true
 additionalMachineCertSans:
 - ${ip_portefaix}
 - ${ip_portefaix_tailscale}
-# additionalApiServerCertSans:
-# - home-cluster.local
 
-# https://www.talos.dev/v1.8/introduction/troubleshooting/#conflict-on-kubernetes-and-host-subnets
 clusterPodNets:
 - 10.244.0.0/16
 clusterSvcNets:
@@ -41,8 +38,8 @@ cniConfig:
   name: none
 
 # Patches to be applied to all nodes
-patches:
-- "@./patches/patch-tailscale.yaml"
+# patches:
+# - "@./patches/patch-tailscale.yaml"
 
 nodes:
 - hostname: portefaix
@@ -59,7 +56,8 @@ nodes:
   #   portefaix.xyz/env: homelab
   # nodeTaints:
   #   mytaint: mytaints:NoSchedule
-  # nameservers:
+  nameservers:
+  - 192.168.0.1
   # - 1.1.1.1
   # - 8.8.8.8
   # schematic:
@@ -145,6 +143,7 @@ controlPlane:
     environment:
     - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
   patches:
+  - "@./patches/patch-tailscale.yaml"
   - "@./patches/patch-controlplane-node.yaml"
   - "@./patches/patch-controlplane-kubelet.yaml"
   - "@./patches/patch-controlplane-cluster.yaml"
@@ -157,9 +156,9 @@ worker:
       systemExtensions:
         officialExtensions:
         - siderolabs/tailscale
-  extensionServices:
-  - name: tailscale
-    environment:
-    - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  # extensionServices:
+  # - name: tailscale
+  #   environment:
+  #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
   patches:
   - "@./patches/patch-worker-node.yaml"
