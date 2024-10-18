@@ -22,15 +22,10 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
-# variable "region" {
-#   type        = string
-#   description = "The region that will be used as default value for all resources."
-# }
-
-# variable "zone" {
-#   type        = string
-#   description = "The zone that will be used as default value for all resources"
-# }
+variable "cloudflare_api_token" {
+  description = "The Cloudflare API token"
+  type        = string
+}
 
 #############################################################################
 # Spacelift
