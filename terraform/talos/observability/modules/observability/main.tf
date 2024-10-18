@@ -15,12 +15,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  backend "s3" {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
-    region = "auto"
-    # skip checks that don't work in CloudFlare R2
-    skip_credentials_validation = true
-    skip_region_validation      = true
-    skip_metadata_api_check     = true
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.70.0"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "4.43.0"
+    }
   }
 }

@@ -19,34 +19,26 @@
 
 
 ##############################################################################
-# Observability
+# Spacelift
 
-buckets = {
-  "portefaix-homelab-logs-admin" = {
-    days = 30
+repository = "portefaix-infrastructure"
+
+space = "talos"
+
+stacks = {
+  portefaix-homelab-dns = {
+    project_root = "terraform/talos/dns"
+    branch       = "feat/spacelif-refactoring"
+    labels       = ["talos", "homelab", "core", "dns"]
   },
-  "portefaix-homelab-logs-chunks" = {
-    days = 30
+  portefaix-homelab-waf = {
+    project_root = "terraform/talos/waf"
+    branch       = "feat/spacelif-refactoring"
+    labels       = ["talos", "homelab", "security", "waf"]
   },
-  "portefaix-homelab-logs-ruler" = {
-    days = 30
-  },
-  "portefaix-homelab-metrics-admin" = {
-    days = 30
-  },
-  "portefaix-homelab-metrics-alert" = {
-    days = 30
-  },
-  "portefaix-homelab-metrics-ruler" = {
-    days = 30
-  },
-  "portefaix-homelab-metrics-tsdb" = {
-    days = 30
-  },
-  "portefaix-homelab-traces-chunks" = {
-    days = 30
-  },
-  "portefaix-homelab-quickwit-data" = {
-    days = 30
+  portefaix-homelab-observability = {
+    project_root = "terraform/talos/observability"
+    branch       = "feat/spacelif-refactoring"
+    labels       = ["talos", "homelab", "core", "observability"]
   },
 }
