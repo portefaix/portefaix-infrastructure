@@ -14,10 +14,33 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "observability" {
-  source = "../modules/dns"
+#######################################################################
+# Provider
 
-  cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_api_token  = var.cloudflare_api_token
-  buckets               = var.buckets
+variable "cloudflare_account_id" {
+  description = "The Cloudflare account ID"
+  type        = string
 }
+
+variable "cloudflare_api_token" {
+  description = "The Cloudflare API token"
+  type        = string
+}
+
+#######################################################################
+# DNS
+
+# variable "zone_name" {
+#   description = "The name of the zone"
+#   type        = string
+# }
+
+# variable "name" {
+#   description = "Name of the record"
+#   type        = string
+# }
+
+# variable "ip_address" {
+#   description = "The value of the record"
+#   type        = string
+# }

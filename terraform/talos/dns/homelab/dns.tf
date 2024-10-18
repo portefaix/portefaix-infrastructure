@@ -14,14 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+module "dns" {
+  source = "../modules/dns"
 
-
-##############################################################################
-# DNS
-
-zone_name = "portefaix.xyz"
-
-# name       = "*.homelab"
-# ip_address = "100.126.241.86"
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_api_token  = var.cloudflare_api_token
+  # zone_name  = var.zone_name
+  # name       = var.name
+  # ip_address = var.ip_address
+}
