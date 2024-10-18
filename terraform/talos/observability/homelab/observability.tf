@@ -22,92 +22,92 @@ module "observability" {
   buckets               = var.buckets
 }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-logs-admin"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-admin"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-logs-admin"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-admin"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-logs-ruler"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-ruler"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-logs-ruler"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-ruler"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-metrics-admin"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-admin"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-metrics-admin"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-admin"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-metrics-tsdb"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-tsdb"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-metrics-tsdb"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-tsdb"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-quickwit-data"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-quickwit-data"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-quickwit-data"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-quickwit-data"]
+# }
 
-moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
-}
+# moved {
+#   from = aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
+#   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-admin"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-admin"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-admin"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-admin"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-ruler"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-ruler"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-ruler"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-ruler"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-alert"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-alert"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-alert"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-alert"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-tsdb"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-tsdb"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-tsdb"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-tsdb"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-quickwit-data"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-quickwit-data"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-quickwit-data"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-quickwit-data"]
+# }
 
-moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-traces-chunks"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-traces-chunks"]
-}
+# moved {
+#   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-traces-chunks"]
+#   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-traces-chunks"]
+# }
