@@ -28,35 +28,9 @@ variable "cloudflare_api_token" {
 }
 
 #######################################################################
-# Tunnel
-
-variable "name" {
-  type        = string
-  description = "Name of the Cloudflare Tunnel"
-}
+# DNS
 
 variable "zone_name" {
   description = "The name of the zone"
   type        = string
-}
-
-# variable "subdomain" {
-#   description = "The subdomain for the applications"
-#   type        = string
-# }
-
-variable "applications" {
-  type        = list(string)
-  description = "A list of applications"
-  default     = []
-}
-
-variable "github_oauth_client_id" {
-  type        = string
-  description = "Client ID from the Github OAuth application"
-}
-
-variable "github_oauth_client_secret" {
-  type        = string
-  description = "Client secret from the Github OAuth application"
 }

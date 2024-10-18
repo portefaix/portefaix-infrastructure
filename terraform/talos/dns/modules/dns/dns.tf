@@ -14,19 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "s3" {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
-    region = "auto"
-
-    skip_credentials_validation = true
-    skip_region_validation      = true
-    skip_requesting_account_id  = true
-    skip_metadata_api_check     = true
-    skip_s3_checksum            = true
-
-    endpoints {
-      s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
-    }
-  }
-}
+# resource "cloudflare_record" "homelab" {
+#   zone_id = data.cloudflare_zone.this.id
+#   name    = var.name
+#   value   = var.ip_address
+#   type    = "A"
+#   ttl     = 3600
+# }

@@ -14,19 +14,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "s3" {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
-    region = "auto"
-
-    skip_credentials_validation = true
-    skip_region_validation      = true
-    skip_requesting_account_id  = true
-    skip_metadata_api_check     = true
-    skip_s3_checksum            = true
-
-    endpoints {
-      s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
-    }
-  }
+buckets = {
+  "portefaix-homelab-logs-admin" = {
+    days = 30
+  },
+  "portefaix-homelab-logs-chunks" = {
+    days = 30
+  },
+  "portefaix-homelab-logs-ruler" = {
+    days = 30
+  },
+  "portefaix-homelab-metrics-admin" = {
+    days = 30
+  },
+  "portefaix-homelab-metrics-alert" = {
+    days = 30
+  },
+  "portefaix-homelab-metrics-ruler" = {
+    days = 30
+  },
+  "portefaix-homelab-metrics-tsdb" = {
+    days = 30
+  },
+  "portefaix-homelab-traces-chunks" = {
+    days = 30
+  },
+  "portefaix-homelab-quickwit-data" = {
+    days = 30
+  },
 }

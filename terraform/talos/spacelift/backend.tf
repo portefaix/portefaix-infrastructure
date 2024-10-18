@@ -16,8 +16,7 @@
 
 terraform {
   backend "s3" {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/#bucket-region
-    region = "auto"
+    region = "us-east-1" # "auto"
 
     skip_credentials_validation = true
     skip_region_validation      = true
