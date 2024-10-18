@@ -21,3 +21,8 @@ module "waf" {
   cloudflare_api_token  = var.cloudflare_api_token
   zone_name             = var.zone_name
 }
+
+moved {
+  from = cloudflare_ruleset.block_countries
+  to   = module.waf.cloudflare_ruleset.block_countries
+}
