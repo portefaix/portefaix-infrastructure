@@ -28,7 +28,7 @@ moved {
 }
 
 moved {
-  from = aws_s3_bucket.observability["portefaix-homelab-logs-chuncks"]
+  from = aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-logs-chunks"]
 }
 
@@ -68,8 +68,8 @@ moved {
 }
 
 moved {
-  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chuncks"]
-  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chuncks"]
+  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
+  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-logs-chunks"]
 }
 
 moved {
