@@ -53,3 +53,13 @@ variable "stacks" {
   }))
   description = "Spacelift stacks"
 }
+
+variable "access_key" {
+  type        = string
+  description = "AWS access key for Cloudflare R2"
+}
+
+variable "secret_access_key" {
+  type        = string
+  description = "AWS secret key for Cloudflare R2"
+}

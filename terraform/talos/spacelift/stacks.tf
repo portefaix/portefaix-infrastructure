@@ -25,10 +25,31 @@ resource "spacelift_stack" "this" {
   project_root            = each.value.project_root
   space_id                = spacelift_space.this.id
   protect_from_deletion   = false
-  manage_state            = true
+  manage_state            = false
   terraform_workflow_tool = "OPEN_TOFU"
   repository              = var.repository
   labels                  = each.value.labels
+}
+
+resource "spacelift_environment_variable" "aws_acces_key" {
+  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
+  name       = "AWS_ACCESS_KEY_ID"
+  value      = var.access_key
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "aws_secret_key" {
+  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
+  name       = "AWS_SECRET_ACCESS_KEY"
+  value      = var.secret_access_key
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "aws_endpoint_url_s3" {
+  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
+  name       = "AWS_ENDPOINT_URL_S3"
+  value      = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
+  write_only = true
 }
 
 resource "spacelift_environment_variable" "cloudflare_account_id" {
