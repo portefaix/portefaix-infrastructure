@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +15,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
-version: v1alpha1
-debug: false
-persist: true
+# https://github.com/siderolabs/extensions/tree/main/network/tailscale
 machine:
-  network:
-    hostname: ${hostname}
-  nodeLabels:
-    node-role.kubernetes.io/worker=true
+  files:
+  - content: |
+      TS_ACCEPT_DNS=true
+      TS_AUTH_ONCE=true
+      TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+      TS_ROUTES=10.96.0.0/12
+    permissions: 0o644
+    path: /var/etc/tailscale/auth.env
+    op: create

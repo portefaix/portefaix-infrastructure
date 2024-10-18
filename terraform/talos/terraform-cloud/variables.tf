@@ -40,9 +40,19 @@ variable "organization" {
   description = "Name of the Terraform Cloud organization"
 }
 
+variable "cloud_provider" {
+  type        = string
+  description = "Cloud provider used"
+}
+
+variable "environment" {
+  type        = string
+  description = "Name of the environment"
+}
+
 variable "workspaces" {
   type = map(object({
-    directory      = string
+    # directory      = string
     tags           = list(string)
     gitops         = bool
     branch         = string,

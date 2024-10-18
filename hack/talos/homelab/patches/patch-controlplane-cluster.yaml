@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +15,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "kubernetes" {
-  source = "../modules/kubernetes"
-
-  cluster_name     = var.cluster_name
-  cluster_endpoint = var.cluster_endpoint
-  extensions       = var.extensions
-  nodes            = var.nodes
-}
+cluster:
+  controllerManager:
+    extraArgs:
+      bind-address: '0.0.0.0'
+  proxy:
+    extraArgs:
+      bind-address: '0.0.0.0'
+  scheduler:
+    extraArgs:
+      bind-address: '0.0.0.0'
+  etcd:
+    extraArgs:
+      listen-metrics-urls: http://0.0.0.0:2381
+    advertisedSubnets: # listenSubnets defaults to advertisedSubnets if not set explicitly
+    - 192.168.0.0/16

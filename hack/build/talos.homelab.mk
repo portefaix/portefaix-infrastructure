@@ -14,9 +14,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-CLUSTER_homelab = talos-portefaix-homelab
+TALOS_CLUSTER_homelab = portefaix-talos-homelab
 
-KUBE_CONTEXT_homelab = talos-portefaix-homelab
+TALOS_ENDPOINT_homelab = https://192.168.0.61:6443
+
+KUBE_CONTEXT_homelab = portefaix-talos-homelab
 
 AKEYLESS_PROFILE_homelab = portefaix-homelab
 

@@ -15,16 +15,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-version: v1alpha1
-debug: false
-persist: true
-machine:
-  network:
-    hostname: ${hostname}
-  nodeLabels:
-    node-role.kubernetes.io/master=true
-cluster:
-  allowSchedulingOnControlPlanes: true
-  network:
-    cni:
-      name: none
+creation_rules:
+- age: "age156sk4rpmpya89sjzphqal806mkq36aka8f46atujve72fcpvzs9s07cdxv"
