@@ -51,26 +51,8 @@ nodes:
     arch: amd64
     # useUKI: true
     # secureboot: true
-  # nodeLabels: []
-  # nodeAnnotations:
-  #   portefaix.xyz/env: homelab
-  # nodeTaints:
-  #   mytaint: mytaints:NoSchedule
   nameservers:
   - 192.168.0.1
-  # - 1.1.1.1
-  # - 8.8.8.8
-  # schematic:
-  #   customization:
-  #     # extraKernelArgs:
-  #     # - net.ifnames=0
-  #     systemExtensions:
-  #       officialExtensions:
-  #       - siderolabs/tailscale
-  # extensionServices:
-  # - name: tailscale
-  #   environment:
-  #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
 # - hostname: portefaix-1
 #   controlPlane: false
 #   ipAddress: 192.1680.0.208
@@ -92,21 +74,8 @@ nodes:
   machineSpec:
     mode: metal
     arch: amd64
-    # nodeLabels: []
-    # nameservers:
-    # - 1.1.1.1
-    # - 8.8.8.8
-    # schematic:
-    #   customization:
-    #     # extraKernelArgs:
-    #     # - net.ifnames=0
-    #     systemExtensions:
-    #       officialExtensions:
-    #       - siderolabs/tailscale
-    # extensionServices:
-    # - name: tailscale
-    #   environment:
-    #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  nameservers:
+  - 192.168.0.1
 - hostname: portefaix-7
   controlPlane: false
   ipAddress: ${ip_portefaix_7}
@@ -114,21 +83,8 @@ nodes:
   machineSpec:
     mode: metal
     arch: amd64
-    # nodeLabels: []
-    # nameservers:
-    # - 1.1.1.1
-    # - 8.8.8.8
-    # schematic:
-    #   customization:
-    #     # extraKernelArgs:
-    #     # - net.ifnames=0
-    #     systemExtensions:
-    #       officialExtensions:
-    #       - siderolabs/tailscale
-    # extensionServices:
-    # - name: tailscale
-    #   environment:
-    #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
+  nameservers:
+  - 192.168.0.1
 
 controlPlane:
   schematic:
@@ -149,16 +105,5 @@ controlPlane:
   - "@./patches/patch-controlplane-cluster.yaml"
 
 worker:
-  schematic:
-    customization:
-      # extraKernelArgs:
-      # - net.ifnames=0
-      systemExtensions:
-        officialExtensions:
-        - siderolabs/tailscale
-  # extensionServices:
-  # - name: tailscale
-  #   environment:
-  #   - TS_AUTH_KEY=${TAILSCALE_AUTHKEY}
   patches:
   - "@./patches/patch-worker-node.yaml"
