@@ -37,7 +37,7 @@ stacks = {
     labels       = ["talos", "homelab", "security", "waf"]
   },
   portefaix-homelab-observability = {
-    project_root = "terraform/talos/observability"
+    project_root = "terraform/talos/observability/homelab"
     branch       = "feat/spacelif-refactoring"
     labels       = ["talos", "homelab", "core", "observability"]
   },
