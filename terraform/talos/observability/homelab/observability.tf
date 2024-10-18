@@ -43,6 +43,11 @@ moved {
 }
 
 moved {
+  from = aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
+  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-ruler"]
+}
+
+moved {
   from = aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
   to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-alert"]
 }
@@ -80,6 +85,11 @@ moved {
 moved {
   from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
   to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-admin"]
+}
+
+moved {
+  from = aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
+  to   = module.observability.aws_s3_bucket_lifecycle_configuration.life_cycles["portefaix-homelab-metrics-ruler"]
 }
 
 moved {
