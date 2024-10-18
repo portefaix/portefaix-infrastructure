@@ -41,8 +41,8 @@ No outputs.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.66.0 |
-| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | 4.41.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.70.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | 4.43.0 |
 
 ## Providers
 
@@ -58,8 +58,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [cloudflare_ruleset.block_countries](https://registry.terraform.io/providers/cloudflare/cloudflare/4.41.0/docs/resources/ruleset) | resource |
-| [cloudflare_zone.this](https://registry.terraform.io/providers/cloudflare/cloudflare/4.41.0/docs/data-sources/zone) | data source |
+| [cloudflare_ruleset.block_countries](https://registry.terraform.io/providers/cloudflare/cloudflare/4.43.0/docs/resources/ruleset) | resource |
+| [cloudflare_zone.this](https://registry.terraform.io/providers/cloudflare/cloudflare/4.43.0/docs/data-sources/zone) | data source |
 
 ## Inputs
 

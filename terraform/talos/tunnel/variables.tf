@@ -40,10 +40,10 @@ variable "zone_name" {
   type        = string
 }
 
-variable "subdomain" {
-  description = "The subdomain for the applications"
-  type        = string
-}
+# variable "subdomain" {
+#   description = "The subdomain for the applications"
+#   type        = string
+# }
 
 variable "applications" {
   type        = list(string)

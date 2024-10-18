@@ -17,18 +17,23 @@
 resource "spacelift_stack" "this" {
   for_each = var.stacks
 
-  administrative          = true
-  autodeploy              = false
-  branch                  = each.value.branch
-  description             = "created by Terraform"
-  name                    = each.key
-  project_root            = each.value.project_root
-  space_id                = spacelift_space.this.id
-  protect_from_deletion   = false
-  manage_state            = false
-  terraform_workflow_tool = "OPEN_TOFU"
-  repository              = var.repository
-  labels                  = each.value.labels
+  administrative                  = true
+  autodeploy                      = false
+  branch                          = each.value.branch
+  description                     = "created by Terraform"
+  name                            = each.key
+  project_root                    = each.value.project_root
+  space_id                        = spacelift_space.this.id
+  protect_from_deletion           = false
+  manage_state                    = true
+  terraform_external_state_access = true
+  terraform_workflow_tool         = "OPEN_TOFU"
+  repository                      = var.repository
+  labels                          = each.value.labels
+
+  # State file information
+  import_state      = "<State File to Upload>"
+  import_state_file = "<Path to the State file>"
 }
 
 resource "spacelift_environment_variable" "aws_acces_key" {
