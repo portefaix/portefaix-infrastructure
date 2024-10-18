@@ -59,7 +59,7 @@ moved {
 
 moved {
   from = aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
-  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-metrics-admin"]
+  to   = module.observability.aws_s3_bucket.observability["portefaix-homelab-traces-chunks"]
 }
 
 moved {
