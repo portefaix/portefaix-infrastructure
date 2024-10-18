@@ -30,10 +30,6 @@ resource "spacelift_stack" "this" {
   terraform_workflow_tool         = "OPEN_TOFU"
   repository                      = var.repository
   labels                          = each.value.labels
-
-  # State file information
-  import_state      = "<State File to Upload>"
-  import_state_file = "<Path to the State file>"
 }
 
 resource "spacelift_environment_variable" "aws_acces_key" {

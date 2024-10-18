@@ -42,7 +42,4 @@ buckets = {
   "portefaix-homelab-quickwit-data" = {
     days = 30
   },
-  "portefaix-homelab-test" = {
-    days = 30
-  }
 }
