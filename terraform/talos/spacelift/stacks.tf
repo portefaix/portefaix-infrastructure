@@ -17,16 +17,18 @@
 resource "spacelift_stack" "this" {
   for_each = var.stacks
 
-  administrative        = true
-  autodeploy            = true
-  branch                = each.value.branch
-  description           = "created by Terraform"
-  name                  = each.key
-  project_root          = each.value.project_root
-  space_id              = spacelift_space.this.id
-  protect_from_deletion = false
-  repository            = var.repository
-  labels                = each.value.labels
+  administrative          = true
+  autodeploy              = false
+  branch                  = each.value.branch
+  description             = "created by Terraform"
+  name                    = each.key
+  project_root            = each.value.project_root
+  space_id                = spacelift_space.this.id
+  protect_from_deletion   = false
+  manage_state            = true
+  terraform_workflow_tool = "OPEN_TOFU"
+  repository              = var.repository
+  labels                  = each.value.labels
 }
 
 resource "spacelift_environment_variable" "cloudflare_account_id" {
