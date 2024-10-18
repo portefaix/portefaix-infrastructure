@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "observability" {
-  source = "../modules/dns"
+  source = "../modules/observability"
 
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_api_token  = var.cloudflare_api_token
