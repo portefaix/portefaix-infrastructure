@@ -23,5 +23,5 @@
 
 zone_name = "portefaix.xyz"
 
-name       = "*.homelab"
-ip_address = "100.126.241.86"
+# name       = "*.homelab"
+# ip_address = "100.126.241.86"

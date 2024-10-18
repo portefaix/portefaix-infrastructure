@@ -14,6 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-data "cloudflare_zone" "this" {
-  name = var.zone_name
-}
+# data "cloudflare_zone" "this" {
+#   name = var.zone_name
+# }

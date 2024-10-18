@@ -30,17 +30,17 @@ variable "cloudflare_api_token" {
 #######################################################################
 # DNS
 
-variable "zone_name" {
-  description = "The name of the zone"
-  type        = string
-}
+# variable "zone_name" {
+#   description = "The name of the zone"
+#   type        = string
+# }
 
-variable "name" {
-  description = "Name of the record"
-  type        = string
-}
+# variable "name" {
+#   description = "Name of the record"
+#   type        = string
+# }
 
-variable "ip_address" {
-  description = "The value of the record"
-  type        = string
-}
+# variable "ip_address" {
+#   description = "The value of the record"
+#   type        = string
+# }

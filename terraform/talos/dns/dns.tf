@@ -14,10 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "cloudflare_record" "homelab" {
-  zone_id = data.cloudflare_zone.this.id
-  name    = var.name
-  value   = var.ip_address
-  type    = "A"
-  ttl     = 3600
-}
+# resource "cloudflare_record" "homelab" {
+#   zone_id = data.cloudflare_zone.this.id
+#   name    = var.name
+#   value   = var.ip_address
+#   type    = "A"
+#   ttl     = 3600
+# }

@@ -54,14 +54,24 @@ resource "spacelift_environment_variable" "aws_endpoint_url_s3" {
 }
 
 resource "spacelift_environment_variable" "cloudflare_account_id" {
-  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
+  for_each = toset([
+    "portefaix-homelab-dns",
+    "portefaix-homelab-observability"
+  ])
+
+  stack_id   = spacelift_stack.this[each.key].id
   name       = "TF_VAR_cloudflare_account_id"
   value      = var.cloudflare_account_id
   write_only = true
 }
 
 resource "spacelift_environment_variable" "cloudflare_api_token" {
-  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
+  for_each = toset([
+    "portefaix-homelab-dns",
+    "portefaix-homelab-observability"
+  ])
+
+  stack_id   = spacelift_stack.this[each.key].id
   name       = "TF_VAR_cloudflare_api_token"
   value      = var.cloudflare_api_token
   write_only = true
