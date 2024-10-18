@@ -27,12 +27,12 @@ space = "talos"
 
 stacks = {
   portefaix-homelab-dns = {
-    project_root = "terraform/talos/observability/dns"
+    project_root = "terraform/talos/dns/homelab"
     branch       = "feat/spacelif-refactoring"
     labels       = ["talos", "homelab", "core", "dns"]
   },
   portefaix-homelab-waf = {
-    project_root = "terraform/talos/waf"
+    project_root = "terraform/talos/waf/homelab"
     branch       = "feat/spacelif-refactoring"
     labels       = ["talos", "homelab", "security", "waf"]
   },
