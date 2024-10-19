@@ -40,6 +40,11 @@ variable "space" {
   description = "The space for this project"
 }
 
+variable "environments" {
+  type        = list(string)
+  description = "List of environments"
+}
+
 variable "repository" {
   type        = string
   description = "Github repository"
@@ -50,6 +55,7 @@ variable "stacks" {
     project_root = string
     branch       = string
     labels       = list(string)
+    environment  = string
   }))
   description = "Spacelift stacks"
 }

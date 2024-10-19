@@ -22,14 +22,14 @@ resource "spacelift_stack" "this" {
   branch                          = each.value.branch
   description                     = "created by Terraform"
   name                            = each.key
-  project_root                    = each.value.project_root
-  space_id                        = spacelift_space.this.id
+  project_root                    = format("%s/%s", each.value.project_root, each.value.environment)
+  space_id                        = spacelift_space.environment[each.value.environment].id
   protect_from_deletion           = false
   manage_state                    = true
   terraform_external_state_access = true
   terraform_workflow_tool         = "OPEN_TOFU"
   repository                      = var.repository
-  labels                          = each.value.labels
+  labels                          = concat(local.labels, each.value.labels, [each.value.environment])
 }
 
 resource "spacelift_environment_variable" "aws_acces_key" {
