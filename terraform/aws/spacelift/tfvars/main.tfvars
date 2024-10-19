@@ -33,62 +33,62 @@ stacks = {
   # Organization
 
   portefaix-aws-orga-guardduty = {
-    project_root = "terraform/aws/guardduty/orga"
+    project_root = "terraform/aws/guardduty"
     labels       = ["security", "guardduty"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-cloudtrail = {
-    project_root = "terraform/aws/cloudtrail/orga"
+    project_root = "terraform/aws/cloudtrail"
     labels       = ["logging", "events", "cloudtrail"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-access-analyzer = {
-    project_root = "terraform/aws/access-analyzer/orga"
+    project_root = "terraform/aws/access-analyzer"
     labels       = ["security", "access-analyzer"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-security-hub = {
-    project_root = "terraform/aws/security-hub/orga"
+    project_root = "terraform/aws/security-hub"
     labels       = ["security", "securityhub"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-config = {
-    project_root = "terraform/aws/config/orga"
+    project_root = "terraform/aws/config"
     labels       = ["security", "config"]
     environment  = "orga"
     branch       = "main"
   },
 
   portefaix-aws-orga-guardduty = {
-    project_root = "terraform/aws/guardduty/orga"
+    project_root = "terraform/aws/guardduty"
     labels       = ["security", "guardduty"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-cloudtrail = {
-    project_root = "terraform/aws/cloudtrail/orga"
+    project_root = "terraform/aws/cloudtrail"
     labels       = ["logging", "events", "cloudtrail"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-access-analyzer = {
-    project_root = "terraform/aws/access-analyzer/orga"
+    project_root = "terraform/aws/access-analyzer"
     labels       = ["security", "access-analyzer"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-security-hub = {
-    project_root = "terraform/aws/security-hub/orga"
+    project_root = "terraform/aws/security-hub"
     labels       = ["security", "securityhub"]
     environment  = "orga"
     branch       = "main"
   },
   portefaix-aws-orga-config = {
-    project_root = "terraform/aws/config/orga"
+    project_root = "terraform/aws/config"
     labels       = ["security", "config"]
     environment  = "orga"
     branch       = "main"
@@ -103,13 +103,13 @@ stacks = {
   # Shared Account
 
   portefaix-aws-shared-chatbot = {
-    project_root = "terraform/aws/chatbot/shared"
+    project_root = "terraform/aws/chatbot"
     labels       = ["shared", "events", "chatbot"]
     environment  = "shared"
     branch       = "main"
   },
   portefaix-aws-shared-ecr = {
-    project_root = "terraform/aws/ecr/shared"
+    project_root = "terraform/aws/ecr"
     labels       = ["shared", "ecr"]
     environment  = "shared"
     branch       = "main"
@@ -118,7 +118,7 @@ stacks = {
   # Testing Account
 
   portefaix-aws-testing-chaos = {
-    project_root = "terraform/aws/chaos/testing"
+    project_root = "terraform/aws/chaos"
     labels       = ["testing", "events", "chaos"]
     environment  = "testing"
     branch       = "main"
@@ -127,67 +127,67 @@ stacks = {
   # # Core-Staging Account
 
   portefaix-aws-staging-vpc = {
-    project_root = "terraform/aws/vpc/staging"
+    project_root = "terraform/aws/vpc"
     labels       = ["core", "vpc"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-eip-igw = {
-    project_root = "terraform/aws/elastic-ips/internet-gateway/staging"
+    project_root = "terraform/aws/elastic-ips/internet-gateway"
     labels       = ["core", "elasticip", "internetgateway"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-alb = {
-    project_root = "terraform/aws/alb/staging"
+    project_root = "terraform/aws/alb"
     labels       = ["core", "alb"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-eks = {
-    project_root = "terraform/aws/eks/staging"
+    project_root = "terraform/aws/eks"
     labels       = ["core", "eks"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-ecr = {
-    project_root = "terraform/aws/ecr/staging"
+    project_root = "terraform/aws/ecr"
     labels       = ["core", "ecr"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-observability = {
-    project_root = "terraform/aws/observability/staging"
+    project_root = "terraform/aws/observability"
     labels       = ["core", "stack", "observability"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-notifications = {
-    project_root = "terraform/aws/notifications/staging"
+    project_root = "terraform/aws/notifications"
     labels       = ["core", "stack", "notifications"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-external-dns = {
-    project_root = "terraform/aws/external-dns/staging"
+    project_root = "terraform/aws/external-dns"
     labels       = ["core", "stack", "externaldns"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-bastion = {
-    project_root = "terraform/aws/bastion/staging"
+    project_root = "terraform/aws/bastion"
     labels       = ["core", "bastion"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-waf = {
-    project_root = "terraform/aws/waf/staging"
+    project_root = "terraform/aws/waf"
     labels       = ["core", "security", "waf"]
     environment  = "staging"
     branch       = "main"
   },
   portefaix-aws-staging-secrets = {
-    project_root = "terraform/aws/secrets/staging"
+    project_root = "terraform/aws/secrets"
     labels       = ["core", "security", "secrets"]
     environment  = "staging"
     branch       = "main"
