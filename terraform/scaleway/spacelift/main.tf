@@ -18,9 +18,9 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.70.0"
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.46.0"
     }
     spacelift = {
       source  = "spacelift-io/spacelift"

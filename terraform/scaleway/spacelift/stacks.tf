@@ -32,41 +32,10 @@ resource "spacelift_stack" "this" {
   labels                          = concat(local.labels, each.value.labels, [each.value.environment])
 }
 
-resource "spacelift_environment_variable" "aws_acces_key" {
-  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
-  name       = "AWS_ACCESS_KEY_ID"
-  value      = var.access_key
-  write_only = true
-}
-
-resource "spacelift_environment_variable" "aws_secret_key" {
-  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
-  name       = "AWS_SECRET_ACCESS_KEY"
-  value      = var.secret_access_key
-  write_only = true
-}
-
-resource "spacelift_environment_variable" "aws_endpoint_url_s3" {
-  stack_id   = spacelift_stack.this["portefaix-homelab-observability"].id
-  name       = "AWS_ENDPOINT_URL_S3"
-  value      = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
-  write_only = true
-}
-
-resource "spacelift_environment_variable" "cloudflare_account_id" {
+resource "spacelift_context_attachment" "this" {
   for_each = var.stacks
 
+  context_id = spacelift_context.this[each.value.environment].id
   stack_id   = spacelift_stack.this[each.key].id
-  name       = "TF_VAR_cloudflare_account_id"
-  value      = var.cloudflare_account_id
-  write_only = true
-}
-
-resource "spacelift_environment_variable" "cloudflare_api_token" {
-  for_each = var.stacks
-
-  stack_id   = spacelift_stack.this[each.key].id
-  name       = "TF_VAR_cloudflare_api_token"
-  value      = var.cloudflare_api_token
-  write_only = true
+  priority   = 0
 }

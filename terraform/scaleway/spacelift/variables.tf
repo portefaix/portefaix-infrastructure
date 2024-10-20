@@ -17,15 +17,6 @@
 #############################################################################
 # Provider
 
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
-  type        = string
-}
-
-variable "cloudflare_api_token" {
-  description = "The Cloudflare API token"
-  type        = string
-}
 
 #############################################################################
 # Spacelift
@@ -60,12 +51,37 @@ variable "stacks" {
   description = "Spacelift stacks"
 }
 
-variable "access_key" {
+variable "scw_access_key" {
   type        = string
-  description = "AWS access key for Cloudflare R2"
+  description = "Scaleway access key"
 }
 
-variable "secret_access_key" {
+variable "scw_secret_key" {
   type        = string
-  description = "AWS secret key for Cloudflare R2"
+  description = "Scaleway secret key"
+}
+
+variable "scw_default_project_id" {
+  type        = string
+  description = "Scaleway Default Project ID"
+}
+
+variable "scw_default_organization_id" {
+  type        = string
+  description = "Scaleway Organization ID"
+}
+
+variable "aws_access_key_id" {
+  type        = string
+  description = "AWS access key"
+}
+
+variable "aws_secret_access_key" {
+  type        = string
+  description = "AWS secret key"
+}
+
+variable "aws_default_region" {
+  type        = string
+  description = "The AWS default region"
 }
