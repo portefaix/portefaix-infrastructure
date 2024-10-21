@@ -27,6 +27,8 @@ module "kapsule" {
   feature_gates     = var.feature_gates
   admission_plugins = var.admission_plugins
 
+  private_network_name = var.private_network_name
+
   enable_cluster_autoscaler       = var.enable_cluster_autoscaler
   scale_down_delay_after_add      = var.scale_down_delay_after_add
   scale_down_unneeded_time        = var.scale_down_unneeded_time

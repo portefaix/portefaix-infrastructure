@@ -27,6 +27,8 @@ zone = "fr-par-1"
 name        = "portefaix-sandbox-kapsule"
 description = "Portefaix on Kapsule"
 
+private_network_name = "portefaix-sandbox"
+
 k8s_version = "1.26"
 
 cni = "cilium"
