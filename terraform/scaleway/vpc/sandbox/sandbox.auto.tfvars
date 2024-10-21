@@ -24,6 +24,7 @@ zone = "fr-par-1"
 ##############################################################################
 # Private Network
 
-name = "portefaix-staging"
-type = "VPC-GW-S"
-tags = ["terraform", "private-network"]
+name        = "portefaix-sandbox"
+environment = "sandbox"
+type        = "VPC-GW-S"
+tags        = ["terraform", "private-network"]
