@@ -88,3 +88,12 @@ resource "spacelift_environment_variable" "aws_default_region" {
   value      = var.aws_default_region
   write_only = true
 }
+
+resource "spacelift_environment_variable" "project_id" {
+  for_each = var.stacks
+
+  name       = "TF_VAR_project_id"
+  context_id = spacelift_context.this[each.value.environment].id
+  value      = var.scw_project_id
+  write_only = true
+}

@@ -16,7 +16,7 @@
 
 module "kapsule" {
   source  = "nlamirault/kapsule/scaleway"
-  version = "3.0.3"
+  version = "3.0.4"
 
   name              = var.name
   region            = var.region
@@ -26,6 +26,8 @@ module "kapsule" {
   tags              = var.tags
   feature_gates     = var.feature_gates
   admission_plugins = var.admission_plugins
+
+  private_network_name = var.private_network_name
 
   enable_cluster_autoscaler       = var.enable_cluster_autoscaler
   scale_down_delay_after_add      = var.scale_down_delay_after_add

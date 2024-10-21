@@ -26,26 +26,20 @@ zone = "fr-par-1"
 
 cluster_name = "portefaix-sandbox-kapsule"
 
+environment = "sandbox"
+
 loki_tags = {
-  "Env"     = "Sandbox"
-  "Service" = "Observability"
-  "Role"    = "Loki"
+  "Role" = "Loki"
 }
 
 tempo_tags = {
-  "Env"     = "Sandbox"
-  "Service" = "Observability"
-  "Role"    = "Tempo"
+  "Role" = "Tempo"
 }
 
 mimir_tags = {
-  "Env"     = "Sandbox"
-  "Service" = "Observability"
-  "Role"    = "Mimir"
+  "Role" = "Mimir"
 }
 
-grafana_tags = {
-  "Env"     = "Sandbox"
-  "Service" = "Observability"
-  "Role"    = "Grafana"
-}
+# grafana_tags = {
+#   "Role"    = "Grafana"
+# }

@@ -47,6 +47,7 @@ variable "stacks" {
     branch       = string
     labels       = list(string)
     environment  = string
+    dependencies = list(string)
   }))
   description = "Spacelift stacks"
 }
@@ -64,6 +65,11 @@ variable "scw_secret_key" {
 variable "scw_default_project_id" {
   type        = string
   description = "Scaleway Default Project ID"
+}
+
+variable "scw_project_id" {
+  type        = string
+  description = "Scaleway Project ID"
 }
 
 variable "scw_default_organization_id" {

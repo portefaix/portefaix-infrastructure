@@ -36,29 +36,36 @@ stacks = {
     labels       = ["core", "vpc"]
     environment  = "sandbox"
     branch       = "main"
+    dependencies = []
   },
   portefaix-scaleway-sandbox-registry = {
     project_root = "terraform/scaleway/registry"
     labels       = ["core", "kapsule"]
     environment  = "sandbox"
     branch       = "main"
+    dependencies = []
   },
   portefaix-scaleway-sandbox-kapsule = {
     project_root = "terraform/scaleway/kapsule"
     labels       = ["core", "kapsule"]
     environment  = "sandbox"
     branch       = "main"
+    dependencies = [
+      "portefaix-scaleway-sandbox-vpc",
+    ]
   },
   portefaix-scaleway-sandbox-observability = {
     project_root = "terraform/scaleway/observability"
     labels       = ["core", "stack"]
     environment  = "sandbox"
     branch       = "main"
+    dependencies = []
   },
   portefaix-scaleway-sandbox-eso = {
     project_root = "terraform/scaleway/eso"
     labels       = ["core", "stack"]
     environment  = "sandbox"
     branch       = "main"
+    dependencies = []
   },
 }

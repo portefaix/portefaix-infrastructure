@@ -14,13 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
-
-    workspaces {
-      name = "portefaix-scaleway-sandbox-eso"
-    }
+locals {
+  tags = {
+    "Environment" = var.environment
+    "Service"     = "Observability"
   }
 }
