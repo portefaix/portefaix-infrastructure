@@ -16,7 +16,7 @@
 
 module "mimir" {
   source  = "nlamirault/observability/scaleway//modules/mimir"
-  version = "1.2.1"
+  version = "1.2.2"
 
   project_id   = var.project_id
   cluster_name = var.cluster_name
@@ -26,7 +26,7 @@ module "mimir" {
 
 module "loki" {
   source  = "nlamirault/observability/scaleway//modules/loki"
-  version = "1.2.1"
+  version = "1.2.2"
 
   project_id   = var.project_id
   cluster_name = var.cluster_name
@@ -36,7 +36,7 @@ module "loki" {
 
 module "tempo" {
   source  = "nlamirault/observability/scaleway//modules/tempo"
-  version = "1.2.1"
+  version = "1.2.2"
 
   project_id   = var.project_id
   cluster_name = var.cluster_name
@@ -46,7 +46,7 @@ module "tempo" {
 
 module "cockpit" {
   source  = "nlamirault/observability/scaleway//modules/cockpit"
-  version = "1.2.1"
+  version = "1.2.2"
 
   cluster_name = var.cluster_name
 }
