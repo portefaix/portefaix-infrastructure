@@ -48,5 +48,6 @@ module "cockpit" {
   source  = "nlamirault/observability/scaleway//modules/cockpit"
   version = "1.2.2"
 
+  project_id   = var.project_id
   cluster_name = var.cluster_name
 }
