@@ -15,7 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
-  labels = ["scaleway"]
+  cloud_provider = "exoscale"
+  labels         = [local.cloud_provider]
 
   stack_dependencies = flatten([
     for stack_key, stack in var.stacks : [

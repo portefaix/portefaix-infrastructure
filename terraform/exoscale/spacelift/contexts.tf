@@ -17,7 +17,7 @@
 resource "spacelift_context" "this" {
   for_each = toset(var.environments)
 
-  name        = format("scaleway-%s", each.value)
+  name        = format("%s-%s", local.cloud_provider, each.value)
   space_id    = spacelift_space.environment[each.value].id
   description = "Created by Terraform"
   labels      = local.labels
