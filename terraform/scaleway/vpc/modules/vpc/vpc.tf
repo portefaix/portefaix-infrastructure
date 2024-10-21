@@ -21,7 +21,7 @@ resource "scaleway_vpc_private_network" "this" {
 
 resource "scaleway_vpc_private_network" "kapsule" {
   name = format("%s-kapsule", var.name)
-  tags = concat(var.tags, "kapsule")
+  tags = concat(var.tags, ["kapsule"])
 }
 
 resource "scaleway_vpc_public_gateway_dhcp" "this" {
