@@ -18,7 +18,7 @@ resource "spacelift_space" "this" {
   name            = var.space
   parent_space_id = data.spacelift_space.this.id
   description     = "Created by Terraform."
-  labels          = concat(local.labels)
+  labels          = local.labels
 }
 
 resource "spacelift_space" "environment" {

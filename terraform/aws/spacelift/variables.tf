@@ -17,15 +17,21 @@
 #############################################################################
 # Provider
 
-variable "cloudflare_account_id" {
-  description = "The Cloudflare account ID"
+variable "region" {
   type        = string
+  description = "AWS Region"
 }
 
-variable "cloudflare_api_token" {
-  description = "The Cloudflare API token"
-  type        = string
+variable "default_tags" {
+  type        = map(string)
+  description = "Tags for the AWS provider"
+  default = {
+    "Project"           = "Portefaix"
+    "Made-By"           = "Terraform"
+    "Portefaix-Version" = "v0.41.0"
+  }
 }
+
 
 #############################################################################
 # Spacelift
@@ -54,8 +60,8 @@ variable "stacks" {
   type = map(object({
     project_root = string
     branch       = string
-    labels       = list(string)
     environment  = string
+    labels       = list(string)
   }))
   description = "Spacelift stacks"
 }
@@ -68,4 +74,19 @@ variable "access_key" {
 variable "secret_access_key" {
   type        = string
   description = "AWS secret key for Cloudflare R2"
+}
+
+variable "org_email" {
+  type        = string
+  description = "Email of the AWS Organization"
+}
+
+variable "org_email_domain" {
+  type        = string
+  description = "Email domain of the AWS Organization (like gmail.com)"
+}
+
+variable "portefaix_version" {
+  type        = string
+  description = "Portefaix version"
 }
