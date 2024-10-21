@@ -35,6 +35,11 @@ variable "project_id" {
   description = "ID of the project"
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment of the project"
+}
+
 variable "cluster_name" {
   type        = string
   description = "Name of the Kapsule cluster"

@@ -21,7 +21,7 @@ module "mimir" {
   project_id   = var.project_id
   cluster_name = var.cluster_name
   region       = var.region
-  tags         = var.mimir_tags
+  tags         = merge(local.tags, var.mimir_tags)
 }
 
 module "loki" {
@@ -31,7 +31,7 @@ module "loki" {
   project_id   = var.project_id
   cluster_name = var.cluster_name
   region       = var.region
-  tags         = var.loki_tags
+  tags         = merge(local.tags, var.loki_tags)
 }
 
 module "tempo" {
@@ -41,7 +41,7 @@ module "tempo" {
   project_id   = var.project_id
   cluster_name = var.cluster_name
   region       = var.region
-  tags         = var.tempo_tags
+  tags         = merge(local.tags, var.tempo_tags)
 }
 
 module "cockpit" {

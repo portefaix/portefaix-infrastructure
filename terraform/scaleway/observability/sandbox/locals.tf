@@ -14,32 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
-
-region = "fr-par"
-
-zone = "fr-par-1"
-
-##############################################################################
-# Kubernetes cluster
-
-cluster_name = "portefaix-sandbox-kapsule"
-
-environment = "sandbox"
-
-loki_tags = {
-  "Role" = "Loki"
+locals {
+  tags = {
+    "Env"     = var.environment
+    "Service" = "Observability"
+  }
 }
-
-tempo_tags = {
-  "Role" = "Tempo"
-}
-
-mimir_tags = {
-  "Role" = "Mimir"
-}
-
-# grafana_tags = {
-#   "Role"    = "Grafana"
-# }
