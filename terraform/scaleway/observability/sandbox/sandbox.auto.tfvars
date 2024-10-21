@@ -44,8 +44,8 @@ mimir_tags = {
   "Role"    = "Mimir"
 }
 
-grafana_tags = {
-  "Env"     = "Sandbox"
-  "Service" = "Observability"
-  "Role"    = "Grafana"
-}
+# grafana_tags = {
+#   "Env"     = "Sandbox"
+#   "Service" = "Observability"
+#   "Role"    = "Grafana"
+# }
