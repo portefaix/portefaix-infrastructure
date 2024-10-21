@@ -20,7 +20,7 @@ resource "spacelift_stack" "this" {
   administrative                  = true
   autodeploy                      = false
   branch                          = each.value.branch
-  description                     = "created by Terraform"
+  description                     = "Created by Terraform"
   name                            = each.key
   project_root                    = format("%s/%s", each.value.project_root, each.value.environment)
   space_id                        = spacelift_space.environment[each.value.environment].id
