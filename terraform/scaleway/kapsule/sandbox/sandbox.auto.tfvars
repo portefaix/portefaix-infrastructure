@@ -29,7 +29,7 @@ description = "Portefaix on Kapsule"
 
 private_network_name = "portefaix-sandbox"
 
-k8s_version = "1.26"
+k8s_version = "1.30"
 
 cni = "cilium"
 
