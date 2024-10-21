@@ -30,7 +30,7 @@ kubernetes_version = "1.31.1"
 
 service_level = "starter"
 
-cni            = "calico"
+cni            = "cilium"
 exoscale_ccm   = true
 metrics_server = true
 auto_upgrade   = true
