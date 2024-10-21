@@ -31,7 +31,7 @@ space = "exoscale"
 environments = ["sandbox"]
 
 stacks = {
-  portefaix-exoscale-dev-sks = {
+  portefaix-exoscale-sandbox-sks = {
     project_root = "terraform/exoscale/sks"
     labels       = ["core", "sks"]
     environment  = "sandbox"

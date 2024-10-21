@@ -22,7 +22,7 @@
 ###########################################################################
 # Kubernetes cluster
 
-name = "portefaix-dev-cluster-sks"
+name = "portefaix-sandbox-cluster-sks"
 
 zone = "ch-dk-2"
 
