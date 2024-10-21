@@ -17,7 +17,7 @@
 module "observability" {
   source = "../modules/observability"
 
-  project_id   = var.scw_project_id
+  project_id   = var.project_id
   cluster_name = var.cluster_name
   region       = var.region
   mimir_tags   = var.mimir_tags

@@ -59,15 +59,6 @@ resource "spacelift_environment_variable" "scw_default_project_id" {
   write_only = true
 }
 
-resource "spacelift_environment_variable" "scw_project_id" {
-  for_each = var.stacks
-
-  name       = "SCW_PROJECT_ID"
-  context_id = spacelift_context.this[each.value.environment].id
-  value      = var.scw_project_id
-  write_only = true
-}
-
 resource "spacelift_environment_variable" "aws_acces_key_id" {
   for_each = var.stacks
 
@@ -95,5 +86,14 @@ resource "spacelift_environment_variable" "aws_default_region" {
   context_id = spacelift_context.this[each.value.environment].id
   name       = "AWS_SECRET_ACCESS_KEY"
   value      = var.aws_default_region
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "project_id" {
+  for_each = var.stacks
+
+  name       = "TF_VAR_project_id"
+  context_id = spacelift_context.this[each.value.environment].id
+  value      = var.scw_project_id
   write_only = true
 }
