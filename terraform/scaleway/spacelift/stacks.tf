@@ -30,6 +30,9 @@ resource "spacelift_stack" "this" {
   terraform_workflow_tool         = "OPEN_TOFU"
   repository                      = var.repository
   labels                          = concat(local.labels, each.value.labels, [each.value.environment])
+  additional_project_globs = [
+    format("%s/modules/*", each.value.project_root)
+  ]
 }
 
 resource "spacelift_context_attachment" "this" {

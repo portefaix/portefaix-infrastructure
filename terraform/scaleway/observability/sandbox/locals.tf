@@ -16,7 +16,7 @@
 
 locals {
   tags = {
-    "Env"     = var.environment
-    "Service" = "Observability"
+    "Environment" = var.environment
+    "Service"     = "Observability"
   }
 }
