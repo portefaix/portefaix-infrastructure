@@ -47,6 +47,7 @@ variable "stacks" {
     branch       = string
     labels       = list(string)
     environment  = string
+    dependencies = list(string)
   }))
   description = "Spacelift stacks"
 }

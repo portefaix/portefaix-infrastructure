@@ -42,3 +42,12 @@ resource "spacelift_context_attachment" "this" {
   stack_id   = spacelift_stack.this[each.key].id
   priority   = 0
 }
+
+resource "spacelift_stack_dependency" "this" {
+  for_each = tomap({
+    for dep in local.stack_dependencies : "${dep.stack_name}.${dep.dependency_name}" => dep
+  })
+
+  stack_id            = spacelift_stack.this[each.value.stack_name].id
+  depends_on_stack_id = spacelift_stack.this[each.value.dependency_name].id
+}
