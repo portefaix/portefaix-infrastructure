@@ -25,10 +25,10 @@ zone = "fr-par-1"
 # Container Registry
 
 repositories = {
-  "containers" = {
+  "portefaix-sandbox-containers" = {
     is_public = false
   },
-  "helmcharts" = {
+  "portefaix-sandbox-helmcharts" = {
     is_public = false
   }
 }
