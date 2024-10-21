@@ -35,30 +35,30 @@ stacks = {
     project_root = "terraform/scaleway/vpc"
     labels       = ["core", "vpc"]
     environment  = "sandbox"
-    branch       = "main"
+    branch       = "feat/scaleway-spacelift-stacks"
   },
   portefaix-scaleway-sandbox-registry = {
     project_root = "terraform/scaleway/registry"
     labels       = ["core", "kapsule"]
     environment  = "sandbox"
-    branch       = "main"
+    branch       = "feat/scaleway-spacelift-stacks"
   },
   portefaix-scaleway-sandbox-kapsule = {
     project_root = "terraform/scaleway/kapsule"
     labels       = ["core", "kapsule"]
     environment  = "sandbox"
-    branch       = "main"
+    branch       = "feat/scaleway-spacelift-stacks"
   },
   portefaix-scaleway-sandbox-observability = {
     project_root = "terraform/scaleway/observability"
     labels       = ["core", "stack"]
     environment  = "sandbox"
-    branch       = "main"
+    branch       = "feat/scaleway-spacelift-stacks"
   },
   portefaix-scaleway-sandbox-eso = {
     project_root = "terraform/scaleway/eso"
     labels       = ["core", "stack"]
     environment  = "sandbox"
-    branch       = "main"
+    branch       = "feat/scaleway-spacelift-stacks"
   },
 }

@@ -66,6 +66,11 @@ variable "scw_default_project_id" {
   description = "Scaleway Default Project ID"
 }
 
+variable "scw_project_id" {
+  type        = string
+  description = "Scaleway Project ID"
+}
+
 variable "scw_default_organization_id" {
   type        = string
   description = "Scaleway Organization ID"

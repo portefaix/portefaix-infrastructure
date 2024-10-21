@@ -17,6 +17,11 @@
 #######################################################################
 # Provider
 
+variable "scw_project_id" {
+  type        = string
+  description = "ID of the project"
+}
+
 variable "region" {
   type        = string
   description = "The region that will be used as default value for all resources."
@@ -30,10 +35,6 @@ variable "zone" {
 #######################################################################
 # Observability
 
-variable "project_id" {
-  type        = string
-  description = "ID of the project"
-}
 
 variable "cluster_name" {
   type        = string
