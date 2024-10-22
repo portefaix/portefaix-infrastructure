@@ -44,7 +44,7 @@ module "irsa_eso" {
 
 module "pod_identity_eso" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.4.3"
+  version = "1.6.1"
 
   for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
 
