@@ -66,7 +66,7 @@ module "irsa_secret_store_csi_driver" {
 
 module "pod_identity_secret_store_csi_driver" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.4.3"
+  version = "1.6.1"
 
   for_each = var.enable_pod_identity ? toset(var.secrets_data) : toset([])
 
