@@ -48,7 +48,7 @@ jobs:
         echo "Inspect CIS on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -87,7 +87,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -120,7 +120,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -153,7 +153,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -186,7 +186,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -219,7 +219,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -252,7 +252,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -285,7 +285,7 @@ jobs:
         echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
