@@ -21,11 +21,8 @@
 ##############################################################################
 # Tunnel
 
-cloud       = "talos"
-environment = "homelab"
-name        = "portefaix-talos-homelab"
 zone_name   = "portefaix.xyz"
-subdomain   = "homelab.talos"
+tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
 
 applications = [
   "alertmanager",

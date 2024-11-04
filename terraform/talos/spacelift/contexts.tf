@@ -24,46 +24,64 @@ resource "spacelift_context" "this" {
 }
 
 resource "spacelift_environment_variable" "aws_acces_key" {
-  for_each = var.stacks
+  for_each = toset(var.environments)
 
-  context_id = spacelift_context.this[each.value.environment].id
+  context_id = spacelift_context.this[each.value].id
   name       = "AWS_ACCESS_KEY_ID"
   value      = var.access_key
   write_only = true
 }
 
 resource "spacelift_environment_variable" "aws_secret_key" {
-  for_each = var.stacks
+  for_each = toset(var.environments)
 
-  context_id = spacelift_context.this[each.value.environment].id
+  context_id = spacelift_context.this[each.value].id
   name       = "AWS_SECRET_ACCESS_KEY"
   value      = var.secret_access_key
   write_only = true
 }
 
 resource "spacelift_environment_variable" "aws_endpoint_url_s3" {
-  for_each = var.stacks
+  for_each = toset(var.environments)
 
-  context_id = spacelift_context.this[each.value.environment].id
+  context_id = spacelift_context.this[each.value].id
   name       = "AWS_ENDPOINT_URL_S3"
   value      = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
   write_only = true
 }
 
 resource "spacelift_environment_variable" "cloudflare_account_id" {
-  for_each = var.stacks
+  for_each = toset(var.environments)
 
-  context_id = spacelift_context.this[each.value.environment].id
+  context_id = spacelift_context.this[each.value].id
   name       = "TF_VAR_cloudflare_account_id"
   value      = var.cloudflare_account_id
   write_only = true
 }
 
 resource "spacelift_environment_variable" "cloudflare_api_token" {
-  for_each = var.stacks
+  for_each = toset(var.environments)
 
-  context_id = spacelift_context.this[each.value.environment].id
+  context_id = spacelift_context.this[each.value].id
   name       = "TF_VAR_cloudflare_api_token"
   value      = var.cloudflare_api_token
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "github_oauth_client_id" {
+  for_each = toset(var.environments)
+
+  context_id = spacelift_context.this[each.value].id
+  name       = "TF_VAR_github_oauth_client_id"
+  value      = var.github_oauth_client_id
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "github_oauth_client_secret" {
+  for_each = toset(var.environments)
+
+  context_id = spacelift_context.this[each.value].id
+  name       = "TF_VAR_github_oauth_client_secret"
+  value      = var.github_oauth_client_secret
   write_only = true
 }

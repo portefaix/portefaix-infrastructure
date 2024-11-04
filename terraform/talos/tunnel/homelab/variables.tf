@@ -30,9 +30,9 @@ variable "cloudflare_api_token" {
 #######################################################################
 # Tunnel
 
-variable "name" {
+variable "tunnel_id" {
+  description = "The Cloudflare tunnel ID"
   type        = string
-  description = "Name of the Cloudflare Tunnel"
 }
 
 variable "zone_name" {
