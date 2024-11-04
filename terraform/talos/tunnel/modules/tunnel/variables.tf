@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
+#######################################################################
 # Provider
 
 variable "cloudflare_account_id" {
@@ -27,46 +27,36 @@ variable "cloudflare_api_token" {
   type        = string
 }
 
-#############################################################################
-# Spacelift
+#######################################################################
+# Tunnel
 
-variable "root_space_id" {
+variable "name" {
   type        = string
-  description = "The Portefaix space"
+  description = "Name of the Cloudflare Tunnel"
 }
 
-variable "space" {
+variable "zone_name" {
+  description = "The name of the zone"
   type        = string
-  description = "The space for this project"
 }
 
-variable "environments" {
+# variable "subdomain" {
+#   description = "The subdomain for the applications"
+#   type        = string
+# }
+
+variable "applications" {
   type        = list(string)
-  description = "List of environments"
+  description = "A list of applications"
+  default     = []
 }
 
-variable "repository" {
+variable "github_oauth_client_id" {
   type        = string
-  description = "Github repository"
+  description = "Client ID from the Github OAuth application"
 }
 
-variable "stacks" {
-  type = map(object({
-    project_root = string
-    branch       = string
-    labels       = list(string)
-    environment  = string
-    dependencies = list(string)
-  }))
-  description = "Spacelift stacks"
-}
-
-variable "access_key" {
+variable "github_oauth_client_secret" {
   type        = string
-  description = "AWS access key for Cloudflare R2"
-}
-
-variable "secret_access_key" {
-  type        = string
-  description = "AWS secret key for Cloudflare R2"
+  description = "Client secret from the Github OAuth application"
 }
