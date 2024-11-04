@@ -18,22 +18,22 @@ resource "random_id" "tunnel_secret" {
   byte_length = 35
 }
 
-resource "cloudflare_tunnel" "this" {
-  account_id = var.cloudflare_account_id
-  name       = var.name
-  secret     = random_id.tunnel_secret.b64_std
-}
+# resource "cloudflare_tunnel" "this" {
+#   account_id = var.cloudflare_account_id
+#   name       = var.name
+#   secret     = random_id.tunnel_secret.b64_std
+# }
 
-resource "cloudflare_record" "this" {
-  for_each = toset(var.applications)
+# resource "cloudflare_record" "this" {
+#   for_each = toset(var.applications)
 
-  zone_id = data.cloudflare_zone.this.id
-  name    = format("%s", each.key)
-  # name    = format("%s.%s", each.key, var.subdomain)
-  value   = cloudflare_tunnel.this.cname
-  type    = "CNAME"
-  proxied = true
-}
+#   zone_id = data.cloudflare_zone.this.id
+#   name    = format("%s", each.key)
+#   # name    = format("%s.%s", each.key, var.subdomain)
+#   value   = cloudflare_tunnel.this.cname
+#   type    = "CNAME"
+#   proxied = true
+# }
 
 resource "cloudflare_access_application" "this" {
   for_each = toset(var.applications)
