@@ -19,7 +19,8 @@ module "tunnel" {
 
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_api_token  = var.cloudflare_api_token
-  tunnel_id = var.tunnel_id
+  # tunnel_id = var.tunnel_id
+  tunnel_name = var.tunnel_name
   zone_name             = var.zone_name
   applications = var.applications
   github_oauth_client_id = var.github_oauth_client_id
