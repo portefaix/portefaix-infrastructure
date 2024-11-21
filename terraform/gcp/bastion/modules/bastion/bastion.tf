@@ -17,7 +17,7 @@
 # tfsec:ignore:google-compute-no-public-ingress
 module "iap_bastion" {
   source  = "terraform-google-modules/bastion-host/google"
-  version = "7.1.0"
+  version = "8.0.0"
 
   project = var.project
   zone    = var.zone
