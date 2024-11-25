@@ -42,7 +42,7 @@ module "irsa_efs_csi_driver" {
 
 module "pod_identity_efs_csi_driver" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.6.1"
+  version = "1.7.0"
 
   for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
 
