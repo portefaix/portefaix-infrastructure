@@ -52,7 +52,7 @@ module "pubsub_budget" {
 
 module "billing_budgets" {
   source  = "terraform-google-modules/project-factory/google//modules/budget"
-  version = "17.0.0"
+  version = "17.0.1"
 
   for_each = toset(var.budgets_amounts)
 
