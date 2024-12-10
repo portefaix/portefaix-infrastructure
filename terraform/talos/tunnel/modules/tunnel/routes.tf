@@ -14,31 +14,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
-
-
-##############################################################################
-# Tunnel
-
-zone_name   = "portefaix.xyz"
-tunnel_name = "portefaix-homelab"
-# tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
-
-applications = [
-  "alertmanager",
-  # "alloy-events",
-  # "alloy-logs",
-  # "alloy-metrics",
-  # "alloy-profiles",
-  # "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
-
-k8s_ip = "198.168.0.61/32"
+resource "cloudflare_zero_trust_tunnel_cloudflared_route" "ipv4" {
+  account_id = var.account_id
+  tunnel_id  = data.cloudflare_zero_trust_tunnel_cloudflared.this.id
+  network    = var.k8s_ip
+  comment    = "Kubernetes API Server (IPv4)"
+}

@@ -14,31 +14,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+resource "cloudflare_teams_list" "k8s_apiserver_ips" {
+  account_id = var.account_id
+  name       = "Kubernetes API IPs"
+  type       = "IP"
+  items      = [var.k8s_ip]
+}
 
-
-##############################################################################
-# Tunnel
-
-zone_name   = "portefaix.xyz"
-tunnel_name = "portefaix-homelab"
-# tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
-
-applications = [
-  "alertmanager",
-  # "alloy-events",
-  # "alloy-logs",
-  # "alloy-metrics",
-  # "alloy-profiles",
-  # "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
-
-k8s_ip = "198.168.0.61/32"
+resource "cloudflare_teams_rule" "k8s_apiserver_zero_trust_http" {
+  account_id  = var.account_id
+  name        = "Don't inspect Kubernetes API"
+  description = "Allow connections from kubectl to API"
+  precedence  = 10000
+  action      = "off"
+  enabled     = true
+  filters     = ["http"]
+  traffic     = format("any(http.conn.dst_ip[*] in $%s)", replace(cloudflare_teams_list.k8s_apiserver_ips.id, "-", ""))
+}
