@@ -37,6 +37,7 @@ applications = [
   "cilium",
   "grafana",
   "homepage",
+  "kargo",
   "prometheus",
   "pyrra",
   "quickwit",
