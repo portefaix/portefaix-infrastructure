@@ -14,5 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-bucket = "portefaix-digitalocean-tfstates"
-key    = "spacelift/terraform.tfstate"
+locals {
+  cloud_provider = "digitalocean"
+  labels         = [local.cloud_provider]
+
+  stack_dependencies = flatten([
+    for stack_key, stack in var.stacks : [
+      for dependency in stack.dependencies : {
+        stack_name      = stack_key
+        dependency_name = dependency
+      }
+    ]
+  ])
+}
