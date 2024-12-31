@@ -35,7 +35,7 @@ stacks = {
     project_root = "terraform/exoscale/sks"
     labels       = ["core", "sks"]
     environment  = "sandbox"
-    branch       = "feat/spacelift-exoscale"
+    branch       = "main"
     dependencies = []
   }
 }
