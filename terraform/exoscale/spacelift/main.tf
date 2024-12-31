@@ -22,9 +22,9 @@ terraform {
       source  = "exoscale/exoscale"
       version = "0.62.2"
     }
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "0.61.0"
+    spacelift = {
+      source  = "spacelift-io/spacelift"
+      version = "1.16.1"
     }
   }
 }

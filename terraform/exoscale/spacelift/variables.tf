@@ -23,67 +23,65 @@ variable "region" {
 }
 
 #############################################################################
-# Terraform Cloud
+# Spacelift
 
-variable "organization" {
+variable "root_space_id" {
   type        = string
-  description = "Name of the Terraform Cloud organization"
+  description = "The Portefaix space"
 }
 
-variable "workspaces" {
+variable "space" {
+  type        = string
+  description = "The space for this project"
+}
+
+variable "environments" {
+  type        = list(string)
+  description = "List of environments"
+}
+
+variable "repository" {
+  type        = string
+  description = "Github repository"
+}
+
+variable "stacks" {
   type = map(object({
-    directory      = string
-    tags           = list(string)
-    gitops         = bool
-    branch         = string,
-    auto_apply     = bool,
-    execution_mode = string,
-    trigger        = list(string)
+    project_root = string
+    branch       = string
+    labels       = list(string)
+    environment  = string
+    dependencies = list(string)
   }))
-  description = "Terraform cloud workspaces"
+  description = "Spacelift stacks"
 }
 
-variable "gh_organization" {
-  type        = string
-  description = "Organization name in your VCS provider"
-}
-
-variable "gh_repo" {
-  type        = string
-  description = "Repository name in your VCS provider"
-}
-
-variable "github_oauth_token" {
-  type        = string
-  description = "Github token for Terraform Cloud"
-}
-
-variable "env_exo_api_key" {
+variable "exo_api_key" {
   type        = string
   description = "Exoscale API key"
 }
 
-variable "env_exo_api_secret" {
+variable "exo_api_secret" {
   type        = string
   description = "Exoscale API secret"
 }
 
-variable "env_aws_access_key" {
+variable "aws_access_key_id" {
   type        = string
   description = "AWS access key"
 }
 
-variable "env_aws_secret_key" {
+variable "aws_secret_access_key" {
   type        = string
   description = "AWS secret key"
 }
 
-variable "env_aws_default_region" {
+variable "aws_default_region" {
   type        = string
   description = "The AWS default region"
 }
 
-variable "env_aws_region" {
+variable "aws_region" {
   type        = string
   description = "The AWS Region"
 }

@@ -14,7 +14,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-endpoint = "https://sos-ch-dk-2.exo.io"
-region   = "ch-dk-2"
-bucket   = "portefaix-dev-tfstates"
-key      = "terraform-cloud/terraform.tfstate"
+resource "spacelift_space" "this" {
+  name            = var.space
+  parent_space_id = data.spacelift_space.this.id
+  description     = "Created by Terraform."
+  labels          = concat(local.labels)
+}
+
+resource "spacelift_space" "environment" {
+  for_each = toset(var.environments)
+
+  name            = format("%s-%s", var.space, each.value)
+  parent_space_id = spacelift_space.this.id
+  description     = "Created by Terraform."
+  labels          = concat(local.labels, [each.value])
+}

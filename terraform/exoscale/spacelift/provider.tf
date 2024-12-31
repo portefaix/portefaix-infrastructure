@@ -18,6 +18,5 @@ provider "exoscale" {
   region = var.region
 }
 
-provider "tfe" {
-  hostname = "app.terraform.io"
+provider "spacelift" {
 }

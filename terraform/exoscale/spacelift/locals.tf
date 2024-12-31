@@ -14,7 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "tfe_project" "this" {
-  name         = "Exoscale"
-  organization = data.tfe_organization.portefaix.name
+locals {
+  cloud_provider = "exoscale"
+  labels         = [local.cloud_provider]
+
+  stack_dependencies = flatten([
+    for stack_key, stack in var.stacks : [
+      for dependency in stack.dependencies : {
+        stack_name      = stack_key
+        dependency_name = dependency
+      }
+    ]
+  ])
 }

@@ -14,6 +14,31 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-data "tfe_organization" "portefaix" {
-  name = var.organization
-}
+#####################################################################""
+# Provider
+
+# region = "ch-dk-2"
+
+###########################################################################
+# Kubernetes cluster
+
+name = "portefaix-sandbox-cluster-sks"
+
+zone = "ch-dk-2"
+
+kubernetes_version = "1.31.1"
+
+service_level = "starter"
+
+cni            = "cilium"
+exoscale_ccm   = true
+metrics_server = true
+auto_upgrade   = true
+
+node_pools = [
+  {
+    name          = "core"
+    instance_type = "standard.medium"
+    size          = 2
+  }
+]

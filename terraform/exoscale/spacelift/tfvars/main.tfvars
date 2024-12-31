@@ -22,27 +22,20 @@ region = "ch-dk-2"
 zone = "ch-dk-2"
 
 ##############################################################################
-# Terraform Cloud
+# Spacelift
 
-organization = "portefaix"
+repository = "portefaix-infrastructure"
 
-workspaces = {
+space = "exoscale"
 
-  # Organization (multiple accounts)
+environments = ["sandbox"]
 
-  portefaix-exoscale-dev-sks = {
-    directory      = "terraform/exoscale/sks/dev"
-    tags           = ["scaleway", "core", "sks"]
-    gitops         = false
-    branch         = "master"
-    auto_apply     = true
-    execution_mode = "remote"
-    trigger = [
-      "*.tf",
-      "*.tfvars",
-    ]
+stacks = {
+  portefaix-exoscale-sandbox-sks = {
+    project_root = "terraform/exoscale/sks"
+    labels       = ["core", "sks"]
+    environment  = "sandbox"
+    branch       = "main"
+    dependencies = []
   }
 }
-
-gh_organization = "portefaix"
-gh_repo         = "portefaix"

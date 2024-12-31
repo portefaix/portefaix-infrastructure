@@ -14,31 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
-
-region = "ch-dk-2"
-
-###########################################################################
-# Kubernetes cluster
-
-name = "portefaix-dev-cluster-sks"
-
-zone = "ch-dk-2"
-
-kubernetes_version = "1.26.3"
-
-service_level = "starter"
-
-cni            = "calico"
-exoscale_ccm   = true
-metrics_server = true
-auto_upgrade   = true
-
-node_pools = [
-  {
-    name          = "core"
-    instance_type = "standard.medium"
-    size          = 2
-  }
-]
+data "spacelift_space" "this" {
+  space_id = var.root_space_id
+}
