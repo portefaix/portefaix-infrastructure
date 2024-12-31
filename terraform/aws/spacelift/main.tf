@@ -18,17 +18,13 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.6.3"
-    }
     aws = {
       source  = "hashicorp/aws"
-      version = "5.72.1"
+      version = "5.70.0"
     }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "4.44.0"
+    spacelift = {
+      source  = "spacelift-io/spacelift"
+      version = "1.16.1"
     }
   }
 }

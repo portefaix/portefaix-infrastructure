@@ -14,31 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
-
-
-##############################################################################
-# Tunnel
-
-cloud       = "talos"
-environment = "homelab"
-name        = "portefaix-talos-homelab"
-zone_name   = "portefaix.xyz"
-subdomain   = "homelab.talos"
-
-applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
+locals {
+  labels = ["aws"]
+}

@@ -44,7 +44,7 @@ resource "aws_iam_policy" "secret_store_csi_driver_controller" {
 
 module "irsa_secret_store_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
-  version = "5.44.2"
+  version = "5.52.0"
 
   for_each = var.enable_irsa ? toset(var.secrets_data) : toset([])
 
@@ -66,7 +66,7 @@ module "irsa_secret_store_csi_driver" {
 
 module "pod_identity_secret_store_csi_driver" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.4.3"
+  version = "1.9.0"
 
   for_each = var.enable_pod_identity ? toset(var.secrets_data) : toset([])
 

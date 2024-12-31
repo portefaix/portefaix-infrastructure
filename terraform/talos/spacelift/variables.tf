@@ -40,6 +40,11 @@ variable "space" {
   description = "The space for this project"
 }
 
+variable "environments" {
+  type        = list(string)
+  description = "List of environments"
+}
+
 variable "repository" {
   type        = string
   description = "Github repository"
@@ -50,6 +55,8 @@ variable "stacks" {
     project_root = string
     branch       = string
     labels       = list(string)
+    environment  = string
+    dependencies = list(string)
   }))
   description = "Spacelift stacks"
 }
@@ -62,4 +69,14 @@ variable "access_key" {
 variable "secret_access_key" {
   type        = string
   description = "AWS secret key for Cloudflare R2"
+}
+
+variable "github_oauth_client_id" {
+  type        = string
+  description = "Client ID from the Github OAuth application"
+}
+
+variable "github_oauth_client_secret" {
+  type        = string
+  description = "Client secret from the Github OAuth application"
 }

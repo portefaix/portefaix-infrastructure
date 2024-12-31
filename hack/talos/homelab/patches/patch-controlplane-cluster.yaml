@@ -21,7 +21,7 @@ cluster:
       bind-address: '0.0.0.0'
   proxy:
     extraArgs:
-      bind-address: '0.0.0.0'
+      metrics-bind-address: '0.0.0.0:10249'
   scheduler:
     extraArgs:
       bind-address: '0.0.0.0'

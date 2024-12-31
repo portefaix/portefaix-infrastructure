@@ -20,11 +20,11 @@ terraform {
   required_providers {
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "2.46.0"
+      version = "2.48.0"
     }
     spacelift = {
       source  = "spacelift-io/spacelift"
-      version = "1.16.1"
+      version = "1.19.0"
     }
   }
 }

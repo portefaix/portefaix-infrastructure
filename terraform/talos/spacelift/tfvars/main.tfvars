@@ -25,20 +25,39 @@ repository = "portefaix-infrastructure"
 
 space = "talos"
 
+environments = ["homelab"]
+
 stacks = {
   portefaix-homelab-dns = {
-    project_root = "terraform/talos/dns/homelab"
+    project_root = "terraform/talos/dns"
     branch       = "feat/spacelif-refactoring"
-    labels       = ["talos", "homelab", "core", "dns"]
+    labels       = ["core", "dns"]
+    environment  = "homelab"
+    branch       = "main"
+    dependencies = []
   },
   portefaix-homelab-waf = {
-    project_root = "terraform/talos/waf/homelab"
+    project_root = "terraform/talos/waf"
     branch       = "feat/spacelif-refactoring"
-    labels       = ["talos", "homelab", "security", "waf"]
+    labels       = ["security", "waf"]
+    environment  = "homelab"
+    branch       = "main"
+    dependencies = []
   },
   portefaix-homelab-observability = {
-    project_root = "terraform/talos/observability/homelab"
+    project_root = "terraform/talos/observability"
     branch       = "feat/spacelif-refactoring"
-    labels       = ["talos", "homelab", "core", "observability"]
+    labels       = ["core", "observability"]
+    environment  = "homelab"
+    branch       = "main"
+    dependencies = []
+  },
+  portefaix-homelab-tunnel = {
+    project_root = "terraform/talos/tunnel"
+    branch       = "main"
+    labels       = ["security", "tunnel"]
+    environment  = "homelab"
+    branch       = "main"
+    dependencies = []
   },
 }
