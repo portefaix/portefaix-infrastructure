@@ -15,4 +15,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 bucket = "portefaix-digitalocean-tfstates"
-key    = "terraform-cloud/terraform.tfstate"
+key    = "spacelift/terraform.tfstate"

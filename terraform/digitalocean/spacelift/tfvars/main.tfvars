@@ -28,21 +28,21 @@ space = "digitalocean"
 environments = ["dev"]
 
 stacks = {
-  portefaix-exoscale-dev-vpc = {
+  portefaix-digitalocean-dev-vpc = {
     project_root = "terraform/digitalocean/vpc"
     labels       = ["core", "vpc"]
     environment  = "dev"
     branch       = "main"
     dependencies = []
   },
-  portefaix-exoscale-dev-doks = {
+  portefaix-digitalocean-dev-doks = {
     project_root = "terraform/digitalocean/doks"
     labels       = ["core", "doks"]
     environment  = "dev"
     branch       = "main"
     dependencies = []
   },
-  portefaix-exoscale-dev-containerregistry = {
+  portefaix-digitalocean-dev-containerregistry = {
     project_root = "terraform/digitalocean/containerregistry"
     labels       = ["core", "containerregistry"]
     environment  = "dev"
