@@ -56,7 +56,6 @@ variable "stacks" {
   description = "Spacelift stacks"
 }
 
-
 variable "exo_api_key" {
   type        = string
   description = "Exoscale API key"
@@ -80,4 +79,9 @@ variable "aws_secret_access_key" {
 variable "aws_default_region" {
   type        = string
   description = "The AWS default region"
+}
+
+variable "aws_region" {
+  type        = string
+  description = "The AWS Region"
 }
