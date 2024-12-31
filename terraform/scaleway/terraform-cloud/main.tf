@@ -20,11 +20,11 @@ terraform {
   required_providers {
     scaleway = {
       source  = "scaleway/scaleway"
-      version = "2.46.0"
+      version = "2.48.0"
     }
     tfe = {
       source  = "hashicorp/tfe"
-      version = "0.59.0"
+      version = "0.61.0"
     }
   }
 }

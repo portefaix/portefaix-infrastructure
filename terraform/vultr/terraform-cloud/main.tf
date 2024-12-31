@@ -20,15 +20,15 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.70.0"
+      version = "5.82.2"
     }
     vultr = {
       source  = "vultr/vultr"
-      version = "2.21.0"
+      version = "2.23.1"
     }
     tfe = {
       source  = "hashicorp/tfe"
-      version = "0.59.0"
+      version = "0.61.0"
     }
   }
 }

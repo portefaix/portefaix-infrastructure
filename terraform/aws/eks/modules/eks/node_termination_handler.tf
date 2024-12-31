@@ -16,7 +16,7 @@
 
 module "irs_node_termination_handler" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.44.2"
+  version = "5.52.0"
 
   role_name                              = var.node_termination_handler_role_name
   attach_node_termination_handler_policy = true
@@ -40,7 +40,7 @@ module "irs_node_termination_handler" {
 
 module "pod_identity_node_termination_handler" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.4.3"
+  version = "1.9.0"
 
   for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
 

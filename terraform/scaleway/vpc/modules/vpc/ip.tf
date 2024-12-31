@@ -17,3 +17,9 @@
 resource "scaleway_vpc_public_gateway_ip" "this" {
   tags = var.tags
 }
+
+resource "scaleway_vpc_gateway_network" "this" {
+  gateway_id         = scaleway_vpc_public_gateway.this.id
+  private_network_id = scaleway_vpc_private_network.this.id
+  dhcp_id            = scaleway_vpc_public_gateway_dhcp.this.id
+}

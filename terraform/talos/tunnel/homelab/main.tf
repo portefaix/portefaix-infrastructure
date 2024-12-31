@@ -14,31 +14,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+terraform {
+  required_version = ">= 1.0.0"
 
-
-##############################################################################
-# Tunnel
-
-cloud       = "talos"
-environment = "homelab"
-name        = "portefaix-talos-homelab"
-zone_name   = "portefaix.xyz"
-subdomain   = "homelab.talos"
-
-applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "prometheus",
-  "pyrra",
-]
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.82.2"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "4.49.1"
+    }
+  }
+}

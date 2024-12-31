@@ -14,21 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
-
-  required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.6.3"
-    }
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.70.0"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "4.43.0"
-    }
-  }
+data "spacelift_space" "this" {
+  space_id = var.root_space_id
 }

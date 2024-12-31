@@ -16,7 +16,7 @@
 
 module "irsa_ebs_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.44.2"
+  version = "5.52.0"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
@@ -42,7 +42,7 @@ module "irsa_ebs_csi_driver" {
 
 module "pod_identity_ebs_csi_driver" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "1.4.3"
+  version = "1.9.0"
 
   for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
 

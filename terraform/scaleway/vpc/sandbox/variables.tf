@@ -31,8 +31,13 @@ variable "zone" {
 # Private Network
 
 variable "name" {
-  description = "The name of the cluster"
+  description = "The name of the VPC"
   type        = string
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment of the project"
 }
 
 variable "type" {

@@ -22,7 +22,6 @@ module "observability" {
   prometheus_namespace       = var.prometheus_namespace
   prometheus_service_account = var.prometheus_service_account
   prometheus_tags            = var.prometheus_tags
-  prometheus_enable_kms      = var.prometheus_enable_kms
 
   mimir_namespace       = var.mimir_namespace
   mimir_service_account = var.mimir_service_account

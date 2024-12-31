@@ -15,12 +15,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
+  required_version = ">= 1.0.0"
 
-    workspaces {
-      name = "portefaix-scaleway-sandbox-registry"
+  required_providers {
+    scaleway = {
+      source  = "scaleway/scaleway"
+      version = "2.48.0"
+    }
+    spacelift = {
+      source  = "spacelift-io/spacelift"
+      version = "1.19.0"
     }
   }
 }

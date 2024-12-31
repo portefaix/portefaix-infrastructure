@@ -15,12 +15,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
-
-    workspaces {
-      name = "portefaix-scaleway-sandbox-vpc"
-    }
+  backend "s3" {
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
   }
 }

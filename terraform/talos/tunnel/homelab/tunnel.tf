@@ -14,13 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
+module "tunnel" {
+  source = "../modules/tunnel"
 
-    workspaces {
-      name = "portefaix-scaleway-sandbox-observability"
-    }
-  }
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_api_token  = var.cloudflare_api_token
+  # tunnel_id = var.tunnel_id
+  tunnel_name = var.tunnel_name
+  zone_name             = var.zone_name
+  applications = var.applications
+  github_oauth_client_id = var.github_oauth_client_id
+  github_oauth_client_secret = var.github_oauth_client_secret
 }
