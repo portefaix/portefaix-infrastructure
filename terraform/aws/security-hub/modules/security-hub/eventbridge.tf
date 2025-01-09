@@ -16,7 +16,7 @@
 
 module "eventbridge" {
   source  = "terraform-aws-modules/eventbridge/aws"
-  version = "3.13.0"
+  version = "3.14.1"
 
   providers = {
     aws = aws.audit
