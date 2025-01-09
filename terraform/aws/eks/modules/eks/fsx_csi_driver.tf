@@ -16,7 +16,7 @@
 
 module "irsa_fsx_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.52.1"
+  version = "5.52.2"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 

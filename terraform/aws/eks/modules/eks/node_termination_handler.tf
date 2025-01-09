@@ -16,7 +16,7 @@
 
 module "irs_node_termination_handler" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.52.1"
+  version = "5.52.2"
 
   role_name                              = var.node_termination_handler_role_name
   attach_node_termination_handler_policy = true
