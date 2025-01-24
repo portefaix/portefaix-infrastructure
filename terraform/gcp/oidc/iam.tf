@@ -1,6 +1,6 @@
 module "sa_tf_bootstrap" {
   source  = "terraform-google-modules/service-accounts/google"
-  version = "4.4.3"
+  version = "4.5.0"
 
   providers = {
     google = google.bootstrap
@@ -19,7 +19,7 @@ module "sa_tf_bootstrap" {
 
 module "sa_tf_network" {
   source  = "terraform-google-modules/service-accounts/google"
-  version = "4.4.3"
+  version = "4.5.0"
 
   providers = {
     google = google.network
