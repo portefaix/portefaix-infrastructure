@@ -19,7 +19,7 @@
 #tfsec:ignore:aws-lambda-restrict-source-arn
 module "notify_slack" {
   source  = "terraform-aws-modules/notify-slack/aws"
-  version = "6.5.1"
+  version = "6.5.2"
 
   sns_topic_name = var.sns_topic_name
 
