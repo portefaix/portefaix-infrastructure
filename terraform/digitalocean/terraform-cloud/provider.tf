@@ -40,6 +40,5 @@ provider "aws" {
   }
 }
 
-provider "tfe" {
-  hostname = "app.terraform.io"
+provider "spacelift" {
 }
