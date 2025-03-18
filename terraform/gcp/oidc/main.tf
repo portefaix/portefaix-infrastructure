@@ -20,7 +20,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "6.23.0"
+      version = "6.26.0"
       configuration_aliases = [
         google.bootstrap,
         google.network,
