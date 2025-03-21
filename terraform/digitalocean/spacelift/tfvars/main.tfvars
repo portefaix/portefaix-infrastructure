@@ -32,21 +32,21 @@ stacks = {
     project_root = "terraform/digitalocean/vpc"
     labels       = ["core", "vpc"]
     environment  = "dev"
-    branch       = "main"
+    branch       = "feat/spacelift-digitalocean"
     dependencies = []
   },
   portefaix-digitalocean-dev-doks = {
     project_root = "terraform/digitalocean/doks"
     labels       = ["core", "doks"]
     environment  = "dev"
-    branch       = "main"
+    branch       = "feat/spacelift-digitalocean"
     dependencies = []
   },
   portefaix-digitalocean-dev-containerregistry = {
     project_root = "terraform/digitalocean/containerregistry"
     labels       = ["core", "containerregistry"]
     environment  = "dev"
-    branch       = "main"
+    branch       = "feat/spacelift-digitalocean"
     dependencies = []
   }
 }
