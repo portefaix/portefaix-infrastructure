@@ -17,7 +17,7 @@
 # tfsec:ignore:google-iam-no-project-level-service-account-impersonation
 module "pubsub_budget" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "7.0.0"
+  version = "8.1.1"
 
   project_id = module.shared.project_id
   topic      = format("%s-%s", var.organization_name, var.budget_topic_name)
