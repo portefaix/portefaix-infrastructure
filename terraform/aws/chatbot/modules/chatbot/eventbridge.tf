@@ -16,7 +16,7 @@
 
 module "eventbridge" {
   source  = "terraform-aws-modules/eventbridge/aws"
-  version = "3.14.3"
+  version = "3.14.5"
 
   bus_name = local.eventbridge_bus_name
 
