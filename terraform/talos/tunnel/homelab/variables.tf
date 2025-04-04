@@ -66,3 +66,8 @@ variable "github_oauth_client_secret" {
   type        = string
   description = "Client secret from the Github OAuth application"
 }
+
+variable "k8s_ip" {
+  type        = string
+  description = "IP address of the Kubernetes API server"
+}
