@@ -19,44 +19,22 @@
 
 region = "uk-london-1"
 
+
 ##############################################################################
-# OKE
+# Hub
 
 organization   = "portefaix"
 environment    = "dev"
 compartment_id = "ocid1.compartment.oc1..aaaaaaaas7v6jey7zd67kotets3qk4oi6ile3dbkajpuh7xgye7nzr6lp6hq"
 
-node_pools = {
-  "core" = {
-    shape            = "VM.Standard.E4.Flex"
-    ocpus            = 2
-    memory           = 16
-    os               = "Oracle Linux"
-    os_version       = "7.9"
-    count            = 1
-    node_pool_size   = 3
-    boot_volume_size = 150
-    node_labels = {
-      "environment" = "dev",
-      "nodepool"    = "core"
-    }
-    node_taints = []
-  },
-  "ops" = {
-    shape            = "VM.Standard.E4.Flex"
-    ocpus            = 4
-    memory           = 32
-    os               = "Oracle Linux"
-    os_version       = "7.9"
-    count            = 1
-    node_pool_size   = 2
-    boot_volume_size = 150
-    node_labels = {
-      "environment" = "dev",
-      "nodepool"    = "ops",
-    }
-    node_taints = ["workload=compute:NoSchedule"]
-  }
+
+freeform_tags = {
+  project = "core"
+  env     = "dev"
+  made-by = "terraform"
 }
 
-enable_waf = true
+# control_plane_cidr = "10.20.00.0/24"
+# workers_cidr       = "10.20.10.0/24"
+# pub_lb_cidr        = "10.20.20.0/24"
+# int_lb_cidr        = "10.20.30.0/24"

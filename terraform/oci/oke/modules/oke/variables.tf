@@ -19,7 +19,7 @@
 
 
 #############################################################################
-# Hub
+# OKE
 
 variable "organization" {
   type        = string
@@ -94,20 +94,6 @@ variable "node_pools" {
     node_labels      = map(string)
     node_taints      = list(string)
   }))
-  default = {
-    "main" = {
-      shape            = "VM.Standard.E4.Flex"
-      ocpus            = 2
-      memory           = 16
-      os               = "Oracle Linux"
-      os_version       = "7.9"
-      count            = 1
-      node_pool_size   = 3
-      boot_volume_size = 150
-      node_labels      = {}
-      node_taints      = []
-    }
-  }
 }
 
 variable "bastion_public_ip" {
