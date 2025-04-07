@@ -14,12 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "aws" {
-}
+# provider "aws" {
+# }
 
-provider "aws" {
-  alias = "audit"
-}
+# provider "aws" {
+#   alias = "audit"
+# }
 
 # provider "aws" {
 #   alias = "logging"

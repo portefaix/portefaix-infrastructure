@@ -13,8 +13,3 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-
-output "role_arn" {
-  description = "Role ARN for Cert-Manager"
-  value       = module.cert_manager.role_arn
-}

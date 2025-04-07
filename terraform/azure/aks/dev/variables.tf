@@ -132,11 +132,6 @@ variable "net_profile_service_cidr" {
 #############################################################################
 # Addon profile
 
-variable "http_application_routing_enabled" {
-  type        = bool
-  description = "Is HTTP Application Routing Enabled"
-}
-
 # variable "aci_connector_linux" {
 #   type        = bool
 #   description = "Is the virtual node addon enabled"
@@ -145,12 +140,6 @@ variable "http_application_routing_enabled" {
 variable "azure_policy_enabled" {
   description = "Is the Azure Policy for Kubernetes Add On enabled"
   type        = bool
-}
-
-variable "ingress_application_gateway_enabled" {
-  description = "If true will enable Application Gateway ingress controller to this Kubernetes Cluster"
-  type        = bool
-  default     = false
 }
 
 variable "open_service_mesh_enabled" {

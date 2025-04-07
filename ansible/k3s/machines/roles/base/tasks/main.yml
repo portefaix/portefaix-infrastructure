@@ -15,32 +15,37 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include: host.yml
+- ansible.builtin.include_tasks: host.yml
   tags:
     - base
     - portefaix
 
-- include: system.yml
+- ansible.builtin.include_tasks: system.yml
   tags:
     - base
     - portefaix
 
-- include: network.yml
+- ansible.builtin.include_tasks: network.yml
   tags:
     - base
     - portefaix
 
-- include: containers.yml
+- ansible.builtin.include_tasks: containers.yml
   tags:
     - base
     - portefaix
 
-- include: locale.yml
+- ansible.builtin.include_tasks: locale.yml
   tags:
     - base
     - portefaix
 
-- include: portefaix.yml
+- ansible.builtin.include_tasks: portefaix.yml
+  tags:
+    - base
+    - portefaix
+
+- ansible.builtin.include_tasks: k3s.yml
   tags:
     - base
     - portefaix

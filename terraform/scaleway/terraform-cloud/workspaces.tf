@@ -36,10 +36,16 @@ resource "tfe_workspace" "this" {
   global_remote_state = true
   trigger_prefixes    = each.value.trigger
   allow_destroy_plan  = true
-  execution_mode      = each.value.execution_mode
   auto_apply          = each.value.auto_apply
 
   tag_names = each.value.tags
+}
+
+resource "tfe_workspace_settings" "this" {
+  for_each = var.workspaces
+
+  workspace_id   = tfe_workspace.this[each.key].id
+  execution_mode = each.value.execution_mode
 }
 
 resource "tfe_variable" "scw_access_key" {
@@ -128,4 +134,18 @@ resource "tfe_variable" "aws_region" {
   sensitive    = "true"
   workspace_id = each.value.id
   description  = "The AWS region"
+}
+
+resource "tfe_variable" "project_id" {
+  for_each = toset([
+    "portefaix-scaleway-sandbox-eso",
+    "portefaix-scaleway-sandbox-observability"
+  ])
+
+  key          = "TF_VAR_project_id"
+  value        = var.env_project_id
+  category     = "env"
+  sensitive    = "true"
+  workspace_id = tfe_workspace.this[each.value].id
+  description  = "The Scaleway project ID"
 }

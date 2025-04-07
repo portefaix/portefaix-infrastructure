@@ -1,12 +1,12 @@
 ## Documentation
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 4.47.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.66.0 |
 
 ## Providers
 
@@ -37,7 +37,5 @@ No resources.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | Role ARN for External DNS |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+No outputs.
+<!-- END_TF_DOCS -->

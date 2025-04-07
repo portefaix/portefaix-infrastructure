@@ -1,0 +1,30 @@
+---
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+clusterName: portefaix-talos-homelab
+talosVersion: v1.7.6
+kubernetesVersion: v1.30.3
+endpoint: https://192.168.0.61:6443
+# domainName: homelab.talos.portefaix.xyz
+# gateway: 10.0.5.1
+# vip: 10.0.5.150
+ip_portefaix: 192.168.0.61
+ip_portefaix_tailscale: 100.65.154.6
+ip_portefaix_2: 192.168.0.208
+ip_portefaix_3: 192.168.0.116
+ip_portefaix_6: 192.168.0.233
+ip_portefaix_7: 192.168.0.250

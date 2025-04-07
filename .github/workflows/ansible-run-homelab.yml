@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Homelab / Run
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -29,12 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-    - name: Configure Tailscale
-      uses: tailscale/github-action@v1
+    - name: Tailscale
+      uses: tailscale/github-action@v3
       with:
-        authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:ci
 
     - name: Tailscale status
       run: |
@@ -42,7 +45,7 @@ jobs:
         tailscale status
 
     - name: Run playbook
-      uses: dawidd6/action-ansible-playbook@v2
+      uses: dawidd6/action-ansible-playbook@v3
       with:
         playbook: main.yml
         directory: ./ansible/k3s/machines

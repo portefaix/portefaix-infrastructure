@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:google-compute-no-public-ingress
 module "iap_bastion" {
   source  = "terraform-google-modules/bastion-host/google"
-  version = "5.3.0"
+  version = "8.0.0"
 
   project = var.project
   zone    = var.zone

@@ -16,19 +16,28 @@
 
 module "karpenter" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version = "19.15.3"
+  version = "20.34.0"
 
   cluster_name = module.eks.cluster_name
 
-  # irsa_name                       = var.karpenter_role_name
-  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
-  irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
+  enable_v1_permissions = true
 
-  # Since Karpenter is running on an EKS Managed Node group,
-  # we can re-use the role that was created for the node group
-  create_iam_role = false
-  iam_role_arn    = module.eks.eks_managed_node_groups["initial"].iam_role_arn
-  # iam_role_name   = var.karpenter_role_nam
+  iam_role_name      = var.karpenter_role_name
+  node_iam_role_name = format("%s-node", var.karpenter_role_name)
+  # iam_policy_name    = "KarpenterIRSA-${module.eks.cluster_name}"
+
+  enable_irsa                     = var.enable_irsa
+  irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
+  irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
+
+  enable_pod_identity             = var.enable_pod_identity
+  create_pod_identity_association = true
+  namespace                       = var.karpenter_namespace
+  service_account                 = var.karpenter_sa_name
+
+  node_iam_role_additional_policies = {
+    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  }
 
   queue_name                = var.karpenter_queue_name
   queue_managed_sse_enabled = false

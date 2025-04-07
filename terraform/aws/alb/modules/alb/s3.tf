@@ -45,13 +45,10 @@
 # }
 
 
-#tfsec:ignore:AWS073
-#tfsec:ignore:AWS074
-#tfsec:ignore:AWS075
-#tfsec:ignore:AWS076
+# tfsec:ignore:aws-s3-enable-bucket-encryption
 module "logs" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.12.0"
+  version = "4.6.0"
 
   bucket = local.alb_logs_bucket_name
   acl    = "log-delivery-write"

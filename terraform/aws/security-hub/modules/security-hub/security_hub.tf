@@ -39,6 +39,16 @@ resource "aws_securityhub_member" "accounts" {
   invite     = false
 }
 
+resource "aws_securityhub_configuration_policy" "this" {
+  provider    = aws.audit
+  name        = "ExamplePolicy"
+  description = "This is an example SHCP."
+  configuration_policy {
+    service_enabled = false
+  }
+  depends_on = [aws_securityhub_organization_configuration.this]
+}
+
 # Enable Standard: AWS Foundational Security Best Practices
 resource "aws_securityhub_standards_subscription" "aws_foundational" {
   provider      = aws.audit

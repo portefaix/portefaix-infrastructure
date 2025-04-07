@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Project / Issues and PR labels comments
 
-on:
+on: # yamllint disable-line rule:truthy
   issues:
     types: [labeled, unlabeled]
   pull_request_target:
@@ -29,9 +30,9 @@ permissions:
 
 jobs:
   comment:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1

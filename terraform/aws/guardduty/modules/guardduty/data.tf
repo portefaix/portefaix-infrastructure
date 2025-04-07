@@ -15,3 +15,37 @@
 # SPDX-License-Identifier: Apache-2.0
 
 data "aws_caller_identity" "current" {}
+
+data "aws_iam_policy_document" "guardduty_bucket_policy" {
+  statement {
+    sid = "Allow PutObject"
+    actions = [
+      "s3:PutObject"
+    ]
+
+    resources = [
+      "${module.s3_bucket_ipset_log.s3_bucket_arn}/*"
+    ]
+
+    principals {
+      type        = "Service"
+      identifiers = ["guardduty.amazonaws.com"]
+    }
+  }
+
+  statement {
+    sid = "Allow GetBucketLocation"
+    actions = [
+      "s3:GetBucketLocation"
+    ]
+
+    resources = [
+      module.s3_bucket_ipset_log.s3_bucket_arn
+    ]
+
+    principals {
+      type        = "Service"
+      identifiers = ["guardduty.amazonaws.com"]
+    }
+  }
+}

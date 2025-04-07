@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# tfsec:ignore:google-iam-no-project-level-service-account-impersonation
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "5.0.0"
+  version = "8.1.1"
 
   project_id   = var.project
   topic        = var.topic

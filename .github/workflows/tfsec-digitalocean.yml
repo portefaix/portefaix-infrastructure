@@ -14,11 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: DigitalOcean / Security
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
-on:
+on: # yamllint disable-line rule:truthy
   # push:
   #   branches:
   #     - main
@@ -26,9 +27,9 @@ on:
   #     - "terraform/digitalocean/**"
   pull_request:
     branches:
-      - main
+    - main
     paths:
-      - "terraform/digitalocean/**"
+    - "terraform/digitalocean/**"
 
 jobs:
 
@@ -36,24 +37,24 @@ jobs:
     name: digitalocean-doks
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/digitalocean/doks/terraform
+    - name: Terraform security scan modules
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/digitalocean/doks/terraform
 
   digitalocean_vpc:
     name: digitalocean-vpc
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/digitalocean/vpc/terraform
+    - name: Terraform security scan modules
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/digitalocean/vpc/terraform

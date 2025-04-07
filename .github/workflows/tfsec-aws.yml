@@ -14,11 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: AWS / Security
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
-on:
+on: # yamllint disable-line rule:truthy
   # push:
   #   branches:
   #     - main
@@ -26,9 +27,9 @@ on:
   #     - "terraform/aws/**"
   pull_request:
     branches:
-      - main
+    - main
     paths:
-      - "terraform/aws/**"
+    - "terraform/aws/**"
 
 jobs:
 
@@ -36,319 +37,319 @@ jobs:
     name: aws-access-analyzer
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/access-analyzer/modules/access-analyzer
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/access-analyzer/modules/access-analyzer
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/access-analyzer/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/access-analyzer/staging
 
   aws_alb:
     name: aws-alb
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/alb/modules/alb
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/alb/modules/alb
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/alb/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/alb/staging
 
   aws_bastion:
     name: aws-bastion
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/bastion/modules/bastion
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/bastion/modules/bastion
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/bastion/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/bastion/staging
 
   aws_cert-manager:
     name: aws-cert-manager
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/cert-manager/modules/cert-manager
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/cert-manager/modules/cert-manager
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/cert-manager/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/cert-manager/staging
 
   aws_chatbot:
     name: aws-chatbot
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/chatbot/modules/chatbot
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/chatbot/modules/chatbot
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/chatbot/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/chatbot/staging
 
   aws_ecr:
     name: aws-ecr
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/ecr/modules/ecr
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/ecr/modules/ecr
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/ecr/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/ecr/staging
 
   aws_eks:
     name: aws-eks
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/eks/modules/eks
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/eks/modules/eks
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/eks/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/eks/staging
 
   aws_eip-internet-gateway:
     name: aws-eip-igw
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/elastic-ips/internet-gateway/modules/internet-gateway
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/elastic-ips/internet-gateway/modules/internet-gateway
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/elastic-ips/internet-gateway/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/elastic-ips/internet-gateway/staging
 
   aws_external-dns:
     name: aws-external-dns
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/external-dns/modules/external-dns
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/external-dns/modules/external-dns
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/external-dns/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/external-dns/staging
 
   aws_guardduty:
     name: aws-guardduty
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/guardduty/modules/guardduty
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/guardduty/modules/guardduty
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/guardduty/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/guardduty/staging
 
   aws_notifications:
     name: aws-notifications
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/notifications/modules/notifications
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/notifications/modules/notifications
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/notifications/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/notifications/staging
 
   aws_observability:
     name: aws-observability
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/observability/modules/observability
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/observability/modules/observability
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/observability/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/observability/staging
 
   aws_security-hub:
     name: aws-security-hub
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/security-hub/modules/security-hub
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/security-hub/modules/security-hub
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/security-hub/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/security-hub/staging
 
   aws_sops:
     name: aws-sops
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/sops/terraform
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/sops/terraform
 
   aws_teleport:
     name: aws-teleport
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/teleport/modules/teleport
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/teleport/modules/teleport
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/teleport/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/teleport/staging
 
   aws_terraform-cloud:
     name: aws-terraform-cloud
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/terraform-cloud/terraform
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/terraform-cloud/terraform
 
   aws_vector:
     name: aws-vector
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/vector/modules/vector
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/vector/modules/vector
 
-      - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-        with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/vector/staging
+    - name: Tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        github_token: ${{ github.token }}
+        working_dir: terraform/aws/vector/staging
 
   aws_velero:
     name: aws-velero
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
       - name: Tfsec
         uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
@@ -367,7 +368,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
       - name: Tfsec
         uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
@@ -386,7 +387,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
       - name: Tfsec
         uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1

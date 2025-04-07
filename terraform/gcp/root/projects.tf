@@ -16,24 +16,25 @@
 
 module "network" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "14.2.0"
+  version = "18.0.0"
 
   name              = format("%s-network", var.organization_name)
   random_project_id = true
   org_id            = data.google_organization.this.id
-  billing_account   = var.billing_account
   folder_id         = module.folders.folders_map["Shared"].id
+  billing_account   = var.billing_account
+  # budget_amount     = 10
 
-  default_service_account        = "deprivilege"
   enable_shared_vpc_host_project = true
+  default_service_account        = "deprivilege"
   default_network_tier           = var.default_network_tier
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "logging.googleapis.com",
     "cloudbilling.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   # budget_amount               = var.network_budget_amount
@@ -48,7 +49,7 @@ module "network" {
 
 module "vpc_core_prod" {
   source  = "terraform-google-modules/network/google"
-  version = "5.2.0"
+  version = "10.0.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-prod", var.core_network_name)
@@ -60,7 +61,7 @@ module "vpc_core_prod" {
 
 module "vpc_core_staging" {
   source  = "terraform-google-modules/network/google"
-  version = "5.2.0"
+  version = "10.0.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-staging", var.core_network_name)
@@ -72,7 +73,7 @@ module "vpc_core_staging" {
 
 module "vpc_core_dev" {
   source  = "terraform-google-modules/network/google"
-  version = "5.2.0"
+  version = "10.0.0"
 
   project_id                             = module.network.project_id
   network_name                           = format("%s-dev", var.core_network_name)
@@ -84,7 +85,7 @@ module "vpc_core_dev" {
 
 module "shared" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.0"
+  version = "18.0.0"
 
   name                    = format("%s-shared", var.organization_name)
   random_project_id       = true
@@ -95,9 +96,15 @@ module "shared" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
+    "container.googleapis.com",
+    "gkehub.googleapis.com",
     "logging.googleapis.com",
+    "multiclusteringress.googleapis.com",
+    # "multiclusterservicediscovery.googleapis.com",
+    "networkservices.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
+    "trafficdirector.googleapis.com",
   ]
 
   shared_vpc = module.network.project_id
@@ -115,7 +122,7 @@ module "shared" {
 
 module "testing" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.0"
+  version = "18.0.0"
 
   name                    = format("%s-testing", var.organization_name)
   random_project_id       = true
@@ -126,9 +133,9 @@ module "testing" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -149,7 +156,7 @@ module "testing" {
 
 module "audit" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.0"
+  version = "18.0.0"
 
   name                    = format("%s-audit", var.organization_name)
   random_project_id       = true
@@ -160,9 +167,9 @@ module "audit" {
   folder_id       = module.folders.folders_map["Security"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -180,7 +187,7 @@ module "audit" {
 
 module "logging" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "14.2.0"
+  version = "18.0.0"
 
   name                    = format("%s-logging", var.organization_name)
   random_project_id       = true
@@ -191,10 +198,10 @@ module "logging" {
   folder_id       = module.folders.folders_map["Shared"].id
 
   activate_apis = [
+    "billingbudgets.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com",
     "pubsub.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id
@@ -217,7 +224,7 @@ module "logging" {
 
 module "core" {
   source  = "terraform-google-modules/project-factory/google//modules/svpc_service_project"
-  version = "13.1.0"
+  version = "18.0.0"
 
   for_each = toset(var.core_environments)
 
@@ -230,22 +237,22 @@ module "core" {
   folder_id       = module.folders.folders_map["Core"].id
 
   activate_apis = [
-    "iam.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "cloudkms.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "container.googleapis.com",
     "containerregistry.googleapis.com",
     "containersecurity.googleapis.com",
-    "artifactregistry.googleapis.com",
-    "secretmanager.googleapis.com",
     "dns.googleapis.com",
-    "cloudkms.googleapis.com",
+    "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
     "iap.googleapis.com",
     "logging.googleapis.com",
     "pubsub.googleapis.com",
-    "iamcredentials.googleapis.com",
+    "secretmanager.googleapis.com",
     "sts.googleapis.com",
-    "billingbudgets.googleapis.com"
   ]
 
   shared_vpc = module.network.project_id

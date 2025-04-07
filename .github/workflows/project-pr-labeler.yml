@@ -28,16 +28,23 @@
 #           jobs: 'pr-labeler'
 #           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
+---
 name: Project / Pull Request Labeler
 
-on:
+on: # yamllint disable-line rule:truthy
   pull_request:
     types: [opened, reopened, edited]
 
+permissions:
+  contents: read
+
 jobs:
   triage:
+    permissions:
+      contents: read  # for actions/labeler to determine modified files
+      pull-requests: write  # for actions/labeler to add labels to PRs
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4.1.0
+    - uses: actions/labeler@v5.0.0
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"

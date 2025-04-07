@@ -26,15 +26,16 @@ module "eks" {
   tags         = var.tags
   cluster_tags = var.cluster_tags
 
-  self_managed_node_group_defaults = var.self_managed_node_group_defaults
-  self_managed_node_groups         = var.self_managed_node_groups
-  eks_managed_node_group_defaults  = var.eks_managed_node_group_defaults
-  eks_managed_node_groups          = var.eks_managed_node_groups
+  eks_managed_node_group_defaults = var.eks_managed_node_group_defaults
+  eks_managed_node_groups         = var.eks_managed_node_groups
 
   fargate_profile_defaults = var.fargate_profile_defaults
   fargate_profiles         = var.fargate_profiles
 
   cluster_addons = var.cluster_addons
+
+  enable_irsa         = false
+  enable_pod_identity = true
 
   ebs_csi_driver_tags          = var.ebs_csi_driver_tags
   ebs_csi_controller_sa_name   = var.ebs_csi_controller_sa_name
@@ -58,10 +59,6 @@ module "eks" {
   appmesh_tags      = var.appmesh_tags
   appmesh_sa_name   = var.appmesh_sa_name
   appmesh_namespace = var.appmesh_namespace
-
-  cluster_autoscaler_tags      = var.cluster_autoscaler_tags
-  cluster_autoscaler_sa_name   = var.cluster_autoscaler_sa_name
-  cluster_autoscaler_namespace = var.cluster_autoscaler_namespace
 
   node_termination_handler_role_name = var.node_termination_handler_role_name
   node_termination_handler_tags      = var.node_termination_handler_tags

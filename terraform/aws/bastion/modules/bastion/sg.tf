@@ -18,7 +18,7 @@
 #tfsec:ignore:aws-vpc-no-public-egress-sgr
 module "ssh_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "5.1.0"
+  version = "5.3.0"
 
   name        = format("%s-ssh", var.sg_name)
   description = "Security group which is to allow SSH from Bastion"

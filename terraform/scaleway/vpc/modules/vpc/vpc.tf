@@ -19,19 +19,18 @@ resource "scaleway_vpc_private_network" "this" {
   tags = var.tags
 }
 
+resource "scaleway_vpc_private_network" "kapsule" {
+  name = format("%s-kapsule", var.name)
+  tags = concat(var.tags, ["kapsule"])
+}
+
 resource "scaleway_vpc_public_gateway_dhcp" "this" {
   subnet = "192.168.1.0/24"
 }
 
 resource "scaleway_vpc_public_gateway" "this" {
   name  = var.name
+  ip_id = data.scaleway_vpc_public_gateway_ip.this.id
   type  = var.type
   tags  = var.tags
-  ip_id = data.scaleway_vpc_public_gateway_ip.this.id
-}
-
-resource "scaleway_vpc_gateway_network" "this" {
-  gateway_id         = scaleway_vpc_public_gateway.this.id
-  private_network_id = scaleway_vpc_private_network.this.id
-  dhcp_id            = scaleway_vpc_public_gateway_dhcp.this.id
 }

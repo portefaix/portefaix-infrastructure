@@ -16,7 +16,9 @@
 
 module "irsa_ebs_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.20.0"
+  version = "5.54.0"
+
+  for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
   role_name             = var.ebs_csi_controller_role_name
   attach_ebs_csi_policy = true
@@ -27,6 +29,30 @@ module "irsa_ebs_csi_driver" {
       namespace_service_accounts = [
         "${var.ebs_csi_controller_namespace}:${var.ebs_csi_controller_sa_name}",
       ]
+    }
+  }
+
+  tags = merge(
+    { "Name" = var.ebs_csi_controller_role_name },
+    var.cluster_tags,
+    var.ebs_csi_driver_tags,
+    var.tags
+  )
+}
+
+module "pod_identity_ebs_csi_driver" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "1.11.0"
+
+  for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
+
+  name = var.ebs_csi_controller_role_name
+
+  associations = {
+    main = {
+      cluster_name    = data.aws_eks_cluster.this.id
+      namespace       = var.ebs_csi_controller_namespace
+      service_account = var.ebs_csi_controller_sa_name
     }
   }
 

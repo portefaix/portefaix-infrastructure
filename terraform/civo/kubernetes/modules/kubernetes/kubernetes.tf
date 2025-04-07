@@ -16,7 +16,7 @@
 
 module "kubernetes" {
   source  = "nlamirault/kubernetes/civo"
-  version = "0.3.0"
+  version = "0.4.0"
 
   cluster_name        = var.cluster_name
   region              = var.region

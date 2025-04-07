@@ -38,13 +38,13 @@
     - swap
 
 - name: Host | Install Kernel packages (Ubuntu)
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_architecture == 'arm64'
   ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
     packages:
-    - linux-modules-extra-raspi
+      - linux-modules-extra-raspi
 
 - name: Host | Activating cgroup support (Debian)
   when: ansible_distribution == 'Debian'
@@ -55,11 +55,11 @@
     backrefs: true
   notify: reboot
 
-- name: Host | Activating cgroup support (Ubuntu)
-  when: ansible_distribution == 'Ubuntu'
-  ansible.builtin.lineinfile:
-    path: /boot/firmware/cmdline.txt
-    regexp: '^((?!.*\bcgroup_enable=memory cgroup_memory=1\b).*)$'
-    line: '\1 cgroup_enable=memory cgroup_memory=1'
-    backrefs: true
-  notify: reboot
+# - name: Host | Activating cgroup support (Ubuntu)
+#   when: ansible_distribution == 'Ubuntu'
+#   ansible.builtin.lineinfile:
+#     path: /boot/firmware/cmdline.txt
+#     regexp: '^((?!.*\bcgroup_enable=memory cgroup_memory=1\b).*)$'
+#     line: '\1 cgroup_enable=memory cgroup_memory=1'
+#     backrefs: true
+#   notify: reboot

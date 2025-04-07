@@ -76,7 +76,8 @@ function tf_validate() {
     pushd "${infra}" > /dev/null || exit 1
     output=$(mktemp)
     if [ -d "backend-vars" ]; then
-        terraform init -upgrade -backend-config=backend-vars/main.tfvars
+        tfvar_file=$(ls backend-vars/*.tfvars)
+        terraform init -upgrade -backend-config="${tfvar_file}"
     else
         terraform init -upgrade &> "${output}"
     fi
@@ -88,12 +89,14 @@ function tf_validate() {
 
 function check_infra() {
     local dir=$1
+    local exclude=$2
 
     if [ ! -d "${dir}" ]; then
         echo_fail "Invalid directory: ${dir}"
         exit 1
     fi
-    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform"); do
+    # Do not validate module: https://github.com/hashicorp/terraform/issues/28490
+    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | grep -v -E "root|oidc" | sort -u); do
         tf_dir=${tf_file%/*}
         tf_validate "${tf_dir}"
     done

@@ -42,32 +42,27 @@ variable "prometheus_tags" {
   }
 }
 
-variable "prometheus_enable_kms" {
-  type        = bool
-  description = "Enable custom KMS key"
-}
+# Mimir
 
-# Thanos
-
-variable "thanos_namespace" {
+variable "mimir_namespace" {
   type        = string
   description = "The Kubernetes namespace"
 }
 
-variable "thanos_service_accounts" {
-  type        = list(string)
+variable "mimir_service_account" {
+  type        = string
   description = "The Kubernetes service account"
 }
 
-variable "thanos_tags" {
+variable "mimir_tags" {
   type        = map(string)
-  description = "Tags for Thanos"
+  description = "Tags for Mimir"
   default = {
     "Made-By" = "terraform"
   }
 }
 
-variable "thanos_enable_kms" {
+variable "mimir_enable_kms" {
   type        = bool
   description = "Enable custom KMS key"
 }

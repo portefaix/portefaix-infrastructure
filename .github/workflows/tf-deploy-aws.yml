@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: AWS / Create
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -26,13 +27,16 @@ on:
       tf_version:
         description: "Terraform version"
         required: true
-        #datasource=github-tags depName=hashicorp/terraform
-        default: '1.2.2'
+        default: 'latest'
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
 
 jobs:
 
   #############################################################################
-  # Security Account
+  # Security Account
 
   aws_security_hub:
     runs-on: ubuntu-latest
@@ -41,10 +45,10 @@ jobs:
         echo "Deploy Security Hub"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -71,10 +75,10 @@ jobs:
         echo "Deploy IAM Access Analyzer"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -101,10 +105,10 @@ jobs:
         echo "Deploy GuardDuty"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -131,10 +135,10 @@ jobs:
         echo "Deploy Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -161,10 +165,10 @@ jobs:
         echo "Deploy Cloudtrail"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -202,10 +206,10 @@ jobs:
         echo "Deploy Shared ChatBot"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -232,10 +236,10 @@ jobs:
         echo "Deploy Shared ECR"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -261,19 +265,19 @@ jobs:
 
   aws_elastic_ip_internet_gateway:
     needs:
-      - aws_access_analyzer
-      - aws_guardduty
-      - aws_security_hub
+    - aws_access_analyzer
+    - aws_guardduty
+    - aws_security_hub
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Elastic IP for Internet Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -301,10 +305,10 @@ jobs:
         echo "VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -332,10 +336,10 @@ jobs:
         echo "Deploy Bastion / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -363,10 +367,10 @@ jobs:
         echo "Deploy Teleport / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -393,10 +397,10 @@ jobs:
     - run: |
         echo "Deploy ECr / ${{ github.event.inputs.env }}"
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -423,10 +427,10 @@ jobs:
     - run: |
         echo "Deploy Notifications / ${{ github.event.inputs.env }}"
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -455,10 +459,10 @@ jobs:
         echo "Deploy GuardDuty / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -512,24 +516,24 @@ jobs:
 
   aws_eks:
     needs:
-      - aws_alb
-      - aws_bastion
-      - aws_shared_chatbot
-      - aws_shared_ecr
-      - aws_ecr
-      - aws_notifications
-      - aws_waf
-      # - aws_secrets
+    - aws_alb
+    - aws_bastion
+    - aws_shared_chatbot
+    - aws_shared_ecr
+    - aws_ecr
+    - aws_notifications
+    - aws_waf
+    # - aws_secrets
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Deploy EKS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -557,10 +561,10 @@ jobs:
         echo "Deploy Observability stack / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -588,10 +592,10 @@ jobs:
         echo "Deploy External DNS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -610,68 +614,6 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve
       working-directory: terraform/aws/external-dns/${{ github.event.inputs.env }}
-
-  aws_velero:
-    needs: aws_eks
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Velero / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_STAGING }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_STAGING }}
-    #     aws-region: ${{ secrets.AWS_REGION_STAGING }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/aws/velero/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/aws/velero/${{ github.event.inputs.env }}
-
-  aws_vector:
-    needs: aws_eks
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Vector / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_STAGING }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_STAGING }}
-    #     aws-region: ${{ secrets.AWS_REGION_STAGING }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/aws/vector/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/aws/vector/${{ github.event.inputs.env }}
 
   aws_cert_manager:
     needs: aws_eks
@@ -681,10 +623,10 @@ jobs:
         echo "Deploy Cert-Manager / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}

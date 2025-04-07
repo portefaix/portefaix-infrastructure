@@ -84,18 +84,6 @@ variable "cluster_tags" {
   }
 }
 
-variable "self_managed_node_groups" {
-  description = "Map of self-managed node group definitions to create"
-  type        = any
-  default     = {}
-}
-
-variable "self_managed_node_group_defaults" {
-  description = "Map of self-managed node group default configurations"
-  type        = any
-  default     = {}
-}
-
 variable "eks_managed_node_groups" {
   description = "Map of EKS managed node group definitions to create"
   type        = any
@@ -318,38 +306,6 @@ variable "appmesh_namespace" {
   description = "The K8s namespace for ALB Controller resources"
   type        = string
   default     = "appmesh-system"
-}
-
-#############################################################################
-# Cluster Autoscaler
-
-# variable "cluster_autoscaler_role_name" {
-#   description = "The name of the AppMesh Controller IAM role"
-#   type        = string
-#   default     = "cluster-autoscaler-controller"
-# }
-
-# variable "cluster_autoscaler_role_policy_name" {
-#   description = "The name of the AppMesh Controller IAM policy"
-#   default     = "AWSClusterAutoscalerIAMPolicy"
-#   type        = string
-# }
-
-variable "cluster_autoscaler_tags" {
-  description = "A map of tags to add to all resources"
-  type        = map(string)
-}
-
-variable "cluster_autoscaler_sa_name" {
-  description = "Controller name"
-  type        = string
-  default     = "cluster-autoscaler-controller"
-}
-
-variable "cluster_autoscaler_namespace" {
-  description = "The K8s namespace for  resources"
-  type        = string
-  default     = "kube-system"
 }
 
 #############################################################################

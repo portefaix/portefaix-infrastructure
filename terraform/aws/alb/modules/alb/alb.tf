@@ -14,17 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#tfsec:ignore:AWS004
-#tfsec:ignore:AWS005
-#tfsec:ignore:AWS083
+# tfsec:ignore:aws-elb-alb-not-public
 module "alb_external" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "8.6.1"
+  version = "9.14.0"
 
-  name      = local.alb_external_name
-  subnets   = data.aws_subnets.public.ids
-  create_lb = true
-  internal  = false
+  name     = local.alb_external_name
+  subnets  = data.aws_subnets.public.ids
+  internal = false
 
   security_groups = [
     aws_security_group.alb_external.id,
@@ -34,32 +31,6 @@ module "alb_external" {
     bucket = module.logs.s3_bucket_id #aws_s3_bucket.logs.id
     prefix = local.alb_external_name
   }
-
-  # https_listeners = [
-  #   {
-  #     certificate_arn = data.aws_acm_certificate.env.arn
-  #     port            = 443
-  #     action_type     = "fixed-response"
-  #     fixed_response = {
-  #       content_type = "text/plain"
-  #       status_code  = 200
-  #       message_body = ""
-  #     }
-  #   },
-  # ]
-
-  http_tcp_listeners = [
-    {
-      port        = "80"
-      protocol    = "HTTP"
-      action_type = "redirect"
-      redirect = {
-        port        = "443"
-        protocol    = "HTTPS"
-        status_code = "HTTP_301"
-      }
-    },
-  ]
 
   tags = merge({
     "Name" = local.alb_external_name
@@ -72,12 +43,11 @@ module "alb_external" {
 
 module "alb_internal" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "8.6.1"
+  version = "9.14.0"
 
-  name      = local.alb_internal_name
-  subnets   = data.aws_subnets.private.ids
-  create_lb = true
-  internal  = true
+  name     = local.alb_internal_name
+  subnets  = data.aws_subnets.private.ids
+  internal = true
 
   security_groups = [
     aws_security_group.alb_internal.id
@@ -87,19 +57,6 @@ module "alb_internal" {
     bucket = module.logs.s3_bucket_id #aws_s3_bucket.logs.id
     prefix = local.alb_internal_name
   }
-
-  http_tcp_listeners = [
-    {
-      port        = 80
-      protocol    = "HTTP"
-      action_type = "fixed-response"
-      fixed_response = {
-        content_type = "text/plain"
-        status_code  = 200
-        message_body = ""
-      }
-    },
-  ]
 
   tags = merge({
     "Name" = local.alb_internal_name

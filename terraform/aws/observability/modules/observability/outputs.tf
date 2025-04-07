@@ -16,22 +16,26 @@
 
 output "prometheus_role_arn" {
   description = "Role ARN for Prometheus"
-  value       = module.prometheus.role_arn
+  value       = module.prometheus.pod_identity_role_arn
 }
 
-
-output "thanos_role_arn" {
-  description = "Role ARN for Thanos"
-  value       = module.thanos[*].role_arn
-  # value = { for sa in toset(var.thanos_service_accounts) : sa => module.thanos[sa].role_arn }
-}
+# output "thanos_role_arn" {
+#   description = "Role ARN for Thanos"
+#   value       = module.thanos[*].role_arn
+#   # value = { for sa in toset(var.thanos_service_accounts) : sa => module.thanos[sa].role_arn }
+# }
 
 output "loki_role_arn" {
   description = "Role ARN for Loki"
-  value       = module.loki.role_arn
+  value       = module.loki.pod_identity_role_arn
 }
+
+# output "mimir_role_arn" {
+#   description = "Role ARN for Mimir"
+#   value       = module.mimir.pod_identity_role_arn
+# }
 
 output "tempo_role_arn" {
   description = "Role ARN for Tempo"
-  value       = module.tempo.role_arn
+  value       = module.tempo.pod_identity_role_arn
 }

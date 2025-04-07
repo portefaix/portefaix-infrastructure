@@ -75,7 +75,7 @@ variable "env_scw_secret_key" {
 
 variable "env_scw_project_id" {
   type        = string
-  description = "Scaleway Project ID"
+  description = "Scaleway Default Project ID"
 }
 
 variable "env_scw_organization_id" {
@@ -101,4 +101,9 @@ variable "env_aws_default_region" {
 variable "env_aws_region" {
   type        = string
   description = "The AWS Region"
+}
+
+variable "env_project_id" {
+  type        = string
+  description = "Scaleway Project ID"
 }

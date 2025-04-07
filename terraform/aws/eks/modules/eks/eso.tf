@@ -16,7 +16,9 @@
 
 module "irsa_eso" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "5.20.0"
+  version = "5.54.0"
+
+  for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
   role_name                      = var.eso_role_name
   attach_external_secrets_policy = true
@@ -31,6 +33,30 @@ module "irsa_eso" {
   }
 
   external_secrets_secrets_manager_arns = var.eso_secrets_arns
+
+  tags = merge(
+    { "Name" = var.eso_role_name },
+    var.cluster_tags,
+    var.eso_tags,
+    var.tags
+  )
+}
+
+module "pod_identity_eso" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "1.11.0"
+
+  for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
+
+  name = var.eso_role_name
+
+  associations = {
+    main = {
+      cluster_name    = data.aws_eks_cluster.this.id
+      namespace       = var.eso_namespace
+      service_account = var.eso_sa_name
+    }
+  }
 
   tags = merge(
     { "Name" = var.eso_role_name },

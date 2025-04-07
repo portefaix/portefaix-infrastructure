@@ -16,7 +16,7 @@
 
 module "eip_nat_gateway" {
   source  = "terraform-alicloud-modules/eip/alicloud//modules/associate-with-nat-gateway"
-  version = "1.2.0"
+  version = "2.1.1"
 
   create               = true
   number_of_eips       = 1

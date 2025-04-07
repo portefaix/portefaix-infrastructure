@@ -14,9 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Scaleway / Destroy
 
-on:
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
     inputs:
       env:
@@ -29,6 +30,9 @@ on:
         #datasource=github-tags depName=hashicorp/terraform
         default: '1.3.0'
 
+permissions:
+  contents: read
+
 jobs:
 
   scaleway_kapsule:
@@ -38,10 +42,10 @@ jobs:
         echo "Delete Kepsule / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -61,10 +65,10 @@ jobs:
         echo "Delete Registry / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -84,10 +88,10 @@ jobs:
         echo "Delete Observability / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -107,10 +111,10 @@ jobs:
         echo "Delete VPC / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ github.event.inputs.tf_version }}
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}

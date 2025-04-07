@@ -22,7 +22,7 @@
 #tfsec:ignore:google-gke-enforce-pod-security-policy
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  version = "26.1.1"
+  version = "36.1.0"
 
   project_id      = var.project
   name            = var.name
@@ -88,6 +88,7 @@ module "gke" {
   identity_namespace                = var.identity_namespace
   disable_legacy_metadata_endpoints = var.disable_legacy_metadata_endpoints
   enable_confidential_nodes         = var.enable_confidential_nodes
+  gateway_api_channel               = var.gateway_api_channel
 
   # Features
 

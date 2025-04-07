@@ -14,34 +14,46 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: AWS / Validate
 
-on:
+on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
-      - main
+    - main
     paths:
-      - 'terraform/aws/**'
+    - 'terraform/aws/**'
   # push:
   #   branches:
   #     - main
   #   paths:
   #     - 'terraform/**'
 
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
 jobs:
   aws:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
     - name: Setup tools
       uses: ./.github/actions/tools
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@v3
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4.1.0
+      with:
+        role-to-assume: ${{ secrets.AWS_ASSUME_ROLE }}
+        role-session-name: githubactions
+        aws-region: ${{ secrets.AWS_REGION_STAGING }}
 
     - name: Terraform validate
       run: |

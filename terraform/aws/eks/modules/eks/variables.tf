@@ -69,18 +69,6 @@ variable "cluster_tags" {
   }
 }
 
-variable "self_managed_node_groups" {
-  description = "Map of self-managed node group definitions to create"
-  type        = any
-  default     = {}
-}
-
-variable "self_managed_node_group_defaults" {
-  description = "Map of self-managed node group default configurations"
-  type        = any
-  default     = {}
-}
-
 variable "eks_managed_node_groups" {
   description = "Map of EKS managed node group definitions to create"
   type        = any
@@ -95,7 +83,18 @@ variable "eks_managed_node_group_defaults" {
 variable "fargate_profiles" {
   description = "Map of Fargate Profile definitions to create"
   type        = any
-  default     = {}
+  default = {
+    karpenter = {
+      selectors = [
+        { namespace = "karpenter" }
+      ]
+    }
+    # kube-system = {
+    #   selectors = [
+    #     { namespace = "kube-system" }
+    #   ]
+    # }
+  }
 }
 
 variable "fargate_profile_defaults" {
@@ -108,6 +107,16 @@ variable "cluster_addons" {
   description = "Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
   type        = any
   default     = {}
+}
+
+variable "enable_irsa" {
+  type        = bool
+  description = "Enable IRSA resources"
+}
+
+variable "enable_pod_identity" {
+  type        = bool
+  description = "Enable EKS Pod Identity resources"
 }
 
 #############################################################################
@@ -274,34 +283,6 @@ variable "appmesh_namespace" {
   type        = string
   default     = "appmesh-system"
 }
-
-
-#############################################################################
-# Cluster Autoscaler
-
-variable "cluster_autoscaler_role_name" {
-  description = "The name of the AppMesh Controller IAM role"
-  type        = string
-  default     = "cluster-autoscaler-controller"
-}
-
-variable "cluster_autoscaler_tags" {
-  description = "A map of tags to add to all resources"
-  type        = map(string)
-}
-
-variable "cluster_autoscaler_sa_name" {
-  description = "Controller name"
-  type        = string
-  default     = "cluster-autoscaler-controller"
-}
-
-variable "cluster_autoscaler_namespace" {
-  description = "The K8s namespace for  resources"
-  type        = string
-  default     = "kube-system"
-}
-
 
 #############################################################################
 # Node Terminaison Handler

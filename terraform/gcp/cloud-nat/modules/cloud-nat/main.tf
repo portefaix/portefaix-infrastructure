@@ -18,9 +18,10 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
+    # tflint-ignore: terraform_unused_required_providers
     google = {
       source  = "hashicorp/google"
-      version = "< 5.0.0"
+      version = "6.27.0"
     }
   }
 }

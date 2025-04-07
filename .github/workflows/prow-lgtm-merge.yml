@@ -14,8 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Prow / Merge on lgtm label
-on:
+
+on: # yamllint disable-line rule:truthy
   schedule:
   - cron: "0 * * * *"
 

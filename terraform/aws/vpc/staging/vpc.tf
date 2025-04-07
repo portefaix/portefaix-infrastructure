@@ -28,5 +28,8 @@ module "vpc" {
 
   eks_cluster_name = var.eks_cluster_name
 
-  igw_tags = var.igw_tags
+  igw_tags     = var.igw_tags
+  igw_eip_name = var.igw_eip_name
+
+  nat_gateway_tags = var.nat_gateway_tags
 }

@@ -87,13 +87,15 @@ module "gke" {
 
   # Features
 
-  cloudrun                = var.cloudrun
-  logging_service         = var.logging_service
-  monitoring_service      = var.monitoring_service
-  enable_tpu              = var.enable_tpu
-  enable_kubernetes_alpha = var.enable_kubernetes_alpha
-  istio                   = var.istio
-  gce_pd_csi_driver       = var.gce_pd_csi_driver
-  config_connector        = var.config_connector
-
+  cloudrun                             = var.cloudrun
+  logging_service                      = var.logging_service
+  monitoring_service                   = var.monitoring_service
+  enable_tpu                           = var.enable_tpu
+  enable_kubernetes_alpha              = var.enable_kubernetes_alpha
+  istio                                = var.istio
+  gce_pd_csi_driver                    = var.gce_pd_csi_driver
+  config_connector                     = var.config_connector
+  filestore_csi_driver                 = var.filestore_csi_driver
+  monitoring_enable_managed_prometheus = var.monitoring_enable_managed_prometheus
+  gateway_api_channel                  = var.gateway_api_channel
 }

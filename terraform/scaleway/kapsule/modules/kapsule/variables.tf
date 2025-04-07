@@ -37,6 +37,11 @@ variable "k8s_version" {
   description = "The version of the Kubernetes cluster."
 }
 
+variable "private_network_name" {
+  type        = string
+  description = "The name of the private network of the cluster."
+}
+
 variable "cni" {
   type        = string
   default     = "cilium"

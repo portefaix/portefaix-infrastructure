@@ -25,7 +25,7 @@ base_tools: [
   ncdu,
   net-tools,
   netbase,
-  netcat,
+  netcat-openbsd,
   tree,
   tmux,
   open-iscsi,

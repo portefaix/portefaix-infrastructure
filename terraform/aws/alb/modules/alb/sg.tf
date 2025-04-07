@@ -49,19 +49,18 @@
 #   }, var.alb_tags)
 # }
 
+# tfsec:ignore:aws-ec2-no-public-egress-sgr
 resource "aws_security_group" "alb_external" {
   name        = local.alb_external_name
   description = "Allow all HTTP and HTTPS inbound traffic"
 
   vpc_id = data.aws_vpc.this.id
 
-  #tfsec:ignore:AWS018
   egress {
     description = "Allow all"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    #tfsec:ignore:AWS009
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -76,32 +75,31 @@ resource "aws_security_group" "alb_external" {
   }
 }
 
+# tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group_rule" "allow_http_external" {
-  type        = "ingress"
-  description = "Allow HTTP inbound traffic"
-  from_port   = 80
-  to_port     = 80
-  protocol    = "tcp"
-  #tfsec:ignore:AWS006
-  #tfsec:ignore:AWS009
+  type              = "ingress"
+  description       = "Allow HTTP inbound traffic"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.alb_external.id
 }
 
+# tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group_rule" "allow_https_external" {
-  type        = "ingress"
-  description = "Allow HTTPS inbound traffic"
-  from_port   = 443
-  to_port     = 443
-  protocol    = "tcp"
-  #tfsec:ignore:AWS006
-  #tfsec:ignore:AWS009
+  type              = "ingress"
+  description       = "Allow HTTPS inbound traffic"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.alb_external.id
 }
 
 # Internal
 
+# tfsec:ignore:aws-ec2-no-public-egress-sgr
 resource "aws_security_group" "alb_internal" {
   name        = local.alb_internal_name
   description = "Allow all HTTP and HTTPS inbound traffic from VPC"
@@ -113,8 +111,6 @@ resource "aws_security_group" "alb_internal" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    #tfsec:ignore:AWS009
-    #tfsec:ignore:AWS018
     cidr_blocks = ["0.0.0.0/0"]
   }
 

@@ -158,6 +158,11 @@ gcp-bootstrap-iam: guard-GCP_ORG_ID ## IAM for Bootstrap service account
 		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
 		--role="roles/resourcemanager.tagUser" \
 		--user-output-enabled false
+	gcloud organizations add-iam-policy-binding "$(GCP_ORG_ID)" \
+		--member="serviceAccount:$(GCP_ROOT_SA_EMAIL)" \
+		--role="roles/iam.workloadIdentityPoolAdmin" \
+		--user-output-enabled false
+
 
 .PHONY: gcp-bootstrap-apis
 gcp-bootstrap-apis: ## Enable APIs on project
@@ -261,6 +266,11 @@ gcp-secret-version-update: guard-ENV guard-VERSION # Generate secret
 	@echo -e "$(INFO_COLOR)Update the secret for Portefaix version into $(GCP_PROJECT)$(NO_COLOR)"
 	echo $(VERSION) | gcloud beta secrets versions add portefaix-version \
 		--data-file=- --project $(GCP_PROJECT)
+
+.PHONY: gcp-registry-login
+gcp-registry-login: guard-GCP_REGISTRY
+	@echo -e "$(INFO_COLOR)Authenticate to GCP Registry: $(GCP_REGISTRY)$(NO_COLOR)"
+	gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin https://$(GCP_REGISTRY)
 
 # ====================================
 # I N S P E C

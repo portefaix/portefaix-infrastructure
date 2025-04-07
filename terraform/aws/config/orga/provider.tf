@@ -33,14 +33,14 @@ provider "aws" {
   }
 }
 
-provider "aws" {
-  alias  = "logging"
-  region = var.region
-  assume_role {
-    role_arn     = "arn:aws:iam::${var.logging_account_id}:role/Administrator"
-    session_name = format("%s-security-config", var.org_name)
-  }
-  default_tags {
-    tags = var.default_tags
-  }
-}
+# provider "aws" {
+#   alias  = "logging"
+#   region = var.region
+#   assume_role {
+#     role_arn     = "arn:aws:iam::${var.logging_account_id}:role/Administrator"
+#     session_name = format("%s-security-config", var.org_name)
+#   }
+#   default_tags {
+#     tags = var.default_tags
+#   }
+# }
