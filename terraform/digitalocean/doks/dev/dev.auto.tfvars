@@ -27,7 +27,7 @@ cluster_name = "portefaix-dev-do-k8s"
 
 region = "fra1"
 
-kubernetes_version = "1.26."
+kubernetes_version = "1.32."
 auto_upgrade       = true
 size               = "s-1vcpu-2gb"
 
