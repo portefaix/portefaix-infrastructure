@@ -31,6 +31,13 @@ space = "exoscale"
 environments = ["sandbox"]
 
 stacks = {
+  portefaix-exoscale-sandbox-iam = {
+    project_root = "terraform/exoscale/iam"
+    labels       = ["core", "iam"]
+    environment  = "sandbox"
+    branch       = "main"
+    dependencies = []
+  }
   portefaix-exoscale-sandbox-sks = {
     project_root = "terraform/exoscale/sks"
     labels       = ["core", "sks"]
