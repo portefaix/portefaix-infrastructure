@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "exoscale_iam_role" "admin_role" {
-  name        = local.role_name
+  name        = local.admin_role_name
   description = "Created by Terraform"
 
   editable = true
