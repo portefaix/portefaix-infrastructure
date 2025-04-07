@@ -72,7 +72,7 @@ resource "spacelift_environment_variable" "do_token" {
   for_each = toset(var.environments)
 
   context_id = spacelift_context.this[each.value].id
-  name       = "TF_VAR_env_do_token"
+  name       = "TF_VAR_token"
   value      = var.env_do_token
   write_only = true
 }
