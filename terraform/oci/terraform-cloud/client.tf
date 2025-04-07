@@ -14,25 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
-
-region = "uk-london-1"
-
-#############################################################################
-# ROOT
-
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+resource "tfe_oauth_client" "github" {
+  organization     = data.tfe_organization.portefaix.name
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.github_oauth_token
+  service_provider = "github"
 }

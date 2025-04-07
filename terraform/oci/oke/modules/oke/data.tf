@@ -14,25 +14,19 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+data "oci_core_vcns" "this" {
+  compartment_id = var.compartment_id
+  display_name   = var.vcn_name
+}
 
-region = "uk-london-1"
+data "oci_core_route_tables" "ig" {
+  compartment_id = var.compartment_id
+  display_name   = var.ig_route_table_name
+  vcn_id         = data.oci_core_vcns.this[0].id
+}
 
-#############################################################################
-# ROOT
-
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+data "oci_core_route_tables" "ng" {
+  compartment_id = var.compartment_id
+  display_name   = var.ng_route_table_name
+  vcn_id         = data.oci_core_vcns.this[0].id
 }

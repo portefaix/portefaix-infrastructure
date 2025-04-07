@@ -43,21 +43,57 @@ variable "region" {
 }
 
 #############################################################################
-# ROOT
+# VCN
 
 variable "organization" {
   type        = string
-  description = "The organization name"
+  description = "Name of the Terraform Cloud organization"
+}
+
+variable "environment" {
+  type        = string
+  description = "Name of the Core environment"
 }
 
 variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
-  description = "The OCID of the parent compartment containing the compartment"
 }
 
-variable "core_environments" {
-  description = "List of Core environments"
-  type        = list(string)
+variable "users" {
+  description = "Map of users to be created"
+  type = map(object({
+    name        = string
+    description = string
+    email       = string
+  }))
+  default = {}
+}
+
+variable "groups" {
+  description = "Map of groups to be created"
+  type = map(object({
+    name        = string
+    description = string
+  }))
+  default = {}
+}
+
+variable "user_group_memberships" {
+  description = "Map of user-group memberships"
+  type        = map(list(string))
+  default     = {}
+}
+
+variable "policies" {
+  description = "Map of policies to be created"
+  type = map(object({
+    name           = string
+    description    = string
+    compartment_id = string
+    statements     = list(string)
+  }))
+  default = {}
 }
 
 variable "freeform_tags" {

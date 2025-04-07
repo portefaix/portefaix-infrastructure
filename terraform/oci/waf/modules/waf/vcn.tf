@@ -14,25 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+module "vcn" {
+  source  = "oracle-terraform-modules/vcn/oci"
+  version = "3.5.4"
 
-region = "uk-london-1"
+  compartment_id = var.compartment_id
 
-#############################################################################
-# ROOT
+  label_prefix = var.label_prefix
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
+  vcn_name  = var.vcn_name
+  vcn_cidrs = var.vcn_cidrs
 
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  freeform_tags = var.freeform_tags
 }

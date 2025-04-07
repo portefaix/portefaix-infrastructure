@@ -14,25 +14,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+module "iam" {
+  source = "../modules/iam"
 
-region = "uk-london-1"
+  region         = var.region
+  compartment_id = var.compartment_id
+  organization   = var.organization
+  environment    = var.environment
 
-#############################################################################
-# ROOT
+  users                  = var.users
+  groups                 = var.groups
+  user_group_memberships = var.user_group_memberships
+  policies               = var.policies
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  freeform_tags = var.freeform_tags
 }

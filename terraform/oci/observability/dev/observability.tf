@@ -14,25 +14,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+module "observability" {
+  source = "../modules/observability"
 
-region = "uk-london-1"
+  region         = var.region
+  compartment_id = var.compartment_id
+  organization   = var.organization
+  environment    = var.environment
 
-#############################################################################
-# ROOT
+  logs                = var.logs
+  alarms              = var.alarms
+  metrics_config      = var.metrics_config
+  notification_topics = var.notification_topics
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  freeform_tags = var.freeform_tags
 }

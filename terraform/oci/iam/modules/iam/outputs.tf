@@ -14,25 +14,27 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+output "policy_id" {
+  description = "The OCID of the created policy"
+  value       = module.iam.policy_id
+}
 
-region = "uk-london-1"
+output "dynamic_group_id" {
+  description = "The OCID of the created dynamic group"
+  value       = module.iam.dynamic_group_id
+}
 
-#############################################################################
-# ROOT
+output "users" {
+  description = "The details of the created users"
+  value       = module.iam_users_groups.users
+}
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
+output "groups" {
+  description = "The details of the created groups"
+  value       = module.iam_users_groups.groups
+}
 
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
-
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+output "policies" {
+  description = "The details of the created policies"
+  value       = module.iam_policies.policies
 }

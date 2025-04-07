@@ -43,21 +43,16 @@ variable "region" {
 }
 
 #############################################################################
-# ROOT
+# VCN
 
 variable "organization" {
   type        = string
-  description = "The organization name"
+  description = "Name of the Terraform Cloud organization"
 }
 
 variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
-  description = "The OCID of the parent compartment containing the compartment"
-}
-
-variable "core_environments" {
-  description = "List of Core environments"
-  type        = list(string)
 }
 
 variable "freeform_tags" {

@@ -14,25 +14,24 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Provider
+module "logging" {
+  source  = "oracle-terraform-modules/logging/oci"
+  version = "0.1.0"
 
-region = "uk-london-1"
+  compartment_id = var.compartment_id
 
-#############################################################################
-# ROOT
+  log_group_name        = local.log_group_name
+  log_group_description = format("Log group for %s", local.log_group_name)
+  logs                  = var.logs
+}
 
-organization   = "portefaix"
-compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
+module "observability" {
+  source  = "oracle-terraform-modules/observability/oci"
+  version = "0.1.0"
 
-core_environments = [
-  "dev",
-  # "staging",
-  # "prod"
-]
+  compartment_id = var.compartment_id
 
-freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  alarms              = var.alarms
+  metrics_config      = var.metrics_config
+  notification_topics = var.notification_topics
 }

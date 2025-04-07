@@ -43,21 +43,21 @@ variable "region" {
 }
 
 #############################################################################
-# ROOT
+# VCN
 
 variable "organization" {
   type        = string
-  description = "The organization name"
+  description = "Name of the Terraform Cloud organization"
+}
+
+variable "environment" {
+  type        = string
+  description = "Name of the Core environment"
 }
 
 variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
-  description = "The OCID of the parent compartment containing the compartment"
-}
-
-variable "core_environments" {
-  description = "List of Core environments"
-  type        = list(string)
 }
 
 variable "freeform_tags" {
@@ -67,3 +67,47 @@ variable "freeform_tags" {
     made-by = "terraform"
   }
 }
+
+# variable "nat_gateway_public_ip_id" {
+#   description = "OCID of reserved IP address for NAT gateway. The reserved public IP address needs to be manually created."
+#   type        = string
+# }
+
+variable "vcn_cidrs" {
+  description = "The list of IPv4 CIDR blocks the VCN will use."
+  type        = list(string)
+}
+
+# variable "internet_gateway_route_rules" {
+#   description = "(Updatable) List of routing rules to add to Internet Gateway Route Table"
+#   type        = list(map(string))
+#   default     = null
+# }
+
+# variable "nat_gateway_route_rules" {
+#   description = "(Updatable) list of routing rules to add to NAT Gateway Route Table"
+#   type        = list(map(string))
+#   default     = null
+# }
+
+# Subnets
+
+# variable "control_plane_cidr" {
+#   type        = string
+#   description = "Control plane subnet CIDR"
+# }
+
+# variable "workers_cidr" {
+#   type        = string
+#   description = "OKE Workers subnet CIDR"
+# }
+
+# variable "pub_lb_cidr" {
+#   type        = string
+#   description = "Public Load Balancer subnet CIDR"
+# }
+
+# variable "int_lb_cidr" {
+#   type        = string
+#   description = "Internal Load Balancer subnet CIDR"
+# }

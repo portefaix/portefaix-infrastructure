@@ -43,21 +43,72 @@ variable "region" {
 }
 
 #############################################################################
-# ROOT
+# Observability
 
 variable "organization" {
   type        = string
-  description = "The organization name"
+  description = "Name of the Terraform Cloud organization"
+}
+
+variable "environment" {
+  type        = string
+  description = "Name of the Core environment"
 }
 
 variable "compartment_id" {
+  description = "compartment id where to create all resources"
   type        = string
-  description = "The OCID of the parent compartment containing the compartment"
 }
 
-variable "core_environments" {
-  description = "List of Core environments"
-  type        = list(string)
+variable "logs" {
+  description = "Map of logs to be created"
+  type = map(object({
+    log_name            = string
+    log_display_name    = string
+    log_type            = string
+    log_source_type     = string
+    log_source_resource = string
+    log_source_category = string
+  }))
+  default = {}
+}
+
+variable "alarms" {
+  description = "Map of alarms to be created"
+  type = map(object({
+    display_name          = string
+    metric_compartment_id = string
+    namespace             = string
+    query                 = string
+    severity              = string
+    body                  = string
+    destinations          = list(string)
+    is_enabled            = bool
+  }))
+  default = {}
+}
+
+variable "metrics_config" {
+  description = "Metrics configuration"
+  type = object({
+    namespace      = string
+    resource_group = string
+    compartment_id = string
+  })
+  default = null
+}
+
+variable "notification_topics" {
+  description = "Map of notification topics to be created"
+  type = map(object({
+    name        = string
+    description = string
+    subscriptions = list(object({
+      protocol = string
+      endpoint = string
+    }))
+  }))
+  default = {}
 }
 
 variable "freeform_tags" {
