@@ -14,13 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
+locals {
+  cloud_provider = "digitalocean"
+  labels         = [local.cloud_provider]
 
-    workspaces {
-      name = "portefaix-digitalocean-dev-doks"
-    }
-  }
+  stack_dependencies = flatten([
+    for stack_key, stack in var.stacks : [
+      for dependency in stack.dependencies : {
+        stack_name      = stack_key
+        dependency_name = dependency
+      }
+    ]
+  ])
 }
