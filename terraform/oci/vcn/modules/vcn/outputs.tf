@@ -13,3 +13,33 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+
+output "vcn_id" {
+  description = "The OCID of the VCN"
+  value       = module.vcn.vcn_id
+}
+
+output "public_subnet_ids" {
+  description = "The OCIDs of the public subnets"
+  value       = module.vcn.public_subnet_ids
+}
+
+output "private_subnet_ids" {
+  description = "The OCIDs of the private subnets"
+  value       = module.vcn.private_subnet_ids
+}
+
+output "nat_gateway_id" {
+  description = "The OCID of the NAT gateway"
+  value       = module.vcn.nat_gateway_id
+}
+
+output "internet_gateway_id" {
+  description = "The OCID of the internet gateway"
+  value       = module.vcn.internet_gateway_id
+}
+
+output "service_gateway_id" {
+  description = "The OCID of the service gateway"
+  value       = module.vcn.service_gateway_id
+}
