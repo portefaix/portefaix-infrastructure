@@ -27,7 +27,7 @@ resource "exoscale_iam_role" "admin_role" {
         type = "rules",
         rules = [
           {
-            expression = format("identity.role_name == '%s'", local.admin_role_name)
+            expression = "identity.role_name == '${local.admin_role_name}'"
             resources  = ["*"],
             operations = ["*"]
           }
@@ -37,7 +37,7 @@ resource "exoscale_iam_role" "admin_role" {
         type = "rules",
         rules = [
           {
-            expression = format("identity.role_name == '%s'", local.admin_role_name)
+            expression = "identity.role_name == '${local.admin_role_name}'"
             resources  = ["*"],
             operations = ["list", "get"]
           }
@@ -47,7 +47,7 @@ resource "exoscale_iam_role" "admin_role" {
         type = "rules",
         rules = [
           {
-            expression = format("identity.role_name == '%s'", local.admin_role_name)
+            expression = "identity.role_name == '${local.admin_role_name}'"
             resources  = ["*"],
             operations = ["*"]
           }
@@ -57,7 +57,7 @@ resource "exoscale_iam_role" "admin_role" {
         type = "rules",
         rules = [
           {
-            expression = format("identity.role_name == '%s'", local.admin_role_name)
+            expression = "identity.role_name == '${local.admin_role_name}'"
             resources  = ["*"],
             operations = ["*"]
           }
