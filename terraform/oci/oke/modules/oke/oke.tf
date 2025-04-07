@@ -30,7 +30,7 @@
 
 module "oke" {
   source  = "oracle-terraform-modules/oke/oci"
-  version = "5.0.0-beta.4"
+  version = "5.0.0"
 
   providers = {
     oci.home = oci.home
@@ -40,26 +40,12 @@ module "oke" {
   region         = var.region
   home_region    = var.region
 
-  create_cluster              = true
-  create_vcn                  = var.create_vcn
-  vcn_create_internet_gateway = var.vcn_create_internet_gateway
-  vcn_create_nat_gateway      = var.vcn_create_nat_gateway
-  vcn_create_service_gateway  = var.vcn_create_service_gateway
-  create_drg                  = var.create_drg
-  create_bastion              = false
-  create_operator             = false
-
-  vcn_name          = var.vcn_name
-  ig_route_table_id = var.ig_route_table_id
-  # nat_route_table_display_name = var.nat_route_table_name
-
-  # subnets = var.subnets
-
-  enable_waf = var.enable_waf
+  vcn_id = var.vcn_id
 
   # Cluster
   cluster_name                 = local.cluster_name
   kubernetes_version           = var.kubernetes_version
+  control_plane_type           = "private"
   pods_cidr                    = var.pods_cidr
   services_cidr                = var.services_cidr
   allow_worker_internet_access = var.allow_worker_internet_access
@@ -73,17 +59,44 @@ module "oke" {
   load_balancers          = var.load_balancers
   preferred_load_balancer = var.preferred_load_balancer
 
-  worker_pools              = var.worker_pools
-  worker_pool_mode          = var.worker_pool_mode
-  worker_pool_size          = var.worker_pool_size
-  worker_image_os           = var.worker_image_os
-  worker_image_os_version   = var.worker_image_os_version
-  worker_shape              = var.worker_shape
-  worker_node_labels        = var.worker_node_labels
-  worker_node_metadata      = var.worker_node_metadata
-  worker_preemptible_config = var.worker_preemptible_config
+  enable_waf = var.enable_waf
 
-  timezone = var.timezone
+  # Network configuration
+  subnets = {
+    node_pool     = var.node_subnet_id
+    load_balancer = var.lb_subnet_id
+  }
+
+  # Node pool configuration
+  node_pools = var.node_pools
+
+  # Bastion configuration
+  create_bastion    = false
+  bastion_public_ip = var.bastion_public_ip
+
+  # Other configurations
+  cluster_options = {
+    kubernetes_network_config = {
+      pods_cidr     = var.pods_cidr
+      services_cidr = var.services_cidr
+    }
+    add_ons = {
+      dashboard = true
+      tiller    = false
+    }
+  }
+
+  # worker_pools              = var.worker_pools
+  # worker_pool_mode          = var.worker_pool_mode
+  # worker_pool_size          = var.worker_pool_size
+  # worker_image_os           = var.worker_image_os
+  # worker_image_os_version   = var.worker_image_os_version
+  # worker_shape              = var.worker_shape
+  # worker_node_labels        = var.worker_node_labels
+  # worker_node_metadata      = var.worker_node_metadata
+  # worker_preemptible_config = var.worker_preemptible_config
+
+  # timezone = var.timezone
 
   freeform_tags = var.freeform_tags
 }

@@ -43,28 +43,21 @@ variable "region" {
 }
 
 #############################################################################
-# Subnets
+# VCN
 
-variable "control_plane_cidr" {
+variable "vcn_id" {
+  description = "The OCID of the VCN"
   type        = string
-  description = "Control plane subnet CIDR"
 }
 
-variable "workers_cidr" {
-  type        = string
-  description = "OKE Workers subnet CIDR"
-}
+#############################################################################
+# Bastion
 
-variable "pub_lb_cidr" {
-  type        = string
-  description = "Public Load Balancer subnet CIDR"
-}
 
-variable "int_lb_cidr" {
+variable "bastion_public_ip" {
+  description = "The public IP of the bastion host"
   type        = string
-  description = "Internal Load Balancer subnet CIDR"
 }
-
 
 #############################################################################
 # OKE
@@ -84,110 +77,68 @@ variable "compartment_id" {
   type        = string
 }
 
-# variable "subnets" {
-#   description = "parameters to cidrsubnet function to calculate subnet masks within the VCN."
-#   default = {
-#     bastion  = { netnum = 0, newbits = 13 }
-#     operator = { netnum = 1, newbits = 13 }
-#     cp       = { netnum = 2, newbits = 13 }
-#     int_lb   = { netnum = 16, newbits = 11 }
-#     pub_lb   = { netnum = 17, newbits = 11 }
-#     workers  = { netnum = 1, newbits = 2 }
-#     pods     = { netnum = 2, newbits = 2 }
-#     fss      = { netnum = 18, newbits = 11 }
-#   }
-#   type = map(any)
-# }
-
-variable "control_plane_allowed_cidrs" {
-  description = "The list of CIDR blocks from which the control plane can be accessed."
-  type        = list(string)
+variable "kubernetes_version" {
+  description = "The version of Kubernetes to use"
+  type        = string
+  default     = "v1.26.2"
 }
 
-variable "enable_waf" {
-  description = "Whether to enable WAF monitoring of load balancers."
-  type        = bool
-  default     = false
+variable "control_plane_allowed_cidrs" {
+  description = "List of CIDRs allowed to access the Kubernetes API"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "node_subnet_id" {
+  description = "The OCID of the subnet for node pools"
+  type        = string
+}
+
+variable "lb_subnet_id" {
+  description = "The OCID of the subnet for load balancers"
+  type        = string
 }
 
 variable "pods_cidr" {
-  default     = "10.244.0.0/16"
-  description = "The CIDR range used for IP addresses by the pods. A /16 CIDR is generally sufficient. This CIDR should not overlap with any subnet range in the VCN (it can also be outside the VCN CIDR range). Ignored when cni_type = 'npn'."
+  description = "The CIDR block for Kubernetes pods"
   type        = string
+  default     = "10.244.0.0/16"
 }
 
 variable "services_cidr" {
+  description = "The CIDR block for Kubernetes services"
+  type        = string
   default     = "10.96.0.0/16"
-  description = "The CIDR range used within the cluster by Kubernetes services (ClusterIPs). This CIDR should not overlap with the VCN CIDR range."
-  type        = string
 }
 
-variable "kubernetes_version" {
-  default     = "v1.25.4"
-  description = "The version of kubernetes to use when provisioning OKE or to upgrade an existing OKE cluster to."
-  type        = string
-}
-
-variable "worker_pools" {
-  default     = {}
-  description = "Tuple of OKE worker pools where each key maps to the OCID of an OCI resource, and value contains its definition."
-  type        = any
-}
-
-variable "worker_pool_mode" {
-  default     = "node-pool"
-  description = "Default management mode for workers when unspecified on a pool. Only 'node-pool' is currently supported."
-  type        = string
-}
-
-variable "worker_pool_size" {
-  default     = 0
-  description = "Default size for worker pools when unspecified on a pool."
-  type        = number
-}
-
-variable "worker_image_os" {
-  default     = "Oracle Linux"
-  description = "Default worker image operating system name when worker_image_type = 'oke' or 'platform' and unspecified on a pool."
-  type        = string
-}
-
-variable "worker_image_os_version" {
-  default     = "8"
-  description = "Default worker image operating system version when worker_image_type = 'oke' or 'platform' and unspecified on a pool."
-  type        = string
-}
-
-variable "worker_shape" {
+variable "node_pools" {
+  description = "Node pool configuration"
+  type = map(object({
+    shape            = string
+    ocpus            = number
+    memory           = number
+    os               = string
+    os_version       = string
+    count            = number
+    node_pool_size   = number
+    boot_volume_size = number
+    node_labels      = map(string)
+    node_taints      = list(string)
+  }))
   default = {
-    shape            = "VM.Standard.E4.Flex",
-    ocpus            = 1,
-    memory           = 6,
-    boot_volume_size = 50
+    "main" = {
+      shape            = "VM.Standard.E4.Flex"
+      ocpus            = 2
+      memory           = 16
+      os               = "Oracle Linux"
+      os_version       = "7.9"
+      count            = 1
+      node_pool_size   = 3
+      boot_volume_size = 150
+      node_labels      = {}
+      node_taints      = []
+    }
   }
-  description = "Default shape of the created worker instance when unspecified on a pool."
-  type        = map(any)
-}
-
-variable "worker_node_labels" {
-  default     = {}
-  description = "Default worker node labels. Merged with labels defined on each pool."
-  type        = map(string)
-}
-
-variable "worker_node_metadata" {
-  default     = {}
-  description = "Map of additional worker node instance metadata. Merged with metadata defined on each pool."
-  type        = map(string)
-}
-
-variable "worker_preemptible_config" {
-  default = {
-    enable                  = false,
-    is_preserve_boot_volume = false
-  }
-  description = "Default preemptible Compute configuration when unspecified on a pool. See <a href=https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingpreemptiblecapacity.htm>Preemptible Worker Nodes</a> for more information."
-  type        = map(any)
 }
 
 variable "freeform_tags" {
