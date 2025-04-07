@@ -29,10 +29,6 @@ compartment_id = "ocid1.compartment.oc1..aaaaaaaas7v6jey7zd67kotets3qk4oi6ile3db
 
 vcn_cidrs = ["10.20.0.0/16"]
 
-create_internet_gateway = true
-create_nat_gateway      = false
-create_service_gateway  = false
-
 freeform_tags = {
   project = "core"
   env     = "dev"

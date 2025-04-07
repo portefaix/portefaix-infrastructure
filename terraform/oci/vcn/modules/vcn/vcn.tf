@@ -26,13 +26,13 @@ module "vcn" {
   vcn_name  = local.vcn_name
   vcn_cidrs = var.vcn_cidrs
 
-  create_internet_gateway       = var.create_internet_gateway
+  create_internet_gateway       = false # Internet access via le Hub
   internet_gateway_display_name = local.internet_gateway_name
 
-  create_nat_gateway       = var.create_nat_gateway
+  create_nat_gateway       = true # For private outgoing access
   nat_gateway_display_name = local.nat_gateway_name
 
-  create_service_gateway       = var.create_service_gateway
+  create_service_gateway       = true # For access to OCI services
   service_gateway_display_name = local.service_gateway_name
 
   freeform_tags = var.freeform_tags

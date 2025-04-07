@@ -68,21 +68,6 @@ variable "freeform_tags" {
   }
 }
 
-variable "create_internet_gateway" {
-  description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
-  type        = bool
-}
-
-variable "create_nat_gateway" {
-  description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
-  type        = bool
-}
-
-variable "create_service_gateway" {
-  description = "whether to create a service gateway. If set to true, creates a service gateway."
-  type        = bool
-}
-
 # variable "nat_gateway_public_ip_id" {
 #   description = "OCID of reserved IP address for NAT gateway. The reserved public IP address needs to be manually created."
 #   type        = string

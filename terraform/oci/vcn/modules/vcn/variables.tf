@@ -40,24 +40,6 @@ variable "compartment_id" {
   type        = string
 }
 
-variable "create_internet_gateway" {
-  description = "whether to create the internet gateway in the vcn. If set to true, creates an Internet Gateway."
-  default     = false
-  type        = bool
-}
-
-variable "create_nat_gateway" {
-  description = "whether to create a nat gateway in the vcn. If set to true, creates a nat gateway."
-  default     = false
-  type        = bool
-}
-
-variable "create_service_gateway" {
-  description = "whether to create a service gateway. If set to true, creates a service gateway."
-  default     = false
-  type        = bool
-}
-
 variable "vcn_cidrs" {
   description = "The list of IPv4 CIDR blocks the VCN will use."
   type        = list(string)
