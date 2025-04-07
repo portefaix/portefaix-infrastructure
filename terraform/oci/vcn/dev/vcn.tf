@@ -17,6 +17,7 @@
 module "vcn" {
   source = "../modules/vcn"
 
+  region         = var.region
   compartment_id = var.compartment_id
   organization   = var.organization
   environment    = var.environment
@@ -25,11 +26,11 @@ module "vcn" {
   create_nat_gateway      = var.create_nat_gateway
   create_service_gateway  = var.create_service_gateway
 
-  vcn_cidrs          = var.vcn_cidrs
-  control_plane_cidr = var.control_plane_cidr
-  workers_cidr       = var.workers_cidr
-  pub_lb_cidr        = var.pub_lb_cidr
-  int_lb_cidr        = var.int_lb_cidr
+  vcn_cidrs = var.vcn_cidrs
+  # control_plane_cidr = var.control_plane_cidr
+  # workers_cidr       = var.workers_cidr
+  # pub_lb_cidr        = var.pub_lb_cidr
+  # int_lb_cidr        = var.int_lb_cidr
 
   freeform_tags = var.freeform_tags
 }

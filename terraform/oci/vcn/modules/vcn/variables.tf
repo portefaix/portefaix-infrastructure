@@ -17,6 +17,10 @@
 #############################################################################
 # Provider
 
+variable "region" {
+  description = "the oci region where resources will be created"
+  type        = string
+}
 
 #############################################################################
 # Hub

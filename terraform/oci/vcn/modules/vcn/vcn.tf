@@ -19,6 +19,7 @@ module "vcn" {
   version = "3.5.4"
 
   compartment_id = var.compartment_id
+  region         = var.region
 
   label_prefix = "none"
 
