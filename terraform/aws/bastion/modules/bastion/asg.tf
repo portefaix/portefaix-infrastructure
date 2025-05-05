@@ -17,7 +17,7 @@
 #tfsec:ignore:aws-autoscaling-enforce-http-token-imds
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
-  version = "8.1.0"
+  version = "8.3.0"
 
   name = var.asg_name
 
