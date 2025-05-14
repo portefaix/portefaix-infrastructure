@@ -49,7 +49,7 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4.1.0
+      uses: aws-actions/configure-aws-credentials@v4.2.1
       with:
         role-to-assume: ${{ secrets.AWS_ASSUME_ROLE }}
         role-session-name: githubactions
