@@ -21,7 +21,7 @@ collections:
   #   version: 1.5.4
   - name: community.general
     source: https://galaxy.ansible.com
-    version: 10.4.0
+    version: 10.7.1
   - name: prometheus.prometheus
     source: https://galaxy.ansible.com
     version: 0.25.0
