@@ -48,7 +48,7 @@ module "pod_identity_alb_controller" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = var.alb_controller_namespace
       service_account = var.alb_controller_sa_name
     }

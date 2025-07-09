@@ -33,9 +33,9 @@ resource "aws_iam_role" "config_aggregator" {
   provider           = aws.audit
   name               = local.aggregator_role_name
   assume_role_policy = data.aws_iam_policy_document.assume.json
-  managed_policy_arns = [
-    "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
-  ]
+  # managed_policy_arns = [
+  #   "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
+  # ]
 
   tags = merge({
     Env  = "Audit"
@@ -43,18 +43,28 @@ resource "aws_iam_role" "config_aggregator" {
   }, var.tags)
 }
 
+resource "aws_iam_role_policy_attachment" "config_aggregator_service_role" {
+  role       = aws_iam_role.config_aggregator.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
+}
+
 resource "aws_iam_role" "config_recorder" {
   provider           = aws.audit
   name               = local.recorder_role_name
   assume_role_policy = data.aws_iam_policy_document.assume.json
-  managed_policy_arns = [
-    "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
-  ]
+  # managed_policy_arns = [
+  #   "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
+  # ]
 
   tags = merge({
     Name = local.recorder_role_name
     Role = "IAM"
   }, var.tags)
+}
+
+resource "aws_iam_role_policy_attachment" "config_recorder_service_role" {
+  role       = aws_iam_role.config_recorder.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
 }
 
 # tfsec:ignore:aws-iam-no-policy-wildcards

@@ -74,7 +74,7 @@ module "pod_identity_secret_store_csi_driver" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = each.value.namespace
       service_account = each.value.sa_name
     }
