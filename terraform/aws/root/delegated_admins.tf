@@ -50,3 +50,8 @@ resource "aws_organizations_delegated_administrator" "detective" {
   account_id        = aws_organizations_account.audit.id
   service_principal = "detective.amazonaws.com"
 }
+
+resource "aws_organizations_delegated_administrator" "resource_explorer" {
+  account_id        = aws_organizations_account.audit.id
+  service_principal = "resource-explorer-2.amazonaws.com"
+}
