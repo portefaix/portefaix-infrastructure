@@ -1,5 +1,5 @@
 resource "aws_resourceexplorer2_index" "this" {
-  type = "LOCAL"
+  type = "AGGREGATOR"
 }
 
 resource "aws_resourceexplorer2_view" "this" {
