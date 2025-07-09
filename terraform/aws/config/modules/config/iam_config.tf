@@ -44,7 +44,7 @@ resource "aws_iam_role" "config_aggregator" {
 }
 
 resource "aws_iam_role_policy_attachment" "config_aggregator_service_role" {
-  role       = aws_iam_role.this.name
+  role       = aws_iam_role.config_aggregator.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
 }
 
@@ -63,7 +63,7 @@ resource "aws_iam_role" "config_recorder" {
 }
 
 resource "aws_iam_role_policy_attachment" "config_recorder_service_role" {
-  role       = aws_iam_role.this.name
+  role       = aws_iam_role.config_recorder.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
 }
 
