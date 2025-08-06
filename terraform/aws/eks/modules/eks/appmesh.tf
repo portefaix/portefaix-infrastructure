@@ -46,7 +46,7 @@ module "pod_identity_appmesh" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = var.appmesh_namespace
       service_account = var.appmesh_sa_name
     }

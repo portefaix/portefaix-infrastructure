@@ -48,7 +48,7 @@ module "pod_identity_node_termination_handler" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = var.node_termination_handler_namespace
       service_account = var.node_termination_handler_sa_name
     }

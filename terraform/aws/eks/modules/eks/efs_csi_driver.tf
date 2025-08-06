@@ -50,7 +50,7 @@ module "pod_identity_efs_csi_driver" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = var.efs_csi_controller_namespace
       service_account = var.efs_csi_controller_sa_name
     }
