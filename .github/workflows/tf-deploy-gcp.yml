@@ -539,7 +539,7 @@ jobs:
     steps:
     - id: auth
       name: Authenticate to Google Cloud
-      uses: google-github-actions/auth@v2.1.10
+      uses: google-github-actions/auth@v2.1.12
       with:
         token_format: 'access_token'
         workload_identity_provider: 'projects/portefaix-${{ github.event.inputs.env }}/locations/global/workloadIdentityPools/portefaix-${{ github.event.inputs.env }}/providers/portefaix-${{ github.event.inputs.env }}-github'
