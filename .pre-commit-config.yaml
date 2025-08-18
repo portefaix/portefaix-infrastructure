@@ -15,18 +15,54 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+default_install_hook_types:
+- pre-commit
+- pre-push
+- commit-msg
+
+default_stages:
+- pre-commit
+- pre-push
+- commit-msg
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      # - id: check-yaml
-      #   args:
-      #     - '--allow-multiple-documents'
-      #   exclude: >
-      #     mkdocs.yml
-      - id: check-added-large-files
+    - id: trailing-whitespace
+      name: "📁 filesystem /📝 files - check whitespace"
+      stages: [pre-commit]
+    - id: end-of-file-fixer
+      name: "📁 filesystem /📝 files - check end of file"
+      stages: [pre-commit]
+    - id: check-added-large-files
+      name: "📁 filesystem /📝 files - check large files"
+      stages: [pre-commit]
+    - id: check-executables-have-shebangs
+      name: "📁 filesystem /⚙️ exec · Verify shebang presence"
+      stages: [pre-commit]
+    - id: check-shebang-scripts-are-executable
+      name: "📁 filesystem /⚙️ exec · Verify script permissions"
+      stages: [pre-commit]
+    - id: check-case-conflict
+      name: "📁 filesystem /📝 names · Check case sensitivity"
+      stages: [pre-commit]
+    - id: check-illegal-windows-names
+      name: "📁 filesystem /📝 names · Validate Windows filenames"
+      stages: [pre-commit]
+    - id: check-symlinks
+      name: "📁 filesystem /🔗 symlink · Check symlink validity"
+      stages: [pre-commit]
+    - id: destroyed-symlinks
+      name: "📁 filesystem /🔗 symlink · Detect broken symlinks"
+      stages: [pre-commit]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.2.0
+    hooks:
+    - id: conventional-pre-commit
+      name: "✅ git / Validate commit message"
+      stages: [commit-msg]
+      args: [--strict, --force-scope, build, chore, ci, docs, refactor, perf, test]
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.99.5
     hooks:
