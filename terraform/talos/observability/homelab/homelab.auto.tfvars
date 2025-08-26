@@ -55,7 +55,7 @@ buckets = {
     storage_class = "Standard"
     days          = 30
   },
-  "portefaix-talos-homelab-quickwit-data" = {
+  "portefaix-talos-homelab-profiles-chunks" = {
     location      = "WEUR"
     storage_class = "Standard"
     days          = 30
