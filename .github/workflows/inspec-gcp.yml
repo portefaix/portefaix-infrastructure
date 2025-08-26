@@ -47,7 +47,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -97,7 +97,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -141,7 +141,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -185,7 +185,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -229,7 +229,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -273,7 +273,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -317,7 +317,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
@@ -361,7 +361,7 @@ jobs:
       uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
 
     - name: Configure GCP credentials
-      uses: google-github-actions/setup-gcloud@v2.2.0
+      uses: google-github-actions/setup-gcloud@v2.2.1
       with:
         version: 324.0.0
         # project_id: ${{ secrets.GCP_PROJECT_ID_PROD }}
