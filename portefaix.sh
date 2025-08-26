@@ -406,7 +406,7 @@ function setup_cloud_provider {
     ;;
   "kind") ;;
   "k3s")
-    setup_tailscale
+    # setup_tailscale
     # setup_freebox
     setup_cloudflare
     ;;
