@@ -63,7 +63,7 @@ resource "spacelift_environment_variable" "cloudflare_api_token" {
   for_each = toset(var.environments)
 
   context_id = spacelift_context.this[each.value].id
-  name       = "TF_VAR_cloudflare_api_token"
+  name       = "CLOUDFLARE_API_TOKEN" # "TF_VAR_cloudflare_api_token"
   value      = var.cloudflare_api_token
   write_only = true
 }

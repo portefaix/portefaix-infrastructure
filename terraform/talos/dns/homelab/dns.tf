@@ -18,7 +18,7 @@ module "dns" {
   source = "../modules/dns"
 
   cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_api_token  = var.cloudflare_api_token
+  # cloudflare_api_token  = var.cloudflare_api_token
   # zone_name  = var.zone_name
   # name       = var.name
   # ip_address = var.ip_address
