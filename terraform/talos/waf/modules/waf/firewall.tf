@@ -94,17 +94,50 @@
 #   }
 # }
 
+resource "cloudflare_ruleset" "managed_waf" {
+  # zone_id     = data.cloudflare_zone.this.id
+  account_id = var.cloudflare_account_id
+
+  kind  = "managed"
+  name  = "Cloudflare Managed Ruleset"
+  phase = "http_request_firewall_managed"
+
+  description = "Created by the Cloudflare security team, this ruleset is designed to provide fast and effective protection for all your applications. It is frequently updated to cover new vulnerabilities and reduce false positives."
+
+  lifecycle {
+    ignore_changes = [rules]
+  }
+}
+
 resource "cloudflare_ruleset" "block_countries" {
-  zone_id     = data.cloudflare_zone.this.id
+  kind = "root"
+  # zone_id     = data.cloudflare_zone.this.id
+  account_id  = var.cloudflare_account_id
   name        = "Zone level block countries"
-  description = "Expression to block countries"
-  kind        = "zone"
+  description = "Block countries"
   phase       = "http_request_firewall_custom"
 
   rules = [{
     enabled     = true
-    action      = "block"
-    expression  = "(ip.geoip.country in {\"CN\" \"IN\" \"RU\"})"
     description = "Block countries"
+
+    action = "block"
+    action_parameters = {
+      response = {
+        content      = <<EOT
+            {
+              "success": false,
+              "error": "you have been blocked"
+            }
+            EOT
+        content_type = "application/json"
+        status_code  = 400
+      }
+    }
+    expression = "(ip.geoip.country in {\"CN\" \"IN\" \"RU\"})"
+
+    logging = {
+      enabled = true
+    }
   }]
 }

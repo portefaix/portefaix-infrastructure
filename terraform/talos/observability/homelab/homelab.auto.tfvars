@@ -15,31 +15,49 @@
 # SPDX-License-Identifier: Apache-2.0
 
 buckets = {
-  "portefaix-homelab-logs-admin" = {
-    days = 30
+  "portefaix-talos-homelab-logs-admin" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-logs-chunks" = {
-    days = 30
+  "portefaix-talos-homelab-logs-chunks" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-logs-ruler" = {
-    days = 30
+  "portefaix-talos-homelab-logs-ruler" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-metrics-admin" = {
-    days = 30
+  "portefaix-talos-homelab-metrics-admin" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-metrics-alert" = {
-    days = 30
+  "portefaix-talos-homelab-metrics-alert" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-metrics-ruler" = {
-    days = 30
+  "portefaix-talos-homelab-metrics-ruler" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-metrics-tsdb" = {
-    days = 30
+  "portefaix-talos-homelab-metrics-tsdb" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-traces-chunks" = {
-    days = 30
+  "portefaix-talos-homelab-traces-chunks" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
-  "portefaix-homelab-quickwit-data" = {
-    days = 30
+  "portefaix-talos-homelab-quickwit-data" = {
+    location      = "WEUR"
+    storage_class = "Standard"
+    days          = 30
   },
 }

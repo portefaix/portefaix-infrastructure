@@ -14,27 +14,40 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "aws_s3_bucket" "observability" {
-  provider = aws.cloudflare_r2
-
+resource "cloudflare_r2_bucket" "observability" {
   for_each = var.buckets
-  bucket   = each.key
 
-  force_destroy = true
+  account_id    = var.cloudflare_account_id
+  name          = each.key
+  location      = each.value.location
+  storage_class = each.value.storage_class
 }
 
-resource "aws_s3_bucket_lifecycle_configuration" "life_cycles" {
-  provider = aws.cloudflare_r2
-
+resource "cloudflare_r2_bucket_lifecycle" "observability" {
   for_each = var.buckets
 
-  bucket = aws_s3_bucket.observability[each.key].id
+  account_id  = var.cloudflare_account_id
+  bucket_name = cloudflare_r2_bucket.observability[each.key].name
 
-  rule {
-    id     = "expire-bucket"
-    status = "Enabled"
-    expiration {
-      days = each.value.days
+  rules = [
+    {
+      id      = format("Delete all objects and uploads after %s days", each.value.days)
+      enabled = true
+      conditions = {
+        prefix = "/"
+      }
+      delete_objects_transition = {
+        condition = {
+          max_age = each.value.days
+          type    = "Age"
+        }
+      }
+      abort_multipart_uploads_transition = {
+        condition = {
+          max_age = each.value.days
+          type    = "Age"
+        }
+      }
     }
-  }
+  ]
 }
