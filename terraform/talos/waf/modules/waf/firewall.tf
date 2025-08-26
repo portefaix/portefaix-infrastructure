@@ -101,10 +101,10 @@ resource "cloudflare_ruleset" "block_countries" {
   kind        = "zone"
   phase       = "http_request_firewall_custom"
 
-  rules {
+  rules = [{
+    enabled     = true
     action      = "block"
     expression  = "(ip.geoip.country in {\"CN\" \"IN\" \"RU\"})"
     description = "Block countries"
-    enabled     = true
-  }
+  }]
 }

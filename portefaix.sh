@@ -105,6 +105,7 @@ function setup_cloudflare() {
   get_infisical_secret "AWS_ENDPOINT_URL_S3" "${path}" "AWS_ENDPOINT_URL_S3" || return 1
   get_infisical_secret "GITHUB_OAUTH_CLIENT_ID" "${path}" "TF_VAR_github_oauth_client_id" || return 1
   get_infisical_secret "GITHUB_OAUTH_CLIENT_SECRET" "${path}" "TF_VAR_github_oauth_client_secret" || return 1
+  export TF_VAR_cloudflare_account_id="${CLOUDFLARE_ACCOUNT_ID}"
   export TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"
   export TF_VAR_secret_access_key="${AWS_SECRET_ACCESS_KEY}"
 }
@@ -411,7 +412,7 @@ function setup_cloud_provider {
     setup_cloudflare
     ;;
   "talos")
-    setup_tailscale
+    # setup_tailscale
     # setup_freebox
     setup_cloudflare
     ;;

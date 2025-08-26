@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 data "cloudflare_zone" "this" {
-  filter {
+  filter = {
     name   = var.zone_name
     status = "active"
     paused = false

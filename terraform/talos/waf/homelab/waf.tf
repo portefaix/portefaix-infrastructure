@@ -18,6 +18,6 @@ module "waf" {
   source = "../modules/waf"
 
   cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_api_token  = var.cloudflare_api_token
-  zone_name             = var.zone_name
+  # cloudflare_api_token  = var.cloudflare_api_token
+  zone_name = var.zone_name
 }
