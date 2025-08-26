@@ -52,7 +52,7 @@ module "pod_identity_eso" {
 
   associations = {
     main = {
-      cluster_name    = data.aws_eks_cluster.this.id
+      cluster_name    = module.eks.cluster_name
       namespace       = var.eso_namespace
       service_account = var.eso_sa_name
     }
