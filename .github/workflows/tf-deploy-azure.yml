@@ -48,7 +48,7 @@ jobs:
         echo "Deploy Portefaix on Azure / network"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -81,7 +81,7 @@ jobs:
         echo "Deploy Azure Bastion / network"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -109,7 +109,7 @@ jobs:
         echo "Deploy Azure Bastion / network"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -137,7 +137,7 @@ jobs:
         echo "Deploy Azure Monitor / logging"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -164,7 +164,7 @@ jobs:
         echo "Deploy Portefaix on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -201,7 +201,7 @@ jobs:
         echo "Deploy Application Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -229,7 +229,7 @@ jobs:
         echo "Deploy NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -261,7 +261,7 @@ jobs:
         echo "Deploy Azure Virtual Network Peering / Orga"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -289,7 +289,7 @@ jobs:
         echo "Deploy ACR on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -321,7 +321,7 @@ jobs:
         echo "Deploy ACR on Azure / shared"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -357,7 +357,7 @@ jobs:
         echo "Deploy AKS on Azure / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -389,7 +389,7 @@ jobs:
         echo "Deploy Azure Bastion / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -417,7 +417,7 @@ jobs:
         echo "Deploy Observability / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -445,7 +445,7 @@ jobs:
         echo "Deploy Velero / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
