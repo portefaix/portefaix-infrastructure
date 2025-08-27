@@ -20,7 +20,7 @@ module "zero-trust" {
   cloudflare_account_id = var.cloudflare_account_id
   cloudflare_tunnel_id  = var.cloudflare_tunnel_id
   cloudflare_zone_id    = var.cloudflare_zone_id
-  # tunnel_name                = var.tunnel_name
+  tunnel_name           = var.tunnel_name
   # zone_name                  = var.zone_name
   applications               = var.applications
   github_oauth_client_id     = var.github_oauth_client_id
