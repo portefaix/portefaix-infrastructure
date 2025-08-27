@@ -15,21 +15,22 @@
 # SPDX-License-Identifier: Apache-2.0
 
 data "cloudflare_zone" "this" {
-  filter = {
-    name   = var.zone_name
-    status = "active"
-    paused = false
-    account = {
-      id = var.cloudflare_account_id
-    }
-  }
+  zone_id = var.cloudflare_zone_id
+  # filter = {
+  #   name   = var.zone_name
+  #   status = "active"
+  #   paused = false
+  #   account = {
+  #     id = var.cloudflare_account_id
+  #   }
+  # }
 }
 
 data "cloudflare_zero_trust_tunnel_cloudflared" "this" {
   account_id = var.cloudflare_account_id
-
-  filter = {
-    name = var.tunnel_name
-    # status = "active"
-  }
+  tunnel_id  = var.cloudflare_tunnel_id
+  # filter = {
+  #   name = var.tunnel_name
+  #   # status = "active"
+  # }
 }

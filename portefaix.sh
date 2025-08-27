@@ -106,11 +106,14 @@ function setup_cloudflare() {
   get_infisical_secret "GITHUB_OAUTH_CLIENT_ID" "${path}" "TF_VAR_github_oauth_client_id" || return 1
   get_infisical_secret "GITHUB_OAUTH_CLIENT_SECRET" "${path}" "TF_VAR_github_oauth_client_secret" || return 1
   get_infisical_secret "CLOUDFLARE_EMAIL" "${path}" "TF_VAR_cloudflare_email" || return 1
+  get_infisical_secret "CLOUDFLARE_TUNNEL_ID" "${path}" "TF_VAR_cloudflare_tunnel_id" || return 1
+  get_infisical_secret "CLOUDFLARE_ZONE_ID" "${path}" "TF_VAR_cloudflare_zone_id" || return 1
 
   export TF_VAR_cloudflare_account_id="${CLOUDFLARE_ACCOUNT_ID}"
   export TF_VAR_cloudflare_api_token="${CLOUDFLARE_API_TOKEN}"
   export TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"
   export TF_VAR_secret_access_key="${AWS_SECRET_ACCESS_KEY}"
+
 }
 
 # Github for Flux

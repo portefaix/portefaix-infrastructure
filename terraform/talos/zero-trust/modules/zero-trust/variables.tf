@@ -36,15 +36,26 @@ variable "cloudflare_account_id" {
 #   type        = string
 # }
 
-variable "tunnel_name" {
-  description = "The Cloudflare tunnel name"
+# variable "tunnel_name" {
+#   description = "The Cloudflare tunnel name"
+#   type        = string
+# }
+
+variable "cloudflare_tunnel_id" {
+  description = "The Cloudflare tunnel id"
   type        = string
 }
 
-variable "zone_name" {
-  description = "The name of the zone"
+# variable "zone_name" {
+#   description = "The name of the zone"
+#   type        = string
+# }
+
+variable "cloudflare_zone_id" {
+  description = "The DNS zone id"
   type        = string
 }
+
 
 # variable "subdomain" {
 #   description = "The subdomain for the applications"

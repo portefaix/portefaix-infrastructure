@@ -94,3 +94,21 @@ resource "spacelift_environment_variable" "cloudflare_email" {
   value      = var.cloudflare_email
   write_only = true
 }
+
+resource "spacelift_environment_variable" "cloudflare_tunnel_id" {
+  for_each = toset(var.environments)
+
+  context_id = spacelift_context.this[each.value].id
+  name       = "TF_VAR_cloudflare_tunnel_id"
+  value      = var.cloudflare_tunnel_id
+  write_only = true
+}
+
+resource "spacelift_environment_variable" "cloudflare_zone_id" {
+  for_each = toset(var.environments)
+
+  context_id = spacelift_context.this[each.value].id
+  name       = "TF_VAR_cloudflare_zone_id"
+  value      = var.cloudflare_zone_id
+  write_only = true
+}
