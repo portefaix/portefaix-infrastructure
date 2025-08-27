@@ -26,11 +26,11 @@
 
 applications = [
   # "alertmanager",
-  # "alloy-events",
-  # "alloy-logs",
-  # "alloy-metrics",
-  # "alloy-profiles",
-  # "alloy-traces",
+  "alloy-events",
+  "alloy-logs",
+  "alloy-metrics",
+  "alloy-profiles",
+  "alloy-traces",
   # "argo-cd",
   # "argo-workflows",
   # "cilium",
