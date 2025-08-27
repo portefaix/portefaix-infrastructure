@@ -14,4 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-locals {}
+locals {
+  github_org_name = "portefaix"
+}
