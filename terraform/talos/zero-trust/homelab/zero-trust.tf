@@ -14,8 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "tunnel" {
-  source = "../modules/tunnel"
+module "zero-trust" {
+  source = "../modules/zero-trust"
 
   cloudflare_account_id = var.cloudflare_account_id
   # cloudflare_api_token  = var.cloudflare_api_token

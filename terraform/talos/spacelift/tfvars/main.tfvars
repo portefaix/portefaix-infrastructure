@@ -52,10 +52,10 @@ stacks = {
     branch       = "main"
     dependencies = []
   },
-  portefaix-homelab-tunnel = {
-    project_root = "terraform/talos/tunnel"
+  portefaix-homelab-zero-trust = {
+    project_root = "terraform/talos/zero-trust"
     branch       = "main"
-    labels       = ["security", "tunnel"]
+    labels       = ["security", "zero-trust", "access"]
     environment  = "homelab"
     branch       = "main"
     dependencies = []
