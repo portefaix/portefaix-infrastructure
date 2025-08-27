@@ -76,7 +76,7 @@ resource "cloudflare_zero_trust_access_application" "this" {
 
 resource "cloudflare_zero_trust_access_identity_provider" "pin_login" {
   account_id = var.cloudflare_account_id
-  name       = "PIN login"
+  name       = "PIN Login"
   type       = "onetimepin"
 
   config = {}
@@ -85,7 +85,7 @@ resource "cloudflare_zero_trust_access_identity_provider" "pin_login" {
 resource "cloudflare_zero_trust_access_identity_provider" "github_sso" {
   account_id = var.cloudflare_account_id
 
-  name = "GitHub OAuth"
+  name = "GitHub SSO"
   type = "github"
 
   config = {
