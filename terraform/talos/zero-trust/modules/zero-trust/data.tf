@@ -22,17 +22,21 @@ data "cloudflare_zones" "this" {
   #   status     = "active"
   #   paused     = false
   # }
+  account_id = var.cloudflare_account_id
+
   filter {
-    account_id  = var.cloudflare_account_id
-    name        = var.zone_name
-    lookup_type = "exact"
-    status      = "active"
-    paused      = false
+    name   = var.zone_name
+    status = "active"
+    paused = false
+    account {
+      id = var.cloudflare_account_id
+    }
   }
 }
 
 data "cloudflare_zero_trust_tunnel_cloudflared" "this" {
   account_id = var.cloudflare_account_id
+
   filter = {
     name = var.tunnel_name
     # status = "active"
