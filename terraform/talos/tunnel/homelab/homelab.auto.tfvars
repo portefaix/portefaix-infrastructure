@@ -26,21 +26,21 @@ tunnel_name = "portefaix-homelab"
 # tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
 
 applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "kargo",
-  "prometheus",
-  "pyrra",
-  "quickwit",
-  "fleet",
-  "keep"
+  # "alertmanager",
+  # "alloy-events",
+  # "alloy-logs",
+  # "alloy-metrics",
+  # "alloy-profiles",
+  # "alloy-traces",
+  # "argo-cd",
+  # "argo-workflows",
+  # "cilium",
+  # "grafana",
+  # "homepage",
+  # "kargo",
+  # "prometheus",
+  # "pyrra",
+  # "quickwit",
+  # "fleet",
+  # "keep"
 ]
