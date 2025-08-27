@@ -16,6 +16,4 @@
 
 locals {
   github_org_name = "portefaix"
-
-  zone = one(data.cloudflare_zones.this.zones)
 }

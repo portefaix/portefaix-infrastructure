@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 output "zone_id" {
-  value = local.zone.id
+  value = data.cloudflare_zone.this.id
 }
 
 output "tunnel_id" {
