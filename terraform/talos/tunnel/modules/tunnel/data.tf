@@ -24,5 +24,8 @@ data "cloudflare_zone" "this" {
 
 data "cloudflare_zero_trust_tunnel_cloudflared" "this" {
   account_id = var.cloudflare_account_id
-  name       = var.tunnel_name
+  filter = {
+    name = var.tunnel_name
+    # status = "active"
+  }
 }
