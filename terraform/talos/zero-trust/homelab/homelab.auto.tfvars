@@ -14,4 +14,32 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-locals {}
+#####################################################################""
+# Provider
+
+
+##############################################################################
+# Tunnel
+
+# zone_name   = "portefaix.xyz"
+tunnel_name = "portefaix-talos-homelab"
+
+applications = [
+  # "alertmanager",
+  "alloy-events",
+  "alloy-logs",
+  "alloy-metrics",
+  "alloy-profiles",
+  "alloy-traces",
+  # "argo-cd",
+  # "argo-workflows",
+  # "cilium",
+  # "grafana",
+  # "homepage",
+  # "kargo",
+  # "prometheus",
+  # "pyrra",
+  # "quickwit",
+  # "fleet",
+  # "keep"
+]

@@ -26,11 +26,11 @@ LOG_LEVEL_TRACE=4
 # Set default log level (can be overridden by env or arg)
 LOG_LEVEL="${LOG_LEVEL:=$LOG_LEVEL_INFO}"
 
-function log_trace { [ $LOG_LEVEL_TRACE -le ${LOG_LEVEL} ] && echo -e "${color_blue}🟡 $*${reset_color}"; }
-function log_debug { [ $LOG_LEVEL_DEBUG -le ${LOG_LEVEL} ] && echo -e "${color_blue}🔵 $*${reset_color}"; }
-function log_info { [ $LOG_LEVEL_INFO -le ${LOG_LEVEL} ] && echo -e "${color_green}🟢 $*${reset_color}"; }
-function log_warn { [ $LOG_LEVEL_WARN -le ${LOG_LEVEL} ] && echo -e "${color_yellow}🟠 $*${reset_color}"; }
-function log_error { [ $LOG_LEVEL_ERROR -le ${LOG_LEVEL} ] && echo -e "${color_red}🔴 $*${reset_color}"; }
+function log_trace { [ "${LOG_LEVEL_TRACE}" -le "${LOG_LEVEL}" ] && echo -e "${color_blue}🟡 $*${reset_color}"; }
+function log_debug { [ "${LOG_LEVEL_DEBUG}" -le "${LOG_LEVEL}" ] && echo -e "${color_blue}🔵 $*${reset_color}"; }
+function log_info { [ "${LOG_LEVEL_INFO}" -le "${LOG_LEVEL}" ] && echo -e "${color_green}🟢 $*${reset_color}"; }
+function log_warn { [ "${LOG_LEVEL_WARN}" -le "${LOG_LEVEL}" ] && echo -e "${color_yellow}🟠 $*${reset_color}"; }
+function log_error { [ "${LOG_LEVEL_ERROR}" -le "${LOG_LEVEL}" ] && echo -e "${color_red}🔴 $*${reset_color}"; }
 
 function usage() {
   echo "Usage: $0 <cloud provider>"
@@ -105,8 +105,15 @@ function setup_cloudflare() {
   get_infisical_secret "AWS_ENDPOINT_URL_S3" "${path}" "AWS_ENDPOINT_URL_S3" || return 1
   get_infisical_secret "GITHUB_OAUTH_CLIENT_ID" "${path}" "TF_VAR_github_oauth_client_id" || return 1
   get_infisical_secret "GITHUB_OAUTH_CLIENT_SECRET" "${path}" "TF_VAR_github_oauth_client_secret" || return 1
+  get_infisical_secret "CLOUDFLARE_EMAIL" "${path}" "TF_VAR_cloudflare_email" || return 1
+  get_infisical_secret "CLOUDFLARE_TUNNEL_ID" "${path}" "TF_VAR_cloudflare_tunnel_id" || return 1
+  get_infisical_secret "CLOUDFLARE_ZONE_ID" "${path}" "TF_VAR_cloudflare_zone_id" || return 1
+
+  export TF_VAR_cloudflare_account_id="${CLOUDFLARE_ACCOUNT_ID}"
+  export TF_VAR_cloudflare_api_token="${CLOUDFLARE_API_TOKEN}"
   export TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"
   export TF_VAR_secret_access_key="${AWS_SECRET_ACCESS_KEY}"
+
 }
 
 # Github for Flux
@@ -406,12 +413,12 @@ function setup_cloud_provider {
     ;;
   "kind") ;;
   "k3s")
-    setup_tailscale
+    # setup_tailscale
     # setup_freebox
     setup_cloudflare
     ;;
   "talos")
-    setup_tailscale
+    # setup_tailscale
     # setup_freebox
     setup_cloudflare
     ;;

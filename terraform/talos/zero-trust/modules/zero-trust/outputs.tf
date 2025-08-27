@@ -14,7 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-[virtualenvs]
-create = true
-in-project = true
-path = "venv"
+output "zone_id" {
+  value = data.cloudflare_zone.this.id
+}
+
+output "tunnel_id" {
+  value = data.cloudflare_zero_trust_tunnel_cloudflared.this.id
+}
+
+output "tunnel_name" {
+  value = data.cloudflare_zero_trust_tunnel_cloudflared.this.name
+}

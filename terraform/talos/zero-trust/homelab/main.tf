@@ -14,11 +14,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-data "cloudflare_zone" "this" {
-  name = var.zone_name
-}
+terraform {
+  required_version = ">= 1.0.0"
 
-data "cloudflare_zero_trust_tunnel_cloudflared" "this" {
-  account_id = var.cloudflare_account_id
-  name = var.tunnel_name
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.100.0"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "5.8.4"
+    }
+  }
 }

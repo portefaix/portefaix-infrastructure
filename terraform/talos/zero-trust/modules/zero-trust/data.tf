@@ -14,33 +14,23 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#####################################################################""
-# Provider
+data "cloudflare_zone" "this" {
+  zone_id = var.cloudflare_zone_id
+  # filter = {
+  #   name   = var.zone_name
+  #   status = "active"
+  #   paused = false
+  #   account = {
+  #     id = var.cloudflare_account_id
+  #   }
+  # }
+}
 
-
-##############################################################################
-# Tunnel
-
-zone_name   = "portefaix.xyz"
-tunnel_name = "portefaix-homelab"
-# tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
-
-applications = [
-  "alertmanager",
-  "alloy-events",
-  "alloy-logs",
-  "alloy-metrics",
-  "alloy-profiles",
-  "alloy-traces",
-  "argo-cd",
-  "argo-workflows",
-  "cilium",
-  "grafana",
-  "homepage",
-  "kargo",
-  "prometheus",
-  "pyrra",
-  "quickwit",
-  "fleet",
-  "keep"
-]
+data "cloudflare_zero_trust_tunnel_cloudflared" "this" {
+  account_id = var.cloudflare_account_id
+  tunnel_id  = var.cloudflare_tunnel_id
+  # filter = {
+  #   name = var.tunnel_name
+  #   # status = "active"
+  # }
+}

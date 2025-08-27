@@ -22,15 +22,20 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
-variable "cloudflare_api_token" {
-  description = "The Cloudflare API token"
-  type        = string
-}
+# variable "cloudflare_api_token" {
+#   description = "The Cloudflare API token"
+#   type        = string
+# }
 
 #######################################################################
 # DNS
 
-variable "zone_name" {
-  description = "The name of the zone"
+variable "cloudflare_zone_id" {
+  description = "The DNS zone id"
   type        = string
 }
+
+# variable "zone_name" {
+#   description = "The name of the zone"
+#   type        = string
+# }

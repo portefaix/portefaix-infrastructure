@@ -22,10 +22,10 @@ variable "cloudflare_account_id" {
   type        = string
 }
 
-variable "cloudflare_api_token" {
-  description = "The Cloudflare API token"
-  type        = string
-}
+# variable "cloudflare_api_token" {
+#   description = "The Cloudflare API token"
+#   type        = string
+# }
 
 #######################################################################
 # Observability
@@ -33,6 +33,8 @@ variable "cloudflare_api_token" {
 variable "buckets" {
   description = "List of buckets names"
   type = map(object({
-    days = number
+    location      = string
+    storage_class = string
+    days          = number
   }))
 }

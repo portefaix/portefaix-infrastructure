@@ -80,3 +80,18 @@ variable "github_oauth_client_secret" {
   type        = string
   description = "Client secret from the Github OAuth application"
 }
+
+variable "cloudflare_email" {
+  type        = string
+  description = "Email to allow Cloudflare applications"
+}
+
+variable "cloudflare_tunnel_id" {
+  description = "The Cloudflare tunnel id"
+  type        = string
+}
+
+variable "cloudflare_zone_id" {
+  description = "The DNS zone id"
+  type        = string
+}

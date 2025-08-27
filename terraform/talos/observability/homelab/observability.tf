@@ -18,6 +18,6 @@ module "observability" {
   source = "../modules/observability"
 
   cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_api_token  = var.cloudflare_api_token
-  buckets               = var.buckets
+  # cloudflare_api_token  = var.cloudflare_api_token
+  buckets = var.buckets
 }

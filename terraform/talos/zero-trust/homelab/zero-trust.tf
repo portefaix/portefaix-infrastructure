@@ -14,17 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
+module "zero-trust" {
+  source = "../modules/zero-trust"
 
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.100.0"
-    }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "4.52.0"
-    }
-  }
+  cloudflare_account_id = var.cloudflare_account_id
+  cloudflare_tunnel_id  = var.cloudflare_tunnel_id
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  tunnel_name           = var.tunnel_name
+  # zone_name                  = var.zone_name
+  applications               = var.applications
+  github_oauth_client_id     = var.github_oauth_client_id
+  github_oauth_client_secret = var.github_oauth_client_secret
+  cloudflare_email           = var.cloudflare_email
 }
