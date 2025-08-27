@@ -23,28 +23,28 @@ resource "cloudflare_ruleset" "zone_level_managed_waf" {
   phase       = "http_request_firewall_managed"
 
   # Execute Cloudflare Managed Ruleset
-  rules {
-    action = "execute"
-    action_parameters {
-      id      = "efb7b8c949ac4650a09736fc376e9aee"
-      version = "latest"
+  rules = [
+    {
+      action = "execute"
+      action_parameters = {
+        id      = "efb7b8c949ac4650a09736fc376e9aee"
+        version = "latest"
+      }
+      expression  = "true"
+      description = "Execute Cloudflare Managed Ruleset on my zone-level phase entry point ruleset"
+      enabled     = true
+    },
+    {
+      action = "execute"
+      action_parameters = {
+        id      = "4814384a9e5d4991b9815dcfc25d2f1f"
+        version = "latest"
+      }
+      expression  = "true"
+      description = "Execute Cloudflare OWASP Core Ruleset on my zone-level phase entry point ruleset"
+      enabled     = true
     }
-    expression  = "true"
-    description = "Execute Cloudflare Managed Ruleset on my zone-level phase entry point ruleset"
-    enabled     = true
-  }
-
-  # Execute Cloudflare OWASP Core Ruleset
-  rules {
-    action = "execute"
-    action_parameters {
-      id      = "4814384a9e5d4991b9815dcfc25d2f1f"
-      version = "latest"
-    }
-    expression  = "true"
-    description = "Execute Cloudflare OWASP Core Ruleset on my zone-level phase entry point ruleset"
-    enabled     = true
-  }
+  ]
 }
 
 resource "cloudflare_ruleset" "zone_level_http_ddos_config" {
@@ -54,22 +54,24 @@ resource "cloudflare_ruleset" "zone_level_http_ddos_config" {
   kind        = "zone"
   phase       = "ddos_l7"
 
-  rules {
-    action = "execute"
-    action_parameters {
-      id = "4d21379b4f9f4bb088e0729962c8b3cf"
-      overrides {
-        rules {
-          # Rule: HTTP requests with unusual HTTP headers or URI path (signature #11).
-          id                = "fdfdac75430c4c47a959592f0aa5e68a"
-          sensitivity_level = "low"
-        }
+  rules = [
+    {
+      action = "execute"
+      action_parameters = {
+        id = "4d21379b4f9f4bb088e0729962c8b3cf"
+        # overrides {
+        #   rules {
+        #     # Rule: HTTP requests with unusual HTTP headers or URI path (signature #11).
+        #     id                = "fdfdac75430c4c47a959592f0aa5e68a"
+        #     sensitivity_level = "low"
+        #   }
+        # }
       }
+      expression  = "true"
+      description = "Override the HTTP DDoS Attack Protection managed ruleset"
+      enabled     = true
     }
-    expression  = "true"
-    description = "Override the HTTP DDoS Attack Protection managed ruleset"
-    enabled     = true
-  }
+  ]
 }
 
 # not entitled: the use of operator Matches is not allowed, an Advanced Rate Limiting plan is required
@@ -117,27 +119,29 @@ resource "cloudflare_ruleset" "block_countries" {
   description = "Block countries"
   phase       = "http_request_firewall_custom"
 
-  rules = [{
-    enabled     = true
-    description = "Block countries"
+  rules = [
+    {
+      enabled     = true
+      description = "Block countries"
 
-    action = "block"
-    action_parameters = {
-      response = {
-        content      = <<EOT
+      action = "block"
+      action_parameters = {
+        response = {
+          content      = <<EOT
             {
               "success": false,
               "error": "you have been blocked"
             }
             EOT
-        content_type = "application/json"
-        status_code  = 400
+          content_type = "application/json"
+          status_code  = 400
+        }
+      }
+      expression = "(ip.geoip.country in {\"CN\" \"IN\" \"RU\"})"
+
+      logging = {
+        enabled = true
       }
     }
-    expression = "(ip.geoip.country in {\"CN\" \"IN\" \"RU\"})"
-
-    logging = {
-      enabled = true
-    }
-  }]
+  ]
 }
