@@ -25,4 +25,5 @@ module "tunnel" {
   applications               = var.applications
   github_oauth_client_id     = var.github_oauth_client_id
   github_oauth_client_secret = var.github_oauth_client_secret
+  cloudflare_email           = var.cloudflare_email
 }

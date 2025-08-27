@@ -85,3 +85,12 @@ resource "spacelift_environment_variable" "github_oauth_client_secret" {
   value      = var.github_oauth_client_secret
   write_only = true
 }
+
+resource "spacelift_environment_variable" "cloudflare_email" {
+  for_each = toset(var.environments)
+
+  context_id = spacelift_context.this[each.value].id
+  name       = "TF_VAR_cloudflare_email"
+  value      = var.cloudflare_email
+  write_only = true
+}
