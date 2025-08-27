@@ -35,37 +35,37 @@
 #   proxied = true
 # }
 
-resource "cloudflare_access_application" "this" {
-  for_each = toset(var.applications)
+# resource "cloudflare_access_application" "this" {
+#   for_each = toset(var.applications)
 
-  zone_id = data.cloudflare_zone.this.id
-  name    = each.key
-  domain  = format("%s.%s", each.key, data.cloudflare_zone.this.name)
-  session_duration = "1h"
-}
+#   zone_id = data.cloudflare_zone.this.id
+#   name    = each.key
+#   domain  = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+#   session_duration = "1h"
+# }
 
-resource "cloudflare_access_identity_provider" "github_oauth" {
-  account_id = var.cloudflare_account_id
-  name       = "GitHub OAuth"
-  type       = "github"
-  config {
-    client_id     = var.github_oauth_client_id
-    client_secret = var.github_oauth_client_secret
-  }
-}
+# resource "cloudflare_access_identity_provider" "github_oauth" {
+#   account_id = var.cloudflare_account_id
+#   name       = "GitHub OAuth"
+#   type       = "github"
+#   config {
+#     client_id     = var.github_oauth_client_id
+#     client_secret = var.github_oauth_client_secret
+#   }
+# }
 
-resource "cloudflare_access_policy" "user" {
-  for_each = toset(var.applications)
+# resource "cloudflare_access_policy" "user" {
+#   for_each = toset(var.applications)
 
-  application_id = cloudflare_access_application.this[each.key].id
-  zone_id        = data.cloudflare_zone.this.id
-  name           = "User"
-  precedence     = 10
-  decision       = "allow"
+#   application_id = cloudflare_access_application.this[each.key].id
+#   zone_id        = data.cloudflare_zone.this.id
+#   name           = "User"
+#   precedence     = 10
+#   decision       = "allow"
 
-  include {
-    login_method = [
-      cloudflare_access_identity_provider.github_oauth.id
-    ]
-  }
-}
+#   include {
+#     login_method = [
+#       cloudflare_access_identity_provider.github_oauth.id
+#     ]
+#   }
+# }
