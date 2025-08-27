@@ -69,7 +69,15 @@ resource "cloudflare_zero_trust_access_application" "this" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_identity_provider" "example_zero_trust_access_identity_provider" {
+resource "cloudflare_zero_trust_access_identity_provider" "pin_login" {
+  account_id = var.cloudflare_account_id
+  name       = "PIN login"
+  type       = "onetimepin"
+
+  config = {}
+}
+
+resource "cloudflare_zero_trust_access_identity_provider" "github_oauth" {
   account_id = var.cloudflare_account_id
 
   name = "GitHub OAuth"
@@ -98,17 +106,17 @@ resource "cloudflare_zero_trust_access_identity_provider" "example_zero_trust_ac
 #   }
 # }
 
-# resource "cloudflare_zero_trust_access_policy" "allow_emails" {
-#   for_each = toset(var.applications)
+resource "cloudflare_zero_trust_access_policy" "allow_emails" {
+  for_each = toset(var.applications)
 
-#   account_id = var.cloudflare_account_id
-#   name       = "Allow email addresses"
-#   decision   = "allow"
-#   include = [
-#     {
-#       email = {
-#         email = var.cloudflare_email
-#       }
-#     }
-#   ]
-# }
+  account_id = var.cloudflare_account_id
+  name       = "Allow email addresses"
+  decision   = "allow"
+  include = [
+    {
+      email = {
+        email = var.cloudflare_email
+      }
+    }
+  ]
+}
