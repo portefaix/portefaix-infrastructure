@@ -17,11 +17,11 @@
 data "cloudflare_zone" "this" {
   account_id = var.cloudflare_account_id
 
-  filter {
+  filter = {
     name   = var.zone_name
     status = "active"
     paused = false
-    account {
+    account = {
       id = var.cloudflare_account_id
     }
   }
