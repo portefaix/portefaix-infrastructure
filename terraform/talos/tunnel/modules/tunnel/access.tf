@@ -35,37 +35,80 @@
 #   proxied = true
 # }
 
-resource "cloudflare_access_application" "this" {
+resource "cloudflare_zero_trust_access_application" "this" {
   for_each = toset(var.applications)
 
-  zone_id          = data.cloudflare_zone.this.id
-  name             = each.key
-  domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
-  session_duration = "1h"
+  account_id = var.cloudflare_account_id
+  type       = "self_hosted"
+  name       = format("Access application for %s %s", each.key, data.cloudflare_zone.this.name)
+  domain     = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+  policies = [
+    {
+      id         = cloudflare_zero_trust_access_policy.allow_emails.id
+      precedence = 1
+    }
+  ]
 }
 
-resource "cloudflare_access_identity_provider" "github_oauth" {
+# resource "cloudflare_access_application" "this" {
+#   for_each = toset(var.applications)
+
+#   zone_id          = data.cloudflare_zone.this.id
+#   name             = each.key
+#   domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+#   session_duration = "1h"
+# }
+
+# resource "cloudflare_access_identity_provider" "github_oauth" {
+#   account_id = var.cloudflare_account_id
+#   name       = "GitHub OAuth"
+#   type       = "github"
+#   config {
+#     client_id     = var.github_oauth_client_id
+#     client_secret = var.github_oauth_client_secret
+#   }
+# }
+
+resource "cloudflare_zero_trust_access_identity_provider" "example_zero_trust_access_identity_provider" {
   account_id = var.cloudflare_account_id
-  name       = "GitHub OAuth"
-  type       = "github"
-  config {
+
+  name = "GitHub OAuth"
+  type = "github"
+
+  config = {
     client_id     = var.github_oauth_client_id
     client_secret = var.github_oauth_client_secret
   }
 }
 
-resource "cloudflare_access_policy" "user" {
-  for_each = toset(var.applications)
+# resource "cloudflare_access_policy" "allow_github" {
+#   for_each = toset(var.applications)
 
-  application_id = cloudflare_access_application.this[each.key].id
-  zone_id        = data.cloudflare_zone.this.id
-  name           = "User"
-  precedence     = 10
-  decision       = "allow"
+#   account_id     = var.cloudflare_account_id
+#   application_id = cloudflare_access_application.this[each.key].id
+#   # zone_id        = data.cloudflare_zone.this.id
+#   name       = "User"
+#   precedence = 10
+#   decision   = "allow"
 
-  include {
-    login_method = [
-      cloudflare_access_identity_provider.github_oauth.id
-    ]
-  }
-}
+#   include {
+#     login_method = [
+#       cloudflare_access_identity_provider.github_oauth.id
+#     ]
+#   }
+# }
+
+# resource "cloudflare_zero_trust_access_policy" "allow_emails" {
+#   for_each = toset(var.applications)
+
+#   account_id = var.cloudflare_account_id
+#   name       = "Allow email addresses"
+#   decision   = "allow"
+#   include = [
+#     {
+#       email = {
+#         email = var.cloudflare_email
+#       }
+#     }
+#   ]
+# }
