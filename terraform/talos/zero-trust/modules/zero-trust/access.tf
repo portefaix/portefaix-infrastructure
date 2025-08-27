@@ -14,15 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# resource "random_id" "tunnel_secret" {
-#   byte_length = 35
-# }
+resource "random_id" "tunnel_secret" {
+  byte_length = 35
+}
 
-# resource "cloudflare_tunnel" "this" {
-#   account_id = var.cloudflare_account_id
-#   name       = var.name
-#   secret     = random_id.tunnel_secret.b64_std
-# }
+resource "cloudflare_tunnel" "this" {
+  account_id = var.cloudflare_account_id
+  name       = var.tunnel_name
+  secret     = random_id.tunnel_secret.b64_std
+}
 
 # resource "cloudflare_record" "this" {
 #   for_each = toset(var.applications)
@@ -115,6 +115,8 @@ resource "cloudflare_zero_trust_access_policy" "allow_github" {
   # zone_id        = data.cloudflare_zone.this.id
   name     = "Require to be in a GitHub team to access"
   decision = "allow"
+
+  session_duration = "24h"
 
   include = [
     {

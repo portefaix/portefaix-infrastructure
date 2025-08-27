@@ -22,7 +22,7 @@
 # Tunnel
 
 # zone_name   = "portefaix.xyz"
-# tunnel_name = "portefaix-homelab"
+tunnel_name = "portefaix-talos-homelab"
 
 applications = [
   # "alertmanager",

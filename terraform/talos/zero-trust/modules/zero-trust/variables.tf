@@ -36,10 +36,10 @@ variable "cloudflare_account_id" {
 #   type        = string
 # }
 
-# variable "tunnel_name" {
-#   description = "The Cloudflare tunnel name"
-#   type        = string
-# }
+variable "tunnel_name" {
+  description = "The Cloudflare tunnel name"
+  type        = string
+}
 
 variable "cloudflare_tunnel_id" {
   description = "The Cloudflare tunnel id"
