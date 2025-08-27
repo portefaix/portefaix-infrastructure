@@ -63,21 +63,10 @@ resource "spacelift_environment_variable" "cloudflare_api_token" {
   for_each = toset(var.environments)
 
   context_id = spacelift_context.this[each.value].id
-  name       = "CLOUDFLARE_API_TOKEN" # "TF_VAR_cloudflare_api_token"
+  name       = "CLOUDFLARE_API_TOKEN"
   value      = var.cloudflare_api_token
   write_only = true
 }
-
-
-# resource "spacelift_environment_variable" "cloudflare_api_token_legacy" {
-#   for_each = toset(var.environments)
-
-#   context_id = spacelift_context.this[each.value].id
-#   # name       = "CLOUDFLARE_API_TOKEN" # "TF_VAR_cloudflare_api_token"
-#   name       = "TF_VAR_cloudflare_api_token"
-#   value      = var.cloudflare_api_token
-#   write_only = true
-# }
 
 resource "spacelift_environment_variable" "github_oauth_client_id" {
   for_each = toset(var.environments)
