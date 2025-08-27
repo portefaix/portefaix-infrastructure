@@ -36,14 +36,14 @@ stacks = {
     branch       = "main"
     dependencies = []
   },
-  portefaix-homelab-waf = {
-    project_root = "terraform/talos/waf"
-    branch       = "main"
-    labels       = ["security", "waf"]
-    environment  = "homelab"
-    branch       = "main"
-    dependencies = []
-  },
+  # portefaix-homelab-waf = {
+  #   project_root = "terraform/talos/waf"
+  #   branch       = "main"
+  #   labels       = ["security", "waf"]
+  #   environment  = "homelab"
+  #   branch       = "main"
+  #   dependencies = []
+  # },
   portefaix-homelab-observability = {
     project_root = "terraform/talos/observability"
     branch       = "main"
