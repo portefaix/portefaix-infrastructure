@@ -148,8 +148,8 @@
 # }
 
 resource "cloudflare_ruleset" "outdated_protocol" {
-  kind    = "zone"
-  zone_id = data.cloudflare_zone.this.id
+  kind       = "zone"
+  account_id = var.cloudflare_account_id
 
   phase       = "http_request_firewall_custom"
   name        = "Outdated protocol"
