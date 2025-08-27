@@ -21,9 +21,8 @@
 ##############################################################################
 # Tunnel
 
-zone_name   = "portefaix.xyz"
-tunnel_name = "portefaix-homelab"
-# tunnel_id   = "21b10baa-4cce-4bb0-b00d-2a951ad5d0c5"
+# zone_name   = "portefaix.xyz"
+# tunnel_name = "portefaix-homelab"
 
 applications = [
   # "alertmanager",
