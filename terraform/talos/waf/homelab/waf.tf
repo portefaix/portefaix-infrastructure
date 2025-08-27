@@ -19,5 +19,6 @@ module "waf" {
 
   cloudflare_account_id = var.cloudflare_account_id
   # cloudflare_api_token  = var.cloudflare_api_token
-  zone_name = var.zone_name
+  cloudflare_zone_id = var.cloudflare_zone_id
+  # zone_name = var.zone_name
 }
