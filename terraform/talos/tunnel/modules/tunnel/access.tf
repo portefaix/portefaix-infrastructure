@@ -46,6 +46,10 @@ resource "cloudflare_zero_trust_access_application" "this" {
     {
       id         = cloudflare_zero_trust_access_policy.allow_emails.id
       precedence = 1
+    },
+    {
+      id         = cloudflare_zero_trust_access_policy.allow_github.id
+      precedence = 2
     }
   ]
 }
@@ -77,7 +81,7 @@ resource "cloudflare_zero_trust_access_identity_provider" "pin_login" {
   config = {}
 }
 
-resource "cloudflare_zero_trust_access_identity_provider" "github_oauth" {
+resource "cloudflare_zero_trust_access_identity_provider" "github_sso" {
   account_id = var.cloudflare_account_id
 
   name = "GitHub OAuth"
@@ -105,10 +109,27 @@ resource "cloudflare_zero_trust_access_identity_provider" "github_oauth" {
 #     ]
 #   }
 # }
+#
+resource "cloudflare_zero_trust_access_policy" "allow_github" {
+  account_id = var.cloudflare_account_id
+  # zone_id        = data.cloudflare_zone.this.id
+  name     = "Require to be in a GitHub team to access"
+  decision = "allow"
+
+  include = [
+    {
+      name                 = local.github_org_name
+      identity_provider_id = cloudflare_zero_trust_access_identity_provider.github_sso.id
+      teams = [
+        "Admin",
+        "core",
+        "sre"
+      ]
+    }
+  ]
+}
 
 resource "cloudflare_zero_trust_access_policy" "allow_emails" {
-  for_each = toset(var.applications)
-
   account_id = var.cloudflare_account_id
   name       = "Allow email addresses"
   decision   = "allow"
