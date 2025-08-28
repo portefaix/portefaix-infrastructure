@@ -44,7 +44,7 @@ resource "aws_iam_policy" "secret_store_csi_driver_controller" {
 
 module "irsa_secret_store_csi_driver" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
-  version = "5.60.0"
+  version = "6.2.1"
 
   for_each = var.enable_irsa ? toset(var.secrets_data) : toset([])
 
