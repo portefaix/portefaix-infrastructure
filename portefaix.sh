@@ -66,15 +66,15 @@ function validate_infisical_setup() {
 
 function get_infisical_secret() {
   local secret_name="$1"
-  local path="${2:-/}"
+  local infisical_path="${2:-/}"
   local var_name="$3"
 
   local secret_value
-  secret_value=$(${INFISICAL_CLI} secrets get "${secret_name}" --projectId="${INFISICAL_PROJECT_ID}" --env="${INFISICAL_ENVIRONMENT}" --path="${path}" --silent --plain)
+  secret_value=$(${INFISICAL_CLI} secrets get "${secret_name}" --projectId="${INFISICAL_PROJECT_ID}" --env="${INFISICAL_ENVIRONMENT}" --path="${infisical_path}" --silent --plain)
   local exit_code=$?
 
   if [ ${exit_code} -ne 0 ] || [ -z "${secret_value}" ]; then
-    log_error "[secrets] Failed to retrieve secret: ${secret_name} from path: ${path} (exit code: ${exit_code})"
+    log_error "[secrets] Failed to retrieve secret: ${secret_name} from path: ${infisical_path} (exit code: ${exit_code})"
     return 1
   fi
 
@@ -97,17 +97,17 @@ function cleanup {
 
 function setup_cloudflare() {
   log_info "[networking] Cloudflare"
-  local path="/cloudflare"
-  get_infisical_secret "CLOUDFLARE_ACCOUNT_ID" "${path}" "CLOUDFLARE_ACCOUNT_ID" || return 1
-  get_infisical_secret "CLOUDFLARE_API_TOKEN" "${path}" "CLOUDFLARE_API_TOKEN" || return 1
-  get_infisical_secret "AWS_ACCESS_KEY_ID" "${path}" "AWS_ACCESS_KEY_ID" || return 1
-  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${path}" "AWS_SECRET_ACCESS_KEY" || return 1
-  get_infisical_secret "AWS_ENDPOINT_URL_S3" "${path}" "AWS_ENDPOINT_URL_S3" || return 1
-  get_infisical_secret "GITHUB_OAUTH_CLIENT_ID" "${path}" "TF_VAR_github_oauth_client_id" || return 1
-  get_infisical_secret "GITHUB_OAUTH_CLIENT_SECRET" "${path}" "TF_VAR_github_oauth_client_secret" || return 1
-  get_infisical_secret "CLOUDFLARE_EMAIL" "${path}" "TF_VAR_cloudflare_email" || return 1
-  get_infisical_secret "CLOUDFLARE_TUNNEL_ID" "${path}" "TF_VAR_cloudflare_tunnel_id" || return 1
-  get_infisical_secret "CLOUDFLARE_ZONE_ID" "${path}" "TF_VAR_cloudflare_zone_id" || return 1
+  local infisical_path="/cloudflare"
+  get_infisical_secret "CLOUDFLARE_ACCOUNT_ID" "${infisical_path}" "CLOUDFLARE_ACCOUNT_ID" || return 1
+  get_infisical_secret "CLOUDFLARE_API_TOKEN" "${infisical_path}" "CLOUDFLARE_API_TOKEN" || return 1
+  get_infisical_secret "AWS_ACCESS_KEY_ID" "${infisical_path}" "AWS_ACCESS_KEY_ID" || return 1
+  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${infisical_path}" "AWS_SECRET_ACCESS_KEY" || return 1
+  get_infisical_secret "AWS_ENDPOINT_URL_S3" "${infisical_path}" "AWS_ENDPOINT_URL_S3" || return 1
+  get_infisical_secret "GITHUB_OAUTH_CLIENT_ID" "${infisical_path}" "TF_VAR_github_oauth_client_id" || return 1
+  get_infisical_secret "GITHUB_OAUTH_CLIENT_SECRET" "${infisical_path}" "TF_VAR_github_oauth_client_secret" || return 1
+  get_infisical_secret "CLOUDFLARE_EMAIL" "${infisical_path}" "TF_VAR_cloudflare_email" || return 1
+  get_infisical_secret "CLOUDFLARE_TUNNEL_ID" "${infisical_path}" "TF_VAR_cloudflare_tunnel_id" || return 1
+  get_infisical_secret "CLOUDFLARE_ZONE_ID" "${infisical_path}" "TF_VAR_cloudflare_zone_id" || return 1
 
   export TF_VAR_cloudflare_account_id="${CLOUDFLARE_ACCOUNT_ID}"
   export TF_VAR_cloudflare_api_token="${CLOUDFLARE_API_TOKEN}"
@@ -119,14 +119,14 @@ function setup_cloudflare() {
 # Github for Flux
 function setup_flux() {
   log_info "[gitops] Flux"
-  local path="/github"
-  get_infisical_secret "GITHUB_USERNAME" "${path}" "GITHUB_USERNAME" || return 1
+  local infisical_path="/github"
+  get_infisical_secret "GITHUB_USERNAME" "${infisical_path}" "GITHUB_USERNAME" || return 1
 }
 
 function setup_pagerduty() {
   log_info "[oncall] Pagerduty"
-  local path="/pagerduty"
-  get_infisical_secret "PAGERDUTY_TOKEN" "${path}" "PAGERDUTY_TOKEN" || return 1
+  local infisical_path="/pagerduty"
+  get_infisical_secret "PAGERDUTY_TOKEN" "${infisical_path}" "PAGERDUTY_TOKEN" || return 1
 }
 
 # function setup_tailscale() {
@@ -136,87 +136,84 @@ function setup_pagerduty() {
 
 function setup_terraform_cloud() {
   log_info "[tacos] Terraform Cloud"
-  local path="/terraform-cloud"
-  get_infisical_secret "TFE_TOKEN" "${path}" "TFE_TOKEN" || return 1
-  get_infisical_secret "GITHUB_OAUTH_TOKEN" "${path}" "TF_VAR_github_oauth_token" || return 1
-  get_infisical_secret "AWS_ROLE_ARN" "${path}" "TF_VAR_aws_role_arn" || return 1
+  local infisical_path="/terraform-cloud"
+  get_infisical_secret "TFE_TOKEN" "${infisical_path}" "TFE_TOKEN" || return 1
+  get_infisical_secret "GITHUB_OAUTH_TOKEN" "${infisical_path}" "TF_VAR_github_oauth_token" || return 1
+  get_infisical_secret "AWS_ROLE_ARN" "${infisical_path}" "TF_VAR_aws_role_arn" || return 1
 }
 
 function setup_spacelift {
   log_info "[tacos] Spacelift"
-  local path="/spacelift"
-  get_infisical_secret "SPACELIFT_API_KEY_ENDPOINT" "${path}" "SPACELIFT_API_KEY_ENDPOINT" || return 1
-  get_infisical_secret "SPACELIFT_API_KEY_ID" "${path}" "SPACELIFT_API_KEY_ID" || return 1
-  get_infisical_secret "SPACELIFT_API_KEY_SECRET" "${path}" "SPACELIFT_API_KEY_SECRET" || return 1
-  get_infisical_secret "ROOT_SPACE_ID" "${path}" "TF_VAR_root_space_id" || return 1
+  local infisical_path="/spacelift"
+  get_infisical_secret "SPACELIFT_API_KEY_ENDPOINT" "${infisical_path}" "SPACELIFT_API_KEY_ENDPOINT" || return 1
+  get_infisical_secret "SPACELIFT_API_KEY_ID" "${infisical_path}" "SPACELIFT_API_KEY_ID" || return 1
+  get_infisical_secret "SPACELIFT_API_KEY_SECRET" "${infisical_path}" "SPACELIFT_API_KEY_SECRET" || return 1
+  get_infisical_secret "ROOT_SPACE_ID" "${infisical_path}" "TF_VAR_root_space_id" || return 1
 }
 
 function setup_env0 {
   log_info "[tacos] Env0"
-  local path="/env0"
-  get_infisical_secret "ENV0_API_KEY" "${path}" "ENV0_API_KEY" || return 1
-  get_infisical_secret "ENV0_API_SECRET" "${path}" "ENV0_API_SECRET" || return 1
-  get_infisical_secret "ENV0_ORGANIZATION_ID" "${path}" "ENV0_ORGANIZATION_ID" || return 1
+  local infisical_path="/env0"
+  get_infisical_secret "ENV0_API_KEY" "${infisical_path}" "ENV0_API_KEY" || return 1
+  get_infisical_secret "ENV0_API_SECRET" "${infisical_path}" "ENV0_API_SECRET" || return 1
+  get_infisical_secret "ENV0_ORGANIZATION_ID" "${infisical_path}" "ENV0_ORGANIZATION_ID" || return 1
 }
 
 function setup_scalr {
   log_info "[tacos] Scalr"
-  local path="/scalr"
-  get_infisical_secret "SCALR_HOSTNAME" "${path}" "SCALR_HOSTNAME" || return 1
-  get_infisical_secret "SCALR_TOKEN" "${path}" "SCALR_TOKEN" || return 1
+  local infisical_path="/scalr"
+  get_infisical_secret "SCALR_HOSTNAME" "${infisical_path}" "SCALR_HOSTNAME" || return 1
+  get_infisical_secret "SCALR_TOKEN" "${infisical_path}" "SCALR_TOKEN" || return 1
 }
 
 function setup_grafana_cloud() {
   log_info "[observability] Grafana Cloud"
-  local path="/grafana-cloud"
-  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_API_KEY" "${path}" "PORTEFAIX_GRAFANA_CLOUD_API_KEY" || return 1
-  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_PROMETHEUS" "${path}" "GRAFANA_CLOUD_PROMETHEUS" || return 1
-  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_LOKI" "${path}" "PORTEFAIX_GRAFANA_CLOUD_LOKI" || return 1
-  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_TEMPO" "${path}" "PORTEFAIX_GRAFANA_CLOUD_TEMPO" || return 1
+  local infisical_path="/grafana-cloud"
+  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_API_KEY" "${infisical_path}" "PORTEFAIX_GRAFANA_CLOUD_API_KEY" || return 1
+  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_PROMETHEUS" "${infisical_path}" "GRAFANA_CLOUD_PROMETHEUS" || return 1
+  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_LOKI" "${infisical_path}" "PORTEFAIX_GRAFANA_CLOUD_LOKI" || return 1
+  get_infisical_secret "PORTEFAIX_GRAFANA_CLOUD_TEMPO" "${infisical_path}" "PORTEFAIX_GRAFANA_CLOUD_TEMPO" || return 1
 }
 
 # GCP
 function setup_gcp() {
   log_info "[cloudprovider] Google Cloud Platform"
-  local path="/google-cloud"
-  get_infisical_secret "GCP_ORG_ID" "${path}" "GCP_ORG_ID" || return 1
-  get_infisical_secret "GCP_BILLING_ACCOUNT_ID" "${path}" "TF_VAR_billing_account" || return 1
+  local infisical_path="/google-cloud"
+  get_infisical_secret "GCP_ORG_ID" "${infisical_path}" "GCP_ORG_ID" || return 1
+  get_infisical_secret "GCP_BILLING_ACCOUNT_ID" "${infisical_path}" "TF_VAR_billing_account" || return 1
   export TF_VAR_organization_id="${GCP_ORG_ID}"
   export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.config/portefaix/portefaix-bootstrap.json"
 
-  # Get credentials from Infisical and write to file if it doesn't exist
   if [ ! -f "${GOOGLE_APPLICATION_CREDENTIALS}" ]; then
-    get_infisical_secret "GCP_CREDENTIALS_JSON" "${path}" "GCP_CREDENTIALS_JSON" || return 1
-    if [ -n "${GCP_CREDENTIALS_JSON}" ]; then
+    get_infisical_secret "GCP_PORTEFAIX_BOOTSTRAP_CREDS" "${infisical_path}" "GCP_PORTEFAIX_BOOTSTRAP_CREDS" || return 1
+    if [ -n "${GCP_PORTEFAIX_BOOTSTRAP_CREDS}" ]; then
       log_debug "[cloudprovider] Create Google Cloud credentials file"
-      echo "${GCP_CREDENTIALS_JSON}" | base64 -d >"${GOOGLE_APPLICATION_CREDENTIALS}"
+      echo "${GCP_PORTEFAIX_BOOTSTRAP_CREDS}"
+      echo "${GCP_PORTEFAIX_BOOTSTRAP_CREDS}" | base64 -d >"${GOOGLE_APPLICATION_CREDENTIALS}"
       chmod 600 "${GOOGLE_APPLICATION_CREDENTIALS}"
+      TF_VAR_credentials=$(<"${GOOGLE_APPLICATION_CREDENTIALS}" tr -d '\n')
+      export TF_VAR_credentials
     else
       log_error "[cloudprovider] Failed to retrieve Google Cloud credentials from Infisical"
       return 1
     fi
+  else
+    log_debug "[cloudprovider] Google credentials already exists: ${GOOGLE_APPLICATION_CREDENTIALS}"
   fi
 
-  if [ -f "${GOOGLE_APPLICATION_CREDENTIALS}" ]; then
-    TF_VAR_credentials=$(<"${GOOGLE_APPLICATION_CREDENTIALS}" tr -d '\n')
-    export TF_VAR_credentials
-    export TF_VAR_master_authorized_networks="[{\"cidr_block\": \"${HOME_IP}/32\", \"display_name\": \"Home\"}]"
-  else
-    log_error "[cloudprovider] Google Cloud credentials file not exists"
-    return 1
-  fi
+  export TF_VAR_master_authorized_networks="[{\"cidr_block\": \"${HOME_IP}/32\", \"display_name\": \"Home\"}]"
 }
 
 # AWS
 function setup_aws() {
   log_info "[cloudprovider] AWS"
-  local path="/aws"
-  get_infisical_secret "AWS_ACCESS_KEY" "${path}" "AWS_ACCESS_KEY" || return 1
-  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${path}" "AWS_SECRET_ACCESS_KEY" || return 1
-  get_infisical_secret "AWS_DEFAULT_REGION" "${path}" "AWS_DEFAULT_REGION" || return 1
-  get_infisical_secret "AWS_ORG_EMAIL" "${path}" "TF_VAR_org_email" || return 1
-  get_infisical_secret "AWS_ORG_EMAIL_DOMAIN" "${path}" "TF_VAR_org_email_domain" || return 1
-  get_infisical_secret "AWS_ORG_ADMIN_USERNAME" "${path}" "TF_VAR_org_admin_username" || return 1
+  local infisical_path="/aws"
+  get_infisical_secret "AWS_ACCESS_KEY" "${infisical_path}" "AWS_ACCESS_KEY" || return 1
+  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${infisical_path}" "AWS_SECRET_ACCESS_KEY" || return 1
+  get_infisical_secret "AWS_DEFAULT_REGION" "${infisical_path}" "AWS_DEFAULT_REGION" || return 1
+  get_infisical_secret "AWS_ORG_EMAIL" "${infisical_path}" "TF_VAR_org_email" || return 1
+  get_infisical_secret "AWS_ORG_EMAIL_DOMAIN" "${infisical_path}" "TF_VAR_org_email_domain" || return 1
+  get_infisical_secret "AWS_ORG_ADMIN_USERNAME" "${infisical_path}" "TF_VAR_org_admin_username" || return 1
   get_infisical_secret "SLACK_WEBHOOK_NOTIFS" "/slack" "TF_VAR_slack_webhook_url" || return 1
   export AWS_REGION="${AWS_DEFAULT_REGION}"
   # For Terraform Cloud
@@ -228,12 +225,12 @@ function setup_aws() {
 # Azure
 function setup_azure() {
   log_info "[cloudprovider] Azure"
-  local path="/azure"
-  get_infisical_secret "ARM_SUBSCRIPTION_ID" "${path}" "ARM_SUBSCRIPTION_ID" || return 1
-  get_infisical_secret "ARM_TENANT_ID" "${path}" "ARM_TENANT_ID" || return 1
-  get_infisical_secret "ARM_CLIENT_ID" "${path}" "ARM_CLIENT_ID" || return 1
-  get_infisical_secret "ARM_CLIENT_SECRET" "${path}" "ARM_CLIENT_SECRET" || return 1
-  get_infisical_secret "ARM_BILLING_ACCOUNT_ID" "${path}" "TF_VAR_billing_account_name" || return 1
+  local infisical_path="/azure"
+  get_infisical_secret "ARM_SUBSCRIPTION_ID" "${infisical_path}" "ARM_SUBSCRIPTION_ID" || return 1
+  get_infisical_secret "ARM_TENANT_ID" "${infisical_path}" "ARM_TENANT_ID" || return 1
+  get_infisical_secret "ARM_CLIENT_ID" "${infisical_path}" "ARM_CLIENT_ID" || return 1
+  get_infisical_secret "ARM_CLIENT_SECRET" "${infisical_path}" "ARM_CLIENT_SECRET" || return 1
+  get_infisical_secret "ARM_BILLING_ACCOUNT_ID" "${infisical_path}" "TF_VAR_billing_account_name" || return 1
   # For Inspec
   export AZURE_SUBSCRIPTION_ID="${ARM_SUBSCRIPTION_ID}"
   export AZURE_CLIENT_ID="${ARM_CLIENT_ID}"
@@ -251,8 +248,8 @@ function setup_azure() {
 # Digital Ocean
 function setup_digitalocean() {
   log_info "[cloudprovider] DigitalOcean"
-  local path="/digitalocean"
-  get_infisical_secret "DIGITALOCEAN_TOKEN" "${path}" "DIGITALOCEAN_TOKEN" || return 1
+  local infisical_path="/digitalocean"
+  get_infisical_secret "DIGITALOCEAN_TOKEN" "${infisical_path}" "DIGITALOCEAN_TOKEN" || return 1
   # For Terraform Cloud
   export TF_VAR_env_do_token="${DIGITALOCEAN_TOKEN}"
 }
@@ -260,12 +257,12 @@ function setup_digitalocean() {
 # Scaleway
 function setup_scaleway() {
   log_info "[cloudprovider] Scaleway"
-  local path="/scaleway"
-  get_infisical_secret "SCW_DEFAULT_ORGANIZATION_ID" "${path}" "SCW_DEFAULT_ORGANIZATION_ID" || return 1
-  get_infisical_secret "SCW_DEFAULT_PROJECT_ID" "${path}" "SCW_DEFAULT_PROJECT_ID" || return 1
-  get_infisical_secret "SCW_ACCESS_KEY" "${path}" "SCW_ACCESS_KEY" || return 1
-  get_infisical_secret "SCW_SECRET_KEY" "${path}" "SCW_SECRET_KEY" || return 1
-  get_infisical_secret "SCW_REGION" "${path}" "SCW_REGION" || return 1
+  local infisical_path="/scaleway"
+  get_infisical_secret "SCW_DEFAULT_ORGANIZATION_ID" "${infisical_path}" "SCW_DEFAULT_ORGANIZATION_ID" || return 1
+  get_infisical_secret "SCW_DEFAULT_PROJECT_ID" "${infisical_path}" "SCW_DEFAULT_PROJECT_ID" || return 1
+  get_infisical_secret "SCW_ACCESS_KEY" "${infisical_path}" "SCW_ACCESS_KEY" || return 1
+  get_infisical_secret "SCW_SECRET_KEY" "${infisical_path}" "SCW_SECRET_KEY" || return 1
+  get_infisical_secret "SCW_REGION" "${infisical_path}" "SCW_REGION" || return 1
 
   export AWS_ACCESS_KEY_ID="${SCW_ACCESS_KEY}"
   export AWS_SECRET_ACCESS_KEY="${SCW_SECRET_KEY}"
@@ -287,10 +284,10 @@ function setup_scaleway() {
 # Alicloud
 function setup_alicloud() {
   log_info "[cloudprovider] Alicloud"
-  local path="/alicloud"
-  get_infisical_secret "ALICLOUD_ACCESS_KEY" "${path}" "ALICLOUD_ACCESS_KEY" || return 1
-  get_infisical_secret "ALICLOUD_SECRET_KEY" "${path}" "ALICLOUD_SECRET_KEY" || return 1
-  get_infisical_secret "ALICLOUD_REGION" "${path}" "ALICLOUD_REGION" || return 1
+  local infisical_path="/alicloud"
+  get_infisical_secret "ALICLOUD_ACCESS_KEY" "${infisical_path}" "ALICLOUD_ACCESS_KEY" || return 1
+  get_infisical_secret "ALICLOUD_SECRET_KEY" "${infisical_path}" "ALICLOUD_SECRET_KEY" || return 1
+  get_infisical_secret "ALICLOUD_REGION" "${infisical_path}" "ALICLOUD_REGION" || return 1
 
   # For Terraform Cloud
   export TF_VAR_access_key="${ALICLOUD_ACCESS_KEY}"
@@ -301,10 +298,10 @@ function setup_alicloud() {
 # Exoscale
 function setup_exoscale() {
   log_info "[cloudprovider] Exoscale"
-  local path="/exoscale"
-  get_infisical_secret "EXOSCALE_API_KEY" "${path}" "EXOSCALE_API_KEY" || return 1
-  get_infisical_secret "EXOSCALE_API_SECRET" "${path}" "EXOSCALE_API_SECRET" || return 1
-  get_infisical_secret "EXOSCALE_REGION" "${path}" "EXOSCALE_REGION" || return 1
+  local infisical_path="/exoscale"
+  get_infisical_secret "EXOSCALE_API_KEY" "${infisical_path}" "EXOSCALE_API_KEY" || return 1
+  get_infisical_secret "EXOSCALE_API_SECRET" "${infisical_path}" "EXOSCALE_API_SECRET" || return 1
+  get_infisical_secret "EXOSCALE_REGION" "${infisical_path}" "EXOSCALE_REGION" || return 1
 
   export AWS_ACCESS_KEY_ID="${EXOSCALE_API_KEY}"
   export AWS_SECRET_ACCESS_KEY="${EXOSCALE_API_SECRET}"
@@ -322,29 +319,29 @@ function setup_exoscale() {
 # IBM Cloud
 function setup_ibmcloud() {
   log_info "[cloudprovider] IBMCloud"
-  local path="/ibmcloud"
-  get_infisical_secret "IAAS_CLASSIC_USERNAME" "${path}" "IAAS_CLASSIC_USERNAME" || return 1
-  get_infisical_secret "IC_API_KEY" "${path}" "IC_API_KEY" || return 1
-  get_infisical_secret "IAAS_CLASSIC_API_KEY" "${path}" "IAAS_CLASSIC_API_KEY" || return 1
+  local infisical_path="/ibmcloud"
+  get_infisical_secret "IAAS_CLASSIC_USERNAME" "${infisical_path}" "IAAS_CLASSIC_USERNAME" || return 1
+  get_infisical_secret "IC_API_KEY" "${infisical_path}" "IC_API_KEY" || return 1
+  get_infisical_secret "IAAS_CLASSIC_API_KEY" "${infisical_path}" "IAAS_CLASSIC_API_KEY" || return 1
 }
 
 # Oracle Cloud
 function setup_oci() {
   log_info "[cloudprovider] OracleCloud"
-  local path="/oraclecloud"
-  get_infisical_secret "OCI_TENANCY_OCID" "${path}" "TF_VAR_tenancy_ocid" || return 1
-  get_infisical_secret "OCI_COMPARTMENT_PARENT_ID" "${path}" "OCI_COMPARTMENT_PARENT_ID" || return 1
-  get_infisical_secret "OCI_USER_OCID" "${path}" "TF_VAR_user_ocid" || return 1
-  get_infisical_secret "OCI_FINGERPRINT" "${path}" "TF_VAR_fingerprint" || return 1
-  get_infisical_secret "AWS_ACCESS_KEY_ID" "${path}" "AWS_ACCESS_KEY_ID" || return 1
-  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${path}" "AWS_SECRET_ACCESS_KEY" || return 1
-  get_infisical_secret "AWS_REGION" "${path}" "AWS_REGION" || return 1
+  local infisical_path="/oraclecloud"
+  get_infisical_secret "OCI_TENANCY_OCID" "${infisical_path}" "TF_VAR_tenancy_ocid" || return 1
+  get_infisical_secret "OCI_COMPARTMENT_PARENT_ID" "${infisical_path}" "OCI_COMPARTMENT_PARENT_ID" || return 1
+  get_infisical_secret "OCI_USER_OCID" "${infisical_path}" "TF_VAR_user_ocid" || return 1
+  get_infisical_secret "OCI_FINGERPRINT" "${infisical_path}" "TF_VAR_fingerprint" || return 1
+  get_infisical_secret "AWS_ACCESS_KEY_ID" "${infisical_path}" "AWS_ACCESS_KEY_ID" || return 1
+  get_infisical_secret "AWS_SECRET_ACCESS_KEY" "${infisical_path}" "AWS_SECRET_ACCESS_KEY" || return 1
+  get_infisical_secret "AWS_REGION" "${infisical_path}" "AWS_REGION" || return 1
 
   # Handle private key - retrieve from Infisical and write to file if it doesn't exist
   local oci_private_key_path="${HOME}/.oci/oci_api_key.pem"
   if [ ! -f "${oci_private_key_path}" ]; then
     log_debug "[cloudprovider] Create OCI private key"
-    get_infisical_secret "OCI_PRIVATE_KEY" "${path}" "OCI_PRIVATE_KEY" || return 1
+    get_infisical_secret "OCI_PRIVATE_KEY" "${infisical_path}" "OCI_PRIVATE_KEY" || return 1
     if [ -n "${OCI_PRIVATE_KEY}" ]; then
       mkdir -p "$(dirname "${oci_private_key_path}")"
       echo "${OCI_PRIVATE_KEY}" | base64 -d >"${oci_private_key_path}"
@@ -363,8 +360,8 @@ function setup_oci() {
 
 function setup_civo() {
   log_info "[cloudprovider] Civo"
-  local path="/civo"
-  get_infisical_secret "CIVO_TOKEN" "${path}" "CIVO_TOKEN" || return 1
+  local infisical_path="/civo"
+  get_infisical_secret "CIVO_TOKEN" "${infisical_path}" "CIVO_TOKEN" || return 1
 
   export TF_VAR_authorized_networks="[\"${HOME_IP}/32\"]"
   # For Terraform Cloud
@@ -373,8 +370,8 @@ function setup_civo() {
 
 function setup_vultr() {
   log_info "[cloudprovider] Vultr"
-  local path="/vultr"
-  get_infisical_secret "VULTR_API_KEY" "${path}" "VULTR_API_KEY" || return 1
+  local infisical_path="/vultr"
+  get_infisical_secret "VULTR_API_KEY" "${infisical_path}" "VULTR_API_KEY" || return 1
 
   # For Terraform Cloud
   export TF_VAR_env_vultr_api_key="${VULTR_API_KEY}"
