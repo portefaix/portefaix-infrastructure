@@ -42,70 +42,69 @@ return_code=0
 reset_color="\\e[0m"
 color_red="\\e[31m"
 color_green="\\e[32m"
-color_blue="\\e[36m";
+color_blue="\\e[36m"
 
 function echo_fail { echo -e "${color_red}✖ $*${reset_color}"; }
 function echo_success { echo -e "${color_green}✔ $*${reset_color}"; }
 function echo_info { echo -e "${color_blue}$*${reset_color}"; }
 
 function usage() {
-    echo_fail "Usage: $0 <cloud provider> [ <debug> ]"
+  echo_fail "Usage: $0 <cloud provider> [ <debug> ]"
 }
 
 function check_result() {
-    local action=$1
-    local code=$2
-    local data=$3
+  local action=$1
+  local code=$2
+  local data=$3
 
-    if [ "${code}" -eq 0 ]; then
-        echo_success "OK: ${action}"
-        if [ -n "${DEBUG}" ]; then
-            cat "${data}"
-        fi
-    else
-        echo_fail "KO: ${action}"
-        cat "${data}"
-        return_code=1
+  if [ "${code}" -eq 0 ]; then
+    echo_success "OK: ${action}"
+    if [ -n "${DEBUG}" ]; then
+      cat "${data}"
     fi
+  else
+    echo_fail "KO: ${action}"
+    cat "${data}"
+    return_code=1
+  fi
 }
 
 function tf_validate() {
-    local infra=$1
+  local infra=$1
 
-    echo_info "Infra component: ${infra}"
-    pushd "${infra}" > /dev/null || exit 1
-    output=$(mktemp)
-    if [ -d "backend-vars" ]; then
-        tfvar_file=$(ls backend-vars/*.tfvars)
-        terraform init -upgrade -backend-config="${tfvar_file}"
-    else
-        terraform init -upgrade &> "${output}"
-    fi
-    check_result "init" $? "${output}"
-    terraform validate &> "${output}"
-    check_result "validate" $? "${output}"
-    popd > /dev/null || exit 1
+  echo_info "Infra component: ${infra}"
+  pushd "${infra}" >/dev/null || exit 1
+  output=$(mktemp)
+  if [ -d "backend-vars" ]; then
+    tfvar_file=$(ls backend-vars/*.tfvars)
+    terraform init -upgrade -backend-config="${tfvar_file}"
+  else
+    terraform init -upgrade &>"${output}"
+  fi
+  check_result "init" $? "${output}"
+  terraform validate &>"${output}"
+  check_result "validate" $? "${output}"
+  popd >/dev/null || exit 1
 }
 
 function check_infra() {
-    local dir=$1
-    local exclude=$2
+  local dir=$1
+  # local exclude=$2
 
-    if [ ! -d "${dir}" ]; then
-        echo_fail "Invalid directory: ${dir}"
-        exit 1
-    fi
-    # Do not validate module: https://github.com/hashicorp/terraform/issues/28490
-    for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | grep -v -E "root|oidc" | sort -u); do
-        tf_dir=${tf_file%/*}
-        tf_validate "${tf_dir}"
-    done
+  if [ ! -d "${dir}" ]; then
+    echo_fail "Invalid directory: ${dir}"
+    exit 1
+  fi
+  # Do not validate module: https://github.com/hashicorp/terraform/issues/28490
+  for tf_file in $(find "${dir}" -name "main.tf" | grep -v ".terraform" | grep -v modules | grep -v -E "root|oidc" | sort -u); do
+    tf_dir=${tf_file%/*}
+    tf_validate "${tf_dir}"
+  done
 }
 
-if [ $# -eq 0 ];
-then
-    usage
-    exit 1
+if [ $# -eq 0 ]; then
+  usage
+  exit 1
 fi
 
 cloud_provider=$1

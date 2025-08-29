@@ -84,33 +84,34 @@ variable "cluster_tags" {
   }
 }
 
-variable "eks_managed_node_groups" {
-  description = "Map of EKS managed node group definitions to create"
-  type        = any
-  default     = {}
-}
-
-variable "eks_managed_node_group_defaults" {
-  description = "Map of EKS managed node group default configurations"
-  type        = any
-  default     = {}
-}
-variable "fargate_profiles" {
-  description = "Map of Fargate Profile definitions to create"
-  type        = any
-  default     = {}
-}
-
-variable "fargate_profile_defaults" {
-  description = "Map of Fargate Profile default configurations"
-  type        = any
-  default     = {}
-}
-
 variable "cluster_addons" {
   description = "Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
   type        = any
   default     = {}
+}
+
+#############################################################################
+# Fargate
+
+variable "fargate_profile_name" {
+  description = "The name of the Fargate profile"
+  type        = string
+  default     = "fargate"
+}
+
+variable "fargate_selectors" {
+  description = "List of fargate selectors"
+  type        = list(map(string))
+  default = [
+    {
+      namespace = "karpenter"
+    }
+  ]
+}
+
+variable "fargate_tags" {
+  description = "A map of tags to add to all resources"
+  type        = map(string)
 }
 
 #############################################################################
@@ -273,39 +274,6 @@ variable "alb_controller_namespace" {
   description = "The K8s namespace for ALB Controller resources"
   type        = string
   default     = "kube-system"
-}
-
-
-#############################################################################
-# AppMesh Controller
-
-# variable "appmesh_controller_role_name" {
-#   description = "The name of the AppMesh Controller IAM role"
-#   type        = string
-#   default     = "appmesh-controller"
-# }
-
-# variable "appmesh_controller_role_policy_name" {
-#   description = "The name of the AppMesh Controller IAM policy"
-#   default     = "AWSAppMeshK8sControllerIAMPolicy"
-#   type        = string
-# }
-
-variable "appmesh_tags" {
-  description = "A map of tags to add to all resources"
-  type        = map(string)
-}
-
-variable "appmesh_sa_name" {
-  description = "Controller name"
-  type        = string
-  default     = "appmesh-controller"
-}
-
-variable "appmesh_namespace" {
-  description = "The K8s namespace for ALB Controller resources"
-  type        = string
-  default     = "appmesh-system"
 }
 
 #############################################################################

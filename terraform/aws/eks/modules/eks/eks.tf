@@ -23,8 +23,14 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "21.1.5"
 
-  cluster_name    = var.cluster_name
-  cluster_version = var.cluster_version
+  name               = var.cluster_name
+  kubernetes_version = var.cluster_version
+
+  # Gives Terraform identity admin access to cluster which will
+  # allow deploying resources (Karpenter) into the cluster
+  enable_cluster_creator_admin_permissions = true
+  endpoint_public_access                   = true
+  endpoint_private_access                  = true
 
   vpc_id     = data.aws_vpc.main.id
   subnet_ids = data.aws_subnets.private.ids
@@ -34,37 +40,23 @@ module "eks" {
 
   iam_role_name = var.cluster_name
 
-  enable_cluster_creator_admin_permissions = true
+  # cluster_security_group_name     = var.cluster_name
+  # cluster_security_group_tags = {
+  #   format("karpenter.sh/discovery/%s", var.cluster_name) = var.cluster_name
+  # }
+  # cluster_enabled_log_types = [
+  #   "api",
+  #   "audit",
+  #   "authenticator",
+  #   "controllerManager",
+  #   "scheduler"
+  # ]
 
-  cluster_endpoint_public_access  = true
-  cluster_endpoint_private_access = true
-  cluster_security_group_name     = var.cluster_name
-  cluster_security_group_tags = {
-    format("karpenter.sh/discovery/%s", var.cluster_name) = var.cluster_name
-  }
-  cluster_enabled_log_types = [
-    "api",
-    "audit",
-    "authenticator",
-    "controllerManager",
-    "scheduler"
-  ]
-  cluster_addons = var.cluster_addons
+  addons = var.cluster_addons
 
   node_security_group_tags = {
     format("karpenter.sh/discovery/%s", var.cluster_name) = var.cluster_name
   }
-
-  eks_managed_node_groups = var.eks_managed_node_groups
-  eks_managed_node_group_defaults = {
-    iam_role_additional_policies = {
-      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-      CloudWatchAgentServerPolicy  = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
-    }
-  }
-
-  fargate_profile_defaults = var.fargate_profile_defaults
-  fargate_profiles         = var.fargate_profiles
 
   cluster_tags = merge(var.cluster_tags, var.tags)
   tags         = var.tags

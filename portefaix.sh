@@ -37,30 +37,30 @@ function usage() {
 }
 
 function validate_infisical_setup() {
-  log_info "[infisical] Validating Infisical setup..."
+  log_info "[secrets] Infisical"
 
   if [ -z "${INFISICAL_PROJECT_ID}" ]; then
-    log_error "INFISICAL_PROJECT_ID environment variable must be set"
-    log_info "Example: export INFISICAL_PROJECT_ID='your-project-id'"
+    log_error "[secrets] INFISICAL_PROJECT_ID environment variable must be set"
+    log_info "[secrets] Example: export INFISICAL_PROJECT_ID='your-project-id'"
     return 1
   fi
 
   if ! command -v infisical >/dev/null 2>&1; then
-    log_error "Infisical CLI not found. Please install it first."
-    log_info "Visit: https://infisical.com/docs/cli/overview"
+    log_error "[secrets] Infisical CLI not found. Please install it first."
+    log_info "[secrets] Visit: https://infisical.com/docs/cli/overview"
     return 1
   fi
   INFISICAL_CLI=$(which infisical)
 
   # Test authentication by trying to list secrets
   if ! infisical secrets --projectId="${INFISICAL_PROJECT_ID}" --env="${INFISICAL_ENVIRONMENT}" --path="/" --silent >/dev/null 2>&1; then
-    log_error "Failed to authenticate with Infisical. Please login first."
-    log_info "Run: infisical login"
+    log_error "[secrets] Failed to authenticate with Infisical. Please login first."
+    log_info "[secrets] Run: infisical login"
     return 1
   fi
   # infisical -v
 
-  log_debug "[infisical] Infisical setup validation completed successfully"
+  log_debug "[secrets] Infisical setup validation completed successfully"
   return 0
 }
 
@@ -74,12 +74,12 @@ function get_infisical_secret() {
   local exit_code=$?
 
   if [ ${exit_code} -ne 0 ] || [ -z "${secret_value}" ]; then
-    log_error "[Infisical] Failed to retrieve secret: ${secret_name} from path: ${path} (exit code: ${exit_code})"
+    log_error "[secrets] Failed to retrieve secret: ${secret_name} from path: ${path} (exit code: ${exit_code})"
     return 1
   fi
 
   output=$(printf "%-40s | %-60s\n" "${secret_name}" "${secret_value}")
-  log_debug "[infisical] ${output}"
+  log_debug "[secrets] ${output}"
 
   # echo "${secret_value}"
   export "$var_name=$secret_value"

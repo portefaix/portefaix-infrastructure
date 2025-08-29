@@ -38,15 +38,21 @@ resource "aws_iam_policy" "litmus" {
 }
 
 module "irsa_litmuschaos" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
-  create_role                   = true
-  role_description              = "Role for LitmusChaos"
-  role_name                     = local.role_name
-  provider_url                  = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
-  role_policy_arns              = aws_iam_policy.litmus.arn
-  oidc_fully_qualified_subjects = ["system:serviceaccount:${var.namespace}:${var.service_account}"]
+  name = local.role_name
+
+  description = "Role for Litmus Chaos"
+
+  oidc_providers = {
+    main = {
+      provider_arn = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
+      namespace_service_accounts = [
+        ["${var.namespace}:${var.service_account}"]
+      ]
+    }
+  }
   tags = merge(
     {
       "Name" = local.role_name,

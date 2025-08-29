@@ -26,11 +26,9 @@ module "eks" {
   tags         = var.tags
   cluster_tags = var.cluster_tags
 
-  eks_managed_node_group_defaults = var.eks_managed_node_group_defaults
-  eks_managed_node_groups         = var.eks_managed_node_groups
-
-  fargate_profile_defaults = var.fargate_profile_defaults
-  fargate_profiles         = var.fargate_profiles
+  fargate_profile_name = var.cluster_name
+  fargate_selectors    = var.fargate_selectors
+  fargate_tags         = var.fargate_tags
 
   cluster_addons = var.cluster_addons
 
@@ -55,10 +53,6 @@ module "eks" {
   alb_controller_tags      = var.alb_controller_tags
   alb_controller_sa_name   = var.alb_controller_sa_name
   alb_controller_namespace = var.alb_controller_namespace
-
-  appmesh_tags      = var.appmesh_tags
-  appmesh_sa_name   = var.appmesh_sa_name
-  appmesh_namespace = var.appmesh_namespace
 
   node_termination_handler_role_name = var.node_termination_handler_role_name
   node_termination_handler_tags      = var.node_termination_handler_tags
