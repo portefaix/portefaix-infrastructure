@@ -19,26 +19,6 @@ output "prometheus_service_account" {
   value       = module.loki.email
 }
 
-output "thanos_bucket" {
-  description = "Thanos bucket resource"
-  value       = module.thanos.bucket.name
-}
-
-output "thanos_service_accounts" {
-  description = "Service Account for Thanos"
-  value       = module.thanos.emails
-}
-
-# output "thanos_roles" {
-#   description = "Roles for Thanos"
-#   value       = module.thanos.roles
-# }
-
-# output "thanos_members" {
-#   description = "Members which were bound to the Thanos service accounts"
-#   value       = module.thanos.members
-# }
-
 output "loki_bucket" {
   description = "Loki bucket resource"
   value       = module.loki.bucket.name

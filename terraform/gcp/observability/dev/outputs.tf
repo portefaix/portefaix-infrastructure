@@ -19,26 +19,6 @@ output "prometheus_service_account" {
   value       = module.observability.prometheus_service_account
 }
 
-output "thanos_bucket" {
-  description = "Thanos bucket resource"
-  value       = module.observability.thanos_bucket
-}
-
-output "thanos_service_accounts" {
-  description = "Service Account for Thanos"
-  value       = module.observability.thanos_service_accounts
-}
-
-# output "thanos_roles" {
-#   description = "Roles for Thanos"
-#   value       = module.observability.roles
-# }
-
-# output "thanos_members" {
-#   description = "Members which were bound to the Thanos service accounts"
-#   value       = module.observability.members
-# }
-
 output "loki_bucket" {
   description = "Loki bucket resource"
   value       = module.observability.loki_bucket
