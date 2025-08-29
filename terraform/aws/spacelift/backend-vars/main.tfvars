@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+region         = "eu-west-1"
 bucket         = "portefaix-tfstates"
 dynamodb_table = "portefaix-tfstate-lock"
 key            = "spacelift/terraform.tfstate"

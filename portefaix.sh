@@ -489,6 +489,8 @@ function main() {
     return 1
   }
 
+  export TF_VAR_portefaix_version="0.0.0"
+
   echo -e "${color_green}🚀 [portefaix] Successfully configured environment for: $1${reset_color}"
 }
 
