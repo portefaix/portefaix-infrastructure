@@ -43,19 +43,25 @@ resource "aws_iam_policy" "secret_store_csi_driver_controller" {
 }
 
 module "irsa_secret_store_csi_driver" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
   for_each = var.enable_irsa ? toset(var.secrets_data) : toset([])
 
-  create_role      = true
-  role_description = "Secret Store CSI Driver Role"
-  role_name        = format("%s-%s", var.secret_store_csi_controller_role_name, each.value.name)
+  name = format("%s-%s", var.secret_store_csi_controller_role_name, each.value.name)
 
-  provider_url     = module.eks.cluster_oidc_issuer_url
-  role_policy_arns = [aws_iam_policy.secret_store_csi_driver_controller[count.index].arn]
+  oidc_providers = {
+    main = {
+      provider_arn = module.eks.oidc_provider_arn
+      namespace_service_accounts = [
+        ["${each.value.namespace}:${each.value.sa.name}"]
+      ]
+    }
+  }
 
-  oidc_fully_qualified_subjects = ["system:serviceaccount:${each.value.namespace}:${each.value.sa_name}"]
+  policies = {
+    SecretStorePolicy = aws_iam_policy.secret_store_csi_driver_controller[each.key].arn,
+  }
 
   tags = merge(
     var.cluster_tags,
@@ -78,6 +84,10 @@ module "pod_identity_secret_store_csi_driver" {
       namespace       = each.value.namespace
       service_account = each.value.sa_name
     }
+  }
+
+  additional_policy_arns = {
+    SecretStorePolicy = aws_iam_policy.secret_store_csi_driver_controller[each.key].arn,
   }
 
   tags = merge(

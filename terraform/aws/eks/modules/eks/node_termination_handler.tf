@@ -15,10 +15,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "irs_node_termination_handler" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
-  role_name                              = var.node_termination_handler_role_name
+  name                                   = var.node_termination_handler_role_name
   attach_node_termination_handler_policy = true
 
   oidc_providers = {

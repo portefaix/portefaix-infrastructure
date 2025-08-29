@@ -35,3 +35,29 @@ data "aws_subnets" "private" {
     ]
   }
 }
+
+data "aws_iam_policy_document" "karpenter_controller_assume_role_policy" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Federated"
+      identifiers = [module.eks.oidc_provider_arn]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "${module.eks.oidc_provider}:sub"
+      values   = [format("system:serviceaccount:%s:%s", var.karpenter_namespace, var.karpenter_sa_name)]
+    }
+
+    # https://aws.amazon.com/premiumsupport/knowledge-center/eks-troubleshoot-oidc-and-irsa/?nc1=h_ls
+    condition {
+      test     = "StringEquals"
+      variable = "${module.eks.oidc_provider}:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+  }
+}

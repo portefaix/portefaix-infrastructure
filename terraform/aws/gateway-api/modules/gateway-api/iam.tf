@@ -1,11 +1,11 @@
 module "irsa" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
-  role_name        = local.role_name
-  role_description = "Role for Gateway API"
+  name        = local.role_name
+  description = "Role for Gateway API"
 
   attach_aws_gateway_controller_policy = true
 

@@ -15,12 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "irsa_alb_controller" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
-  role_name                              = var.alb_controller_role_name
+  name                                   = var.alb_controller_role_name
   attach_load_balancer_controller_policy = true
 
   oidc_providers = {

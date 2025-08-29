@@ -15,12 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 module "irsa_fsx_csi_driver" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
   version = "6.2.1"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
-  role_name                    = var.fsx_csi_controller_role_name
+  name                         = var.fsx_csi_controller_role_name
   attach_fsx_lustre_csi_policy = true
 
   oidc_providers = {
