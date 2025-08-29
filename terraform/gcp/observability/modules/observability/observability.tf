@@ -25,29 +25,6 @@ module "prometheus" {
 }
 
 # tfsec:ignore:google-storage-bucket-encryption-customer-key
-module "thanos" {
-  source  = "nlamirault/observability/google//modules/thanos"
-  version = "7.0.0"
-
-  project = var.project
-
-  bucket_location      = var.thanos_bucket_location
-  bucket_storage_class = var.thanos_bucket_storage_class
-  bucket_labels        = var.thanos_bucket_labels
-
-  namespace                  = var.thanos_namespace
-  service_account            = var.thanos_service_account
-  prometheus_service_account = var.thanos_sidecar_service_account
-
-  enable_kms       = var.thanos_enable_kms
-  keyring_location = var.thanos_keyring_location
-  keys             = var.thanos_keys
-  kms_labels       = var.thanos_kms_labels
-
-  depends_on = [module.prometheus]
-}
-
-# tfsec:ignore:google-storage-bucket-encryption-customer-key
 module "loki" {
   source  = "nlamirault/observability/google//modules/loki"
   version = "7.0.0"
