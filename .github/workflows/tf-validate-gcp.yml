@@ -48,7 +48,7 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - uses: google-github-actions/auth@v2.1.12
+    - uses: google-github-actions/auth@v2.1.13
       with:
         project_id: portefaix-bootstrap
         workload_identity_provider: 'projects/1081501690701/locations/global/workloadIdentityPools/portefaix-gha-bootstrap/providers/portefaix-gha-bootstrap'
