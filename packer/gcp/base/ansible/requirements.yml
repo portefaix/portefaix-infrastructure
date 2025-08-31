@@ -24,6 +24,6 @@ collections:
     version: 11.2.1
   - name: prometheus.prometheus
     source: https://galaxy.ansible.com
-    version: 0.27.0
+    version: 0.27.3
 
 roles: []
