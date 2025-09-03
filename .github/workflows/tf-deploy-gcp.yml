@@ -547,7 +547,7 @@ jobs:
 
     - id: get-gke-credentials
       name: Retrieve GKE credentials
-      uses: google-github-actions/get-gke-credentials@v2.3.3
+      uses: google-github-actions/get-gke-credentials@v2.3.5
       with:
         cluster_name: portefaix-${{ github.event.inputs.env }}-cluster-gke
         location: europe-west1-c
