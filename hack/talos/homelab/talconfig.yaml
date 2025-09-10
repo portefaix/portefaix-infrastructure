@@ -86,6 +86,7 @@ nodes:
   nameservers:
   - 192.168.0.1
 
+# Patches for all controlPlanes
 controlPlane:
   schematic:
     customization:
@@ -101,9 +102,15 @@ controlPlane:
   patches:
   - "@./patches/patch-tailscale.yaml"
   - "@./patches/patch-controlplane-node.yaml"
-  - "@./patches/patch-controlplane-kubelet.yaml"
+  # - "@./patches/patch-controlplane-kubelet.yaml"
   - "@./patches/patch-controlplane-cluster.yaml"
 
+# Patches for all workers
 worker:
   patches:
   - "@./patches/patch-worker-node.yaml"
+
+# Global patches
+patches:
+- "@./patches/patch-global-time.yaml"
+- "@./patches/patch-global-kubelet.yaml"

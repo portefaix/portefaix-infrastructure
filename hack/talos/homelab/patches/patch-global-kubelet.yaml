@@ -16,8 +16,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 machine:
-  nodeLabels:
-    # node-role.kubernetes.io/worker: worker
-    portefaix.xyz/worker: "true"
-  # nodeAnnotations: {}
-  # nodeTaints: {}
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+      feature-gates: GracefulNodeShutdown=true
+    extraConfig:
+      maxPods: 250
+    nodeIP:
+      validSubnets:
+        - 192.168.0.0/16
