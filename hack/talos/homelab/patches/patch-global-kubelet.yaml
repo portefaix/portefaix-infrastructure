@@ -19,8 +19,9 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
-      feature-gates: GracefulNodeShutdown=true
     extraConfig:
+      shutdownGracePeriod: 5m0s
+      shutdownGracePeriodCriticalPods: 30s
       maxPods: 250
     nodeIP:
       validSubnets:
