@@ -20,3 +20,5 @@ machine:
     disabled: false
     servers:
       - time.cloudflare.com
+      - time.google.com
+      # - 0.pool.ntp.org
