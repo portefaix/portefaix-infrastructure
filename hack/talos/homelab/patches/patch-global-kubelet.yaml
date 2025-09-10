@@ -22,7 +22,13 @@ machine:
     extraConfig:
       shutdownGracePeriod: 5m0s
       shutdownGracePeriodCriticalPods: 30s
-      maxPods: 250
+      maxPods: 100
+      # kubeReserved:
+      #   cpu: "200m"
+      #   memory: "512Mi"
+      # systemReserved:
+      #   cpu: "200m"
+      #   memory: "512Mi"
     nodeIP:
       validSubnets:
         - 192.168.0.0/16
