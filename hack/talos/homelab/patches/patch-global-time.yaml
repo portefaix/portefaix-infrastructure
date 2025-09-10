@@ -16,12 +16,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 machine:
-  kubelet:
-    # extraArgs:
-    #   feature-gates: GracefulNodeShutdown=true
-    #   rotate-server-certificates: true
-    extraConfig:
-      maxPods: 250
-    nodeIP:
-      validSubnets:
-      - 192.168.0.0/16
+  time:
+    disabled: false
+    servers:
+      - time.cloudflare.com
+      - time.google.com
+      # - 0.pool.ntp.org
