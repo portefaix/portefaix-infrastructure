@@ -17,7 +17,7 @@
 
 machine:
   nodeLabels:
-    # node-role.kubernetes.io/worker: worker
+    node-role.kubernetes.io/worker: worker
     portefaix.xyz/worker: "true"
   # nodeAnnotations: {}
   # nodeTaints: {}
