@@ -102,7 +102,6 @@ controlPlane:
   patches:
   - "@./patches/patch-tailscale.yaml"
   - "@./patches/patch-controlplane-node.yaml"
-  # - "@./patches/patch-controlplane-kubelet.yaml"
   - "@./patches/patch-controlplane-cluster.yaml"
 
 # Patches for all workers
