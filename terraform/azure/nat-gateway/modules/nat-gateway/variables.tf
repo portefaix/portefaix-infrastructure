@@ -51,6 +51,29 @@ variable "subnet_prefix" {
   description = "The address prefix to use for the Azure Bastion subnet"
 }
 
+variable "sku" {
+  description = "The SKU name of the container registry. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Standard"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
+}
+
+variable "idle_timeout_in_minutes" {
+  description = "The idle timeout which should be used in minutes."
+  type        = number
+  default     = 4
+}
+
+variable "zones" {
+  description = "A list of Availability Zones in which this NAT Gateway should be located. Changing this forces a new NAT Gateway to be created."
+  type        = list(string)
+  default     = []
+}
+
 variable "tags" {
   description = "The tags to associate with your network and subnets."
   type        = map(string)
