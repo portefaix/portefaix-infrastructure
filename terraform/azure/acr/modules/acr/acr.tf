@@ -20,12 +20,36 @@ resource "azurerm_container_registry" "this" {
   name                = replace(format("%s-%s", local.service_name, each.key), "-", "")
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  sku                 = "Standard"
+  sku                 = var.sku
 
   # retention_policy {
   #   days    = 7
   #   enabled = true
   # }
 
+  identity {
+    type = "UserAssigned"
+    identity_ids = [
+      azurerm_user_assigned_identity.this.id
+    ]
+  }
+
+  dynamic "georeplications" {
+    for_each = var.georeplication_locations
+
+    content {
+      location = georeplications.value
+      tags     = var.tags
+    }
+  }
+
   tags = var.tags
+}
+
+resource "azurerm_user_assigned_identity" "this" {
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+  tags                = var.tags
+
+  name = replace(format("%s-Identity", local.service_name), "-", "")
 }
