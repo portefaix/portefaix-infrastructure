@@ -14,40 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# resource "azurerm_network_ddos_protection_plan" "this" {
-#   name                = local.service_name
-#   resource_group_name = azurerm_resource_group.this.name
-#   location            = azurerm_resource_group.this.location
-#   tags                = var.tags
-# }
+module "avm-res-network-virtualnetwork" {
+  source  = "Azure/avm-res-network-virtualnetwork/azurerm"
+  version = "0.10.0"
 
-module "vnet" {
-  source  = "Azure/vnet/azurerm"
-  version = "5.0.1"
-
-  use_for_each = true
-
-  vnet_name           = local.service_name
-  vnet_location       = azurerm_resource_group.this.location
+  address_space       = var.address_space
+  location            = var.resource_group_location
+  name                = local.service_name
   resource_group_name = azurerm_resource_group.this.name
-
-  address_space   = var.address_space
-  subnet_prefixes = var.subnet_prefixes
-  subnet_names    = var.subnet_names
-
-  # subnet_service_endpoints = {
-  #   subnet2 = ["Microsoft.Storage", "Microsoft.Sql"],
-  #   subnet3 = ["Microsoft.AzureActiveDirectory"]
-  # }
-
-  # subnet_enforce_private_link_endpoint_network_policies = {
-  #   var.subnet_names[0] = true,
-  # }
-
-  # ddos_protection_plan = {
-  #   id     = azurerm_network_ddos_protection_plan.this.id
-  #   enable = true
-  # }
-
-  tags = var.tags
+  subnets             = var.subnets
+  tags                = var.tags
 }
