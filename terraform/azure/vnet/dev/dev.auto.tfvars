@@ -29,15 +29,16 @@ resource_group_location = "West Europe"
 
 address_space = ["10.0.0.0/16"]
 
-subnet_prefixes = [
-  "10.0.0.0/20",
-  "10.0.32.0/20"
-]
-
-subnet_names = [
-  "portefaix-core-dev-aks",
-  "portefaix-core-dev-ilb",
-]
+subnets = {
+  "portefaix-core-dev-aks" = {
+    name             = "subnet1"
+    address_prefixes = ["10.0.0.0/20"]
+  }
+  "portefaix-core-dev-ilb" = {
+    name             = "subnet2"
+    address_prefixes = ["10.0.32.0/20"]
+  }
+}
 
 tags = {
   "project"           = "portefaix"
