@@ -16,7 +16,7 @@
 
 module "prometheus" {
   source  = "nlamirault/observability/azurerm//modules/prometheus"
-  version = "2.0.0"
+  version = "3.0.0"
 
   cluster_name            = var.cluster_name
   cluster_rg_name         = data.azurerm_resource_group.this.name
@@ -30,7 +30,7 @@ module "prometheus" {
 
 module "mimir" {
   source  = "nlamirault/observability/azurerm//modules/mimir"
-  version = "2.0.0"
+  version = "3.0.0"
 
   cluster_name            = var.cluster_name
   cluster_rg_name         = data.azurerm_resource_group.this.name
@@ -44,7 +44,7 @@ module "mimir" {
 
 module "loki" {
   source  = "nlamirault/observability/azurerm//modules/loki"
-  version = "2.0.0"
+  version = "3.0.0"
 
   cluster_name            = var.cluster_name
   cluster_rg_name         = data.azurerm_resource_group.this.name
@@ -58,7 +58,7 @@ module "loki" {
 
 module "tempo" {
   source  = "nlamirault/observability/azurerm//modules/tempo/"
-  version = "2.0.0"
+  version = "3.0.0"
 
   cluster_name            = var.cluster_name
   cluster_rg_name         = data.azurerm_resource_group.this.name
