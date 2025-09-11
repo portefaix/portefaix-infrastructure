@@ -14,66 +14,113 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# tfsec:ignore:azure-keyvault-no-purge
-# tfsec:ignore:azure-keyvault-specify-network-acl
-resource "azurerm_key_vault" "this" {
-  name                       = local.service_name
-  location                   = azurerm_resource_group.this.location
-  resource_group_name        = azurerm_resource_group.this.name
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days = 7
+module "keyvault" {
+  source  = "Azure/avm-res-keyvault-vault/azurerm"
+  version = "0.10.1"
+
+  name                = local.service_name
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+
+  tenant_id = data.azurerm_client_config.current.tenant_id
+
+  enable_telemetry = false
+
+  legacy_access_policies = {
+    main = {
+      object_id = data.azurerm_client_config.current.object_id
+
+      key_permissions = [
+        "Create",
+        "Get",
+      ]
+      secret_permissions = [
+        "Set",
+        "Get",
+        "Delete",
+      ]
+      certificate_permissions = [
+        "Get",
+        "Create",
+      ]
+    }
+  }
+  legacy_access_policies_enabled = true
+
+  secrets = {
+    test_secret = {
+      name = "portefaix-version"
+    }
+  }
+  secrets_value = {
+    test_secret = var.portefaix_version_secret
+  }
 
   sku_name = var.sku
 
   tags = var.tags
 }
 
-resource "azurerm_key_vault_access_policy" "terraform" {
-  key_vault_id = azurerm_key_vault.this.id
+# # tfsec:ignore:azure-keyvault-no-purge
+# # tfsec:ignore:azure-keyvault-specify-network-acl
+# resource "azurerm_key_vault" "this" {
+#   name                       = local.service_name
+#   location                   = azurerm_resource_group.this.location
+#   resource_group_name        = azurerm_resource_group.this.name
+#   tenant_id                  = data.azurerm_client_config.current.tenant_id
+#   soft_delete_retention_days = 7
 
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  object_id = data.azurerm_client_config.current.object_id
+#   sku_name = var.sku
 
-  key_permissions = [
-    "Create",
-    "Get",
-  ]
+#   tags = var.tags
+# }
 
-  secret_permissions = [
-    "Set",
-    "Get",
-    "Delete",
-  ]
+# resource "azurerm_key_vault_access_policy" "terraform" {
+#   key_vault_id = azurerm_key_vault.this.id
 
-  certificate_permissions = [
-    "Get",
-    "Create",
-  ]
-}
+#   tenant_id = data.azurerm_client_config.current.tenant_id
+#   object_id = data.azurerm_client_config.current.object_id
 
-resource "azurerm_key_vault_access_policy" "aks" {
-  key_vault_id = azurerm_key_vault.this.id
+#   key_permissions = [
+#     "Create",
+#     "Get",
+#   ]
 
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  object_id = data.azurerm_kubernetes_cluster.this.kubelet_identity[0].object_id
+#   secret_permissions = [
+#     "Set",
+#     "Get",
+#     "Delete",
+#   ]
 
-  key_permissions = [
-    "Get",
-  ]
+#   certificate_permissions = [
+#     "Get",
+#     "Create",
+#   ]
+# }
 
-  secret_permissions = [
-    "Get",
-  ]
+# resource "azurerm_key_vault_access_policy" "aks" {
+#   key_vault_id = azurerm_key_vault.this.id
 
-  certificate_permissions = [
-    "Get",
-  ]
-}
+#   tenant_id = data.azurerm_client_config.current.tenant_id
+#   object_id = data.azurerm_kubernetes_cluster.this.kubelet_identity[0].object_id
 
-# tfsec:ignore:azure-keyvault-ensure-secret-expiry
-# tfsec:ignore:azure-keyvault-content-type-for-secret
-resource "azurerm_key_vault_secret" "version" {
-  key_vault_id = azurerm_key_vault.this.id
-  name         = "portefaix-version"
-  value        = var.portefaix_version_secret
-}
+#   key_permissions = [
+#     "Get",
+#   ]
+
+#   secret_permissions = [
+#     "Get",
+#   ]
+
+#   certificate_permissions = [
+#     "Get",
+#   ]
+# }
+
+# # tfsec:ignore:azure-keyvault-ensure-secret-expiry
+# # tfsec:ignore:azure-keyvault-content-type-for-secret
+# resource "azurerm_key_vault_secret" "version" {
+#   key_vault_id = azurerm_key_vault.this.id
+#   name         = "portefaix-version"
+#   value        = var.portefaix_version_secret
+# }
