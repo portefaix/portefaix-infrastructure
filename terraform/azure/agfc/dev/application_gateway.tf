@@ -22,6 +22,5 @@ module "agfc" {
   resource_group_location = var.resource_group_location
   core_rg_name            = var.core_rg_name
   core_vnet_name          = var.core_vnet_name
-  subnet_prefix           = var.subnet_prefix
   tags                    = var.tags
 }

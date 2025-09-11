@@ -41,6 +41,34 @@ variable "subnet_prefix" {
   description = "The address prefix to use for the Azure Firewall subnet"
 }
 
+variable "zones" {
+  description = "Specifies the availability zones of the Azure Firewall"
+  default     = ["1", "2", "3"]
+  type        = list(string)
+}
+
+variable "sku_firewall" {
+  description = "SKU name of the Firewall. Possible values are AZFW_Hub and AZFW_VNet. Changing this forces a new resource to be created."
+  default     = "AZFW_VNet"
+  type        = string
+
+  validation {
+    condition     = contains(["AZFW_Hub", "AZFW_VNet"], var.sku_firewall)
+    error_message = "The value of the sku name property of the firewall is invalid."
+  }
+}
+
+variable "sku" {
+  description = "SKU tier of the Firewall. Possible values are Premium, Standard, and Basic."
+  default     = "Standard"
+  type        = string
+
+  validation {
+    condition     = contains(["Premium", "Standard", "Basic"], var.sku)
+    error_message = "The value of the sku tier property of the firewall is invalid."
+  }
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

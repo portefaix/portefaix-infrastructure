@@ -76,6 +76,17 @@ variable "kubernetes_version" {
   description = "The AKS Kubernetes version"
 }
 
+variable "sku" {
+  description = "The SKU name of the Kubernetes cluster. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Standard"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
+}
+
 variable "automatic_channel_upgrade" {
   type        = string
   default     = "stable"
