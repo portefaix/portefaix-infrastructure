@@ -14,45 +14,23 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_subnet" "this" {
-  name                 = "AzureBastionSubnet"
-  resource_group_name  = data.azurerm_resource_group.hub.name
-  virtual_network_name = data.azurerm_virtual_network.hub.name
-  address_prefixes     = [var.subnet_prefix]
-}
+module "azure_bastion" {
+  source  = "Azure/avm-res-network-bastionhost/azurerm"
+  version = "0.8.1"
 
-resource "azurerm_public_ip" "this" {
-  name                = format("%s-bastion", var.service_name)
-  resource_group_name = data.azurerm_resource_group.hub.name
-  location            = data.azurerm_resource_group.hub.location
-  allocation_method   = "Static"
-  sku                 = var.sku
-  tags                = var.tags
-}
 
-resource "azurerm_bastion_host" "this" {
   name                = var.service_name
-  resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
+  resource_group_name = data.azurerm_resource_group.hub.name
 
-  ip_configuration {
+  enable_telemetry = true
+
+  ip_configuration = {
     name                 = var.service_name
     subnet_id            = azurerm_subnet.this.id
-    public_ip_address_id = azurerm_public_ip.this.id
+    public_ip_address_id = module.public_ip_address.resource_id
+    create_public_ip     = false
   }
+  sku  = var.sku
+  tags = var.tags
 }
-
-# module "bastion" {
-#   source  = "kumarvna/azure-bastion/azurerm"
-#   version = "1.1.0"
-
-#   resource_group_name  = azurerm_resource_group.bastion.name
-#   virtual_network_name = module.vnet.vnet_name
-
-#   azure_bastion_service_name          = var.service_name
-#   azure_bastion_subnet_address_prefix = var.subnet_prefix
-
-#   tags = var.tags
-
-#   depends_on = [azurerm_resource_group.bastion]
-# }
