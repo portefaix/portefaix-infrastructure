@@ -14,6 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+data "azurerm_client_config" "current" {}
+
 # data "azurerm_resource_group" "core" {
 #   name = var.vnet_resource_group_name
 # }

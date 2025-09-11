@@ -87,22 +87,10 @@ variable "sku" {
   }
 }
 
-variable "automatic_channel_upgrade" {
-  type        = string
-  default     = "stable"
-  description = "The upgrade channel for this Kubernetes Cluster"
+variable "authorized_ip_ranges" {
+  type        = list(string)
+  description = "The IP ranges to whitelist for incoming traffic to the masters."
 }
-
-variable "private_cluster_enabled" {
-  description = "If true cluster API server will be exposed only on internal IP address and available only in cluster vnet."
-  type        = bool
-  default     = false
-}
-
-# variable "authorized_ip_ranges" {
-#   type        = list(string)
-#   description = "The IP ranges to whitelist for incoming traffic to the masters."
-# }
 
 variable "tags" {
   type        = map(string)
@@ -110,218 +98,132 @@ variable "tags" {
   default     = {}
 }
 
-variable "public_ssh_key" {
-  description = "A custom ssh key to control access to the AKS cluster"
-  type        = string
-  default     = ""
-}
-
-#############################################################################
-# Network profile
-
-variable "network_plugin" {
-  type        = string
-  description = "The CNI network plugin to use (only azure, or kubenet)"
-  default     = "kubenet"
-}
-
-variable "network_policy" {
-  description = "The network polcy for the CNI. Only used when network_plugin is set to azure. Supported values: calico, azure"
-  type        = string
-}
-
-variable "net_profile_dns_service_ip" {
-  description = "(Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). Changing this forces a new resource to be created."
-  type        = string
-}
-
-# variable "net_profile_outbound_type" {
-#   description = "(Optional) The outbound (egress) routing method which should be used for this Kubernetes Cluster. Possible values are loadBalancer and userDefinedRouting. Defaults to loadBalancer."
-#   type        = string
-#   default     = "loadBalancer"
-# }
-
-# variable "net_profile_pod_cidr" {
-#   description = " (Optional) The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet. Changing this forces a new resource to be created."
-#   type        = string
-#   default     = null
-# }
-
-variable "net_profile_service_cidr" {
-  description = "(Optional) The Network Range used by the Kubernetes service. Changing this forces a new resource to be created."
-  type        = string
-}
-
-#############################################################################
-# Addon profile
-
-# variable "aci_connector_linux" {
-#   type        = bool
-#   description = "Is the virtual node addon enabled"
-# }
-
-variable "azure_policy_enabled" {
-  description = "Is the Azure Policy for Kubernetes Add On enabled"
-  type        = bool
-}
-
-variable "open_service_mesh_enabled" {
-  type        = bool
-  description = "Is Open Service Mesh enabled."
-  default     = null
-}
-
-variable "key_vault_secrets_provider_enabled" {
-  type        = bool
-  description = "Whether to use the Azure Key Vault Provider for Secrets Store CSI Driver in an AKS cluster"
-  default     = false
-}
-
-variable "secret_rotation_enabled" {
-  type        = bool
-  description = "Is secret rotation enabled? This variable is only used when `key_vault_secrets_provider_enabled` is `true`"
-  default     = false
-}
-
 variable "workload_identity_enabled" {
   type        = bool
-  default     = false
-  description = "Enable or Disable Workload Identity. Defaults to false."
+  default     = true
+  description = "Whether or not workload identity is enabled for the Kubernetes cluster."
 }
 
 variable "oidc_issuer_enabled" {
   type        = bool
+  default     = true
+  description = "Whether or not the OIDC issuer is enabled for the Kubernetes cluster."
+}
+
+variable "open_service_mesh_enabled" {
+  type        = bool
   default     = false
-  description = "Enable or Disable the OIDC issuer URL. Defaults to false."
+  description = "Whether or not open service mesh is enabled for the Kubernetes cluster."
+}
+
+
+variable "private_cluster_enabled" {
+  description = "If true cluster API server will be exposed only on internal IP address and available only in cluster vnet."
+  type        = bool
+  default     = false
 }
 
 #############################################################################
 # Default node pool
 
-variable "os_disk_size_gb" {
-  description = "Disk size of nodes in GBs."
-  type        = number
-}
-
-variable "agents_size" {
-  description = "The default virtual machine size for the Kubernetes agents"
-  type        = string
-}
-
-variable "agents_count" {
-  description = "The number of Agents that should exist in the Agent Pool. Please set `agents_count` `null` while `enable_auto_scaling` is `true` to avoid possible `agents_count` changes."
-  type        = number
-}
-
-variable "enable_auto_scaling" {
-  description = "Enable node pool autoscaling"
-  type        = bool
-}
-
-variable "agents_max_count" {
-  type        = number
-  description = "Maximum number of nodes in a pool"
-}
-
-variable "agents_min_count" {
-  type        = number
-  description = "Minimum number of nodes in a pool"
-}
-
-variable "agents_pool_name" {
-  description = "The default Azure AKS agentpool (nodepool) name."
-  type        = string
-}
-
-variable "agents_availability_zones" {
-  description = "(Optional) A list of Availability Zones across which the Node Pool should be spread. Changing this forces a new resource to be created."
-  type        = list(string)
-}
-
-variable "agents_labels" {
-  description = "(Optional) A map of Kubernetes labels which should be applied to nodes in the Default Node Pool. Changing this forces a new resource to be created."
-  type        = map(string)
-}
-
-variable "agents_type" {
-  description = "(Optional) The type of Node Pool which should be created. Possible values are AvailabilitySet and VirtualMachineScaleSets. Defaults to VirtualMachineScaleSets."
-  type        = string
-  default     = "VirtualMachineScaleSets"
-}
-
-variable "agents_tags" {
-  description = "(Optional) A mapping of tags to assign to the Node Pool."
-  type        = map(string)
-}
-
-variable "agents_max_pods" {
-  description = "(Optional) The maximum number of pods that can run on each agent. Changing this forces a new resource to be created."
-  type        = number
-}
-
-variable "api_server_authorized_ip_ranges" {
-  type        = set(string)
-  description = "The IP ranges to allow for incoming traffic to the server nodes."
-  default     = []
-}
-
-variable "maintenance_window" {
+variable "default_node_pool" {
+  description = "Default node pool"
   type = object({
-    allowed = list(object({
-      day   = string
-      hours = set(number)
-    })),
-    not_allowed = list(object({
-      end   = string
-      start = string
-    })),
+    name                 = string
+    vm_size              = string
+    node_count           = number
+    min_count            = number
+    max_count            = number
+    auto_scaling_enabled = bool
+    upgrade_settings = optional(object({
+      drain_timeout_in_minutes      = optional(number)
+      node_soak_duration_in_minutes = optional(number)
+      max_surge                     = string
+    }))
   })
   default = {
-    allowed = [
-      {
-        day   = "Saturday"
-        hours = [21, 22, 22]
-      },
-      {
-        day   = "Sunday"
-        hours = [1, 2, 3, 4, 5, 6, 7, 8]
-      }
-    ],
-    not_allowed = [
-      {
-        start = "2023-12-31T01:00:00Z",
-        end   = "2023-12-31T23:00:00Z"
-      },
-      {
-        start = "2024-12-31T01:00:00Z",
-        end   = "2024-12-31T23:00:00Z"
-      }
-    ]
+    name                 = "core"
+    vm_size              = "Standard_DS2_v2"
+    node_count           = 3
+    min_count            = 3
+    max_count            = 3
+    auto_scaling_enabled = true
+    upgrade_settings = {
+      max_surge = "10%"
+    }
   }
-  description = "(Optional) Maintenance configuration of the managed cluster."
 }
 
 #############################################################################
-# Addons node pool
+# Additional Features
 
-variable "node_pools" {
-  description = "Addons node pools"
-  type = map(object({
-    name                = string
-    vm_size             = string
-    os_disk_size_gb     = number
-    os_disk_type        = string
-    priority            = string
-    enable_auto_scaling = bool
-    count               = number
-    min_count           = number
-    max_count           = number
-    max_pods            = number
-    taints              = list(string)
-    labels              = map(string)
-    tags                = map(string)
-  }))
-  default = {}
+variable "azure_policy_enabled" {
+  type        = bool
+  default     = false
+  description = "Whether or not Azure Policy is enabled for the Kubernetes cluster."
+}
+
+variable "cost_analysis_enabled" {
+  type        = bool
+  default     = false
+  description = "Whether or not cost analysis is enabled for the Kubernetes cluster. SKU must be Standard or Premium."
+}
+
+variable "disk_encryption_set_id" {
+  type        = string
+  default     = null
+  description = "The disk encryption set ID for the Kubernetes cluster."
+}
+
+variable "http_application_routing_enabled" {
+  type        = bool
+  default     = false
+  description = "Whether or not HTTP application routing is enabled for the Kubernetes cluster."
+}
+
+variable "image_cleaner_enabled" {
+  type        = bool
+  default     = true
+  description = "Whether or not the image cleaner is enabled for the Kubernetes cluster."
+}
+
+variable "image_cleaner_interval_hours" {
+  type = number
+  # According to the [schema](https://github.com/hashicorp/terraform-provider-azurerm/blob/v4.0.0/internal/services/containers/kubernetes_cluster_resource.go#L404-L408), the default value should be `null`.
+  default     = 72
+  description = "(Optional) Specifies the interval in hours when images should be cleaned up. Defaults to `0`."
+
+  validation {
+    condition     = var.image_cleaner_interval_hours == null ? true : var.image_cleaner_interval_hours >= 24 && var.image_cleaner_interval_hours <= 2160
+    error_message = "The image cleaner interval must be an int between 24 and 2160."
+  }
+}
+
+#############################################################################
+# Observability
+
+variable "deploy_observability_tools" {
+  description = "value to determine if observability tools should be deployed"
+  type        = bool
+  default     = false
+}
+
+variable "log_analytics_retention_in_days" {
+  description = "The retention in days of the log analytics workspace"
+  type        = number
+  sensitive   = false
+  default     = 30
+}
+
+variable "sku_observability" {
+  description = "(Optional) Specifies the sku of the log analytics workspace"
+  type        = string
+  default     = "PerGB2018"
+
+  validation {
+    condition     = contains(["Free", "Standalone", "PerNode", "PerGB2018"], var.sku_observability)
+    error_message = "The log analytics sku is incorrect."
+  }
 }
 
 #############################################################################

@@ -40,11 +40,7 @@ environment  = "dev"
 
 resource_group_location = "West Europe"
 
-# cluster_name       = "portefaix-dev-aks"
-# prefix             = "portefaix-dev-aks"
 kubernetes_version = "1.26.3"
-
-private_cluster_enabled = false
 
 # rbac = true
 # pod_security_policy = false
@@ -58,176 +54,17 @@ tags = {
 }
 
 #############################################################################
-# Network profile
-
-network_plugin = "azure"
-network_policy = "calico"
-
-# net_profile_pod_cidr           = "10.0.16.0/20"
-net_profile_service_cidr   = "10.0.16.0/20"
-net_profile_dns_service_ip = "10.0.16.10"
-
-#############################################################################
-# Addon profile
-
-http_application_routing_enabled = false
-# enable_kube_dashboard           = false
-azure_policy_enabled = false
-# aci_connector_linux             = false
-
-#############################################################################
 # Node pools
 
-agents_pool_name          = "core"
-agents_count              = 2
-agents_size               = "Standard_D2s_v3"
-os_disk_size_gb           = 50
-enable_auto_scaling       = true
-agents_min_count          = 1
-agents_max_count          = 4
-agents_availability_zones = [1, 2, 3]
-agents_type               = "VirtualMachineScaleSets"
-agents_max_pods           = 110
-
-agents_labels = {
-  "project"  = "portefaix"
-  "env"      = "dev"
-  "service"  = "kubernetes"
-  "nodepool" = "core"
-  "made-by"  = "terraform"
-}
-
-agents_tags = {
-  "env"      = "dev"
-  "project"  = "portefaix"
-  "service"  = "kubernetes"
-  "nodepool" = "core"
-  "made-by"  = "terraform"
-}
-
-# node_pools = [
-#   {
-#     name                = "ops"
-#     vm_size             = "Standard_D2s_v3"
-#     os_disk_size_gb     = 50
-#     os_disk_type        = "Managed"
-#     priority            = "Spot"
-#     enable_auto_scaling = true
-#     count               = 0
-#     min_count           = 0
-#     max_count           = 4
-#     max_pods            = 110
-#     workload_runtime    = "OCIContainer"
-#     labels = {
-#       "project"  = "portefaix"
-#       "env"      = "dev"
-#       "service"  = "kubernetes"
-#       "nodepool" = "ops"
-#       "made-by"  = "terraform"
-#     },
-#     taints = [
-#       "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
-#     ],
-#     tags = {
-#       "env"      = "dev"
-#       "project"  = "portefaix"
-#       "service"  = "kubernetes"
-#       "nodepool" = "ops"
-#       "made-by"  = "terraform"
-#     }
-#   },
-#   {
-#     name                = "wasi"
-#     vm_size             = "Standard_D2s_v3"
-#     os_disk_size_gb     = 50
-#     os_disk_type        = "Managed"
-#     priority            = "Spot"
-#     enable_auto_scaling = true
-#     count               = 0
-#     min_count           = 0
-#     max_count           = 4
-#     max_pods            = 110
-#     workload_runtime    = "WasmWasi"
-#     labels = {
-#       "project"  = "portefaix"
-#       "env"      = "dev"
-#       "service"  = "kubernetes"
-#       "nodepool" = "wasi"
-#       "made-by"  = "terraform"
-#     },
-#     taints = [
-#       "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
-#     ],
-#     tags = {
-#       "env"      = "dev"
-#       "project"  = "portefaix"
-#       "service"  = "kubernetes"
-#       "nodepool" = "wasi"
-#       "made-by"  = "terraform"
-#     }
-#   }
-# ]
-
-node_pools = {
-  "ops" = {
-    name                = "ops"
-    vm_size             = "Standard_D2s_v3"
-    os_disk_size_gb     = 50
-    os_disk_type        = "Managed"
-    priority            = "Spot"
-    enable_auto_scaling = true
-    count               = 0
-    min_count           = 0
-    max_count           = 4
-    max_pods            = 110
-    workload_runtime    = "OCIContainer"
-    labels = {
-      "project"  = "portefaix"
-      "env"      = "dev"
-      "service"  = "kubernetes"
-      "nodepool" = "ops"
-      "made-by"  = "terraform"
-    },
-    taints = [
-      "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
-    ],
-    tags = {
-      "env"      = "dev"
-      "project"  = "portefaix"
-      "service"  = "kubernetes"
-      "nodepool" = "ops"
-      "made-by"  = "terraform"
-    }
-  },
-  "wasi" = {
-    name                = "wasi"
-    vm_size             = "Standard_D2s_v3"
-    os_disk_size_gb     = 50
-    os_disk_type        = "Managed"
-    priority            = "Spot"
-    enable_auto_scaling = true
-    count               = 0
-    min_count           = 0
-    max_count           = 4
-    max_pods            = 110
-    workload_runtime    = "WasmWasi"
-    labels = {
-      "project"  = "portefaix"
-      "env"      = "dev"
-      "service"  = "kubernetes"
-      "nodepool" = "wasi"
-      "made-by"  = "terraform"
-    },
-    taints = [
-      "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
-    ],
-    tags = {
-      "env"      = "dev"
-      "project"  = "portefaix"
-      "service"  = "kubernetes"
-      "nodepool" = "wasi"
-      "made-by"  = "terraform"
-    }
+default_node_pool = {
+  name                 = "core"
+  vm_size              = "Standard_DS2_v2"
+  node_count           = 3
+  min_count            = 3
+  max_count            = 3
+  auto_scaling_enabled = true
+  upgrade_settings = {
+    max_surge = "10%"
   }
 }
 
