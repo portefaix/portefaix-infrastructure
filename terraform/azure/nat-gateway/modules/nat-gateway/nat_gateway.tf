@@ -14,22 +14,25 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_nat_gateway" "this" {
-  name                    = local.service_name
-  location                = azurerm_resource_group.this.location
-  resource_group_name     = azurerm_resource_group.this.name
-  sku_name                = var.sku
-  idle_timeout_in_minutes = var.idle_timeout_in_minutes
-  zones                   = var.zones
-  tags                    = var.tags
-}
+module "nat_gateway" {
+  source  = "Azure/avm-res-network-natgateway/azurerm"
+  version = "0.2.1"
 
-resource "azurerm_nat_gateway_public_ip_association" "this" {
-  nat_gateway_id       = azurerm_nat_gateway.this.id
-  public_ip_address_id = azurerm_public_ip.this.id
-}
+  name                = local.service_name
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
 
-resource "azurerm_subnet_nat_gateway_association" "this" {
-  nat_gateway_id = azurerm_nat_gateway.this.id
-  subnet_id      = azurerm_subnet.this.id
+  enable_telemetry = false
+
+  public_ips = {
+    public_ip_1 = {
+      name = module.public_ip_address.resource_id
+    }
+  }
+
+  subnet_associations = {
+    subnet_1 = {
+      resource_id = azurerm_subnet.this.id
+    }
+  }
 }

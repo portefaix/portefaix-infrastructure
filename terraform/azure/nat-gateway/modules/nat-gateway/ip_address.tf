@@ -14,12 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_public_ip" "this" {
+module "public_ip_address" {
+  source  = "Azure/avm-res-network-publicipaddress/azurerm"
+  version = "0.2.0"
+
   name                = local.service_name
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   allocation_method   = "Static"
-  zones               = var.zones
+  enable_telemetry    = false
+  zones               = [1, 2, 3]
   sku                 = var.sku
   tags                = var.tags
 }
