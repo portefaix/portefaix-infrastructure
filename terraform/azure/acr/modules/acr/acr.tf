@@ -14,42 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_container_registry" "this" {
-  for_each = var.repositories
+module "avm-res-containerregistry-registry" {
+  source  = "Azure/avm-res-containerregistry-registry/azurerm"
+  version = "0.5.0"
 
   name                = replace(format("%s-%s", local.service_name, each.key), "-", "")
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   sku                 = var.sku
-
-  # retention_policy {
-  #   days    = 7
-  #   enabled = true
-  # }
-
-  identity {
-    type = "UserAssigned"
-    identity_ids = [
-      azurerm_user_assigned_identity.this.id
-    ]
-  }
-
-  dynamic "georeplications" {
-    for_each = var.georeplication_locations
-
-    content {
-      location = georeplications.value
-      tags     = var.tags
-    }
-  }
-
-  tags = var.tags
-}
-
-resource "azurerm_user_assigned_identity" "this" {
-  resource_group_name = azurerm_resource_group.this.name
-  location            = azurerm_resource_group.this.location
   tags                = var.tags
-
-  name = replace(format("%s-Identity", local.service_name), "-", "")
 }
+
+# resource "azurerm_user_assigned_identity" "this" {
+#   resource_group_name = azurerm_resource_group.this.name
+#   location            = azurerm_resource_group.this.location
+#   tags                = var.tags
+
+#   name = replace(format("%s-Identity", local.service_name), "-", "")
+# }
