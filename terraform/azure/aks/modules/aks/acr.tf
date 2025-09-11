@@ -15,20 +15,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_role_assignment" "core" {
-  for_each = toset(var.acr_core)
+# resource "azurerm_role_assignment" "core" {
+#   for_each = toset(var.acr_core)
 
-  principal_id                     = module.aks.kubelet_identity.object_id
-  role_definition_name             = "AcrPull"
-  scope                            = data.azurerm_container_registry.core[each.key].id
-  skip_service_principal_aad_check = true
-}
+#   principal_id                     = module.aks.kubelet_identity.object_id
+#   role_definition_name             = "AcrPull"
+#   scope                            = data.azurerm_container_registry.core[each.key].id
+#   skip_service_principal_aad_check = true
+# }
 
-resource "azurerm_role_assignment" "shared" {
-  for_each = toset(var.acr_shared)
+# resource "azurerm_role_assignment" "shared" {
+#   for_each = toset(var.acr_shared)
 
-  principal_id                     = module.aks.kubelet_identity.object_id
-  role_definition_name             = "AcrPull"
-  scope                            = data.azurerm_container_registry.shared[each.key].id
-  skip_service_principal_aad_check = true
-}
+#   principal_id                     = module.aks.kubelet_identity.object_id
+#   role_definition_name             = "AcrPull"
+#   scope                            = data.azurerm_container_registry.shared[each.key].id
+#   skip_service_principal_aad_check = true
+# }

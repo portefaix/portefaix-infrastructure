@@ -14,13 +14,21 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+
+resource "azurerm_subnet" "this" {
+  name                 = "AzureFirewallSubnet"
+  resource_group_name  = data.azurerm_resource_group.hub.name
+  virtual_network_name = data.azurerm_virtual_network.hub.name
+  address_prefixes     = [var.subnet_prefix]
+}
+
 module "public_ip_address" {
   source  = "Azure/avm-res-network-publicipaddress/azurerm"
   version = "0.2.0"
 
-  name                = local.service_name
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
+  name                = format("%s-core", local.service_name)
+  location            = data.azurerm_resource_group.hub.location
+  resource_group_name = data.azurerm_resource_group.hub.name
   allocation_method   = "Static"
   enable_telemetry    = false
   zones               = [1, 2, 3]

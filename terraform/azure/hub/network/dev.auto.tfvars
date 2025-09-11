@@ -28,8 +28,7 @@ resource_group_location = "West Europe"
 
 address_space = ["10.10.0.0/16"]
 
-subnet_prefixes = []
-subnet_names    = []
+subnets = {}
 
 tags = {
   "env"               = "network"

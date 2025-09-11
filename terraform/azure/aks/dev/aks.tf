@@ -26,50 +26,12 @@ module "aks" {
   appgw_subnet_name        = var.appgw_subnet_name
 
   resource_group_location = var.resource_group_location
+  kubernetes_version      = var.kubernetes_version
+  authorized_ip_ranges    = var.authorized_ip_ranges
 
-  kubernetes_version = var.kubernetes_version
+  default_node_pool = var.default_node_pool
 
   tags = var.tags
-
-  private_cluster_enabled = var.private_cluster_enabled
-
-  network_plugin = var.network_plugin
-  network_policy = var.network_policy
-
-  # net_profile_pod_cidr           = var.net_profile_pod_cidr
-  net_profile_service_cidr   = var.net_profile_service_cidr
-  net_profile_dns_service_ip = var.net_profile_dns_service_ip
-
-  public_ssh_key = var.public_ssh_key
-
-  # enable_role_based_access_control = false
-  # rbac_aad_managed                 = false
-  # rbac_aad_admin_group_object_ids  = var.admin_group_object_ids
-
-  node_pools = var.node_pools
-
-  # enable_log_analytics_workspace     = false
-  enable_auto_scaling                 = var.enable_auto_scaling
-  azure_policy_enabled                = var.azure_policy_enabled
-  open_service_mesh_enabled           = var.open_service_mesh_enabled
-  key_vault_secrets_provider_enabled  = var.key_vault_secrets_provider_enabled
-  secret_rotation_enabled             = var.secret_rotation_enabled
-  workload_identity_enabled           = var.workload_identity_enabled
-  oidc_issuer_enabled                 = var.oidc_issuer_enabled
-
-  os_disk_size_gb           = var.os_disk_size_gb
-  agents_min_count          = var.agents_min_count
-  agents_max_count          = var.agents_max_count
-  agents_count              = var.agents_count
-  agents_max_pods           = var.agents_max_pods
-  agents_pool_name          = var.agents_pool_name
-  agents_availability_zones = var.agents_availability_zones
-  agents_type               = var.agents_type
-  agents_size               = var.agents_size
-  agents_labels             = var.agents_labels
-  agents_tags               = var.agents_tags
-
-  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
   acr_core   = var.acr_core
   acr_shared = var.acr_shared

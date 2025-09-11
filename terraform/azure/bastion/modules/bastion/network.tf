@@ -14,21 +14,23 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "avm-res-containerregistry-registry" {
-  source  = "Azure/avm-res-containerregistry-registry/azurerm"
-  version = "0.5.0"
-
-  name                = replace(format("%s-%s", local.service_name, each.key), "-", "")
-  resource_group_name = azurerm_resource_group.this.name
-  location            = azurerm_resource_group.this.location
-  sku                 = var.sku
-  tags                = var.tags
+resource "azurerm_subnet" "this" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = data.azurerm_resource_group.hub.name
+  virtual_network_name = data.azurerm_virtual_network.hub.name
+  address_prefixes     = [var.subnet_prefix]
 }
 
-# resource "azurerm_user_assigned_identity" "this" {
-#   resource_group_name = azurerm_resource_group.this.name
-#   location            = azurerm_resource_group.this.location
-#   tags                = var.tags
+module "public_ip_address" {
+  source  = "Azure/avm-res-network-publicipaddress/azurerm"
+  version = "0.2.0"
 
-#   name = replace(format("%s-Identity", local.service_name), "-", "")
-# }
+  name                = format("%s-bastion", var.service_name)
+  location            = data.azurerm_resource_group.hub.location
+  resource_group_name = data.azurerm_resource_group.hub.name
+  allocation_method   = "Static"
+  enable_telemetry    = false
+  sku                 = var.sku
+  tags                = var.tags
+  zones               = [1, 2, 3]
+}
