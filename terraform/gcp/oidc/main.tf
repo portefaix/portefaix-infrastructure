@@ -33,7 +33,7 @@ terraform {
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "6.49.2"
+      version = "7.2.0"
       configuration_aliases = [
         google-beta.bootstrap,
         google-beta.network,
