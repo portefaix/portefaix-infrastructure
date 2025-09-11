@@ -14,43 +14,45 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "azurerm_subnet" "this" {
-  name                 = "AzureFirewallSubnet"
-  resource_group_name  = data.azurerm_resource_group.hub.name
-  virtual_network_name = data.azurerm_virtual_network.hub.name
-  address_prefixes     = [var.subnet_prefix]
+module "firewall_policy" {
+  source  = "Azure/avm-res-network-firewallpolicy/azurerm"
+  version = "0.3.3"
+
+  name                = format("%s-core", local.service_name)
+  location            = data.azurerm_resource_group.hub.location
+  resource_group_name = data.azurerm_resource_group.hub.name
 }
 
-resource "azurerm_public_ip" "this" {
-  name                = format("%s-core", local.service_name)
-  resource_group_name = data.azurerm_resource_group.hub.name
-  location            = data.azurerm_resource_group.hub.location
-  allocation_method   = "Static"
-  zones               = var.zones
-  sku                 = var.sku
-  tags                = var.tags
-}
+module "azure_firewall" {
+  source  = "Azure/avm-res-network-azurefirewall/azurerm"
+  version = "0.4.0"
 
-resource "azurerm_firewall" "this" {
   name                = format("%s-core", local.service_name)
-  resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
-  zones               = var.zones
-  sku_name            = var.sku_firewall
-  sku_tier            = var.sku
+  resource_group_name = data.azurerm_resource_group.hub.name
 
-  ip_configuration {
-    name                 = format("%s-core", local.service_name)
-    subnet_id            = azurerm_subnet.this.id
-    public_ip_address_id = azurerm_public_ip.this.id
+  firewall_sku_name = "AZFW_VNet"
+  firewall_sku_tier = var.sku
+
+  enable_telemetry = false
+  firewall_zones   = ["1", "2", "3"]
+
+  ip_configurations = {
+    default = {
+      name                 = "ipconfig1"
+      subnet_id            = azurerm_subnet.this.id
+      public_ip_address_id = module.public_ip_address.public_ip_id
+    }
   }
 
   tags = var.tags
 }
 
+
+
 resource "azurerm_firewall_network_rule_collection" "time" {
   name                = format("%s-time", local.service_name)
-  azure_firewall_name = azurerm_firewall.this.name
+  azure_firewall_name = module.azure_firewall.resource_id
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 101
   action              = "Allow"
@@ -67,7 +69,7 @@ resource "azurerm_firewall_network_rule_collection" "time" {
 
 resource "azurerm_firewall_network_rule_collection" "dns" {
   name                = format("%s-dns", local.service_name)
-  azure_firewall_name = azurerm_firewall.this.name
+  azure_firewall_name = module.azure_firewall.resource_id
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 102
   action              = "Allow"
@@ -84,7 +86,7 @@ resource "azurerm_firewall_network_rule_collection" "dns" {
 
 resource "azurerm_firewall_network_rule_collection" "servicetags" {
   name                = format("%s-servicetags", local.service_name)
-  azure_firewall_name = azurerm_firewall.this.name
+  azure_firewall_name = module.azure_firewall.resource_id
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 110
   action              = "Allow"
@@ -106,7 +108,7 @@ resource "azurerm_firewall_network_rule_collection" "servicetags" {
 
 resource "azurerm_firewall_application_rule_collection" "aksbasics" {
   name                = format("%s-aksbasics", local.service_name)
-  azure_firewall_name = azurerm_firewall.this.name
+  azure_firewall_name = module.azure_firewall.resource_id
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 101
   action              = "Allow"
@@ -166,7 +168,7 @@ resource "azurerm_firewall_application_rule_collection" "aksbasics" {
 
 resource "azurerm_firewall_application_rule_collection" "publicimages" {
   name                = format("%s-publicimages", local.service_name)
-  azure_firewall_name = azurerm_firewall.this.name
+  azure_firewall_name = module.azure_firewall.resource_id
   resource_group_name = data.azurerm_resource_group.hub.name
   priority            = 103
   action              = "Allow"
