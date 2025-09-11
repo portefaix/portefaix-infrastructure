@@ -41,6 +41,17 @@ variable "subnet_prefix" {
   description = "The address prefix to use for the Azure Bastion subnet"
 }
 
+variable "sku" {
+  description = "The SKU name of the container registry. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Standard"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

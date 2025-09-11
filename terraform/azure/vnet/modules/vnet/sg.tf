@@ -14,32 +14,38 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# tfsec:ignore:azure-network-ssh-blocked-from-internet
-# tfsec:ignore:azure-network-no-public-ingress
-module "ssh" {
-  source  = "Azure/network-security-group/azurerm"
-  version = "4.1.0"
+module "nsg" {
+  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version = "0.5.0"
 
+  name                = local.service_name
   resource_group_name = azurerm_resource_group.vnet.name
   location            = azurerm_resource_group.vnet.location
-  security_group_name = format("%s-allow-ssh", local.service_name)
 
-  predefined_rules = []
-  custom_rules = [
-    {
-      name                       = "SSH"
-      priority                   = 1001
-      direction                  = "Inbound"
+  security_rules = {
+    "ssh" = {
+      name                       = format("%s-ssh", local.service_name)
       access                     = "Allow"
+      direction                  = "Inbound"
+      priority                   = 1001
       protocol                   = "Tcp"
-      source_port_range          = "*"
-      destination_port_range     = "22"
       source_address_prefixes    = var.authorized_ip_ranges
+      source_port_range          = "*"
       destination_address_prefix = "*"
+      destination_port_range     = "22"
+    },
+    "web" = {
+      name                       = format("%s-web", local.service_name)
+      access                     = "Allow"
+      destination_address_prefix = "*"
+      destination_port_ranges    = ["80", "443"]
+      direction                  = "Inbound"
+      priority                   = 200
+      protocol                   = "Tcp"
+      source_address_prefix      = "*"
+      source_port_range          = "*"
     }
-  ]
+  }
 
   tags = var.tags
-
-  depends_on = [azurerm_resource_group.vnet]
 }

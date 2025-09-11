@@ -43,6 +43,17 @@ variable "resource_group_location" {
   description = "The Azure Region where the Resource Group should exist"
 }
 
+variable "sku" {
+  description = "The SKU name of the container registry. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Basic"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
+}
+
 variable "tags" {
   description = "The tags to associate with your secret"
   type        = map(string)

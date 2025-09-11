@@ -40,14 +40,24 @@ variable "address_space" {
   description = "The address space that is used by the virtual network."
 }
 
-variable "subnet_prefixes" {
-  description = "The address prefix to use for the subnet."
-  type        = list(string)
+variable "subnets" {
+  type = map(object({
+    address_prefixes = optional(list(string))
+    name             = string
+  }))
+  description = "A map of subnets to create"
+  default     = {}
 }
 
-variable "subnet_names" {
-  description = "A list of public subnets inside the vNet."
-  type        = list(string)
+variable "sku" {
+  description = "The SKU name of the container registry. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Standard"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
 }
 
 variable "tags" {

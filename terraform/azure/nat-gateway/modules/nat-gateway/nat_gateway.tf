@@ -15,11 +15,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 resource "azurerm_nat_gateway" "this" {
-  name                = local.service_name
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
-  sku_name            = "Standard"
-  tags                = var.tags
+  name                    = local.service_name
+  location                = azurerm_resource_group.this.location
+  resource_group_name     = azurerm_resource_group.this.name
+  sku_name                = var.sku
+  idle_timeout_in_minutes = var.idle_timeout_in_minutes
+  zones                   = var.zones
+  tags                    = var.tags
 }
 
 resource "azurerm_nat_gateway_public_ip_association" "this" {

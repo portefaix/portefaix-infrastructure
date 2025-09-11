@@ -46,6 +46,23 @@ variable "repositories" {
   default = {}
 }
 
+variable "georeplication_locations" {
+  description = "A list of Azure locations where the container registry should be geo-replicated."
+  type        = list(string)
+  default     = []
+}
+
+variable "sku" {
+  description = "The SKU name of the container registry. Possible values are Basic, Standard and Premium. Defaults to Basic"
+  type        = string
+  default     = "Basic"
+
+  validation {
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
+    error_message = "The container registry sku is invalid."
+  }
+}
+
 variable "tags" {
   type        = map(string)
   description = "Any tags that should be present on the resources"

@@ -26,7 +26,8 @@ resource "azurerm_public_ip" "this" {
   resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
   allocation_method   = "Static"
-  sku                 = "Standard"
+  zones               = var.zones
+  sku                 = var.sku
   tags                = var.tags
 }
 
@@ -34,9 +35,9 @@ resource "azurerm_firewall" "this" {
   name                = format("%s-core", local.service_name)
   resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
-
-  sku_name = "AZFW_VNet"
-  sku_tier = "Standard"
+  zones               = var.zones
+  sku_name            = var.sku_firewall
+  sku_tier            = var.sku
 
   ip_configuration {
     name                 = format("%s-core", local.service_name)
@@ -111,7 +112,7 @@ resource "azurerm_firewall_application_rule_collection" "aksbasics" {
   action              = "Allow"
 
   rule {
-    name             = "allow network"
+    name             = "AllowMicrosoftFqdns"
     source_addresses = ["*"]
 
     target_fqdns = [
@@ -138,6 +139,29 @@ resource "azurerm_firewall_application_rule_collection" "aksbasics" {
       type = "Https"
     }
   }
+
+  rule {
+    name             = "AllowFqdnsForOsUpdates"
+    source_addresses = ["*"]
+
+    target_fqdns = [
+      "download.opensuse.org",
+      "security.ubuntu.com",
+      "ntp.ubuntu.com",
+      "packages.microsoft.com",
+      "snapcraft.io"
+    ]
+
+    protocol {
+      port = "80"
+      type = "Http"
+    }
+
+    protocol {
+      port = "443"
+      type = "Https"
+    }
+  }
 }
 
 resource "azurerm_firewall_application_rule_collection" "publicimages" {
@@ -148,7 +172,7 @@ resource "azurerm_firewall_application_rule_collection" "publicimages" {
   action              = "Allow"
 
   rule {
-    name             = "allow network"
+    name             = "AllowImagesFqdns"
     source_addresses = ["*"]
 
     target_fqdns = [

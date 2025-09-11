@@ -41,10 +41,14 @@ variable "retention_in_days" {
 }
 
 variable "sku" {
-  description = "The sku of the log analytics workspace"
+  description = "(Optional) Specifies the sku of the log analytics workspace"
   type        = string
-  sensitive   = false
   default     = "PerGB2018"
+
+  validation {
+    condition     = contains(["Free", "Standalone", "PerNode", "PerGB2018"], var.sku)
+    error_message = "The log analytics sku is incorrect."
+  }
 }
 
 variable "tags" {

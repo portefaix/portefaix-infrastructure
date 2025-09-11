@@ -26,11 +26,16 @@ module "aks" {
   cluster_name              = local.service_name
   prefix                    = local.service_name
   resource_group_name       = azurerm_resource_group.aks.name
+  location                  = azurerm_resource_group.aks.location
   kubernetes_version        = var.kubernetes_version
   orchestrator_version      = var.kubernetes_version
   automatic_channel_upgrade = var.automatic_channel_upgrade
 
-  vnet_subnet_id = data.azurerm_subnet.aks.id
+  sku_tier = var.sku
+
+  vnet_subnet = {
+    id = data.azurerm_subnet.aks.id
+  }
 
   private_cluster_enabled = var.private_cluster_enabled
 
@@ -44,11 +49,10 @@ module "aks" {
   public_ssh_key = var.public_ssh_key
 
   role_based_access_control_enabled = true
-  rbac_aad_managed                  = true
+  rbac_aad_azure_rbac_enabled       = true
   # rbac_aad_admin_group_object_ids  = var.admin_group_object_ids
 
   # enable_log_analytics_workspace  = false
-  enable_auto_scaling = var.enable_auto_scaling
 
   azure_policy_enabled = var.azure_policy_enabled
 

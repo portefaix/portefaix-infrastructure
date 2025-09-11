@@ -26,7 +26,7 @@ resource "azurerm_public_ip" "this" {
   resource_group_name = data.azurerm_resource_group.hub.name
   location            = data.azurerm_resource_group.hub.location
   allocation_method   = "Static"
-  sku                 = "Standard"
+  sku                 = var.sku
   tags                = var.tags
 }
 
