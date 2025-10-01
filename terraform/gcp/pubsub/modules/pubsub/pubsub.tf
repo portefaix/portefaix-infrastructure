@@ -17,7 +17,7 @@
 # tfsec:ignore:google-iam-no-project-level-service-account-impersonation
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "8.3.0"
+  version = "8.3.2"
 
   project_id   = var.project
   topic        = var.topic
