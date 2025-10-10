@@ -1,6 +1,6 @@
 module "fargate_profile" {
   source  = "terraform-aws-modules/eks/aws//modules/fargate-profile"
-  version = "21.2.0"
+  version = "21.3.2"
 
   cluster_name = var.cluster_name
   name         = var.fargate_profile_name
