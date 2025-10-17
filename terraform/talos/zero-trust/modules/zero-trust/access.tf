@@ -18,8 +18,8 @@
 resource "cloudflare_zero_trust_access_application" "kubectl" {
   account_id       = var.cloudflare_account_id
   type             = "self_hosted"
-  name             = "kubectl"
-  domain           = format("kubectl.%s", data.cloudflare_zone.this.name)
+  name             = format("Kubernetes API on %s", data.cloudflare_zone.this.name)
+  domain           = format("k8s.%s", data.cloudflare_zone.this.name)
   session_duration = "24h"
 
   policies = [
@@ -41,7 +41,7 @@ resource "cloudflare_zero_trust_access_application" "this" {
 
   account_id       = var.cloudflare_account_id
   type             = "self_hosted"
-  name             = format("Access application for %s %s", each.key, data.cloudflare_zone.this.name)
+  name             = format("%s on %s", each.key, data.cloudflare_zone.this.name)
   domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
   session_duration = "24h"
 
