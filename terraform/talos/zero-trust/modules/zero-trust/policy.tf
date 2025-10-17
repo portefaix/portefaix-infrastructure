@@ -1,19 +1,38 @@
-resource "cloudflare_zero_trust_access_policy" "allow_core" {
+resource "cloudflare_zero_trust_access_policy" "admins" {
   account_id       = var.cloudflare_account_id
-  name             = "Allow email addresses"
+  name             = "Allow Administrators"
   decision         = "allow"
   session_duration = "48h"
 
-  include {
-    group = [cloudflare_zero_trust_access_group.email_core.id]
-  }
+  include = [{
+    group = {
+      id = cloudflare_zero_trust_access_group.admins.id
+    }
+  }]
 }
 
-resource "cloudflare_zero_trust_access_group" "email_core" {
+resource "cloudflare_zero_trust_access_group" "admins" {
   account_id = var.cloudflare_account_id
-  name       = "Portefaix SRE"
+  name       = "Administrators"
 
-  include {
-    email = var.cloudflare_email
-  }
+  include = [
+    {
+      email = {
+        email = var.cloudflare_email
+      }
+    }
+  ]
 }
+
+# resource "cloudflare_zero_trust_access_group" "portefaix" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Portefaix"
+
+#   include = [
+#     {
+#       email_domain = {
+#         domain = var.portefaix_domain
+#       }
+#     }
+#   ]
+# }

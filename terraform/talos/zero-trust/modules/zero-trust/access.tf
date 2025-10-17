@@ -16,10 +16,17 @@
 
 
 resource "cloudflare_zero_trust_access_application" "kubectl" {
-  account_id = var.cloudflare_account_id
+  account_id       = var.cloudflare_account_id
+  type             = "self_hosted"
+  name             = "kubectl"
+  domain           = format("kubectl.%s", data.cloudflare_zone.this.name)
+  session_duration = "24h"
 
   policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
+    {
+      id         = cloudflare_zero_trust_access_policy.admins.id,
+      precedence = 1
+    }
   ]
 
   allowed_idps = [
@@ -27,41 +34,21 @@ resource "cloudflare_zero_trust_access_application" "kubectl" {
     cloudflare_zero_trust_access_identity_provider.github_sso.id,
   ]
 
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
-  domain                    = format("kubectl.%s", data.cloudflare_zone.this.name)
-  name                      = "kubectl"
-  session_duration          = "24h"
-  type                      = "saas"
-
-  saas_app {
-    auth_type                        = "oidc"
-    redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", "urn:ietf:wg:oauth:2.0:oob"]
-    grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
-    scopes                           = ["openid", "email", "profile", "groups"]
-    allow_pkce_without_client_secret = true
-    access_token_lifetime            = "5m"
-    refresh_token_options {
-      lifetime = "24h"
-    }
-  }
 }
 
 resource "cloudflare_zero_trust_access_application" "this" {
   for_each = toset(var.applications)
 
-  account_id = var.cloudflare_account_id
-  type       = "self_hosted"
-  name       = format("Access application for %s %s", each.key, data.cloudflare_zone.this.name)
-  domain     = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+  account_id       = var.cloudflare_account_id
+  type             = "self_hosted"
+  name             = format("Access application for %s %s", each.key, data.cloudflare_zone.this.name)
+  domain           = format("%s.%s", each.key, data.cloudflare_zone.this.name)
+  session_duration = "24h"
+
   policies = [
     {
-      id         = cloudflare_zero_trust_access_policy.allow_emails.id
+      id         = cloudflare_zero_trust_access_policy.admins.id
       precedence = 1
     },
-    # {
-    #   id         = cloudflare_zero_trust_access_policy.allow_github.id
-    #   precedence = 2
-    # }
   ]
 }

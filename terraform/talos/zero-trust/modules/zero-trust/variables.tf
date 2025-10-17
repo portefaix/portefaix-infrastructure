@@ -82,3 +82,8 @@ variable "cloudflare_email" {
   type        = string
   description = "Email to allow Cloudflare applications"
 }
+
+variable "portefaix_domain" {
+  type        = string
+  description = "Email to allow Cloudflare applications"
+}
