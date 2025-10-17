@@ -83,7 +83,7 @@ variable "cloudflare_email" {
   description = "Email to allow Cloudflare applications"
 }
 
-variable "portefaix_domain" {
-  type        = string
-  description = "Email to allow Cloudflare applications"
-}
+# variable "portefaix_domain" {
+#   type        = string
+#   description = "Email to allow Cloudflare applications"
+# }
