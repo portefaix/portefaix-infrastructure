@@ -16,7 +16,7 @@
 
 module "keyvault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
-  version = "0.10.1"
+  version = "0.10.2"
 
   name                = local.service_name
   location            = azurerm_resource_group.this.location
