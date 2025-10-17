@@ -64,7 +64,7 @@ repos:
       stages: [commit-msg]
       args: [--strict, --force-scope, build, chore, ci, docs, refactor, perf, test]
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.100.0
+    rev: v1.103.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
