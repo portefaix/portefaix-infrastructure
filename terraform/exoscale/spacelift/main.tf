@@ -20,7 +20,7 @@ terraform {
   required_providers {
     exoscale = {
       source  = "exoscale/exoscale"
-      version = "0.65.1"
+      version = "0.66.0"
     }
     spacelift = {
       source  = "spacelift-io/spacelift"
