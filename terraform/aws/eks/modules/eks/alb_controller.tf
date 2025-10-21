@@ -40,7 +40,7 @@ module "irsa_alb_controller" {
 
 module "pod_identity_alb_controller" {
   source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "2.2.0"
+  version = "2.2.1"
 
   for_each = var.enable_pod_identity ? toset(["1"]) : toset([])
 
