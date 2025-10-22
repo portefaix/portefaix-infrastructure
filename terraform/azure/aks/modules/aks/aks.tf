@@ -16,7 +16,7 @@
 
 module "aks" {
   source  = "Azure/avm-res-containerservice-managedcluster/azurerm"
-  version = "0.3.2"
+  version = "0.3.3"
 
   name                = local.service_name
   resource_group_name = azurerm_resource_group.aks.name
