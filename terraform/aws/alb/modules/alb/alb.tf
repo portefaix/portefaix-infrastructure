@@ -17,7 +17,7 @@
 # tfsec:ignore:aws-elb-alb-not-public
 module "alb_external" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "10.0.0"
+  version = "10.1.0"
 
   name     = local.alb_external_name
   subnets  = data.aws_subnets.public.ids
@@ -43,7 +43,7 @@ module "alb_external" {
 
 module "alb_internal" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "10.0.0"
+  version = "10.1.0"
 
   name     = local.alb_internal_name
   subnets  = data.aws_subnets.private.ids
