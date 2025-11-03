@@ -16,14 +16,14 @@
 
 module "iam_github_oidc_provider" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
-  version = "6.2.1"
+  version = "6.2.3"
 
   tags = local.tags
 }
 
 module "iam_github_oidc_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-role"
-  version = "6.2.1"
+  version = "6.2.3"
 
   name        = "PortefaixGithubActions"
   description = "IAM role that can be assumed by GitHub Actions"

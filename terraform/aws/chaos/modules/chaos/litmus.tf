@@ -39,7 +39,7 @@ resource "aws_iam_policy" "litmus" {
 
 module "irsa_litmuschaos" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
-  version = "6.2.1"
+  version = "6.2.3"
 
   name = local.role_name
 
