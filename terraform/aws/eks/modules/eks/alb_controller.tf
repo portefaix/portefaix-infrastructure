@@ -16,7 +16,7 @@
 
 module "irsa_alb_controller" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
-  version = "6.2.1"
+  version = "6.2.3"
 
   for_each = var.enable_irsa ? toset(["1"]) : toset([])
 
