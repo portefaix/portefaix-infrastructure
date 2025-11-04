@@ -17,7 +17,7 @@
 # tfsec:ignore:aws-ec2-no-public-egress-sgr
 module "vpc_endpoints_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "5.3.0"
+  version = "5.3.1"
 
   name        = format("%s-vpc-endpoints", var.vpc_name)
   description = "Security group for VPC endpoint access"
