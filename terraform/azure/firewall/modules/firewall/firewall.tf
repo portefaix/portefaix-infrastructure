@@ -16,7 +16,7 @@
 
 module "firewall_policy" {
   source  = "Azure/avm-res-network-firewallpolicy/azurerm"
-  version = "0.3.3"
+  version = "0.3.4"
 
   name                = format("%s-core", local.service_name)
   location            = data.azurerm_resource_group.hub.location
