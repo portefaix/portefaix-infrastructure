@@ -19,8 +19,8 @@ terraform {
 
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = "7.22.0"
+      source  = "oracle/oci"
+      version = "7.29.0"
     }
   }
 }

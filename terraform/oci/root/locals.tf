@@ -15,6 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 locals {
+  info_msg = "Created by Terraform"
+
   # shared_account       = "shared"
   # audit_account        = "audit"
   # logging_account      = "logging"

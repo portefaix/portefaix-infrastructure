@@ -14,10 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "billing" {
-  source = "./modules/billing"
+# module "billing" {
+#   source = "./modules/billing"
 
-  organization   = var.organization
-  tenancy_ocid   = var.tenancy_ocid
-  compartment_id = var.compartment_id
-}
+#   organization   = var.organization
+#   tenancy_ocid   = var.tenancy_ocid
+#   compartment_id = var.compartment_id
+# }

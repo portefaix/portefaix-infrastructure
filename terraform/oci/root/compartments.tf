@@ -14,66 +14,74 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "security" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
+module "compartments" {
+  source = "github.com/oci-landing-zones/terraform-oci-modules-iam//compartments?ref=v0.3.1"
+  # source  = "https://github.com/oci-landing-zones/terraform-oci-modules-iam//modules/compartments"
+  # version = "0.3.1"
 
-  compartment_id          = var.compartment_id
-  compartment_name        = "Security"
-  compartment_description = "compartment created by terraform"
-  compartment_create      = true
-  enable_delete           = true
+  tenancy_ocid = var.tenancy_ocid
 
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
-}
-
-module "shared" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
-
-  compartment_id          = var.compartment_id
-  compartment_name        = "Shared"
-  compartment_description = "compartment created by terraform"
-  compartment_create      = true
-  enable_delete           = true
-
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
-}
-
-module "core" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
-
-  compartment_id          = var.compartment_id
-  compartment_name        = "Core"
-  compartment_description = "compartment created by terraform"
-  compartment_create      = true
-  enable_delete           = true
-
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
-}
-
-module "suspended" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-compartment"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-compartment"
-
-  compartment_id          = var.compartment_id
-  compartment_name        = "Suspended"
-  compartment_description = "compartment created by terraform"
-  compartment_create      = true
-  enable_delete           = true
-
-  freeform_tags = merge({
-    "service" = "organization"
-  }, var.freeform_tags)
+  compartments_configuration = {
+    default_parent_id = var.compartment_id
+    compartments = {
+      security = {
+        name        = "security"
+        description = local.info_msg
+        children = {
+          audit = {
+            name        = "audit"
+            description = local.info_msg
+          }
+        }
+        freeform_tags = merge({
+          "service" = "organization"
+        }, var.freeform_tags)
+      },
+      shared = {
+        name        = "shared"
+        description = local.info_msg
+        children = {
+          network = {
+            name        = "network"
+            description = local.info_msg
+          },
+          testing = {
+            name        = "testing"
+            description = local.info_msg
+          }
+        }
+        freeform_tags = merge({
+          "service" = "organization"
+        }, var.freeform_tags)
+      },
+      core = {
+        name        = "core"
+        description = local.info_msg
+        children = {
+          core-dev = {
+            name        = "core-dev"
+            description = local.info_msg
+          },
+          core-staging = {
+            name        = "core-staging"
+            description = local.info_msg
+          },
+          core-prod = {
+            name        = "core-prod"
+            description = local.info_msg
+          }
+        }
+        freeform_tags = merge({
+          "service" = "organization"
+        }, var.freeform_tags)
+      },
+      suspended = {
+        name        = "suspended"
+        description = local.info_msg
+        freeform_tags = merge({
+          "service" = "organization"
+        }, var.freeform_tags)
+      }
+    }
+  }
 }

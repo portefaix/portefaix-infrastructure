@@ -22,13 +22,13 @@ region = "uk-london-1"
 #############################################################################
 # ROOT
 
-organization   = "portefaix"
+organization = "portefaix"
+
 compartment_id = "ocid1.compartment.oc1..aaaaaaaav3nx2ibharekcwknxgj27ulutw3i7ymqp3kf6riop2o33p7na7tq"
-
-
+# compartment_id     = "ocid1.compartment.oc1..aaaaaaaaycj6on24krqftmwrbfcbbxb6luadk4pgvvvitizbzl42t56kuptq"
 
 freeform_tags = {
-  project = "portefaix-root"
-  env     = "root"
-  made-by = "terraform"
+  project    = "portefaix-root"
+  env        = "root"
+  managed-by = "terraform"
 }

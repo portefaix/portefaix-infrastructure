@@ -21,6 +21,8 @@ MKFILE_DIR := $(dir $(MKFILE_PATH))
 include $(MKFILE_DIR)/commons.mk
 include $(MKFILE_DIR)/oci.*.mk
 
+OCI_CONFIG_FILE = $(HOME)/.oci/config
+
 OCI_PROFILE = portefaix
 OCI_COMPARTMENT_NAME = portefaix
 OCI_REGION = uk-london-1
@@ -36,7 +38,7 @@ OCI_REGION = uk-london-1
 
 .PHONY: oci-authenticate
 oci-authenticate: guard-ENV ## Authentication
-	oci session authenticate --profile-name $(OCI_PROFILE)
+	oci session authenticate --profile-name $(OCI_PROFILE) --region $(OCI_REGION)
 
 # --auth security_token \
 
@@ -44,7 +46,9 @@ oci-authenticate: guard-ENV ## Authentication
 oci-compartment: guard-OCI_COMPARTMENT_PARENT_ID ## Create compartment
 	@echo -e "$(OK_COLOR)[$(APP)] Create compartment$(NO_COLOR)"
 	@oci iam compartment create \
+	  --config-file $(OCI_CONFIG_FILE) \
 		--profile $(OCI_PROFILE) \
+		--auth security_token \
 		--compartment-id "$${OCI_COMPARTMENT_PARENT_ID}" \
 		--name "$(OCI_COMPARTMENT_NAME)-root" \
 		--description "Created by OCI CLI" \
@@ -53,11 +57,16 @@ oci-compartment: guard-OCI_COMPARTMENT_PARENT_ID ## Create compartment
 .PHONY: oci-bucket
 oci-bucket: guard-ROOT_COMPARTMENT_ID ## Create bucket for bootstrap
 	@echo -e "$(OK_COLOR)[$(APP)] Create bucket for bootstrap$(NO_COLOR)"
-	@oci os bucket create \
+	oci os bucket create \
+	  --config-file $(OCI_CONFIG_FILE) \
 		--profile $(OCI_PROFILE) \
+		--auth security_token \
 		--compartment-id "$(ROOT_COMPARTMENT_ID)" \
 		--name "$(OCI_COMPARTMENT_NAME)-tfstates" \
 		--region $(OCI_REGION) \
 		--public-access-type NoPublicAccess \
 		--storage-tier Standard \
 		--freeform-tags '{"Project": "Portefaix", "Env": "Root", "Made-By": "OCI CLI"}'
+
+
+# oci iam region list --config-file /Users/nicolas.lamirault/.oci/config --profile portefaix --auth security_token

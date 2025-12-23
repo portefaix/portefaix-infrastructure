@@ -16,10 +16,14 @@
 
 terraform {
   backend "s3" {
-    shared_credentials_file     = "~/.oci/terraform-states_bucket_credentials"
-    skip_region_validation      = true
+    shared_credentials_file = "~/.oci/terraform-states_bucket_credentials"
+
     skip_credentials_validation = true
     skip_metadata_api_check     = true
-    force_path_style            = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+    use_path_style              = true
+    # force_path_style = true
   }
 }

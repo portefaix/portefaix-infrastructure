@@ -14,100 +14,95 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-resource "oci_identity_policy" "sre" {
-  compartment_id = var.compartment_id
-  description    = "Made by Terraform"
-  name           = format("%s-sre", var.organization)
-  statements = [
-    format("ALLOW GROUP %s-SRE to manage all-resources in compartment %s", title(var.organization), var.organization)
-  ]
+# module "groups" {
+#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+#   # version = "0.3.1"
 
-  freeform_tags = merge({
-    "service" = "iam"
-  }, var.freeform_tags)
-}
+#   tenancy_ocid = var.tenancy_ocid
 
-module "sre" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-group"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-group"
-
-  tenancy_ocid      = var.tenancy_ocid
-  group_name        = format("%s-SRE", title(var.organization))
-  group_description = "Made by Terraform"
-
-  # policy_compartment_id = oci_identity_policy.sre.compartment_id
-  # user_ids              = [var.user1_id,var.user2_id,var.user3_id]
-  # policy_name           = "tf-example-policy" # optional
-  # policy_description    = "policy created by terraform" # optional
-  # policy_statements     = [ # optional
-  #   "Allow group tf_example_group to read instances in compartment tf_example_compartment",
-  #   "Allow group tf_example_group to inspect instances in compartment tf_example_compartment",
-  # ]
-
-  freeform_tags = merge({
-    "service" = "iam"
-  }, var.freeform_tags)
-}
-
-# resource "oci_identity_policy" "dev" {
-#     compartment_id = var.compartment_id
-#     description = "Made by Terraform"
-#     name = format("%s-sre", var.organization)
-#     statements = [
-#       format("ALLOW GROUP %s-Development to manage all-resources in compartment %s", title(var.organization), module.core.compartment_name)
-#     ]
+#   groups_configuration = {
+#     default_defined_tags : null
+#     default_freeform_tags : null
+#     groups : {
+#       admin : {
+#         name : "admin",
+#         description : "IAM administrators group."
+#         #members : [],
+#         #defined_tags : null,
+#         #freeform_tags : null
+#       },
+#     }
+#   }
 # }
 
-module "dev" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-group"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-group"
+# resource "oci_identity_policy" "sre" {
+#   compartment_id = var.compartment_id
+#   name           = format("%s-sre", var.organization)
+#   description    = local.info_msg
 
-  tenancy_ocid      = var.tenancy_ocid
-  group_name        = format("%s-Development", title(var.organization))
-  group_description = "Made by Terraform"
-  # user_ids              = [var.user1_id,var.user2_id,var.user3_id]
-  # policy_compartment_id = var.compartment_id
-  # policy_name           = "tf-example-policy" # optional
-  # policy_description    = "policy created by terraform" # optional
-  # policy_statements     = [ # optional
-  #   "Allow group tf_example_group to read instances in compartment tf_example_compartment",
-  #   "Allow group tf_example_group to inspect instances in compartment tf_example_compartment",
-  # ]
+#   statements = [
+#     format("ALLOW GROUP %s-SRE to manage all-resources in compartment %s", title(var.organization), var.organization)
+#   ]
 
-  freeform_tags = merge({
-    "service" = "iam"
-  }, var.freeform_tags)
-}
-
-# resource "oci_identity_policy" "audit" {
-#     compartment_id = var.compartment_id
-#     description = "Made by Terraform"
-#     name = format("%s-sre", var.organization)
-#     statements = [
-#       format("ALLOW GROUP %s-Audit to manage all-resources in compartment %s", title(var.organization), var.organization)
-#     ]
+#   freeform_tags = merge({
+#     "service" = "iam"
+#   }, var.freeform_tags)
 # }
 
-module "audit" {
-  # source                  = "oracle-terraform-modules/iam/oci//modules/iam-group"
-  # version = "2.0.2"
-  source = "/Users/nicolas.lamirault/Projects/Forks/terraform-oci-iam/modules/iam-group"
+# module "group_admin" {
+#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+#   # version = "0.3.1"
 
-  tenancy_ocid      = var.tenancy_ocid
-  group_name        = format("%s-Audit", title(var.organization))
-  group_description = "Made by Terraform"
-  # user_ids              = [var.user1_id,var.user2_id,var.user3_id]
-  # policy_compartment_id = var.compartment_id
-  # policy_name           = "tf-example-policy" # optional
-  # policy_description    = "policy created by terraform" # optional
-  # policy_statements     = [ # optional
-  #   "Allow group tf_example_group to read instances in compartment tf_example_compartment",
-  #   "Allow group tf_example_group to inspect instances in compartment tf_example_compartment",
-  # ]
+#   tenancy_ocid      = var.tenancy_ocid
+#   group_name        = format("%s-Admin", title(var.organization))
+#   group_description = local.info_msg
 
-  freeform_tags = merge({
-    "service" = "iam"
-  }, var.freeform_tags)
-}
+#   freeform_tags = merge({
+#     "service" = "iam"
+#   }, var.freeform_tags)
+# }
+
+# module "group_security" {
+#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+#   # version = "0.3.1"
+
+#   tenancy_ocid      = var.tenancy_ocid
+#   group_name        = format("%s-Security", title(var.organization))
+#   group_description = local.info_msg
+
+#   freeform_tags = merge({
+#     "service" = "iam"
+#   }, var.freeform_tags)
+# }
+
+
+# module "group_dev" {
+#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+#   # version = "0.3.1"
+
+#   tenancy_ocid      = var.tenancy_ocid
+#   group_name        = format("%s-Development", title(var.organization))
+#   group_description = local.info_msg
+
+#   freeform_tags = merge({
+#     "service" = "iam"
+#   }, var.freeform_tags)
+# }
+
+# module "group_audit" {
+#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+#   # version = "0.3.1"
+
+#   tenancy_ocid      = var.tenancy_ocid
+#   group_name        = format("%s-Audit", title(var.organization))
+#   group_description = local.info_msg
+
+#   freeform_tags = merge({
+#     "service" = "iam"
+#   }, var.freeform_tags)
+# }
