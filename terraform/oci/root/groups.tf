@@ -14,27 +14,39 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# module "groups" {
-#   source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
-#   # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
-#   # version = "0.3.1"
+module "groups" {
+  source = "github.com/oci-landing-zones/terraform-oci-modules-iam//groups?ref=v0.3.1"
+  # source  = "oci-landing-zones/terraform-oci-modules-iam//modules/groups"
+  # version = "0.3.1"
 
-#   tenancy_ocid = var.tenancy_ocid
+  tenancy_ocid = var.tenancy_ocid
 
-#   groups_configuration = {
-#     default_defined_tags : null
-#     default_freeform_tags : null
-#     groups : {
-#       admin : {
-#         name : "admin",
-#         description : "IAM administrators group."
-#         #members : [],
-#         #defined_tags : null,
-#         #freeform_tags : null
-#       },
-#     }
-#   }
-# }
+  groups_configuration = {
+    groups : {
+      sre : {
+        name : "sre",
+        description : local.info_msg
+        freeform_tags = merge({
+          "service" = "iam"
+        }, var.freeform_tags)
+      },
+      dev : {
+        name : "dev",
+        description : local.info_msg
+        freeform_tags = merge({
+          "service" = "iam"
+        }, var.freeform_tags)
+      },
+      security : {
+        name : "security",
+        description : local.info_msg
+        freeform_tags = merge({
+          "service" = "iam"
+        }, var.freeform_tags)
+      },
+    }
+  }
+}
 
 # resource "oci_identity_policy" "sre" {
 #   compartment_id = var.compartment_id

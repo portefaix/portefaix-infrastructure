@@ -56,7 +56,12 @@ variable "compartment_id" {
 }
 
 
+# Budgets
 
+variable "budget_alert_recipients" {
+  type    = string
+  default = "nicolas.lamirault@gmail.com"
+}
 
 variable "freeform_tags" {
   description = "simple key-value pairs to tag the created resources using freeform OCI Free-form tags."
