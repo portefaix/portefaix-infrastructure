@@ -16,7 +16,7 @@
 
 module "vpc" {
   source  = "alibaba/vpc/alicloud"
-  version = "1.11.0"
+  version = "1.11.1"
 
   region = var.region
   # profile = var.profile
