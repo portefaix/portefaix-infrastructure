@@ -790,8 +790,8 @@ network_configuration_categories = {
               distribution_type = "IMPORT"
 
               # Import routes from all spoke attachments
-              statements = [
-                {
+              statements = {
+                SPOKE-DEV = {
                   priority = 1
                   action   = "ACCEPT"
                   match_criteria = {
@@ -799,8 +799,8 @@ network_configuration_categories = {
                     attachment_type   = "VCN"
                     drg_attachment_id = "SPOKE-DEV-DRG-ATT"
                   }
-                },
-                {
+                }
+                SPOKE-STAGING = {
                   priority = 2
                   action   = "ACCEPT"
                   match_criteria = {
@@ -808,8 +808,8 @@ network_configuration_categories = {
                     attachment_type   = "VCN"
                     drg_attachment_id = "SPOKE-STAGING-DRG-ATT"
                   }
-                },
-                {
+                }
+                SPOKE-PROD = {
                   priority = 3
                   action   = "ACCEPT"
                   match_criteria = {
@@ -818,7 +818,7 @@ network_configuration_categories = {
                     drg_attachment_id = "SPOKE-PROD-DRG-ATT"
                   }
                 }
-              ]
+              }
             }
           }
         }
