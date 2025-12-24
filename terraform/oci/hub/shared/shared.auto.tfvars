@@ -156,14 +156,14 @@ network_configuration_categories = {
             vcn_id         = "HUB-VCN"
             display_name   = "rt-hub-public"
 
-            route_rules = [
-              {
+            route_rules = {
+              INT-INT-GW = {
                 description       = "Route to Internet via Internet Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-INET-GW"
               }
-            ]
+            }
           }
         }
 
