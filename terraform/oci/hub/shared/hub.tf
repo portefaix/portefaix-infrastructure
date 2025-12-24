@@ -14,13 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-#############################################################################
-# Hub and Spoke Network Architecture
-#
-# This file instantiates the hub module with the network configuration
-# defined in locals.tf.
-#############################################################################
-
 module "hub" {
   source = "../modules/hub"
 

@@ -37,6 +37,7 @@ variable "hub_compartment_id" {
 variable "network_configuration_categories" {
   description = "Map of VCNs to create"
   type        = any
+  default     = {}
 }
 
 # #############################################################################
