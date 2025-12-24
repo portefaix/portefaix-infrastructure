@@ -36,6 +36,13 @@ environments = [
 ]
 
 stacks = {
+  portefaix-oci-shared-hub = {
+    project_root = "terraform/oci/hub"
+    labels       = ["shared", "networking", "hub"]
+    environment  = "shared"
+    branch       = "main"
+    dependencies = []
+  },
   portefaix-oci-dev-oke = {
     project_root = "terraform/oci/oke"
     labels       = ["core", "oke"]

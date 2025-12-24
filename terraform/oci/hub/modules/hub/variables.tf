@@ -15,6 +15,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #############################################################################
+# Provider
+
+variable "tenancy_ocid" {
+  description = "tenancy id where to create the sources"
+  type        = string
+}
+
+#############################################################################
 # Hub
 
 variable "hub_compartment_id" {

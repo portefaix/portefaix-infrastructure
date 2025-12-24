@@ -354,6 +354,12 @@ function setup_oci() {
 
   TF_VAR_private_key="$(cat "${oci_private_key_path}")"
   export TF_VAR_private_key
+
+  export TF_VAR_aws_access_key_id="${AWS_ACCESS_KEY_ID}"
+  export TF_VAR_aws_secret_access_key="${AWS_SECRET_ACCESS_KEY}"
+  export TF_VAR_aws_default_region="${AWS_REGION}"
+  export TF_VAR_aws_region="${AWS_REGION}"
+
   # For Terraform Backend S3
   export TF_VAR_control_plane_allowed_cidrs="[\"${HOME_IP}/32\"]"
 }

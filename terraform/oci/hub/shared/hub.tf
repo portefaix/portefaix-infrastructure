@@ -24,6 +24,8 @@
 module "hub" {
   source = "../modules/hub"
 
+  tenancy_ocid = var.tenancy_ocid
+
   vcns = var.vcns
 
   hub_compartment_id = var.hub_compartment_id
