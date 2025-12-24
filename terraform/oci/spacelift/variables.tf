@@ -33,7 +33,7 @@ variable "fingerprint" {
 }
 
 variable "private_key" {
-  description = "OCI api private key used"
+  description = "OCI path of the private key used"
   type        = string
 }
 

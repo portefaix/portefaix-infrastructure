@@ -352,7 +352,10 @@ function setup_oci() {
     fi
   fi
 
-  TF_VAR_private_key="$(cat "${oci_private_key_path}")"
+  OCI_PRIVATE_KEY=$(cat "${oci_private_key_path}")
+  export OCI_PRIVATE_KEY
+
+  TF_VAR_private_key="${OCI_PRIVATE_KEY}"
   export TF_VAR_private_key
 
   export TF_VAR_aws_access_key_id="${AWS_ACCESS_KEY_ID}"

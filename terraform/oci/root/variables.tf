@@ -32,10 +32,10 @@ variable "fingerprint" {
   type        = string
 }
 
-variable "private_key" {
-  description = "OCI api private key used"
-  type        = string
-}
+# variable "private_key" {
+#   description = "OCI api private key used"
+#   type        = string
+# }
 
 variable "region" {
   description = "the oci region where resources will be created"

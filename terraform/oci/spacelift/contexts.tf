@@ -26,7 +26,7 @@ resource "spacelift_context" "this" {
 resource "spacelift_environment_variable" "oci_tenancy_ocid" {
   for_each = var.stacks
 
-  name       = "TF_VAR_tenancy_ocid"
+  name       = "OCI_TENANCY_OCID"
   context_id = spacelift_context.this[each.value.environment].id
   value      = var.tenancy_ocid
   write_only = true
@@ -35,7 +35,7 @@ resource "spacelift_environment_variable" "oci_tenancy_ocid" {
 resource "spacelift_environment_variable" "oci_user_ocid" {
   for_each = var.stacks
 
-  name       = "TF_VAR_user_ocid"
+  name       = "OCI_USER_OCID"
   context_id = spacelift_context.this[each.value.environment].id
   value      = var.user_ocid
   write_only = true
@@ -44,7 +44,7 @@ resource "spacelift_environment_variable" "oci_user_ocid" {
 resource "spacelift_environment_variable" "oci_fingerprint" {
   for_each = var.stacks
 
-  name       = "TF_VAR_fingerprint"
+  name       = "OCI_FINGERPRINT"
   context_id = spacelift_context.this[each.value.environment].id
   value      = var.fingerprint
   write_only = true
@@ -53,9 +53,9 @@ resource "spacelift_environment_variable" "oci_fingerprint" {
 resource "spacelift_environment_variable" "oci_private_key" {
   for_each = var.stacks
 
-  name       = "TF_VAR_private_key_path"
+  name       = "OCI_PRIVATE_KEY"
   context_id = spacelift_context.this[each.value.environment].id
-  value      = var.private_key
+  value      = base64encode(var.private_key)
   write_only = true
 }
 
@@ -63,7 +63,7 @@ resource "spacelift_environment_variable" "oci_region" {
   for_each = var.stacks
 
   context_id = spacelift_context.this[each.value.environment].id
-  name       = "TF_VAR_region"
+  name       = "OCI_REGION"
   value      = var.region
   write_only = true
 }
