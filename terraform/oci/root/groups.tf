@@ -44,6 +44,20 @@ module "groups" {
           "service" = "iam"
         }, var.freeform_tags)
       },
+      audit : {
+        name : "audit",
+        description : local.info_msg
+        freeform_tags = merge({
+          "service" = "iam"
+        }, var.freeform_tags)
+      },
+      ops : {
+        name : "ops",
+        description : local.info_msg
+        freeform_tags = merge({
+          "service" = "iam"
+        }, var.freeform_tags)
+      },
     }
   }
 }
