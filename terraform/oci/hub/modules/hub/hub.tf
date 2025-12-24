@@ -27,30 +27,54 @@ module "hub_spoke_network" {
 
     network_configuration_categories = {
       hub_spoke = {
-        vcns = var.vcns
+        vcns = {
+          # Hub VCN with nested subnets, security lists, route tables, and gateways
+          for vcn_key, vcn_config in var.vcns : vcn_key => merge(
+            vcn_config,
+            {
+              subnets = vcn_key == "HUB-VCN" ? var.hub_subnets : (
+                vcn_key == "SPOKE-DEV-VCN" ? var.dev_subnets : (
+                  vcn_key == "SPOKE-STAGING-VCN" ? var.staging_subnets : (
+                    vcn_key == "SPOKE-PROD-VCN" ? var.prod_subnets : {}
+                  )
+                )
+              )
 
-        subnets = merge(
-          var.hub_subnets,
-          var.dev_subnets,
-          var.staging_subnets,
-          var.prod_subnets
-        )
+              security_lists = vcn_key == "HUB-VCN" ? var.hub_security_lists : (
+                vcn_key == "SPOKE-DEV-VCN" ? var.dev_security_lists : (
+                  vcn_key == "SPOKE-STAGING-VCN" ? var.staging_security_lists : (
+                    vcn_key == "SPOKE-PROD-VCN" ? var.prod_security_lists : {}
+                  )
+                )
+              )
 
-        security_lists = merge(
-          var.hub_security_lists,
-          var.dev_security_lists,
-          var.staging_security_lists,
-          var.prod_security_lists
-        )
+              route_tables = vcn_key == "HUB-VCN" ? var.hub_route_tables : (
+                vcn_key == "SPOKE-DEV-VCN" ? var.dev_route_tables : (
+                  vcn_key == "SPOKE-STAGING-VCN" ? var.staging_route_tables : (
+                    vcn_key == "SPOKE-PROD-VCN" ? var.prod_route_tables : {}
+                  )
+                )
+              )
 
-        route_tables = merge(
-          var.hub_route_tables,
-          var.dev_route_tables,
-          var.staging_route_tables,
-          var.prod_route_tables
-        )
+              vcn_specific_gateways = {
+                internet_gateways = {
+                  for gw_key, gw_config in lookup(var.vcn_gateways, "internet_gateways", {}) :
+                  gw_key => gw_config if gw_config.vcn_id == vcn_key
+                }
 
-        vcn_specific_gateways = var.vcn_gateways
+                nat_gateways = {
+                  for gw_key, gw_config in lookup(var.vcn_gateways, "nat_gateways", {}) :
+                  gw_key => gw_config if gw_config.vcn_id == vcn_key
+                }
+
+                service_gateways = {
+                  for gw_key, gw_config in lookup(var.vcn_gateways, "service_gateways", {}) :
+                  gw_key => gw_config if gw_config.vcn_id == vcn_key
+                }
+              }
+            }
+          )
+        }
 
         non_vcn_specific_gateways = var.drg_config
       }
