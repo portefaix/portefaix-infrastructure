@@ -56,7 +56,7 @@ resource "spacelift_environment_variable" "oci_private_key" {
   name       = "OCI_PRIVATE_KEY"
   context_id = spacelift_context.this[each.value.environment].id
   value      = base64encode(var.private_key)
-  write_only = true
+  write_only = false
 }
 
 resource "spacelift_environment_variable" "oci_region" {

@@ -16,7 +16,7 @@ variable "fingerprint" {
   type        = string
 }
 
-variable "private_key" {
+variable "oci_private_key" {
   description = "OCI api private key used"
   type        = string
 }

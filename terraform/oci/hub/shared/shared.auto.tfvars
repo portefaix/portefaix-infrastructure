@@ -15,16 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #############################################################################
-# OCI Provider Configuration
-#############################################################################
-
-tenancy_ocid = "ocid1.tenancy.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-user_ocid    = "ocid1.user.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-fingerprint  = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
-private_key  = "~/.oci/oci_api_key.pem"
-region       = "eu-paris-1"
-
-#############################################################################
 # Compartment IDs
 #############################################################################
 

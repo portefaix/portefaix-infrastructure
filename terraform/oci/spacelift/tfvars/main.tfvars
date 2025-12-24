@@ -40,14 +40,14 @@ stacks = {
     project_root = "terraform/oci/hub"
     labels       = ["shared", "networking", "hub"]
     environment  = "shared"
-    branch       = "main"
+    branch       = "feat/oci-refactoring"
     dependencies = []
   },
   portefaix-oci-dev-oke = {
     project_root = "terraform/oci/oke"
     labels       = ["core", "oke"]
     environment  = "core-dev"
-    branch       = "main"
+    branch       = "feat/oci-refactoring"
     dependencies = []
   },
 }

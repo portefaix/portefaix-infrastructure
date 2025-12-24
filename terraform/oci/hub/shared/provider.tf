@@ -4,5 +4,5 @@ provider "oci" {
   user_ocid    = var.user_ocid
   fingerprint  = var.fingerprint
   # private_key  = var.private_key
-  private_key = base64decode(var.private_key)
+  private_key = base64decode(var.oci_private_key)
 }
