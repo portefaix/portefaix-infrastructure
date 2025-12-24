@@ -18,7 +18,7 @@
 # Compartment IDs
 #############################################################################
 
-hub_compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+hub_compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
 
 #############################################################################
 # Common Tags
@@ -39,14 +39,14 @@ network_configuration_categories = {
   vcns = {
     HUB-VCN = {
       display_name      = "vcn-hub"
-      compartment_id    = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Will be overridden by hub_compartment_id
+      compartment_id    = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
       cidr_blocks       = ["10.0.0.0/20"]
       dns_label         = "hub"
       block_nat_traffic = false
 
       subnets = {
         HUB-SUBNET-SHARED = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id                     = "HUB-VCN"
           cidr_block                 = "10.0.0.0/24"
           display_name               = "subnet-hub-shared"
@@ -59,7 +59,7 @@ network_configuration_categories = {
         }
 
         HUB-SUBNET-PUBLIC = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id                     = "HUB-VCN"
           cidr_block                 = "10.0.1.0/24"
           display_name               = "subnet-hub-public"
@@ -74,7 +74,7 @@ network_configuration_categories = {
 
       security_lists = {
         HUB-SL-SHARED = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id         = "HUB-VCN"
           display_name   = "sl-hub-shared"
 
@@ -100,7 +100,7 @@ network_configuration_categories = {
         }
 
         HUB-SL-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id         = "HUB-VCN"
           display_name   = "sl-hub-public"
 
@@ -130,7 +130,7 @@ network_configuration_categories = {
 
       route_tables = {
         HUB-RT-SHARED = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id         = "HUB-VCN"
           display_name   = "rt-hub-shared"
 
@@ -151,7 +151,7 @@ network_configuration_categories = {
         }
 
         HUB-RT-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
           vcn_id         = "HUB-VCN"
           display_name   = "rt-hub-public"
 
@@ -169,7 +169,7 @@ network_configuration_categories = {
       vcn_specific_gateways = {
         internet_gateways = {
           HUB-INET-GW = {
-            compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+            compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
             vcn_id         = "HUB-VCN"
             display_name   = "igw-hub"
             enabled        = true
@@ -180,14 +180,14 @@ network_configuration_categories = {
 
     SPOKE-DEV-VCN = {
       display_name      = "vcn-core-dev"
-      compartment_id    = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Will be overridden by compartment_core_dev_id
+      compartment_id    = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
       cidr_blocks       = ["10.1.0.0/20"]
       dns_label         = "coredev"
       block_nat_traffic = false
 
       subnets = {
         SPOKE-DEV-SUBNET-OKE-API = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id                     = "SPOKE-DEV-VCN"
           cidr_block                 = "10.1.0.0/28"
           display_name               = "subnet-dev-oke-api"
@@ -200,7 +200,7 @@ network_configuration_categories = {
         }
 
         SPOKE-DEV-SUBNET-OKE-NODES = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id                     = "SPOKE-DEV-VCN"
           cidr_block                 = "10.1.1.0/24"
           display_name               = "subnet-dev-oke-nodes"
@@ -213,7 +213,7 @@ network_configuration_categories = {
         }
 
         SPOKE-DEV-SUBNET-OKE-LB = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id                     = "SPOKE-DEV-VCN"
           cidr_block                 = "10.1.2.0/24"
           display_name               = "subnet-dev-oke-lb"
@@ -228,7 +228,7 @@ network_configuration_categories = {
 
       security_lists = {
         SPOKE-DEV-SL-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id         = "SPOKE-DEV-VCN"
           display_name   = "sl-dev-private"
 
@@ -261,7 +261,7 @@ network_configuration_categories = {
         }
 
         SPOKE-DEV-SL-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id         = "SPOKE-DEV-VCN"
           display_name   = "sl-dev-public"
 
@@ -300,7 +300,7 @@ network_configuration_categories = {
 
       route_tables = {
         SPOKE-DEV-RT-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id         = "SPOKE-DEV-VCN"
           display_name   = "rt-dev-private"
 
@@ -327,7 +327,7 @@ network_configuration_categories = {
         }
 
         SPOKE-DEV-RT-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
           vcn_id         = "SPOKE-DEV-VCN"
           display_name   = "rt-dev-public"
 
@@ -345,7 +345,7 @@ network_configuration_categories = {
       vcn_specific_gateways = {
         nat_gateways = {
           SPOKE-DEV-INET-GW = {
-            compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_dev_id
+            compartment_id = "ocid1.compartment.oc1..aaaaaaaadidqfuuf2uenboptuyo2mmldobk7vq6mabddrxlgrz5a2rurwkeq"
             vcn_id         = "SPOKE-DEV-VCN"
             display_name   = "igw-dev"
             enabled        = true
@@ -357,14 +357,14 @@ network_configuration_categories = {
 
     SPOKE-STAGING-VCN = {
       display_name      = "vcn-core-staging"
-      compartment_id    = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Will be overridden by compartment_core_staging_id
+      compartment_id    = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
       cidr_blocks       = ["10.2.0.0/20"]
       dns_label         = "corestag"
       block_nat_traffic = false
 
       subnets = {
         SPOKE-STAGING-SUBNET-OKE-API = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id                     = "SPOKE-STAGING-VCN"
           cidr_block                 = "10.2.0.0/28"
           display_name               = "subnet-staging-oke-api"
@@ -377,7 +377,7 @@ network_configuration_categories = {
         }
 
         SPOKE-STAGING-SUBNET-OKE-NODES = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id                     = "SPOKE-STAGING-VCN"
           cidr_block                 = "10.2.1.0/24"
           display_name               = "subnet-staging-oke-nodes"
@@ -390,7 +390,7 @@ network_configuration_categories = {
         }
 
         SPOKE-STAGING-SUBNET-OKE-LB = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id                     = "SPOKE-STAGING-VCN"
           cidr_block                 = "10.2.2.0/24"
           display_name               = "subnet-staging-oke-lb"
@@ -405,7 +405,7 @@ network_configuration_categories = {
 
       security_lists = {
         SPOKE-STAGING-SL-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id         = "SPOKE-STAGING-VCN"
           display_name   = "sl-staging-private"
 
@@ -438,7 +438,7 @@ network_configuration_categories = {
         }
 
         SPOKE-STAGING-SL-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id         = "SPOKE-STAGING-VCN"
           display_name   = "sl-staging-public"
 
@@ -477,7 +477,7 @@ network_configuration_categories = {
 
       route_tables = {
         SPOKE-STAGING-RT-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id         = "SPOKE-STAGING-VCN"
           display_name   = "rt-staging-private"
 
@@ -510,7 +510,7 @@ network_configuration_categories = {
         }
 
         SPOKE-STAGING-RT-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
           vcn_id         = "SPOKE-STAGING-VCN"
           display_name   = "rt-staging-public"
 
@@ -528,7 +528,7 @@ network_configuration_categories = {
       vcn_specific_gateways = {
         nat_gateways = {
           SPOKE-STAGING-INET-GW = {
-            compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_staging_id
+            compartment_id = "ocid1.compartment.oc1..aaaaaaaajhulz4nlwi37o5ebew4y7cmzqdujr6k4doqykmdxrolkqeomz32a"
             vcn_id         = "SPOKE-STAGING-VCN"
             display_name   = "igw-staging"
             enabled        = true
@@ -539,14 +539,14 @@ network_configuration_categories = {
 
     SPOKE-PROD-VCN = {
       display_name      = "vcn-core-prod"
-      compartment_id    = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Will be overridden by compartment_core_prod_id
+      compartment_id    = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
       cidr_blocks       = ["10.3.0.0/20"]
       dns_label         = "coreprod"
       block_nat_traffic = false
 
       subnets = {
         SPOKE-PROD-SUBNET-OKE-API = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id                     = "SPOKE-PROD-VCN"
           cidr_block                 = "10.3.0.0/28"
           display_name               = "subnet-prod-oke-api"
@@ -559,7 +559,7 @@ network_configuration_categories = {
         }
 
         SPOKE-PROD-SUBNET-OKE-NODES = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id                     = "SPOKE-PROD-VCN"
           cidr_block                 = "10.3.1.0/24"
           display_name               = "subnet-prod-oke-nodes"
@@ -572,7 +572,7 @@ network_configuration_categories = {
         }
 
         SPOKE-PROD-SUBNET-OKE-LB = {
-          compartment_id             = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id             = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id                     = "SPOKE-PROD-VCN"
           cidr_block                 = "10.3.2.0/24"
           display_name               = "subnet-prod-oke-lb"
@@ -587,7 +587,7 @@ network_configuration_categories = {
 
       security_lists = {
         SPOKE-PROD-SL-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id         = "SPOKE-PROD-VCN"
           display_name   = "sl-prod-private"
 
@@ -620,7 +620,7 @@ network_configuration_categories = {
         }
 
         SPOKE-PROD-SL-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id         = "SPOKE-PROD-VCN"
           display_name   = "sl-prod-public"
 
@@ -659,7 +659,7 @@ network_configuration_categories = {
 
       route_tables = {
         SPOKE-PROD-RT-PRIVATE = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id         = "SPOKE-PROD-VCN"
           display_name   = "rt-prod-private"
 
@@ -686,7 +686,7 @@ network_configuration_categories = {
         }
 
         SPOKE-PROD-RT-PUBLIC = {
-          compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+          compartment_id = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
           vcn_id         = "SPOKE-PROD-VCN"
           display_name   = "rt-prod-public"
 
@@ -704,7 +704,7 @@ network_configuration_categories = {
       vcn_specific_gateways = {
         nat_gateways = {
           SPOKE-PROD-INET-GW = {
-            compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # compartment_core_prod_id
+            compartment_id = "ocid1.compartment.oc1..aaaaaaaac74f5aqeddw6xneiybzbnoni6jhsf2mbqcboqaymyzhekkon4bsq"
             vcn_id         = "SPOKE-PROD-VCN"
             display_name   = "igw-prod"
             enabled        = true
@@ -717,7 +717,7 @@ network_configuration_categories = {
   non_vcn_specific_gateways = {
     dynamic_routing_gateways = {
       HUB-DRG = {
-        compartment_id = "ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # hub_compartment_id
+        compartment_id = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
         display_name   = "drg-hub"
 
         # DRG Attachments to connect VCNs
