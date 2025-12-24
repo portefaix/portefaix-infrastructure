@@ -30,9 +30,9 @@ environments = [
   "orga",
   "shared",
   "security",
-  "core-dev",
-  "core-staging",
-  "core-prod",
+  "dev",
+  "staging",
+  "prod",
 ]
 
 stacks = {
@@ -43,10 +43,31 @@ stacks = {
     branch       = "feat/oci-refactoring"
     dependencies = []
   },
+  portefaix-oci-dev-vcn = {
+    project_root = "terraform/oci/vcn"
+    labels       = ["core", "networking", "vcn"]
+    environment  = "dev"
+    branch       = "feat/oci-refactoring"
+    dependencies = []
+  },
+  portefaix-oci-staging-vcn = {
+    project_root = "terraform/oci/vcn"
+    labels       = ["core", "networking", "vcn"]
+    environment  = "staging"
+    branch       = "feat/oci-refactoring"
+    dependencies = []
+  },
+  portefaix-oci-prod-vcn = {
+    project_root = "terraform/oci/vcn"
+    labels       = ["core", "networking", "vcn"]
+    environment  = "prod"
+    branch       = "feat/oci-refactoring"
+    dependencies = []
+  },
   portefaix-oci-dev-oke = {
     project_root = "terraform/oci/oke"
     labels       = ["core", "oke"]
-    environment  = "core-dev"
+    environment  = "dev"
     branch       = "feat/oci-refactoring"
     dependencies = []
   },
