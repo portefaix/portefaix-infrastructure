@@ -338,14 +338,14 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-DEV-VCN"
             display_name   = "rt-dev-public"
 
-            route_rules = [
-              {
+            route_rules = {
+              INT-INT-GW = {
                 description       = "Route to Internet via Internet Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-DEV-INET-GW"
               }
-            ]
+            }
           }
         }
 
