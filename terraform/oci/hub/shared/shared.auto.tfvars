@@ -41,7 +41,7 @@ network_configuration_categories = {
       HUB-VCN = {
         display_name      = "vcn-hub"
         compartment_id    = "ocid1.compartment.oc1..aaaaaaaa6rlchzzaqyqeizji46uysn3i6bqtrgbi57mwdnopqek3m6f4b2ca"
-        cidr_blocks       = ["10.0.0.0/20"]
+        cidr_blocks       = ["10.0.0.0/16"]
         dns_label         = "hub"
         block_nat_traffic = false
 
@@ -135,20 +135,20 @@ network_configuration_categories = {
             vcn_id         = "HUB-VCN"
             display_name   = "rt-hub-shared"
 
-            route_rules = [
-              {
+            route_rules = {
+              INT-INT-GW = {
                 description       = "Route to Internet via NAT Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-NAT-GW"
-              },
-              {
+              }
+              SPOKE-DRG = {
                 description       = "Route to Spokes via DRG"
                 destination       = "10.1.0.0/16"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
               }
-            ]
+            }
           }
 
           HUB-RT-PUBLIC = {
@@ -177,7 +177,7 @@ network_configuration_categories = {
             }
           }
         }
-      },
+      }
 
       SPOKE-DEV-VCN = {
         display_name      = "vcn-core-dev"
@@ -245,7 +245,7 @@ network_configuration_categories = {
                 description = "Allow all from Hub"
                 stateless   = false
                 protocol    = "all"
-                src         = "10.0.0.0/20"
+                src         = "10.0.0.0/16"
                 src_type    = "CIDR_BLOCK"
               }
             ]
@@ -305,26 +305,32 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-DEV-VCN"
             display_name   = "rt-dev-private"
 
-            route_rules = [
-              {
+            route_rules = {
+              HUB-DRG = {
                 description       = "Route to Hub via DRG"
-                destination       = "10.0.0.0/20"
+                destination       = "10.0.0.0/16"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-STAGING-DRG = {
                 description       = "Route to other Spokes via DRG"
                 destination       = "10.2.0.0/15"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-PROD-DRG = {
+                description       = "Route to other Spokes via DRG"
+                destination       = "10.3.0.0/15"
+                destination_type  = "CIDR_BLOCK"
+                network_entity_id = "HUB-DRG"
+              }
+              INT-INT-GW = {
                 description       = "Route to Internet via NAT Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-DEV-NAT-GW"
               }
-            ]
+            }
           }
 
           SPOKE-DEV-RT-PUBLIC = {
@@ -354,7 +360,7 @@ network_configuration_categories = {
           }
         }
 
-      },
+      }
 
       SPOKE-STAGING-VCN = {
         display_name      = "vcn-core-staging"
@@ -422,7 +428,7 @@ network_configuration_categories = {
                 description = "Allow all from Hub"
                 stateless   = false
                 protocol    = "all"
-                src         = "10.0.0.0/20"
+                src         = "10.0.0.0/16"
                 src_type    = "CIDR_BLOCK"
               }
             ]
@@ -482,32 +488,32 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-STAGING-VCN"
             display_name   = "rt-staging-private"
 
-            route_rules = [
-              {
+            route_rules = {
+              HUB-DRG = {
                 description       = "Route to Hub via DRG"
-                destination       = "10.0.0.0/20"
+                destination       = "10.0.0.0/16"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-DEV-DRG = {
                 description       = "Route to other Spokes via DRG"
                 destination       = "10.1.0.0/20"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-PROD-DRG = {
                 description       = "Route to other Spokes via DRG"
                 destination       = "10.3.0.0/20"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              INT-INT-GW = {
                 description       = "Route to Internet via NAT Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-STAGING-NAT-GW"
               }
-            ]
+            }
           }
 
           SPOKE-STAGING-RT-PUBLIC = {
@@ -515,14 +521,14 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-STAGING-VCN"
             display_name   = "rt-staging-public"
 
-            route_rules = [
-              {
+            route_rules = {
+              INT-INT-GW = {
                 description       = "Route to Internet via Internet Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-STAGING-INET-GW"
               }
-            ]
+            }
           }
         }
 
@@ -536,7 +542,7 @@ network_configuration_categories = {
             }
           }
         }
-      },
+      }
 
       SPOKE-PROD-VCN = {
         display_name      = "vcn-core-prod"
@@ -604,7 +610,7 @@ network_configuration_categories = {
                 description = "Allow all from Hub"
                 stateless   = false
                 protocol    = "all"
-                src         = "10.0.0.0/20"
+                src         = "10.0.0.0/16"
                 src_type    = "CIDR_BLOCK"
               }
             ]
@@ -664,26 +670,32 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-PROD-VCN"
             display_name   = "rt-prod-private"
 
-            route_rules = [
-              {
+            route_rules = {
+              HUB-DRG = {
                 description       = "Route to Hub via DRG"
-                destination       = "10.0.0.0/20"
+                destination       = "10.0.0.0/16"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-DEV-DRG = {
                 description       = "Route to other Spokes via DRG"
                 destination       = "10.1.0.0/19"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "HUB-DRG"
-              },
-              {
+              }
+              SPOKE-STAGING-DRG = {
+                description       = "Route to other Spokes via DRG"
+                destination       = "10.2.0.0/19"
+                destination_type  = "CIDR_BLOCK"
+                network_entity_id = "HUB-DRG"
+              }
+              INT-INT-GW = {
                 description       = "Route to Internet via NAT Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-PROD-NAT-GW"
               }
-            ]
+            }
           }
 
           SPOKE-PROD-RT-PUBLIC = {
@@ -691,14 +703,14 @@ network_configuration_categories = {
             vcn_id         = "SPOKE-PROD-VCN"
             display_name   = "rt-prod-public"
 
-            route_rules = [
-              {
+            route_rules = {
+              INT-INT-GW = {
                 description       = "Route to Internet via Internet Gateway"
                 destination       = "0.0.0.0/0"
                 destination_type  = "CIDR_BLOCK"
                 network_entity_id = "SPOKE-PROD-INET-GW"
               }
-            ]
+            }
           }
         }
 
@@ -761,13 +773,13 @@ network_configuration_categories = {
               display_name = "drg-rt-spoke"
 
               # Static routes to hub and other spokes
-              route_rules = [
-                {
-                  destination                = "10.0.0.0/20"
+              route_rules = {
+                HUB-SPOKES-DRG = {
+                  destination                = "10.0.0.0/16"
                   destination_type           = "CIDR_BLOCK"
                   next_hop_drg_attachment_id = "HUB-DRG-ATT"
                 }
-              ]
+              }
             }
           }
 
