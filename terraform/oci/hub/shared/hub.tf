@@ -26,25 +26,8 @@ module "hub" {
 
   tenancy_ocid = var.tenancy_ocid
 
-  vcns = var.vcns
+  hub_compartment_id    = var.hub_compartment_id
+  network_configuration = var.network_configuration
 
-  hub_compartment_id = var.hub_compartment_id
-  hub_subnets        = var.hub_subnets
-  hub_security_lists = var.hub_security_lists
-  hub_route_tables   = var.hub_route_tables
-
-  dev_subnets        = var.dev_subnets
-  dev_security_lists = var.dev_security_lists
-  dev_route_tables   = var.dev_route_tables
-
-  staging_subnets        = var.staging_subnets
-  staging_security_lists = var.staging_security_lists
-  staging_route_tables   = var.staging_route_tables
-
-  prod_subnets        = var.prod_subnets
-  prod_security_lists = var.prod_security_lists
-  prod_route_tables   = var.prod_route_tables
-
-  vcn_gateways = var.vcn_gateways
-  drg_config   = var.drg_config
+  freeform_tags = var.freeform_tags
 }

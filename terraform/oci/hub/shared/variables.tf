@@ -22,78 +22,8 @@ variable "hub_compartment_id" {
 #############################################################################
 # Network Configuration
 
-variable "vcns" {
+variable "network_configuration_categories" {
   description = "Map of VCNs to create"
-  type        = any
-}
-
-variable "hub_subnets" {
-  description = "Map of Hub subnets to create"
-  type        = any
-}
-
-variable "dev_subnets" {
-  description = "Map of Dev subnets to create"
-  type        = any
-}
-
-variable "staging_subnets" {
-  description = "Map of Staging subnets to create"
-  type        = any
-}
-
-variable "prod_subnets" {
-  description = "Map of Prod subnets to create"
-  type        = any
-}
-
-variable "hub_security_lists" {
-  description = "Map of Hub security lists to create"
-  type        = any
-}
-
-variable "dev_security_lists" {
-  description = "Map of Dev security lists to create"
-  type        = any
-}
-
-variable "staging_security_lists" {
-  description = "Map of Staging security lists to create"
-  type        = any
-}
-
-variable "prod_security_lists" {
-  description = "Map of Prod security lists to create"
-  type        = any
-}
-
-variable "hub_route_tables" {
-  description = "Map of Hub route tables to create"
-  type        = any
-}
-
-variable "dev_route_tables" {
-  description = "Map of Dev route tables to create"
-  type        = any
-}
-
-variable "staging_route_tables" {
-  description = "Map of Staging route tables to create"
-  type        = any
-}
-
-variable "prod_route_tables" {
-  description = "Map of Prod route tables to create"
-  type        = any
-}
-
-variable "vcn_gateways" {
-  description = "Map of VCN-specific gateways to create"
-  type        = any
-}
-
-variable "drg_config" {
-  description = "DRG configuration"
   type        = any
 }
 
