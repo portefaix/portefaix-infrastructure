@@ -24,10 +24,9 @@
 module "hub" {
   source = "../modules/hub"
 
-  tenancy_ocid = var.tenancy_ocid
-
-  hub_compartment_id    = var.hub_compartment_id
-  network_configuration = var.network_configuration
+  tenancy_ocid                     = var.tenancy_ocid
+  hub_compartment_id               = var.hub_compartment_id
+  network_configuration_categories = var.network_configuration_categories
 
   freeform_tags = var.freeform_tags
 }
