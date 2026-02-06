@@ -16,7 +16,7 @@
 
 module "avm-res-containerregistry-registry" {
   source  = "Azure/avm-res-containerregistry-registry/azurerm"
-  version = "0.5.0"
+  version = "0.5.1"
 
   name                = replace(format("%s-%s", local.service_name, each.key), "-", "")
   resource_group_name = azurerm_resource_group.this.name
