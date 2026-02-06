@@ -16,7 +16,7 @@
 
 module "public_ip_address" {
   source  = "Azure/avm-res-network-publicipaddress/azurerm"
-  version = "0.2.0"
+  version = "0.2.1"
 
   name                = local.service_name
   location            = azurerm_resource_group.this.location

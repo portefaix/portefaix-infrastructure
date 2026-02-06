@@ -23,7 +23,7 @@ resource "azurerm_subnet" "this" {
 
 module "public_ip_address" {
   source  = "Azure/avm-res-network-publicipaddress/azurerm"
-  version = "0.2.0"
+  version = "0.2.1"
 
   name                = format("%s-bastion", var.service_name)
   location            = data.azurerm_resource_group.hub.location
