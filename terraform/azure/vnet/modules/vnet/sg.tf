@@ -16,7 +16,7 @@
 
 module "nsg" {
   source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
-  version = "0.5.0"
+  version = "0.5.1"
 
   name                = local.service_name
   resource_group_name = azurerm_resource_group.vnet.name
