@@ -33,25 +33,6 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
 
-  gcp_artifact-registry:
-    name: gcp-artifact-registry
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/artifact-registry/modules/artifact-registry
-
-    - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/artifact-registry/dev
-
   gcp_bastion:
     name: gcp-bastion
     runs-on: ubuntu-latest
@@ -70,25 +51,6 @@ jobs:
       with:
         github_token: ${{ github.token }}
         working_dir: terraform/gcp/bastion/dev
-
-  gcp_cert-manager:
-    name: gcp-cert-manager
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/cert-manager/modules/cert-manager
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/cert-manager/dev
 
   gcp_cloud-armor:
     name: gcp-cloud-armor
@@ -146,25 +108,6 @@ jobs:
       with:
         github_token: ${{ github.token }}
         working_dir: terraform/gcp/cloud-nat/dev
-
-  gcp_external-dns:
-    name: gcp-external-dns
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/external-dns/modules/external-dns
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/external-dns/dev
 
   gcp_external-ips-cloud-nat:
     name: gcp-external-ips-cloud-nat
@@ -254,44 +197,6 @@ jobs:
       with:
         github_token: ${{ github.token }}
         working_dir: terraform/gcp/internal-ips/internal-lb/dev
-
-  gcp_observability:
-    name: gcp-observability
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/observability/modules/observability
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/observability/dev
-
-  gcp_pubsub:
-    name: gcp-pubsub
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/pubsub/modules/pubsub
-
-    - name: Terraform security scan module
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/gcp/pubsub/dev
 
   gcp_sops:
     name: gcp-sops

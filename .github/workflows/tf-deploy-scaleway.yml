@@ -58,29 +58,6 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: terraform/scaleway/vpc/${{ github.event.inputs.env }}
 
-  scaleway_registry:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Registry / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/scaleway/registry/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/scaleway/registry/${{ github.event.inputs.env }}
-
   scaleway_kapsule:
     runs-on: ubuntu-latest
     steps:
@@ -104,25 +81,3 @@ jobs:
       run: terraform apply -auto-approve
       working-directory: terraform/scaleway/kapsule/${{ github.event.inputs.env }}
 
-  scaleway_observability:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Deploy Kepsule / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/scaleway/observability/${{ github.event.inputs.env }}
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: terraform/scaleway/observability/${{ github.event.inputs.env }}

@@ -147,25 +147,6 @@ jobs:
         github_token: ${{ github.token }}
         working_dir: terraform/azure/nat-gateway/dev
 
-  azure_observability:
-    name: azure-observability
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Terraform security scan main
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/observability/modules/observability
-
-    - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/observability/dev
-
   azure_peering:
     name: azure-peering
     runs-on: ubuntu-latest
