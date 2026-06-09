@@ -90,63 +90,6 @@ jobs:
         github_token: ${{ github.token }}
         working_dir: terraform/aws/bastion/staging
 
-  aws_cert-manager:
-    name: aws-cert-manager
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/cert-manager/modules/cert-manager
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/cert-manager/staging
-
-  aws_chatbot:
-    name: aws-chatbot
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/chatbot/modules/chatbot
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/chatbot/staging
-
-  aws_ecr:
-    name: aws-ecr
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/ecr/modules/ecr
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/ecr/staging
-
   aws_eks:
     name: aws-eks
     runs-on: ubuntu-latest
@@ -185,25 +128,6 @@ jobs:
         github_token: ${{ github.token }}
         working_dir: terraform/aws/elastic-ips/internet-gateway/staging
 
-  aws_external-dns:
-    name: aws-external-dns
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/external-dns/modules/external-dns
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/external-dns/staging
-
   aws_guardduty:
     name: aws-guardduty
     runs-on: ubuntu-latest
@@ -222,44 +146,6 @@ jobs:
       with:
         github_token: ${{ github.token }}
         working_dir: terraform/aws/guardduty/staging
-
-  aws_notifications:
-    name: aws-notifications
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/notifications/modules/notifications
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/notifications/staging
-
-  aws_observability:
-    name: aws-observability
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/observability/modules/observability
-
-    - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/observability/staging
 
   aws_security-hub:
     name: aws-security-hub

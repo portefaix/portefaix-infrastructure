@@ -43,30 +43,6 @@ permissions:
 
 jobs:
 
-  observability:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-    - run: |
-        echo "Delete Observability / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/observability/${{ github.event.inputs.env }}
-
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
-      working-directory: terraform/azure/observability/${{ github.event.inputs.env }}
-
   velero:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -91,37 +67,9 @@ jobs:
       run: terraform destroy -auto-approve
       working-directory: terraform/azure/velero/${{ github.event.inputs.env }}
 
-  azure_secrets:
-    needs:
-    - observability
-    - velero
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Delete AKS / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/azure/secrets/${{ github.event.inputs.env }}
-
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
-      working-directory: terraform/azure/secrets/${{ github.event.inputs.env }}
-
   azure_aks:
     needs:
-    - observability
     - velero
-    - azure_secrets
     runs-on: ubuntu-latest
     steps:
     - run: |

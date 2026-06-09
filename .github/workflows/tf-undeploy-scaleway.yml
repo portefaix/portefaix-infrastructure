@@ -58,52 +58,6 @@ jobs:
       run: terraform destroy -auto-approve
       working-directory: terraform/scaleway/kapsule/${{ github.event.inputs.env }}
 
-  scaleway_registry:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Delete Registry / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/scaleway/registry/${{ github.event.inputs.env }}
-
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
-      working-directory: terraform/scaleway/registry/${{ github.event.inputs.env }}
-
-  scaleway_observability:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Delete Observability / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ github.event.inputs.tf_version }}
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    - name: Terraform Init
-      run: terraform init -upgrade
-      working-directory: terraform/scaleway/observability/${{ github.event.inputs.env }}
-
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
-      working-directory: terraform/scaleway/observability/${{ github.event.inputs.env }}
-
   scaleway_vpc:
     runs-on: ubuntu-latest
     steps:

@@ -239,39 +239,6 @@ jobs:
         name: Inspect report
         path: ./portefaix-${{ github.event.inputs.env }}_scan.html
 
-  azure_observability:
-    needs: azure_aks
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby-version: ['2.7']
-    steps:
-    - run: |
-        echo "Test Portefaix on Azure / ${{ github.event.inputs.env }}"
-
-    - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
-    - name: Install Chef Inspec
-      run: curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
-
-    - name: Inspec test
-      run: make -f hack/azure.mk inspec-azure-test SERVICE=terraform/azure/observability ENV=${{ github.event.inputs.env }}
-
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: Inspect report
-        path: ./portefaix-${{ github.event.inputs.env }}_scan.html
-
   azure_velero:
     needs: azure_aks
     runs-on: ubuntu-latest
