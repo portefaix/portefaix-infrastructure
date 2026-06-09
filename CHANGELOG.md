@@ -1,6 +1,20 @@
 # Changelog
 
 
+## [2.0.0](https://github.com/portefaix/portefaix-infrastructure/compare/v1.6.0...v2.0.0) (2026-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **terraform:** remove layer 2 app resource modules per ADR 027 ([#1977](https://github.com/portefaix/portefaix-infrastructure/pull/1977))
+* **project:** add open source project best practice files ([#1980](https://github.com/portefaix/portefaix-infrastructure/pull/1980))
+
+
+### 🚀 Features
+
+* **terraform:** remove layer 2 app resource modules per ADR 027 ([#1977](https://github.com/portefaix/portefaix-infrastructure/pull/1977))
+* **project:** add open source project best practice files ([#1980](https://github.com/portefaix/portefaix-infrastructure/pull/1980))
+
 ## [1.6.0](https://github.com/portefaix/portefaix-infrastructure/compare/v1.5.0...v1.6.0) (2025-08-27)
 
 
@@ -1919,4 +1933,3 @@
 * Update Terraform azurerm to v3.30.0 ([#7](https://github.com/portefaix/portefaix-infrastructure/pull/7))
 * Update Terraform alicloud to v1.190.0 ([#1](https://github.com/portefaix/portefaix-infrastructure/pull/1))
 * Update Terraform aws to v4.38.0 ([#4](https://github.com/portefaix/portefaix-infrastructure/pull/4))
-
