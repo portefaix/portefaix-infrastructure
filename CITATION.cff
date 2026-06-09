@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: portefaix-infrastructure
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Nicolas
+    family-names: Lamirault
+    email: nicolas.lamirault@gmail.com
+abstract: >-
+  Portefaix Infrastructure on Cloud Providers
+keywords:
+  - terraform
+  - infrastructure
+  - cloud
+  - kubernetes
+license: Apache-2.0
+repository-code: https://github.com/portefaix/portefaix-infrastructure
+url: http://www.portefaix.xyz/
