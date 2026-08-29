@@ -51,7 +51,7 @@ jobs:
         echo "Delete Velero / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -76,7 +76,7 @@ jobs:
         echo "Delete AKS / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -102,7 +102,7 @@ jobs:
         echo "Delete NAT Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -126,7 +126,7 @@ jobs:
         echo "Delete Application Gateway / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -152,7 +152,7 @@ jobs:
         echo "Delete Azure Virtual Network Peering / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -176,7 +176,7 @@ jobs:
         echo "Delete Azure Bastion / network"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -200,7 +200,7 @@ jobs:
         echo "Delete Azure Firewall / network"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -226,7 +226,7 @@ jobs:
         echo "Delete VNet / network"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
@@ -254,7 +254,7 @@ jobs:
         echo "Delete VNet / ${{ github.event.inputs.env }}"
 
     - name: Checkout
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
