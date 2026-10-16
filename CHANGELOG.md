@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [2.0.1](https://github.com/portefaix/portefaix-infrastructure/compare/v2.0.0...v2.0.1) (2026-10-16)
+
+
+### 🚨 Maintenance
+
+* **deps:** update actions/checkout action to v6.1.0 ([#1999](https://github.com/portefaix/portefaix-infrastructure/issues/1999)) ([158d03a](https://github.com/portefaix/portefaix-infrastructure/commit/158d03a00c145258ded50fd9f8ff26a04714cd43))
+* **deps:** update actions/labeler action to v6.2.0 ([#2002](https://github.com/portefaix/portefaix-infrastructure/issues/2002)) ([7620bfe](https://github.com/portefaix/portefaix-infrastructure/commit/7620bfee8584d2d32e2da1d99eff317ffe084cee))
+* **deps:** update dependency pre-commit to v4.7.0 ([#1983](https://github.com/portefaix/portefaix-infrastructure/issues/1983)) ([61b9cb3](https://github.com/portefaix/portefaix-infrastructure/commit/61b9cb3bf63b3c5c7ff962129dc25e360667e4ae))
+* **deps:** update github/codeql-action action to v4.39.0 ([#2003](https://github.com/portefaix/portefaix-infrastructure/issues/2003)) ([1f628a8](https://github.com/portefaix/portefaix-infrastructure/commit/1f628a888d65f5918daeb8c6297a21dd9f49cf7f))
+* **deps:** update pre-commit hook antonbabenko/pre-commit-terraform to v1.109.2 ([#1984](https://github.com/portefaix/portefaix-infrastructure/issues/1984)) ([17ed1ac](https://github.com/portefaix/portefaix-infrastructure/commit/17ed1ac7a0aeb1deb6ab15e488d22dada56c31a2))
+* **deps:** update step-security/harden-runner action to v2.22.1 ([#1988](https://github.com/portefaix/portefaix-infrastructure/issues/1988)) ([b45e1d3](https://github.com/portefaix/portefaix-infrastructure/commit/b45e1d3344fc0051e8f243c511c79e14cc9903ec))
+
 ## [2.0.0](https://github.com/portefaix/portefaix-infrastructure/compare/v1.6.0...v2.0.0) (2026-06-09)
 
 
