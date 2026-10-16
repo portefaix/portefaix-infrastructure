@@ -16,7 +16,7 @@
 
 module "nat_gateway" {
   source  = "Azure/avm-res-network-natgateway/azurerm"
-  version = "0.2.1"
+  version = "0.3.2"
 
   name                = local.service_name
   location            = azurerm_resource_group.this.location
