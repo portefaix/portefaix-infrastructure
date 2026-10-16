@@ -90,7 +90,7 @@ module "aks" {
 
 module "iam_aks_acr_core" {
   source  = "Azure/avm-res-authorization-roleassignment/azurerm"
-  version = "0.3.0"
+  version = "0.3.1"
 
   for_each = toset(var.acr_core)
 
@@ -118,7 +118,7 @@ module "iam_aks_acr_core" {
 
 module "iam_aks_acr_shared" {
   source  = "Azure/avm-res-authorization-roleassignment/azurerm"
-  version = "0.3.0"
+  version = "0.3.1"
 
   for_each = toset(var.acr_shared)
 
