@@ -36,31 +36,31 @@ stacks = {
     project_root = "terraform/aws/guardduty"
     labels       = ["security", "guardduty"]
     environment  = "orga"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-orga-cloudtrail = {
     project_root = "terraform/aws/cloudtrail"
     labels       = ["logging", "events", "cloudtrail"]
     environment  = "orga"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-orga-access-analyzer = {
     project_root = "terraform/aws/access-analyzer"
     labels       = ["security", "access-analyzer"]
     environment  = "orga"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-orga-security-hub = {
     project_root = "terraform/aws/security-hub"
     labels       = ["security", "securityhub"]
     environment  = "orga"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-orga-config = {
     project_root = "terraform/aws/config"
     labels       = ["security", "config"]
     environment  = "orga"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   # Network Account
@@ -75,7 +75,7 @@ stacks = {
     project_root = "terraform/aws/chatbot"
     labels       = ["shared", "events", "chatbot"]
     environment  = "shared"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   # Testing Account
@@ -84,7 +84,7 @@ stacks = {
     project_root = "terraform/aws/chaos"
     labels       = ["testing", "events", "chaos"]
     environment  = "testing"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   # Core Dev Account
@@ -93,7 +93,7 @@ stacks = {
     project_root = "terraform/aws/vpc"
     labels       = ["core", "vpc"]
     environment  = "dev"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   # Core-Staging Account
@@ -102,26 +102,26 @@ stacks = {
     project_root = "terraform/aws/vpc"
     labels       = ["core", "vpc"]
     environment  = "staging"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   portefaix-aws-staging-eip-igw = {
     project_root = "terraform/aws/elastic-ips/internet-gateway"
     labels       = ["core", "elasticip", "internetgateway"]
     environment  = "staging"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-staging-eks = {
     project_root = "terraform/aws/eks"
     labels       = ["core", "eks"]
     environment  = "staging"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
   portefaix-aws-staging-waf = {
     project_root = "terraform/aws/waf"
     labels       = ["core", "security", "waf"]
     environment  = "staging"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 
   # Core Prod Account
@@ -130,6 +130,6 @@ stacks = {
     project_root = "terraform/aws/vpc"
     labels       = ["core", "vpc"]
     environment  = "prod"
-    branch       = "feat/refactoring-terraform"
+    branch       = "main"
   },
 }
