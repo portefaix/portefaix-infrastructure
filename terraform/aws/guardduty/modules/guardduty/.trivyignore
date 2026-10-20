@@ -1,0 +1,7 @@
+# AVD-AWS-0089 (S3 Bucket Logging): this bucket IS the access-log target
+# (s3_bucket_ipset_log) for module.s3_bucket_ipset, so it doesn't need a
+# logging destination of its own. Formerly suppressed via
+# "# tfsec:ignore:aws-s3-enable-bucket-logging" before the tfsec -> trivy
+# migration; trivy doesn't honor tfsec-style inline ignores on module
+# blocks, hence this file.
+AVD-AWS-0089
