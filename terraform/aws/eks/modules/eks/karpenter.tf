@@ -16,21 +16,14 @@
 
 module "karpenter" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version = "21.6.0"
+  version = "21.29.0"
 
   cluster_name = module.eks.cluster_name
 
   iam_role_name      = var.karpenter_role_name
   node_iam_role_name = format("%s-node", var.karpenter_role_name)
-  # iam_policy_name    = "KarpenterIRSA-${module.eks.cluster_name}"
 
-  # https://github.com/terraform-aws-modules/terraform-aws-eks/issues/3477
-  # enable_irsa                     = var.enable_irsa
-  # irsa_namespace_service_accounts = ["${var.karpenter_namespace}:${var.karpenter_sa_name}"]
-  # irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
-
-  enable_spot_termination = true
-  # enable_pod_identity             = var.enable_pod_identity
+  enable_spot_termination         = true
   create_pod_identity_association = var.enable_pod_identity
 
   namespace       = var.karpenter_namespace
@@ -39,10 +32,6 @@ module "karpenter" {
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }
-
-  iam_role_source_assume_policy_documents = [
-    data.aws_iam_policy_document.karpenter_controller_assume_role_policy.json,
-  ]
 
   queue_name                = var.karpenter_queue_name
   queue_managed_sse_enabled = false

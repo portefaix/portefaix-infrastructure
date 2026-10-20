@@ -119,7 +119,7 @@ variable "ipset_config" {
     content  = string
     key      = string
   }))
-  default = null
+  default = []
 }
 
 variable "threatintelset_config" {
@@ -140,7 +140,7 @@ variable "threatintelset_config" {
     key        = string
     object_acl = string
   }))
-  default = null
+  default = []
 }
 
 variable "tags" {
