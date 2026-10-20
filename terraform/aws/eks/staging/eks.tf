@@ -32,42 +32,11 @@ module "eks" {
 
   cluster_addons = var.cluster_addons
 
-  enable_irsa         = false
   enable_pod_identity = true
-
-  ebs_csi_driver_tags          = var.ebs_csi_driver_tags
-  ebs_csi_controller_sa_name   = var.ebs_csi_controller_sa_name
-  ebs_csi_controller_namespace = var.ebs_csi_controller_namespace
-
-  efs_csi_driver_tags          = var.efs_csi_driver_tags
-  efs_csi_controller_sa_name   = var.efs_csi_controller_sa_name
-  efs_csi_controller_namespace = var.efs_csi_controller_namespace
-
-  fsx_csi_driver_tags          = var.fsx_csi_driver_tags
-  fsx_csi_controller_sa_name   = var.fsx_csi_controller_sa_name
-  fsx_csi_controller_namespace = var.fsx_csi_controller_namespace
-
-  secret_store_csi_driver_tags = var.secret_store_csi_driver_tags
-  secrets_data                 = var.secrets_data
-
-  alb_controller_tags      = var.alb_controller_tags
-  alb_controller_sa_name   = var.alb_controller_sa_name
-  alb_controller_namespace = var.alb_controller_namespace
-
-  node_termination_handler_role_name = var.node_termination_handler_role_name
-  node_termination_handler_tags      = var.node_termination_handler_tags
-  node_termination_handler_sa_name   = var.node_termination_handler_sa_name
-  node_termination_handler_namespace = var.node_termination_handler_namespace
 
   karpenter_role_name  = var.karpenter_role_name
   karpenter_tags       = var.karpenter_tags
   karpenter_sa_name    = var.karpenter_sa_name
   karpenter_namespace  = var.karpenter_namespace
   karpenter_queue_name = var.karpenter_queue_name
-
-  eso_role_name    = var.eso_role_name
-  eso_tags         = var.eso_tags
-  eso_sa_name      = var.eso_sa_name
-  eso_namespace    = var.eso_namespace
-  eso_secrets_arns = var.eso_secrets_arns
 }
