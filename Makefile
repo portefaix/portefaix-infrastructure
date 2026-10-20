@@ -111,49 +111,39 @@ terraform-tfsec: guard-SERVICE ## Scan Terraform files
 	@cd $(SERVICE) \
 		&& tfsec \
 
-.PHONY: tfcloud-validate
-tfcloud-validate: guard-SERVICE guard-ENV ## Plan infrastructure (SERVICE=xxx ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Init infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/$(ENV) \
-		&& rm -fr .terraform \
-		&& $(TERRAFORM) init \
-		&& $(TERRAFORM) validate
-
-.PHONY: tfcloud-init
-tfcloud-init: guard-SERVICE guard-ENV ## Plan infrastructure using Terraform Cloud (SERVICE=xxx ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Init infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/$(ENV) \
-		&& $(TERRAFORM) init
-
-.PHONY: tfcloud-plan
-tfcloud-plan: guard-SERVICE guard-ENV ## Plan infrastructure using Terraform Cloud (SERVICE=xxx ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Plan infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/$(ENV) \
-		&& $(TERRAFORM) init \
-		&& $(TERRAFORM) plan
-
-.PHONY: tfcloud-apply
-tfcloud-apply: guard-SERVICE guard-ENV ## Apply infrastructure using Terraform Cloud (SERVICE=xxx ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Plan infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/$(ENV) \
-		&& $(TERRAFORM) init \
-		&& $(TERRAFORM) apply
-
-.PHONY: tfcloud-destroy
-tfcloud-destroy: guard-SERVICE guard-ENV ## Apply infrastructure using Terraform Cloud (SERVICE=xxx ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Plan infrastructure$(NO_COLOR)" >&2
-	@cd $(SERVICE)/$(ENV) \
-		&& $(TERRAFORM) init \
-		&& $(TERRAFORM) destroy
-
 
 # ====================================
-# T E R R A M A T E
+# S P A C E L I F T
 # ====================================
 
-##@ Terramate
+##@ Spacelift
 
+SPACECTL=spacectl
 
+.PHONY: spacelift-login
+spacelift-login: ## Authenticate spacectl (ALIAS=xxx, default: portefaix; or non-interactive via SPACELIFT_API_KEY_ENDPOINT/_ID/_SECRET)
+	@echo -e "$(OK_COLOR)[$(APP)] Spacelift login$(NO_COLOR)" >&2
+	@$(SPACECTL) profile login $(or $(ALIAS),$(APP))
+
+.PHONY: spacelift-list
+spacelift-list: ## List Spacelift stacks
+	@echo -e "$(OK_COLOR)[$(APP)] List stacks$(NO_COLOR)" >&2
+	@$(SPACECTL) stack list
+
+.PHONY: spacelift-deploy
+spacelift-deploy: guard-STACK ## Trigger a Spacelift stack run (STACK=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Deploy stack $(STACK)$(NO_COLOR)" >&2
+	@$(SPACECTL) stack deploy --id $(STACK)
+
+.PHONY: spacelift-plan
+spacelift-plan: guard-STACK ## Plan-only run on the synced commit, no apply (STACK=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Plan stack $(STACK)$(NO_COLOR)" >&2
+	@$(SPACECTL) stack preview --id $(STACK)
+
+.PHONY: spacelift-local-plan
+spacelift-local-plan: guard-STACK ## Plan-only run on local uncommitted files, no apply (STACK=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Local plan stack $(STACK)$(NO_COLOR)" >&2
+	@$(SPACECTL) stack local-preview --id $(STACK)
 
 
 # ====================================
