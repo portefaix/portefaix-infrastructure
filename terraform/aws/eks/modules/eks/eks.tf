@@ -21,7 +21,7 @@
 #tfsec:ignore:aws-ec2-no-public-egress-sgr
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "21.6.0"
+  version = "21.29.0"
 
   name               = var.cluster_name
   kubernetes_version = var.cluster_version
@@ -34,9 +34,6 @@ module "eks" {
 
   vpc_id     = data.aws_vpc.main.id
   subnet_ids = data.aws_subnets.private.ids
-
-  enable_irsa              = true
-  openid_connect_audiences = ["sts.amazonaws.com"]
 
   iam_role_name = var.cluster_name
 

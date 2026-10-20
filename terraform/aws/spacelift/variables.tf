@@ -67,12 +67,12 @@ variable "stacks" {
 
 variable "access_key" {
   type        = string
-  description = "AWS access key for Cloudflare R2"
+  description = "AWS access key."
 }
 
 variable "secret_access_key" {
   type        = string
-  description = "AWS secret key for Cloudflare R2"
+  description = "AWS secret key."
 }
 
 variable "org_email" {
