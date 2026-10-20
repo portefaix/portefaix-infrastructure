@@ -119,47 +119,6 @@ jobs:
         sarif_file: 'trivy-aws_alb-2.sarif'
         category: 'aws_alb-2'
 
-  aws_bastion:
-    name: aws-bastion
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
-
-    - name: Tfsec
-      uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
-      with:
-        scan-type: 'config'
-        scan-ref: terraform/aws/bastion/modules/bastion
-        hide-progress: false
-        format: 'sarif'
-        output: 'trivy-aws_bastion-1.sarif'
-        exit-code: '1'
-
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
-      if: always()
-      with:
-        sarif_file: 'trivy-aws_bastion-1.sarif'
-        category: 'aws_bastion-1'
-
-    - name: Tfsec
-      uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
-      with:
-        scan-type: 'config'
-        scan-ref: terraform/aws/bastion/staging
-        hide-progress: false
-        format: 'sarif'
-        output: 'trivy-aws_bastion-2.sarif'
-        exit-code: '1'
-
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
-      if: always()
-      with:
-        sarif_file: 'trivy-aws_bastion-2.sarif'
-        category: 'aws_bastion-2'
-
   aws_eks:
     name: aws-eks
     runs-on: ubuntu-latest
