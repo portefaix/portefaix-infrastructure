@@ -11,7 +11,17 @@ Bootstrap (or update) the root AWS organization infrastructure (`terraform/aws/r
 
 ## Steps
 
-1. Plan the changes:
+1. Bootstrap the Spacelift stacks/spaces for AWS (`terraform/aws/spacelift`):
+
+   ```bash
+   make terraform-plan SERVICE=terraform/aws/spacelift ENV=main
+   make terraform-apply SERVICE=terraform/aws/spacelift ENV=main
+   ```
+
+   Creates the Spacelift spaces/contexts/stacks that will manage the rest of the AWS
+   infrastructure (including `portefaix-aws-orga-config` and the root org stack below).
+
+2. Plan the root org changes:
 
    ```bash
    make terraform-plan SERVICE=terraform/aws/root ENV=main
@@ -20,7 +30,7 @@ Bootstrap (or update) the root AWS organization infrastructure (`terraform/aws/r
    Runs `terraform init -upgrade -reconfigure -backend-config=backend-vars/main.tfvars`
    then `terraform plan -var-file=tfvars/main.tfvars`. Review the plan output before continuing.
 
-2. Apply the changes:
+3. Apply the changes:
 
    ```bash
    make terraform-apply SERVICE=terraform/aws/root ENV=main

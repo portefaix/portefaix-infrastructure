@@ -216,9 +216,8 @@ function setup_aws() {
   get_infisical_secret "AWS_ORG_ADMIN_USERNAME" "${infisical_path}" "TF_VAR_org_admin_username" || return 1
   get_infisical_secret "SLACK_WEBHOOK_NOTIFS" "/slack" "TF_VAR_slack_webhook_url" || return 1
   export AWS_REGION="${AWS_DEFAULT_REGION}"
-  # For Terraform Cloud
-  export TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"
-  export TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}"
+  export TF_VAR_access_key="${AWS_ACCESS_KEY}"
+  export TF_VAR_secret_access_key="${AWS_SECRET_ACCESS_KEY}"
   export TF_VAR_admin_ipv4="[\"${HOME_IP}/32\"]" # for WAF
 }
 
