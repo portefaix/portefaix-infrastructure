@@ -55,7 +55,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_aks-1.sarif'
@@ -72,7 +72,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_aks-2.sarif'
@@ -96,7 +96,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_application-gateway-1.sarif'
@@ -113,7 +113,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_application-gateway-2.sarif'
@@ -137,7 +137,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_bastion-1.sarif'
@@ -154,7 +154,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_bastion-2.sarif'
@@ -178,7 +178,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_firewall-1.sarif'
@@ -195,7 +195,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_firewall-2.sarif'
@@ -219,7 +219,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_hub-1.sarif'
@@ -236,7 +236,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_hub-2.sarif'
@@ -260,7 +260,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_nat-gateway-1.sarif'
@@ -277,7 +277,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_nat-gateway-2.sarif'
@@ -301,7 +301,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_peering-1.sarif'
@@ -318,7 +318,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_peering-2.sarif'
@@ -342,7 +342,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_sops-1.sarif'
@@ -366,7 +366,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_terraform-cloud-1.sarif'
@@ -390,7 +390,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_traffic-manager-1.sarif'
@@ -407,7 +407,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_traffic-manager-2.sarif'
@@ -431,7 +431,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_velero-1.sarif'
@@ -448,7 +448,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_velero-2.sarif'
@@ -472,7 +472,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_vnet-1.sarif'
@@ -489,7 +489,7 @@ jobs:
         exit-code: '1'
 
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
       if: always()
       with:
         sarif_file: 'trivy-azure_vnet-2.sarif'

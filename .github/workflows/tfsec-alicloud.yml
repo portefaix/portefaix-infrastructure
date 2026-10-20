@@ -55,7 +55,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_ack-1.sarif'
@@ -72,7 +72,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_ack-2.sarif'
@@ -96,7 +96,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_eips-nat-gateway-1.sarif'
@@ -113,7 +113,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_eips-nat-gateway-2.sarif'
@@ -137,7 +137,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_key-pair-1.sarif'
@@ -154,7 +154,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_key-pair-2.sarif'
@@ -178,7 +178,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_nat-gateway-1.sarif'
@@ -195,7 +195,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_nat-gateway-2.sarif'
@@ -219,7 +219,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_terraform-cloud-1.sarif'
@@ -243,7 +243,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_vpc-1.sarif'
@@ -260,7 +260,7 @@ jobs:
           exit-code: '1'
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
         if: always()
         with:
           sarif_file: 'trivy-alicloud_vpc-2.sarif'
