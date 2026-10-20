@@ -136,9 +136,9 @@ spacelift-deploy: guard-STACK ## Trigger a Spacelift stack run (STACK=xxx)
 	@$(SPACECTL) stack deploy --id $(STACK)
 
 .PHONY: spacelift-plan
-spacelift-plan: guard-STACK ## Plan-only run on the synced commit, no apply (STACK=xxx)
+spacelift-plan: guard-STACK ## Plan-only run on the synced commit, no apply (STACK=xxx, optional SHA=xxx to force a commit)
 	@echo -e "$(OK_COLOR)[$(APP)] Plan stack $(STACK)$(NO_COLOR)" >&2
-	@$(SPACECTL) stack preview --id $(STACK)
+	@$(SPACECTL) stack preview --id $(STACK) $(if $(SHA),--sha $(SHA),)
 
 .PHONY: spacelift-local-plan
 spacelift-local-plan: guard-STACK ## Plan-only run on local uncommitted files, no apply (STACK=xxx)

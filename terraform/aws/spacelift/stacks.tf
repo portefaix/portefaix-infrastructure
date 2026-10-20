@@ -46,12 +46,12 @@ resource "spacelift_context_attachment" "this" {
   priority   = 0
 }
 
-resource "spacelift_environment_variable" "portefaix_version" {
-  stack_id   = spacelift_stack.this["portefaix-aws-staging-secrets"].id
-  name       = "TF_VAR_portefaix_version"
-  value      = var.portefaix_version
-  write_only = true
-}
+# resource "spacelift_environment_variable" "portefaix_version" {
+#   stack_id   = spacelift_stack.this["portefaix-aws-staging-secrets"].id
+#   name       = "TF_VAR_portefaix_version"
+#   value      = var.portefaix_version
+#   write_only = true
+# }
 
 resource "spacelift_environment_variable" "org_email" {
   for_each = toset([
