@@ -31,6 +31,10 @@ on: # yamllint disable-line rule:truthy
     paths:
     - "terraform/aws/**"
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
 
   aws_access-analyzer:
@@ -41,16 +45,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/access-analyzer/modules/access-analyzer
+        scan-type: 'config'
+        scan-ref: terraform/aws/access-analyzer/modules/access-analyzer
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_access-analyzer-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_access-analyzer-1.sarif'
+        category: 'aws_access-analyzer-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/access-analyzer/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/access-analyzer/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_access-analyzer-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_access-analyzer-2.sarif'
+        category: 'aws_access-analyzer-2'
 
   aws_alb:
     name: aws-alb
@@ -60,16 +86,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/alb/modules/alb
+        scan-type: 'config'
+        scan-ref: terraform/aws/alb/modules/alb
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_alb-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_alb-1.sarif'
+        category: 'aws_alb-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/alb/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/alb/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_alb-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_alb-2.sarif'
+        category: 'aws_alb-2'
 
   aws_bastion:
     name: aws-bastion
@@ -79,16 +127,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/bastion/modules/bastion
+        scan-type: 'config'
+        scan-ref: terraform/aws/bastion/modules/bastion
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_bastion-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_bastion-1.sarif'
+        category: 'aws_bastion-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/bastion/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/bastion/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_bastion-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_bastion-2.sarif'
+        category: 'aws_bastion-2'
 
   aws_eks:
     name: aws-eks
@@ -98,16 +168,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/eks/modules/eks
+        scan-type: 'config'
+        scan-ref: terraform/aws/eks/modules/eks
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_eks-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_eks-1.sarif'
+        category: 'aws_eks-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/eks/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/eks/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_eks-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_eks-2.sarif'
+        category: 'aws_eks-2'
 
   aws_eip-internet-gateway:
     name: aws-eip-igw
@@ -117,16 +209,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/elastic-ips/internet-gateway/modules/internet-gateway
+        scan-type: 'config'
+        scan-ref: terraform/aws/elastic-ips/internet-gateway/modules/internet-gateway
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_eip-internet-gateway-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_eip-internet-gateway-1.sarif'
+        category: 'aws_eip-internet-gateway-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/elastic-ips/internet-gateway/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/elastic-ips/internet-gateway/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_eip-internet-gateway-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_eip-internet-gateway-2.sarif'
+        category: 'aws_eip-internet-gateway-2'
 
   aws_guardduty:
     name: aws-guardduty
@@ -136,16 +250,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/guardduty/modules/guardduty
+        scan-type: 'config'
+        scan-ref: terraform/aws/guardduty/modules/guardduty
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_guardduty-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_guardduty-1.sarif'
+        category: 'aws_guardduty-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/guardduty/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/guardduty/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_guardduty-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_guardduty-2.sarif'
+        category: 'aws_guardduty-2'
 
   aws_security-hub:
     name: aws-security-hub
@@ -155,16 +291,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/security-hub/modules/security-hub
+        scan-type: 'config'
+        scan-ref: terraform/aws/security-hub/modules/security-hub
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_security-hub-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_security-hub-1.sarif'
+        category: 'aws_security-hub-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/security-hub/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/security-hub/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_security-hub-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_security-hub-2.sarif'
+        category: 'aws_security-hub-2'
 
   aws_sops:
     name: aws-sops
@@ -174,10 +332,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/sops/terraform
+        scan-type: 'config'
+        scan-ref: terraform/aws/sops/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_sops-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_sops-1.sarif'
+        category: 'aws_sops-1'
 
   aws_teleport:
     name: aws-teleport
@@ -187,16 +356,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/teleport/modules/teleport
+        scan-type: 'config'
+        scan-ref: terraform/aws/teleport/modules/teleport
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_teleport-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_teleport-1.sarif'
+        category: 'aws_teleport-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/teleport/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/teleport/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_teleport-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_teleport-2.sarif'
+        category: 'aws_teleport-2'
 
   aws_terraform-cloud:
     name: aws-terraform-cloud
@@ -206,10 +397,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/terraform-cloud/terraform
+        scan-type: 'config'
+        scan-ref: terraform/aws/terraform-cloud/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_terraform-cloud-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_terraform-cloud-1.sarif'
+        category: 'aws_terraform-cloud-1'
 
   aws_vector:
     name: aws-vector
@@ -219,16 +421,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/vector/modules/vector
+        scan-type: 'config'
+        scan-ref: terraform/aws/vector/modules/vector
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_vector-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_vector-1.sarif'
+        category: 'aws_vector-1'
 
     - name: Tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/aws/vector/staging
+        scan-type: 'config'
+        scan-ref: terraform/aws/vector/staging
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-aws_vector-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-aws_vector-2.sarif'
+        category: 'aws_vector-2'
 
   aws_velero:
     name: aws-velero
@@ -238,16 +462,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/velero/modules/velero
+          scan-type: 'config'
+          scan-ref: terraform/aws/velero/modules/velero
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_velero-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_velero-1.sarif'
+          category: 'aws_velero-1'
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/velero/staging
+          scan-type: 'config'
+          scan-ref: terraform/aws/velero/staging
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_velero-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_velero-2.sarif'
+          category: 'aws_velero-2'
 
   aws_vpc:
     name: aws-vpc
@@ -257,16 +503,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/vpc/modules/vpc
+          scan-type: 'config'
+          scan-ref: terraform/aws/vpc/modules/vpc
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_vpc-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_vpc-1.sarif'
+          category: 'aws_vpc-1'
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/vpc/staging
+          scan-type: 'config'
+          scan-ref: terraform/aws/vpc/staging
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_vpc-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_vpc-2.sarif'
+          category: 'aws_vpc-2'
 
   aws_waf:
     name: aws-waf
@@ -276,13 +544,35 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/waf/modules/waf
+          scan-type: 'config'
+          scan-ref: terraform/aws/waf/modules/waf
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_waf-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_waf-1.sarif'
+          category: 'aws_waf-1'
 
       - name: Tfsec
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/aws/waf/staging
+          scan-type: 'config'
+          scan-ref: terraform/aws/waf/staging
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-aws_waf-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-aws_waf-2.sarif'
+          category: 'aws_waf-2'

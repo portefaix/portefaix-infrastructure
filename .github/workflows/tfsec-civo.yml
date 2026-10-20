@@ -31,6 +31,10 @@ on: # yamllint disable-line rule:truthy
     paths:
     - "terraform/civo/**"
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
 
   civo_network:
@@ -41,10 +45,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/civo/network/terraform
+        scan-type: 'config'
+        scan-ref: terraform/civo/network/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-civo_network-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-civo_network-1.sarif'
+        category: 'civo_network-1'
 
   civo_kubernetes:
     name: civo-kubernetes
@@ -54,7 +69,18 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/civo/kubernetes/terraform
+        scan-type: 'config'
+        scan-ref: terraform/civo/kubernetes/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-civo_kubernetes-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-civo_kubernetes-1.sarif'
+        category: 'civo_kubernetes-1'

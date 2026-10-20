@@ -31,6 +31,10 @@ on: # yamllint disable-line rule:truthy
     paths:
     - "terraform/azure/**"
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
 
   azure_aks:
@@ -41,16 +45,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/aks/modules/aks
+        scan-type: 'config'
+        scan-ref: terraform/azure/aks/modules/aks
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_aks-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_aks-1.sarif'
+        category: 'azure_aks-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/aks/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/aks/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_aks-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_aks-2.sarif'
+        category: 'azure_aks-2'
 
   azure_application-gateway:
     name: azure-application-gateway
@@ -60,16 +86,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/application-gateway/modules/application-gateway
+        scan-type: 'config'
+        scan-ref: terraform/azure/application-gateway/modules/application-gateway
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_application-gateway-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_application-gateway-1.sarif'
+        category: 'azure_application-gateway-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/application-gateway/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/application-gateway/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_application-gateway-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_application-gateway-2.sarif'
+        category: 'azure_application-gateway-2'
 
   azure_bastion:
     name: azure-bastion
@@ -79,16 +127,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/bastion/modules/bastion
+        scan-type: 'config'
+        scan-ref: terraform/azure/bastion/modules/bastion
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_bastion-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_bastion-1.sarif'
+        category: 'azure_bastion-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/bastion/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/bastion/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_bastion-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_bastion-2.sarif'
+        category: 'azure_bastion-2'
 
   azure_firewall:
     name: azure-firewall
@@ -98,16 +168,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/firewall/modules/firewall
+        scan-type: 'config'
+        scan-ref: terraform/azure/firewall/modules/firewall
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_firewall-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_firewall-1.sarif'
+        category: 'azure_firewall-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/firewall/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/firewall/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_firewall-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_firewall-2.sarif'
+        category: 'azure_firewall-2'
 
   azure_hub:
     name: azure-hub
@@ -117,16 +209,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/hub/modules/hub
+        scan-type: 'config'
+        scan-ref: terraform/azure/hub/modules/hub
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_hub-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_hub-1.sarif'
+        category: 'azure_hub-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/hub/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/hub/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_hub-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_hub-2.sarif'
+        category: 'azure_hub-2'
 
   azure_nat-gateway:
     name: azure-nat-gateway
@@ -136,16 +250,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/nat-gateway/modules/nat-gateway
+        scan-type: 'config'
+        scan-ref: terraform/azure/nat-gateway/modules/nat-gateway
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_nat-gateway-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_nat-gateway-1.sarif'
+        category: 'azure_nat-gateway-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/nat-gateway/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/nat-gateway/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_nat-gateway-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_nat-gateway-2.sarif'
+        category: 'azure_nat-gateway-2'
 
   azure_peering:
     name: azure-peering
@@ -155,16 +291,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/peering/modules/peering
+        scan-type: 'config'
+        scan-ref: terraform/azure/peering/modules/peering
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_peering-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_peering-1.sarif'
+        category: 'azure_peering-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/peering/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/peering/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_peering-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_peering-2.sarif'
+        category: 'azure_peering-2'
 
   azure_sops:
     name: azure-sops
@@ -174,10 +332,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan main
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/sops/terraform
+        scan-type: 'config'
+        scan-ref: terraform/azure/sops/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_sops-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_sops-1.sarif'
+        category: 'azure_sops-1'
 
   azure_terraform-cloud:
     name: azure-terraform-cloud
@@ -187,10 +356,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan main
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/terraform-cloud/terraform
+        scan-type: 'config'
+        scan-ref: terraform/azure/terraform-cloud/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_terraform-cloud-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_terraform-cloud-1.sarif'
+        category: 'azure_terraform-cloud-1'
 
   azure_traffic-manager:
     name: azure-traffic-manager
@@ -200,16 +380,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/traffic-manager/modules/traffic-manager
+        scan-type: 'config'
+        scan-ref: terraform/azure/traffic-manager/modules/traffic-manager
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_traffic-manager-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_traffic-manager-1.sarif'
+        category: 'azure_traffic-manager-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/traffic-manager/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/traffic-manager/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_traffic-manager-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_traffic-manager-2.sarif'
+        category: 'azure_traffic-manager-2'
 
   azure_velero:
     name: azure-velero
@@ -219,16 +421,38 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/velero/modules/velero
+        scan-type: 'config'
+        scan-ref: terraform/azure/velero/modules/velero
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_velero-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_velero-1.sarif'
+        category: 'azure_velero-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/velero/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/velero/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_velero-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_velero-2.sarif'
+        category: 'azure_velero-2'
 
   azure_vnet:
     name: azure-vnet
@@ -238,13 +462,35 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/vnet/modules/vnet
+        scan-type: 'config'
+        scan-ref: terraform/azure/vnet/modules/vnet
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_vnet-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_vnet-1.sarif'
+        category: 'azure_vnet-1'
 
     - name: Terraform security scan usage
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/azure/vnet/dev
+        scan-type: 'config'
+        scan-ref: terraform/azure/vnet/dev
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-azure_vnet-2.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-azure_vnet-2.sarif'
+        category: 'azure_vnet-2'

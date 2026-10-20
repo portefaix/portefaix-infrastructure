@@ -31,6 +31,10 @@ on: # yamllint disable-line rule:truthy
     paths:
       - "terraform/alicloud/**"
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
 
   alicloud_ack:
@@ -41,16 +45,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/ack/modules/ack
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/ack/modules/ack
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_ack-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_ack-1.sarif'
+          category: 'alicloud_ack-1'
 
       - name: Terraform security scan usage
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/ack/dev
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/ack/dev
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_ack-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_ack-2.sarif'
+          category: 'alicloud_ack-2'
 
   alicloud_eips-nat-gateway:
     name: alicloud-elastic-ips/nat-gateway
@@ -60,16 +86,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/elastic-ips/nat-gateway/modules/nat-gateway
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/elastic-ips/nat-gateway/modules/nat-gateway
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_eips-nat-gateway-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_eips-nat-gateway-1.sarif'
+          category: 'alicloud_eips-nat-gateway-1'
 
       - name: Terraform security scan usage
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/elastic-ips/nat-gateway/dev
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/elastic-ips/nat-gateway/dev
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_eips-nat-gateway-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_eips-nat-gateway-2.sarif'
+          category: 'alicloud_eips-nat-gateway-2'
 
   alicloud_key-pair:
     name: alicloud-key-pair
@@ -79,16 +127,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/key-pair/modules/key-pair
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/key-pair/modules/key-pair
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_key-pair-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_key-pair-1.sarif'
+          category: 'alicloud_key-pair-1'
 
       - name: Terraform security scan usage
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/key-pair/dev
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/key-pair/dev
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_key-pair-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_key-pair-2.sarif'
+          category: 'alicloud_key-pair-2'
 
   alicloud_nat-gateway:
     name: alicloud-nat-gateway
@@ -98,16 +168,38 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/nat-gateway/modules/nat-gateway
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/nat-gateway/modules/nat-gateway
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_nat-gateway-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_nat-gateway-1.sarif'
+          category: 'alicloud_nat-gateway-1'
 
       - name: Terraform security scan usage
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/nat-gateway/dev
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/nat-gateway/dev
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_nat-gateway-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_nat-gateway-2.sarif'
+          category: 'alicloud_nat-gateway-2'
 
   alicloud_terraform-cloud:
     name: alicloud-terraform-cloud
@@ -117,10 +209,21 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/terraform-cloud/terraform
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/terraform-cloud/terraform
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_terraform-cloud-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_terraform-cloud-1.sarif'
+          category: 'alicloud_terraform-cloud-1'
 
   alicloud_vpc:
     name: alicloud-vpc
@@ -130,13 +233,35 @@ jobs:
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Terraform security scan modules
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/vpc/modules/vpc
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/vpc/modules/vpc
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_vpc-1.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_vpc-1.sarif'
+          category: 'alicloud_vpc-1'
 
       - name: Terraform security scan usage
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
         with:
-          github_token: ${{ github.token }}
-          working_dir: terraform/alicloud/vpc/dev
+          scan-type: 'config'
+          scan-ref: terraform/alicloud/vpc/dev
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-alicloud_vpc-2.sarif'
+          exit-code: '1'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+        if: always()
+        with:
+          sarif_file: 'trivy-alicloud_vpc-2.sarif'
+          category: 'alicloud_vpc-2'
