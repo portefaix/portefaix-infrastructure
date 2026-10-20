@@ -17,7 +17,6 @@
 resource "spacelift_stack" "this" {
   for_each = var.stacks
 
-  administrative                  = true
   autodeploy                      = false
   branch                          = each.value.branch
   description                     = "created by Terraform"
@@ -31,6 +30,12 @@ resource "spacelift_stack" "this" {
   repository                      = var.repository
   labels                          = concat(local.labels, each.value.labels, [each.value.environment])
 }
+
+# Space admin bindings are not managed here: when Spacelift deprecated the
+# stack-level `administrative` flag, it auto-migrated every stack that had it
+# set (all stacks in this file) into an equivalent SPACE_ADMIN role binding
+# server-side. Re-declaring them via spacelift_role_attachment conflicts with
+# that existing binding ("stack role binding already exists").
 
 resource "spacelift_context_attachment" "this" {
   for_each = var.stacks
