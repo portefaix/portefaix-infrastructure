@@ -31,6 +31,10 @@ on: # yamllint disable-line rule:truthy
     paths:
     - "terraform/digitalocean/**"
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
 
   digitalocean_doks:
@@ -41,10 +45,21 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/digitalocean/doks/terraform
+        scan-type: 'config'
+        scan-ref: terraform/digitalocean/doks/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-digitalocean_doks-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-digitalocean_doks-1.sarif'
+        category: 'digitalocean_doks-1'
 
   digitalocean_vpc:
     name: digitalocean-vpc
@@ -54,7 +69,18 @@ jobs:
       uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
     - name: Terraform security scan modules
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # 0.33.1
       with:
-        github_token: ${{ github.token }}
-        working_dir: terraform/digitalocean/vpc/terraform
+        scan-type: 'config'
+        scan-ref: terraform/digitalocean/vpc/terraform
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-digitalocean_vpc-1.sarif'
+        exit-code: '1'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@0499de31b99561a6d14a36a5f662c2a54f91beee # v4.31.2
+      if: always()
+      with:
+        sarif_file: 'trivy-digitalocean_vpc-1.sarif'
+        category: 'digitalocean_vpc-1'
