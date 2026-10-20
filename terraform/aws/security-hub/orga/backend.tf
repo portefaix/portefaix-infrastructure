@@ -15,14 +15,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
-  # backend "s3" {
-  # }
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "portefaix"
-
-    workspaces {
-      name = "portefaix-aws-orga-security-hub"
-    }
-  }
 }
