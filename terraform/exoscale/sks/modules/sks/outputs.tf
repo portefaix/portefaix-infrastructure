@@ -13,3 +13,8 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+
+output "sks_endpoint" {
+  value       = exoscale_sks_cluster.cluster.endpoint
+  description = "The Kubernetes public API endpoint of the SKS cluster"
+}

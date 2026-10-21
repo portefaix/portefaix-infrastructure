@@ -14,20 +14,69 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "sks" {
-  source  = "nlamirault/sks/exoscale"
-  version = "1.1.0"
+locals {
+  description = format("%s SKS cluster", var.name)
+  sg_name     = var.name
+}
 
-  name = var.name
-  zone = var.zone
+resource "exoscale_sks_cluster" "cluster" {
+  name        = var.name
+  description = local.description
+  zone        = var.zone
 
-  kubernetes_version = var.kubernetes_version
-  service_level      = var.service_level
+  service_level = var.service_level
+
+  version = var.kubernetes_version
 
   cni            = var.cni
   exoscale_ccm   = var.exoscale_ccm
   metrics_server = var.metrics_server
   auto_upgrade   = var.auto_upgrade
+}
 
-  node_pools = var.node_pools
+resource "exoscale_security_group" "this" {
+  name = local.sg_name
+
+  depends_on = [
+    exoscale_sks_cluster.cluster
+  ]
+}
+
+resource "exoscale_security_group_rule" "logs_rule" {
+  security_group_id = exoscale_security_group.this.id
+  type              = "INGRESS"
+  protocol          = "TCP"
+  cidr              = "0.0.0.0/0"
+  start_port        = 10250
+  end_port          = 10250
+}
+
+resource "exoscale_security_group_rule" "calico" {
+  security_group_id      = exoscale_security_group.this.id
+  user_security_group_id = exoscale_security_group.this.id
+  type                   = "INGRESS"
+  protocol               = "UDP"
+  start_port             = 4789
+  end_port               = 4789
+}
+
+resource "exoscale_security_group_rule" "ccm" {
+  security_group_id = exoscale_security_group.this.id
+  type              = "INGRESS"
+  protocol          = "TCP"
+  start_port        = 30000
+  end_port          = 32767
+  cidr              = "0.0.0.0/0"
+}
+
+resource "exoscale_sks_nodepool" "core" {
+  count = length(var.node_pools)
+
+  zone          = var.zone
+  cluster_id    = exoscale_sks_cluster.cluster.id
+  name          = var.node_pools[count.index].name
+  instance_type = var.node_pools[count.index].instance_type
+  size          = var.node_pools[count.index].size
+
+  security_group_ids = [exoscale_security_group.this.id]
 }
