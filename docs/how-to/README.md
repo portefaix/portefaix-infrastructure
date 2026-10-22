@@ -7,6 +7,7 @@ trigger a Spacelift plan/deploy). These guides assume you already know the basic
 ## Available Guides
 
 - [Bootstrap the AWS cloud provider](bootstrap-aws.md)
+- [Bootstrap the Scaleway cloud provider](bootstrap-scaleway.md)
 
 ## What's a How-to Guide?
 

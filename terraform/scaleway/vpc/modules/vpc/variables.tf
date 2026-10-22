@@ -1,35 +1,56 @@
-# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-# SPDX-License-Identifier: Apache-2.0
-
-#######################################################################
-# Private Network
-
 variable "name" {
-  description = "The name of the cluster"
   type        = string
+  description = "Name of the spoke VPC and its Private Network."
 }
 
-variable "type" {
+variable "project_id" {
   type        = string
-  description = "The gateway type"
-  default     = "VPC-GW-S"
+  description = "The Scaleway Project the spoke VPC is associated with."
+}
+
+variable "subnet_cidr" {
+  type        = string
+  description = "The IPv4 subnet CIDR of the spoke Private Network."
 }
 
 variable "tags" {
   type        = list(string)
-  description = "The tags associated with the VPC."
-  default     = ["terraform"]
+  description = "Tags applied to the spoke VPC and Private Network."
+  default     = []
+}
+
+variable "enable_transitivity" {
+  type        = bool
+  description = "Enable packets from peered VPCs to transit through this spoke VPC."
+  default     = false
+}
+
+#############################################################################
+# Hub connectivity
+
+variable "hub_vpc_id" {
+  type        = string
+  description = "ID of the hub VPC to connect this spoke to. Set to null to leave the spoke unconnected."
+  default     = null
+}
+
+#############################################################################
+# ACL / isolation
+
+variable "create_acl" {
+  type        = bool
+  description = "Whether to create a Network ACL on the spoke VPC."
+  default     = true
+}
+
+variable "acl_default_policy" {
+  type        = string
+  description = "Default policy applied to traffic that matches no ACL rule."
+  default     = "accept"
+}
+
+variable "deny_cidrs" {
+  type        = list(string)
+  description = "CIDR ranges to explicitly deny, typically the subnets of sibling spokes, so spoke-to-spoke traffic is only possible through the hub."
+  default     = []
 }
