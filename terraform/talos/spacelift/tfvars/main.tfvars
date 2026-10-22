@@ -28,31 +28,7 @@ space = "talos"
 environments = ["homelab"]
 
 stacks = {
-  portefaix-homelab-dns = {
-    project_root = "terraform/talos/dns"
-    branch       = "main"
-    labels       = ["core", "dns"]
-    environment  = "homelab"
-    branch       = "main"
-    dependencies = []
-  },
-  # portefaix-homelab-waf = {
-  #   project_root = "terraform/talos/waf"
-  #   branch       = "main"
-  #   labels       = ["security", "waf"]
-  #   environment  = "homelab"
-  #   branch       = "main"
-  #   dependencies = []
-  # },
-  portefaix-homelab-observability = {
-    project_root = "terraform/talos/observability"
-    branch       = "main"
-    labels       = ["core", "observability"]
-    environment  = "homelab"
-    branch       = "main"
-    dependencies = []
-  },
-  portefaix-homelab-zero-trust = {
+  portefaix-talos-homelab-zero-trust = {
     project_root = "terraform/talos/zero-trust"
     branch       = "main"
     labels       = ["security", "zero-trust", "access"]

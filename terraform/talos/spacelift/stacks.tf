@@ -17,7 +17,6 @@
 resource "spacelift_stack" "this" {
   for_each = var.stacks
 
-  administrative                  = true
   autodeploy                      = false
   branch                          = each.value.branch
   description                     = "created by Terraform"

@@ -16,7 +16,7 @@
 
 locals {
   cloud_provider = "talos"
-  labels = [local.cloud_provider]
+  labels         = [local.cloud_provider]
 
   stack_dependencies = flatten([
     for stack_key, stack in var.stacks : [

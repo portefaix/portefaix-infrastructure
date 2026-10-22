@@ -14,17 +14,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-terraform {
-  required_version = ">= 1.0.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "6.17.0"
-    }
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "0.70.0"
-    }
-  }
-}
+bucket = "portefaix-homelab-tfstates"
+key    = "root/terraform.tfstate"

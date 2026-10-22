@@ -14,6 +14,23 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-data "tfe_organization" "portefaix" {
-  name = var.organization
+#############################################################################
+# Provider
+
+variable "cloudflare_account_id" {
+  description = "The Cloudflare account ID"
+  type        = string
+}
+
+# variable "cloudflare_api_token" {
+#   description = "The Cloudflare API token"
+#   type        = string
+# }
+
+#######################################################################
+# Zone
+
+variable "zone_name" {
+  description = "The name of the Cloudflare zone shared by every homelab stack"
+  type        = string
 }

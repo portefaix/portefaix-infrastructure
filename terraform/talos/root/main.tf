@@ -14,21 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "aws" {
-  alias = "cloudflare_r2"
+terraform {
+  required_version = ">= 1.0.0"
 
-  region                      = "auto"
-  skip_credentials_validation = true
-  skip_region_validation      = true
-  skip_requesting_account_id  = true
-  skip_metadata_api_check     = true
-
-  endpoints {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/
-    s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
+  required_providers {
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "5.10.0"
+    }
   }
-}
-
-provider "tfe" {
-  hostname = "app.terraform.io"
 }
