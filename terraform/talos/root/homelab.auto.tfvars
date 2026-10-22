@@ -14,5 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-bucket = "portefaix-homelab-tfstates"
-key    = "terraform-cloud/terraform.tfstate"
+#####################################################################""
+# Zone
+
+zone_name = "portefaix.xyz"

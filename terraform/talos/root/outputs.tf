@@ -14,21 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-provider "aws" {
-  alias = "cloudflare_r2"
-
-  region                      = "auto"
-  skip_credentials_validation = true
-  skip_region_validation      = true
-  skip_requesting_account_id  = true
-  skip_metadata_api_check     = true
-
-  endpoints {
-    # https://developers.cloudflare.com/r2/platform/s3-compatibility/api/
-    s3 = format("https://%s.r2.cloudflarestorage.com", var.cloudflare_account_id)
-  }
-}
-
-provider "cloudflare" {
-  # api_token = var.cloudflare_api_token
+output "cloudflare_zone_id" {
+  description = "The DNS zone id, consumed by downstream stacks via spacelift_stack_dependency_reference"
+  value       = data.cloudflare_zone.this.zone_id
 }
