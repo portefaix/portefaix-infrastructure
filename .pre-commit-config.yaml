@@ -98,7 +98,7 @@ repos:
     hooks:
       - id: insert-license
         files: (Makefile|\.mk|\.yaml|\.yml|\.tf|\.hcl|\.ini|\.rb|\.toml|\.sh)
-        exclude: ^\.secrets/.*$|^\.git-crypt/.*$
+        exclude: ^\.secrets/.*$|^\.git-crypt/.*$|^terraform/scaleway/.*$
         args:
           - --license-filepath
           - LICENSE
@@ -119,8 +119,3 @@ repos:
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
-  - repo: https://github.com/spinergie/pre-commit-dprint
-    rev: v0.50.1
-    hooks:
-      - id: dprint
-        pass_filenames: false
