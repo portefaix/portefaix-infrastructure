@@ -1,6 +1,32 @@
 # Changelog
 
 
+## [3.0.0](https://github.com/portefaix/portefaix-infrastructure/compare/v2.0.1...v3.0.0) (2026-10-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **scaleway:** add organization landing zone and hub-and-spoke vpc ([#2036](https://github.com/portefaix/portefaix-infrastructure/issues/2036))
+* **exoscale:** inline sks module and drop archived dependency ([#2031](https://github.com/portefaix/portefaix-infrastructure/issues/2031))
+* **aws:** Terraform Cloud remote backends are removed from affected stacks; existing state must be reconciled under Spacelift before applying. The eks module no longer accepts enable_irsa or the CSI/ESO/ALB-controller variables. The access-analyzer, alb, elastic-ips/internet-gateway, gateway-api, oidc, terraform-cloud, and waf modules are deleted; VPC provisioning now lives under vpc/dev and vpc/prod instead.
+
+### 🚀 Features
+
+* **aws:** consolidate aws stacks and drop legacy modules ([#2024](https://github.com/portefaix/portefaix-infrastructure/issues/2024)) ([f63bf5a](https://github.com/portefaix/portefaix-infrastructure/commit/f63bf5af2b0d45e51a6eef78c537ab0a67e64a8e))
+* **exoscale:** inline sks module and drop archived dependency ([#2031](https://github.com/portefaix/portefaix-infrastructure/issues/2031)) ([3534cda](https://github.com/portefaix/portefaix-infrastructure/commit/3534cda1d66883a6551b4081d88684007ebf952e))
+* **scaleway:** add organization landing zone and hub-and-spoke vpc ([#2036](https://github.com/portefaix/portefaix-infrastructure/issues/2036)) ([74f70a2](https://github.com/portefaix/portefaix-infrastructure/commit/74f70a258e99e810735247ce5d40b180dfd0b290))
+
+
+### 🐛 Bug Fixes
+
+* **workflows:** replace tfsec-pr-commenter-action with trivy-action ([#2011](https://github.com/portefaix/portefaix-infrastructure/issues/2011)) ([d86acff](https://github.com/portefaix/portefaix-infrastructure/commit/d86acfff1cde96b057b25aa175191330d795eae0))
+
+
+### 🚨 Maintenance
+
+* **deps:** update actions/checkout action to v5.1.0 ([#1998](https://github.com/portefaix/portefaix-infrastructure/issues/1998)) ([5699054](https://github.com/portefaix/portefaix-infrastructure/commit/5699054111c424b736d597d2e89a697078002514))
+* **deps:** update ossf/scorecard-action action to v2.5.0 ([#1996](https://github.com/portefaix/portefaix-infrastructure/issues/1996)) ([90c3c92](https://github.com/portefaix/portefaix-infrastructure/commit/90c3c927e6b7e0e3d5e1da7f7e03f80b7527a811))
+
 ## [2.0.1](https://github.com/portefaix/portefaix-infrastructure/compare/v2.0.0...v2.0.1) (2026-10-16)
 
 
